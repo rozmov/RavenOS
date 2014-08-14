@@ -292,17 +292,17 @@
                 <Size>0x0</Size>
               </XRAM>
               <OCR_RVCT1>
-                <Type>1</Type>
+                <Type>0</Type>
                 <StartAddress>0x0</StartAddress>
                 <Size>0x0</Size>
               </OCR_RVCT1>
               <OCR_RVCT2>
-                <Type>1</Type>
+                <Type>0</Type>
                 <StartAddress>0x0</StartAddress>
                 <Size>0x0</Size>
               </OCR_RVCT2>
               <OCR_RVCT3>
-                <Type>1</Type>
+                <Type>0</Type>
                 <StartAddress>0x0</StartAddress>
                 <Size>0x0</Size>
               </OCR_RVCT3>
@@ -312,7 +312,7 @@
                 <Size>0x40000</Size>
               </OCR_RVCT4>
               <OCR_RVCT5>
-                <Type>1</Type>
+                <Type>0</Type>
                 <StartAddress>0x0</StartAddress>
                 <Size>0x0</Size>
               </OCR_RVCT5>
@@ -411,16 +411,6 @@
           <GroupName>::CMSIS</GroupName>
         </Group>
         <Group>
-          <GroupName>::CMSIS Driver</GroupName>
-          <Files>
-            <File>
-              <FileName>USART_TM4C123.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>D:\Keil_v5\ARM\PACK\RavenOS\TM4C123GH6PM_UART\1.0.0\RTE\CMSIS\Driver\USART_TM4C123.c</FilePath>
-            </File>
-          </Files>
-        </Group>
-        <Group>
           <GroupName>::Device</GroupName>
           <Files>
             <File>
@@ -440,14 +430,7 @@
   </Targets>
 
   <RTE>
-    <apis>
-      <api Capiversion="2.01" Cclass="CMSIS Driver" Cgroup="USART" exclusive="0">
-        <package name="CMSIS" schemaVersion="1.2" url="http://www.keil.com/pack/" vendor="ARM" version="4.1.1"/>
-        <targetInfos>
-          <targetInfo name="Target 1"/>
-        </targetInfos>
-      </api>
-    </apis>
+    <apis/>
     <components>
       <component Cclass="CMSIS" Cgroup="CORE" Cvendor="ARM" Cversion="3.30.0" condition="CMSIS Core">
         <package name="CMSIS" schemaVersion="1.2" url="http://www.keil.com/pack/" vendor="ARM" version="4.1.1"/>
@@ -457,12 +440,6 @@
       </component>
       <component Cclass="Device" Cgroup="Startup" Cvendor="Keil" Cversion="1.0.0" condition="TM4C CMSIS Device">
         <package name="TM4C_DFP" schemaVersion="1.2" url="http://www.keil.com/pack/" vendor="Keil" version="1.0.0"/>
-        <targetInfos>
-          <targetInfo name="Target 1"/>
-        </targetInfos>
-      </component>
-      <component Capiversion="2.01" Cclass="CMSIS Driver" Cgroup="USART" Csub="TM4C123GH6PM" Cvendor="RavenOS" Cversion="2.01">
-        <package name="TM4C123GH6PM_UART" schemaVersion="1.2" supportContact="laura.mutu@carleton.ca" vendor="RavenOS" version="1.0.0"/>
         <targetInfos>
           <targetInfo name="Target 1"/>
         </targetInfos>
