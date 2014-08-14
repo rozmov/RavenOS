@@ -34,3 +34,15 @@ Icon
 # Files that might appear on external disk
 .Spotlight-V100
 .Trashes
+
+# Build paraphenalia
+.o
+._i
+.d
+.build_log.htm
+.uvgui.Marian
+.uvguix.Marian
+.uvopt
+.uvoptx
+.uvproj.bak
+.0000
