@@ -36,13 +36,16 @@ Icon
 .Trashes
 
 # Build paraphenalia
-.o
-._i
-.d
-.build_log.htm
-.uvgui.Marian
-.uvguix.Marian
-.uvopt
-.uvoptx
-.uvproj.bak
-.0000
+*.o
+*._i
+*.d
+*.build_log.htm
+*.uvgui.Marian
+*.uvguix.Marian
+*.uvopt
+*.uvoptx
+*.uvproj.bak
+*.0000
+*.Marian
+*.bak
+*.__i
