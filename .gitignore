@@ -49,3 +49,6 @@ Icon
 *.Marian
 *.bak
 *.__i
+*.dep
+*.lst
+*.crf
