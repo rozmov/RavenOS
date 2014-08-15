@@ -1,5 +1,5 @@
 /**************************************************************************//**
- * @file     system_TM4C.c
+ * @file     system_TM4C123.c
  * @brief    CMSIS Device System Source File for
  *           Texas Instruments TIVA TM4C123 Device Series
  * @version  V1.00
