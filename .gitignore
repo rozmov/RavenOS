@@ -54,4 +54,9 @@ Icon
 *.crf
 *.uvproj
 *.uvprojx
+*.hex
+*.i
+*.map
+*.iex
+*.lnp
 Documentation/raven.jpg

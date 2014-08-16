@@ -44,14 +44,14 @@
             <NotGenerated>0</NotGenerated>
             <InvalidFlash>1</InvalidFlash>
           </TargetStatus>
-          <OutputDirectory>.\</OutputDirectory>
+          <OutputDirectory>.\Objects\</OutputDirectory>
           <OutputName>RavenOS</OutputName>
           <CreateExecutable>1</CreateExecutable>
           <CreateLib>0</CreateLib>
-          <CreateHexFile>0</CreateHexFile>
+          <CreateHexFile>1</CreateHexFile>
           <DebugInformation>1</DebugInformation>
           <BrowseInformation>1</BrowseInformation>
-          <ListingPath>.\</ListingPath>
+          <ListingPath>.\Listings\</ListingPath>
           <HexFormatSelection>1</HexFormatSelection>
           <Merge32K>0</Merge32K>
           <CreateBatchFile>0</CreateBatchFile>
@@ -146,7 +146,7 @@
             <UsePdscDebugDescription>1</UsePdscDebugDescription>
           </Target>
           <RunDebugAfterBuild>0</RunDebugAfterBuild>
-          <TargetSelection>1</TargetSelection>
+          <TargetSelection>3</TargetSelection>
           <SimDlls>
             <CpuDll></CpuDll>
             <CpuDllArguments></CpuDllArguments>
@@ -160,7 +160,7 @@
             <PeripheralDll></PeripheralDll>
             <PeripheralDllArguments></PeripheralDllArguments>
             <InitializationFile></InitializationFile>
-            <Driver>BIN\UL2CM3.DLL</Driver>
+            <Driver>BIN\lmidk-agdi.dll</Driver>
           </TargetDlls>
         </DebugOption>
         <Utilities>
@@ -169,12 +169,12 @@
             <UseExternalTool>0</UseExternalTool>
             <RunIndependent>0</RunIndependent>
             <UpdateFlashBeforeDebugging>1</UpdateFlashBeforeDebugging>
-            <Capability>0</Capability>
-            <DriverSelection>-1</DriverSelection>
+            <Capability>1</Capability>
+            <DriverSelection>4096</DriverSelection>
           </Flash1>
           <bUseTDR>1</bUseTDR>
           <Flash2>BIN\UL2CM3.DLL</Flash2>
-          <Flash3></Flash3>
+          <Flash3>"" ()</Flash3>
           <Flash4></Flash4>
           <pFcarmOut></pFcarmOut>
           <pFcarmGrp></pFcarmGrp>
@@ -209,7 +209,7 @@
             <AdsLven>1</AdsLven>
             <AdsLsxf>1</AdsLsxf>
             <RvctClst>0</RvctClst>
-            <GenPPlst>0</GenPPlst>
+            <GenPPlst>1</GenPPlst>
             <AdsCpuType>"Cortex-M4"</AdsCpuType>
             <RvctDeviceName></RvctDeviceName>
             <mOS>0</mOS>
@@ -362,9 +362,9 @@
             <useXO>0</useXO>
             <VariousControls>
               <MiscControls></MiscControls>
-              <Define></Define>
+              <Define>TARGET_IS_TM4C123_RB1 PART_TM4C123GH6PM</Define>
               <Undefine></Undefine>
-              <IncludePath></IncludePath>
+              <IncludePath>.\RTE\RTOS\Include</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -406,6 +406,53 @@
       <Groups>
         <Group>
           <GroupName>Source Group 1</GroupName>
+          <Files>
+            <File>
+              <FileName>retarget.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\RTE\RTOS\Source\retarget.c</FilePath>
+            </File>
+            <File>
+              <FileName>main.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\RTE\RTOS\Source\main.c</FilePath>
+            </File>
+            <File>
+              <FileName>peripherals.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\RTE\RTOS\Source\peripherals.c</FilePath>
+            </File>
+            <File>
+              <FileName>thread0.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\RTE\RTOS\Source\thread0.c</FilePath>
+            </File>
+            <File>
+              <FileName>thread1.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\RTE\RTOS\Source\thread1.c</FilePath>
+            </File>
+            <File>
+              <FileName>thread2.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\RTE\RTOS\Source\thread2.c</FilePath>
+            </File>
+            <File>
+              <FileName>thread3.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\RTE\RTOS\Source\thread3.c</FilePath>
+            </File>
+            <File>
+              <FileName>trace.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\RTE\RTOS\Source\trace.c</FilePath>
+            </File>
+            <File>
+              <FileName>kernel.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\RTE\RTOS\Source\kernel.c</FilePath>
+            </File>
+          </Files>
         </Group>
         <Group>
           <GroupName>::CMSIS</GroupName>
