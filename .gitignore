@@ -59,4 +59,6 @@ Icon
 *.map
 *.iex
 *.lnp
+*.axf
 Documentation/raven.jpg
+Objects/RavenOS.htm

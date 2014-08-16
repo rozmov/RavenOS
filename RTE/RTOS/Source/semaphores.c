@@ -5,6 +5,7 @@
 
 #include "cmsis_os.h" 
 
+
 //  ==== Semaphore Management Functions ====
 
 #if (defined (osFeature_Semaphore)  &&  (osFeature_Semaphore != 0))     // Semaphore available
@@ -16,17 +17,8 @@
 #define osSemaphoreDef(name)  \
 const osSemaphoreDef_t os_semaphore_def_##name = { 0 }
 
-/// \def MAX_SEMAPHORES Maximum number for threads supported
-#define MAX_SEMAPHORES 10
-
-struct os_semaphore_cb
-{
-	osThreadId                 threads_q[MAX_THREADS_SEM];    ///< queue of threads blocked on a semaphore.
-	osThreadId                 thread_id;                     ///< the thread currently controlling the semaphore.
-};
-
 osSemaphoreId semaphores[MAX_SEMAPHORES];
-uint32_t sem_counter = 0;   ///< Ready to Run Queue thread counter
+uint32_t sem_counter = 0;   ///< Semaphore Queue counter
 
 
 /// Access a Semaphore definition.
@@ -43,7 +35,7 @@ uint32_t sem_counter = 0;   ///< Ready to Run Queue thread counter
 /// \note MUST REMAIN UNCHANGED: \b osSemaphoreCreate shall be consistent in every CMSIS-RTOS.
 osSemaphoreId osSemaphoreCreate (const osSemaphoreDef_t *semaphore_def, int32_t count)
 {
-
+	return NULL;
 }
 
 
@@ -54,7 +46,7 @@ osSemaphoreId osSemaphoreCreate (const osSemaphoreDef_t *semaphore_def, int32_t 
 /// \note MUST REMAIN UNCHANGED: \b osSemaphoreWait shall be consistent in every CMSIS-RTOS.
 int32_t osSemaphoreWait (osSemaphoreId semaphore_id, uint32_t millisec)
 {
-
+ return -1;
 }
 
 
@@ -64,7 +56,10 @@ int32_t osSemaphoreWait (osSemaphoreId semaphore_id, uint32_t millisec)
 /// \note MUST REMAIN UNCHANGED: \b osSemaphoreRelease shall be consistent in every CMSIS-RTOS.
 osStatus osSemaphoreRelease (osSemaphoreId semaphore_id)
 {
-
+	// Remove semaphore from thread 
+	
+  // Remove thread from semaphore
+	return osOK;
 }
 
 
@@ -74,7 +69,60 @@ osStatus osSemaphoreRelease (osSemaphoreId semaphore_id)
 /// \note MUST REMAIN UNCHANGED: \b osSemaphoreDelete shall be consistent in every CMSIS-RTOS.
 osStatus osSemaphoreDelete (osSemaphoreId semaphore_id)
 {
+	return osOK;
+}
 
+/// \fn osStatus osSemaphoreRemoveThread (osThreadId thread_id)
+/// \brief Delete a Thread from all semaphore queues.
+/// \param[in]     thread_id  thread object.
+/// \return status code that indicates the execution status of the function.
+osStatus osSemaphoreRemoveThread (osThreadId thread_id)
+{
+	uint32_t i,j, idx = MAX_THREADS_SEM;
+	osStatus rc = osOK;
+	
+	if (sem_counter == 0)
+	{
+		return osOK;
+	}
+	
+	for ( i = 0; i < sem_counter ; i++ )
+	{
+		for ( j = 0; j < semaphores[i]->threads_q_idx + 1 ; j++ )
+		{		
+			if (semaphores[i]->threads_q[j] == thread_id )
+			{
+				// check if this is the thread currently controlling the semaphore
+				if (semaphores[i]->thread_id == thread_id )
+				{
+					// Release the semaphore
+					if ((rc = osSemaphoreRelease(semaphores[i])) != osOK)
+					{
+						return rc;
+					}
+				}
+				else
+				{
+					// remove the thread from the semaphore's queue
+					semaphores[i]->threads_q[j] = NULL;
+					idx = j;
+				}
+			}
+		}
+		
+		if (idx != MAX_THREADS_SEM)
+		{
+			for ( j = idx; j < (semaphores[i]->threads_q_idx + 1) - 1 ; j++ )
+			{
+					semaphores[i]->threads_q[j] = semaphores[i]->threads_q[j+1];
+					semaphores[i]->threads_q[j]->semaphore_p = j; 	
+			}		
+		}
+			
+		semaphores[i]->threads_q_idx--;		
+	}
+	
+	return osOK;
 }
 
 

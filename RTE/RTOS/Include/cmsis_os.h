@@ -213,7 +213,14 @@ typedef void (*os_pthread) (void const *argument);
 /// \note MUST REMAIN UNCHANGED: \b os_ptimer shall be consistent in every CMSIS-RTOS.
 typedef void (*os_ptimer) (void const *argument);
 
-// >>> the following data type definitions may shall adapted towards a specific RTOS
+// >>> the following data type definitions shall be adapted towards a specific RTOS
+
+#include "threads.h"
+#include "semaphores.h"
+
+typedef struct os_thread_cb os_thread_cb;
+typedef struct os_semaphore_cb os_semaphore_cb;
+
 
 /// Thread ID identifies the thread (pointer to a thread control block).
 /// \note CAN BE CHANGED: \b os_thread_cb is implementation specific in every CMSIS-RTOS.
@@ -231,6 +238,7 @@ typedef struct os_mutex_cb *osMutexId;
 /// \note CAN BE CHANGED: \b os_semaphore_cb is implementation specific in every CMSIS-RTOS.
 typedef struct os_semaphore_cb *osSemaphoreId;
 
+
 /// Pool ID identifies the memory pool (pointer to a memory pool control block).
 /// \note CAN BE CHANGED: \b os_pool_cb is implementation specific in every CMSIS-RTOS.
 typedef struct os_pool_cb *osPoolId;
@@ -242,6 +250,30 @@ typedef struct os_messageQ_cb *osMessageQId;
 /// Mail ID identifies the mail queue (pointer to a mail queue control block).
 /// \note CAN BE CHANGED: \b os_mailQ_cb is implementation specific in every CMSIS-RTOS.
 typedef struct os_mailQ_cb *osMailQId;
+
+/// Thread Block Control
+struct os_thread_cb
+{
+	osPriority priority;   ///< Thread Priority
+	osThreadStatus status; ///< Thread Status
+	uint32_t rtr_q_p;      ///< Ready to Run Queue Pointer
+	uint32_t stack_p;      ///< Stack Pointer
+	uint32_t stack_size;   ///< Stack Size (bytes)
+	uint32_t semaphore_p;  ///< Semapore Pointer (in semaphore queue) if waiting on a semaphore
+	osSemaphoreId semaphore_id; ///< Semaphore ID for semaphore currently blocked on
+	uint32_t time_count;   ///< Time until Timeout
+	uint32_t timed_q_p;    ///< Timed Queue Pointer
+	osStatus timed_ret;    ///< Exit Status from Sleep
+	os_pthread start_p;    ///< Start address of thread function
+};
+
+/// Semaphore Block Control
+struct os_semaphore_cb
+{
+	osThreadId                 threads_q[MAX_THREADS_SEM];    ///< queue of threads blocked on a semaphore.
+  uint32_t                   threads_q_idx;                 ///< indicated how many threads are blocked/usingg on this semaphore
+	osThreadId                 thread_id;                     ///< the thread currently controlling the semaphore.
+} ;
 
 
 /// Thread Definition structure contains startup information of a thread.
@@ -264,9 +296,6 @@ typedef struct os_timer_def  {
 typedef struct os_mutex_def  {
   uint32_t                   dummy;    ///< dummy value.
 } osMutexDef_t;
-
-/// \def MAX_THREADS_SEM The maximum number of threads that can be blocked on a semaphore.
-#define MAX_THREADS_SEM 10
 
 /// Semaphore Definition structure contains setup information for a semaphore.
 /// \note CAN BE CHANGED: \b os_semaphore_def is implementation specific in every CMSIS-RTOS.
@@ -599,6 +628,12 @@ osStatus osSemaphoreRelease (osSemaphoreId semaphore_id);
 /// \return status code that indicates the execution status of the function.
 /// \note MUST REMAIN UNCHANGED: \b osSemaphoreDelete shall be consistent in every CMSIS-RTOS.
 osStatus osSemaphoreDelete (osSemaphoreId semaphore_id);
+
+/// \fn osStatus osSemaphoreRemoveThread (osThreadId thread_id)
+/// \brief Delete a Thread from all semaphore queues.
+/// \param[in]     thread_id  thread object.
+/// \return status code that indicates the execution status of the function.
+osStatus osSemaphoreRemoveThread (osThreadId thread_id);
 
 #endif     // Semaphore available
 

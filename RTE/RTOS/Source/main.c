@@ -40,6 +40,11 @@ int main(void)
 		stop_cpu;
 	}
 	
+  if (Init_Semaphore0() != 0)
+	{
+		stop_cpu;
+	}	
+	
 	osKernelStart ();                         // start thread execution 
   
   while(1)

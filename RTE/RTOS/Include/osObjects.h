@@ -28,9 +28,6 @@ int Init_thread3 (void);
 
 /// Semaphore definition
 extern void sem0 (void const *argument);             // function prototype
-osSemaphoreDef (sem0);
-
-// Pool definition
-//osPoolDef(MyPool, 10, long);
+int Init_Semaphore0 (void);
 
 #endif // _OSOBJECTS_H

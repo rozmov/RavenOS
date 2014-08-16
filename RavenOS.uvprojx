@@ -452,6 +452,21 @@
               <FileType>1</FileType>
               <FilePath>.\RTE\RTOS\Source\kernel.c</FilePath>
             </File>
+            <File>
+              <FileName>threads.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\RTE\RTOS\Source\threads.c</FilePath>
+            </File>
+            <File>
+              <FileName>semaphores.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\RTE\RTOS\Source\semaphores.c</FilePath>
+            </File>
+            <File>
+              <FileName>sem0.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\RTE\RTOS\Source\sem0.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
