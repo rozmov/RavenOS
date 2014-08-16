@@ -31,7 +31,7 @@
   <td id="projectlogo"><img alt="Logo" src="raven.jpg"/></td>
   <td style="padding-left: 0.5em;">
    <div id="projectname">RavenOS
-   &#160;<span id="projectnumber">1.0</span>
+   &#160;<span id="projectnumber">1.2</span>
    </div>
    <div id="projectbrief">Carleton University Real-Time Operating System</div>
   </td>
@@ -47,6 +47,8 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
+      <li><a href="pages.html"><span>Related&#160;Pages</span></a></li>
+      <li><a href="annotated.html"><span>Data&#160;Structures</span></a></li>
       <li class="current"><a href="files.html"><span>Files</span></a></li>
       <li>
         <div id="MSearchBox" class="MSearchBoxInactive">
@@ -77,6 +79,21 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
       <li class="current"><a href="globals.html"><span>All</span></a></li>
       <li><a href="globals_func.html"><span>Functions</span></a></li>
       <li><a href="globals_vars.html"><span>Variables</span></a></li>
+      <li><a href="globals_defs.html"><span>Macros</span></a></li>
+    </ul>
+  </div>
+  <div id="navrow4" class="tabs3">
+    <ul class="tablist">
+      <li><a href="#index_a"><span>a</span></a></li>
+      <li><a href="#index_d"><span>d</span></a></li>
+      <li><a href="#index_h"><span>h</span></a></li>
+      <li><a href="#index_i"><span>i</span></a></li>
+      <li><a href="#index_m"><span>m</span></a></li>
+      <li><a href="#index_o"><span>o</span></a></li>
+      <li><a href="#index_p"><span>p</span></a></li>
+      <li><a href="#index_r"><span>r</span></a></li>
+      <li><a href="#index_s"><span>s</span></a></li>
+      <li class="current"><a href="#index_t"><span>t</span></a></li>
     </ul>
   </div>
 </div><!-- top -->
@@ -99,7 +116,7 @@ $(document).ready(function(){initNavTree('globals.html','');});
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Variables</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Data Structures</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Macros</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Pages</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -109,12 +126,200 @@ $(document).ready(function(){initNavTree('globals.html','');});
 </div>
 
 <div class="contents">
-<div class="textblock">Here is a list of all documented functions, variables, defines, enums, and typedefs with links to the documentation:</div><ul>
+<div class="textblock">Here is a list of all documented functions, variables, defines, enums, and typedefs with links to the documentation:</div>
+
+<h3><a class="anchor" id="index_a"></a>- a -</h3><ul>
+<li>addTrace()
+: <a class="el" href="trace_8h.html#a0c045565a7872689752c456352835196">trace.h</a>
+, <a class="el" href="trace_8c.html#a0c045565a7872689752c456352835196">trace.c</a>
+</li>
+</ul>
+
+
+<h3><a class="anchor" id="index_d"></a>- d -</h3><ul>
+<li>decrementTraceCounter()
+: <a class="el" href="trace_8c.html#ad869e9c1b721a7d3a98a4fc9b4bb5db6">trace.c</a>
+</li>
+</ul>
+
+
+<h3><a class="anchor" id="index_h"></a>- h -</h3><ul>
+<li>HardFault_Handler()
+: <a class="el" href="kernel_8c.html#ac665fd9d3df5b21cf4dee052d7cc6620">kernel.c</a>
+</li>
+<li>HardFault_Handler_C()
+: <a class="el" href="kernel_8c.html#a4dac502265d65c7133fe4c0332451c7d">kernel.c</a>
+</li>
+<li>HW32_REG
+: <a class="el" href="kernel_8c.html#aaa11c7df18ba462bf4c3da360d28f16b">kernel.c</a>
+</li>
+</ul>
+
+
+<h3><a class="anchor" id="index_i"></a>- i -</h3><ul>
+<li>incrementTraceCounter()
+: <a class="el" href="trace_8c.html#aeb40ece78e68cd3fb646724b4d2b717c">trace.c</a>
+</li>
+<li>Init_thread0()
+: <a class="el" href="os_objects_8h.html#a2a70e03dc85e518b7c1ad37b9f4ecb35">osObjects.h</a>
+, <a class="el" href="thread0_8c.html#a2a70e03dc85e518b7c1ad37b9f4ecb35">thread0.c</a>
+</li>
+<li>Init_thread1()
+: <a class="el" href="os_objects_8h.html#abb3abc75a433c332f5fde4f5b889fb05">osObjects.h</a>
+, <a class="el" href="thread1_8c.html#abb3abc75a433c332f5fde4f5b889fb05">thread1.c</a>
+</li>
+<li>Init_thread2()
+: <a class="el" href="os_objects_8h.html#ae8780d78ea250bba4edce3221a4acdc1">osObjects.h</a>
+, <a class="el" href="thread2_8c.html#ae8780d78ea250bba4edce3221a4acdc1">thread2.c</a>
+</li>
+<li>Init_thread3()
+: <a class="el" href="os_objects_8h.html#a4ded95b8829e5de74a4b3760a62cc82a">osObjects.h</a>
+, <a class="el" href="thread3_8c.html#a4ded95b8829e5de74a4b3760a62cc82a">thread3.c</a>
+</li>
+</ul>
+
+
+<h3><a class="anchor" id="index_m"></a>- m -</h3><ul>
+<li>main()
+: <a class="el" href="main_8c.html#a840291bc02cba5474a4cb46a9b9566fe">main.c</a>
+</li>
+<li>MAX_STR_LEN
+: <a class="el" href="trace_8c.html#a58ce36916c399104e18d32ff090f21c6">trace.c</a>
+</li>
+<li>MEX_TRACE_ARR_LEN
+: <a class="el" href="trace_8c.html#af6f42601b8df266d856492e0182f747a">trace.c</a>
+</li>
+<li>MIN_TRACE_ARR_LEN
+: <a class="el" href="trace_8c.html#a817e4ed18d4c052f1bf9bd7f8261e954">trace.c</a>
+</li>
+</ul>
+
+
+<h3><a class="anchor" id="index_o"></a>- o -</h3><ul>
+<li>osKernelRunning()
+: <a class="el" href="kernel_8c.html#a3b571de44cd3094c643247a7397f86b5">kernel.c</a>
+</li>
+<li>osKernelStart()
+: <a class="el" href="kernel_8c.html#aab668ffd2ea76bb0a77ab0ab385eaef2">kernel.c</a>
+</li>
+<li>osThreadCreate()
+: <a class="el" href="threads_8c.html#ac59b5713cb083702dce759c73fd90dff">threads.c</a>
+</li>
+<li>osThreadDef
+: <a class="el" href="threads_8c.html#aee93d929beb350f16e5cc7fa602e229f">threads.c</a>
+</li>
+<li>osThreadGetId()
+: <a class="el" href="threads_8c.html#ab1df2a28925862ef8f9cf4e1c995c5a7">threads.c</a>
+</li>
+<li>osThreadGetPriority()
+: <a class="el" href="threads_8c.html#a4299d838978bc2aae5e4350754e6a4e9">threads.c</a>
+</li>
+<li>osThreadSetPriority()
+: <a class="el" href="threads_8c.html#a0dfb90ccf1f6e4b54b9251b12d1cbc8b">threads.c</a>
+</li>
+<li>osThreadTerminate()
+: <a class="el" href="threads_8c.html#aea135bb90eb853eff39e0800b91bbeab">threads.c</a>
+</li>
+<li>osThreadYield()
+: <a class="el" href="threads_8c.html#af13a667493c5d629a90c13e113b99233">threads.c</a>
+</li>
+</ul>
+
+
+<h3><a class="anchor" id="index_p"></a>- p -</h3><ul>
+<li>PendSV_Handler()
+: <a class="el" href="kernel_8c.html#ad628297c6eafc9b3a38fdd08377b42c5">kernel.c</a>
+</li>
+</ul>
+
+
+<h3><a class="anchor" id="index_r"></a>- r -</h3><ul>
+<li>rtr_q
+: <a class="el" href="threads_8c.html#a0d42e0e93383da364bc1211cf575dbbe">threads.c</a>
+</li>
+<li>rtr_q_h
+: <a class="el" href="threads_8c.html#adb42ff0b4b8133fa19fe29def0ee16ee">threads.c</a>
+</li>
+<li>rtr_q_idx
+: <a class="el" href="threads_8c.html#a915328c14dea7ee932ee34026257947b">threads.c</a>
+</li>
+</ul>
+
+
+<h3><a class="anchor" id="index_s"></a>- s -</h3><ul>
+<li>sem0()
+: <a class="el" href="os_objects_8h.html#a751cae05baf289d311fc4fc024f02bc3">osObjects.h</a>
+</li>
+<li>stop_cpu
+: <a class="el" href="os_objects_8h.html#a83c0473f91377cf427259bb66650d5ab">osObjects.h</a>
+</li>
+<li>SVC_Handler()
+: <a class="el" href="kernel_8c.html#a37a51408555bf2a31f8e00a7ec229b7a">kernel.c</a>
+</li>
+<li>SVC_Handler_C()
+: <a class="el" href="kernel_8c.html#a26c0ab883d9bde396a32f13b18951fec">kernel.c</a>
+</li>
 <li>SystemCoreClock
 : <a class="el" href="system___t_m4_c123_8c.html#aa3cd3e43291e81e795d642b79b6088e6">system_TM4C123.c</a>
 </li>
 <li>SystemInit()
 : <a class="el" href="system___t_m4_c123_8c.html#a93f514700ccf00d08dbdcff7f1224eb2">system_TM4C123.c</a>
+</li>
+<li>SysTick_Handler()
+: <a class="el" href="kernel_8c.html#ab5e09814056d617c521549e542639b7e">kernel.c</a>
+</li>
+</ul>
+
+
+<h3><a class="anchor" id="index_t"></a>- t -</h3><ul>
+<li>task0()
+: <a class="el" href="thread0_8c.html#ac2d04db3627842732a442375cc8d6ce9">thread0.c</a>
+</li>
+<li>task1()
+: <a class="el" href="thread1_8c.html#ab55078d807df0a75af8a2fa8eefdcc41">thread1.c</a>
+</li>
+<li>task2()
+: <a class="el" href="thread2_8c.html#a03bef279de31d91a79b14f31c4530dfc">thread2.c</a>
+</li>
+<li>task3()
+: <a class="el" href="thread3_8c.html#a800ed86ba3f4e578d81215c99b2ad914">thread3.c</a>
+</li>
+<li>thread0()
+: <a class="el" href="os_objects_8h.html#a06fc557acb89682a365085c8c605a9c0">osObjects.h</a>
+, <a class="el" href="thread0_8c.html#a06fc557acb89682a365085c8c605a9c0">thread0.c</a>
+</li>
+<li>thread1()
+: <a class="el" href="os_objects_8h.html#a3976657ef2858fbdaf2d7a57175b2bb5">osObjects.h</a>
+, <a class="el" href="thread1_8c.html#a3976657ef2858fbdaf2d7a57175b2bb5">thread1.c</a>
+</li>
+<li>thread2()
+: <a class="el" href="os_objects_8h.html#a1fcc06cb578bc7e8cd58f191f8bae643">osObjects.h</a>
+, <a class="el" href="thread2_8c.html#a1fcc06cb578bc7e8cd58f191f8bae643">thread2.c</a>
+</li>
+<li>thread3()
+: <a class="el" href="os_objects_8h.html#ae6789c87cdc94c090f74b5e558950ee7">osObjects.h</a>
+, <a class="el" href="thread3_8c.html#ae6789c87cdc94c090f74b5e558950ee7">thread3.c</a>
+</li>
+<li>tid_thread0
+: <a class="el" href="thread0_8c.html#a931ec3a4f19c2abf74d1ecf38a256e41">thread0.c</a>
+</li>
+<li>tid_thread1
+: <a class="el" href="thread1_8c.html#ad17a7b180ec093eb407244491ff3ec42">thread1.c</a>
+</li>
+<li>timed_q
+: <a class="el" href="threads_8c.html#a7f79e2492c8d08449727a679afd013a0">threads.c</a>
+</li>
+<li>timed_q_h
+: <a class="el" href="threads_8c.html#ac28df347c9f01314ec223db08fe4a5d7">threads.c</a>
+</li>
+<li>timed_q_idx
+: <a class="el" href="threads_8c.html#a36bd40e369e6d669bf8ee04c9d1add3d">threads.c</a>
+</li>
+<li>trace_counter
+: <a class="el" href="trace_8c.html#a34528aa0fa7eac7a27d7261fdf5dfd30">trace.c</a>
+</li>
+<li>trace_table
+: <a class="el" href="trace_8c.html#a56e0b97f8626ec21f1d3eda3e8aae66e">trace.c</a>
 </li>
 </ul>
 </div><!-- contents -->
@@ -122,7 +327,7 @@ $(document).ready(function(){initNavTree('globals.html','');});
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="footer">Generated on Thu Aug 14 2014 23:14:06 for RavenOS by
+    <li class="footer">Generated on Sat Aug 16 2014 05:51:42 for RavenOS by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.7 </li>
   </ul>

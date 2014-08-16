@@ -31,7 +31,7 @@
   <td id="projectlogo"><img alt="Logo" src="raven.jpg"/></td>
   <td style="padding-left: 0.5em;">
    <div id="projectname">RavenOS
-   &#160;<span id="projectnumber">1.0</span>
+   &#160;<span id="projectnumber">1.2</span>
    </div>
    <div id="projectbrief">Carleton University Real-Time Operating System</div>
   </td>
@@ -47,6 +47,8 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
+      <li><a href="pages.html"><span>Related&#160;Pages</span></a></li>
+      <li><a href="annotated.html"><span>Data&#160;Structures</span></a></li>
       <li class="current"><a href="files.html"><span>Files</span></a></li>
       <li>
         <div id="MSearchBox" class="MSearchBoxInactive">
@@ -77,6 +79,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
       <li><a href="globals.html"><span>All</span></a></li>
       <li><a href="globals_func.html"><span>Functions</span></a></li>
       <li class="current"><a href="globals_vars.html"><span>Variables</span></a></li>
+      <li><a href="globals_defs.html"><span>Macros</span></a></li>
     </ul>
   </div>
 </div><!-- top -->
@@ -99,7 +102,7 @@ $(document).ready(function(){initNavTree('globals_vars.html','');});
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Variables</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Data Structures</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Macros</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Pages</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -110,8 +113,38 @@ $(document).ready(function(){initNavTree('globals_vars.html','');});
 
 <div class="contents">
 &#160;<ul>
+<li>rtr_q
+: <a class="el" href="threads_8c.html#a0d42e0e93383da364bc1211cf575dbbe">threads.c</a>
+</li>
+<li>rtr_q_h
+: <a class="el" href="threads_8c.html#adb42ff0b4b8133fa19fe29def0ee16ee">threads.c</a>
+</li>
+<li>rtr_q_idx
+: <a class="el" href="threads_8c.html#a915328c14dea7ee932ee34026257947b">threads.c</a>
+</li>
 <li>SystemCoreClock
 : <a class="el" href="system___t_m4_c123_8c.html#aa3cd3e43291e81e795d642b79b6088e6">system_TM4C123.c</a>
+</li>
+<li>tid_thread0
+: <a class="el" href="thread0_8c.html#a931ec3a4f19c2abf74d1ecf38a256e41">thread0.c</a>
+</li>
+<li>tid_thread1
+: <a class="el" href="thread1_8c.html#ad17a7b180ec093eb407244491ff3ec42">thread1.c</a>
+</li>
+<li>timed_q
+: <a class="el" href="threads_8c.html#a7f79e2492c8d08449727a679afd013a0">threads.c</a>
+</li>
+<li>timed_q_h
+: <a class="el" href="threads_8c.html#ac28df347c9f01314ec223db08fe4a5d7">threads.c</a>
+</li>
+<li>timed_q_idx
+: <a class="el" href="threads_8c.html#a36bd40e369e6d669bf8ee04c9d1add3d">threads.c</a>
+</li>
+<li>trace_counter
+: <a class="el" href="trace_8c.html#a34528aa0fa7eac7a27d7261fdf5dfd30">trace.c</a>
+</li>
+<li>trace_table
+: <a class="el" href="trace_8c.html#a56e0b97f8626ec21f1d3eda3e8aae66e">trace.c</a>
 </li>
 </ul>
 </div><!-- contents -->
@@ -119,7 +152,7 @@ $(document).ready(function(){initNavTree('globals_vars.html','');});
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="footer">Generated on Thu Aug 14 2014 23:14:06 for RavenOS by
+    <li class="footer">Generated on Sat Aug 16 2014 05:51:42 for RavenOS by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.7 </li>
   </ul>
