@@ -22,10 +22,13 @@ int main(void)
   printf("Simple context switching demo\n\r");
   LED_initialize(); 
 	
-	// create 'thread' functions that start executing
+	printf("Initializing threads\n\r");
   if (Init_thread0() != 0)
 	{
-		stop_cpu;
+		while(1)
+		{		
+				// Should not be here
+		};
 	}
   if (Init_thread1() != 0)
 	{
@@ -39,16 +42,18 @@ int main(void)
 	{
 		stop_cpu;
 	}
+//	
+//	printf("Initializing semaphores\n\r");
+//  if (Init_Semaphore0() != 0)
+//	{
+//		stop_cpu;
+//	}	
 	
-  if (Init_Semaphore0() != 0)
-	{
-		stop_cpu;
-	}	
-	
+	printf("Start kernel\n\r");
 	osKernelStart ();                         // start thread execution 
   
   while(1)
 	{		
-    stop_cpu;// Should not be here
+			// Should not be here
   };
 }

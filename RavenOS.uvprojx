@@ -467,6 +467,16 @@
               <FileType>1</FileType>
               <FilePath>.\RTE\RTOS\Source\sem0.c</FilePath>
             </File>
+            <File>
+              <FileName>scheduler.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\RTE\RTOS\Source\scheduler.c</FilePath>
+            </File>
+            <File>
+              <FileName>threadIdle.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\RTE\RTOS\Source\threadIdle.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>

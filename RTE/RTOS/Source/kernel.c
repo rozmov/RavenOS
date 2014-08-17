@@ -8,6 +8,7 @@
 #include "osObjects.h"                      // RTOS object definitions
 #include "kernel.h"
 #include "scheduler.h"
+#include "trace.h"
 
 
 /*! \def HW32_REG(ADDRESS) 
@@ -147,37 +148,7 @@ void SVC_Handler_C(unsigned int * svc_args)
 				
 				th_q[i]->stack_p = PSP_array[i];
 			}
-//      // Create stack frame for task0
-//      PSP_array[0] = ((unsigned int) task0_stack) + (sizeof task0_stack) - 18*4;
-//      HW32_REG((PSP_array[0] + (16<<2))) = (unsigned long) thread0; // initial Program Counter
-//      HW32_REG((PSP_array[0] + (17<<2))) = 0x01000000;            // initial xPSR
-//      HW32_REG((PSP_array[0]          )) = 0xFFFFFFFDUL;          // initial EXC_RETURN
-//      HW32_REG((PSP_array[0] + ( 1<<2))) = 0x3;// initial CONTROL : unprivileged, PSP, no FP
-
-//      // Create stack frame for task1
-//      PSP_array[1] = ((unsigned int) task1_stack) + (sizeof task1_stack) - 18*4;
-//      HW32_REG((PSP_array[1] + (16<<2))) = (unsigned long) thread1; // initial Program Counter
-//      HW32_REG((PSP_array[1] + (17<<2))) = 0x01000000;            // initial xPSR
-//      HW32_REG((PSP_array[1]          )) = 0xFFFFFFFDUL;          // initial EXC_RETURN
-//      HW32_REG((PSP_array[1] + ( 1<<2))) = 0x3;// initial CONTROL : unprivileged, PSP, no FP
-
-//      // Create stack frame for task2
-//      PSP_array[2] = ((unsigned int) task2_stack) + (sizeof task2_stack) - 18*4;
-//      HW32_REG((PSP_array[2] + (16<<2))) = (unsigned long) thread2; // initial Program Counter
-//      HW32_REG((PSP_array[2] + (17<<2))) = 0x01000000;            // initial xPSR
-//      HW32_REG((PSP_array[2]          )) = 0xFFFFFFFDUL;          // initial EXC_RETURN
-//      HW32_REG((PSP_array[2] + ( 1<<2))) = 0x3;// initial CONTROL : unprivileged, PSP, no FP
-
-//      // Create stack frame for task3
-//      PSP_array[3] = ((unsigned int) task3_stack) + (sizeof task3_stack) - 18*4;
-//      HW32_REG((PSP_array[3] + (16<<2))) = (unsigned long) thread3; // initial Program Counter
-//      HW32_REG((PSP_array[3] + (17<<2))) = 0x01000000;            // initial xPSR
-//      HW32_REG((PSP_array[3]          )) = 0xFFFFFFFDUL;          // initial EXC_RETURN
-//      HW32_REG((PSP_array[3] + ( 1<<2))) = 0x3;// initial CONTROL : unprivileged, PSP, no FP
-	
  	    // Starting the task scheduler
-//      curr_task = 0; // Switch to task #0 (Current task)
-
 			// Update thread to be run based on priority
 	    scheduler();
       curr_task = next_task; // Switch to head ready-to-run task (Current task)		
@@ -186,9 +157,9 @@ void SVC_Handler_C(unsigned int * svc_args)
       svc_exc_return = HW32_REG((PSP_array[curr_task])); // Return to thread with PSP
       __set_PSP((PSP_array[curr_task] + 10*4));  // Set PSP to @R0 of task 0 exception stack frame
       NVIC_SetPriority(PendSV_IRQn, 0xFF);       // Set PendSV to lowest possible priority
-      if (SysTick_Config(os_sysTickTicks) == 0)  // 1000 Hz SysTick interrupt on 16MHz core clock
+      if (SysTick_Config(os_sysTickTicks) != 0)  // 1000 Hz SysTick interrupt on 16MHz core clock
 			{
-				//printf("ERROR: Impossible SysTick_Config number of ticks");
+				printf("ERROR: Impossible SysTick_Config number of ticks\n\r");
 			}
       __set_CONTROL(0x3);                  // Switch to use Process Stack, unprivileged state
       __ISB();       // Execute ISB after changing CONTROL (architectural recommendation)			
@@ -200,12 +171,17 @@ void SVC_Handler_C(unsigned int * svc_args)
 			{ 
 				// Context switching needed
 				ScheduleContextSwitch();
-			}			
+		  }				
+//			svc_exc_return = HW32_REG((PSP_array[curr_task])); // Return to thread with PSP
+//			__set_PSP((PSP_array[curr_task] + 10*4));  // Set PSP to @R0 of task 0 exception stack frame
+
+//      __set_CONTROL(0x3);                  // Switch to use Process Stack, unprivileged state
+      __ISB();       // Execute ISB after changing CONTROL (architectural recommendation)						
 			break;
     default:
-      printf("ERROR: Unknown SVC service number");
-      printf("- SVC number 0x%x\n", svc_number);
-      stop_cpu;
+      printf("ERROR: Unknown SVC service number\n\r");
+      printf("- SVC number 0x%x\n\r", svc_number);
+      stop_cpu2;
       break;
   } // end switch
 }	
@@ -300,13 +276,19 @@ __asm void HardFault_Handler(void)
 */
 void HardFault_Handler_C(unsigned int * svc_args)
 {
-  printf("[HardFault]");
-  printf ("curr_task = %d\n", curr_task);
-  printf ("next_task = %d\n", next_task);
-  printf ("PSP #0 = %x\n", PSP_array[0]);
-  printf ("PSP #1 = %x\n", PSP_array[1]);
-  printf ("PSP #2 = %x\n", PSP_array[2]);
-  printf ("Stacked PC = %x\n", svc_args[6]);
+	uint32_t i;
+	
+  printf("[HardFault]\n\r");
+	printf("Buffered trace:\n\r");
+	dumpTrace();
+	printf("Environment:\n\r");
+  printf ("curr_task = %d\n\r", curr_task);
+  printf ("next_task = %d\n\r", next_task);
+	for ( i = 0; i < MAX_THREADS ; i++ )
+	{
+		printf ("PSP # %d = %x\n\r",i, PSP_array[i]);
+	}
+  printf ("Stacked PC = %x\n\r", svc_args[6]);
   stop_cpu;	
 }
 // -------------------------------------------------------------------------

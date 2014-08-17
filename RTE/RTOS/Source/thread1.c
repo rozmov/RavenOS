@@ -50,6 +50,8 @@ void thread1 (void const *argument)
 			stop_cpu;
 		}
 		
+		osThreadSetPriority(tid_thread2, osPriorityNormal);
+		
     osThreadYield();                                            // suspend thread
 		
 		if (addTrace("thread1 back from yield") != TRACE_OK)

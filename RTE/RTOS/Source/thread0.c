@@ -18,19 +18,17 @@ void task0(void);
 */
 int Init_thread0 (void) 
 {
-//  tid_thread0 = osThreadCreate (osThread(thread0), NULL);
-//	
-//  if (tid_thread0 == NULL) 
-//	{
-//		return(-1);
-//  }
+  tid_thread0 = osThreadCreate (osThread(thread0), NULL);
+	
+  if (tid_thread0 == NULL) 
+	{
+		return(-1);
+  }
 	
 	if (addTrace("thread0 init") != TRACE_OK)
 	{
-		while(1)
-		{		
-				// Should not be here
-		};
+		dumpTrace();
+		addTrace("thread0 init");
 	}
 	
   return(0);
@@ -44,7 +42,8 @@ void thread0 (void const *argument)
 {
 	if (addTrace("thread0 start run") != TRACE_OK)
 	{
-		stop_cpu;
+		dumpTrace();
+		addTrace("thread0 start run");
 	}
 	
   while (1) 
@@ -54,15 +53,21 @@ void thread0 (void const *argument)
 		
 		if (addTrace("thread0 yields") != TRACE_OK)
 		{
-			stop_cpu;
+			dumpTrace();
+			addTrace("thread0 yields");
 		}
+		
+		osThreadSetPriority(tid_thread0, osPriorityLow);
+		
 		
     osThreadYield();  // suspend thread
 		
 		if (addTrace("thread0 back from yield") != TRACE_OK)
 		{
-			stop_cpu;
+			dumpTrace();
+			addTrace("thread0 back from yield");
 		}		
+		
   }
 }
 

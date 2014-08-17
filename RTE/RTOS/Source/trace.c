@@ -75,9 +75,12 @@ uint32_t addTrace(char * message)
 */
 void dumpTrace(void)
 {
+	uint32_t idx = 0;
 	while (decrementTraceCounter() == TRACE_OK)
 	{
-		printf("%s\n\r",trace_table[trace_counter]);
+		printf("%s\n\r",trace_table[idx]);
+		memset(trace_table[idx],0,sizeof(trace_table[idx]));
+    idx++;		
 	}	
 }
 

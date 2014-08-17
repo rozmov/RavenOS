@@ -48,6 +48,18 @@ void thread2 (void const *argument)
 			stop_cpu;
 		}
 		
+		if (osThreadTerminate(tid_thread0) != osOK)
+		{
+			if (addTrace("could not terminate thread0") != TRACE_OK)
+			{
+				dumpTrace();
+				addTrace("could not terminate thread0") ;
+			}			
+		}
+		
+		osThreadSetPriority(osThreadGetId(), osPriorityBelowNormal);
+		osThreadSetPriority(tid_thread3, osPriorityNormal);
+		
     osThreadYield();                                            // suspend thread
 		
 		if (addTrace("thread2 back from yield") != TRACE_OK)

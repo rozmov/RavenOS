@@ -24,22 +24,6 @@ void scheduler(void)
 {
 	uint32_t next;
 	
-//	// Simple task round robin scheduler
-//  switch(curr_task) {
-//    case(0): next_task=1; break;
-//    case(1): next_task=2; break;
-//		case(2): next_task=3; break;
-//    case(3): next_task=0; break;
-//    default: next_task=0;
-//      printf("ERROR:curr_task = %x\n", curr_task);
-//      stop_cpu;
-//      break; // Should not be here
-//    }
-//	
-	
-//	// search for next thread to run
-//	next = os_ThreadGetNextThread();
-	
 	// re-evaluate blocked threads
 	os_ReevaluateBlockedThread();
 	

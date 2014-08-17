@@ -178,42 +178,26 @@ void os_ThreadRemoveThread(osThreadId thread_id)
 	os_SemaphoreRemoveThread(thread_id);
 	
 	// remove from timed queue and update the queue
-	for ( i = 0; i < timed_q_cnt ; i++ )
+	if (timed_q_cnt != 0)
 	{
-		if (timed_q[i] == thread_id )
+		for ( i = 0; i < timed_q_cnt ; i++ )
 		{
-			timed_q[i] = NULL;
-			idx = i;
+			if (timed_q[i] == thread_id )
+			{
+				timed_q[i] = NULL;
+				idx = i;
+			}
 		}
-	}
-	
-	for ( i = idx; i < timed_q_cnt - 1 ; i++ )
-	{
-			timed_q[i] = timed_q[i+1];
-		  timed_q[i]->timed_q_p = i; 	
-	}
-	
-	timed_q_cnt--;	
 		
+		for ( i = idx; i < timed_q_cnt - 1 ; i++ )
+		{
+				timed_q[i] = timed_q[i+1];
+				timed_q[i]->timed_q_p = i; 	
+		}
+		
+		timed_q_cnt--;	
+	}	
 	
-/*	// remove from RTR and update the queue
-//	for ( i = 0; i < th_q_idx + 1 ; i++ )
-//	{
-//		if (th_q[i] == thread_id )
-//		{
-//			th_q[i] = NULL;
-//			idx = i;
-//		}
-//	}
-//	
-//	for ( i = idx; i < (th_q_idx + 1) - 1 ; i++ )
-//	{
-//			th_q[i] = th_q[i+1];
-//		  th_q[i]->th_q_p = i; 	
-//	}
-	
-//	th_q_idx--;
-*/
 	// set the thread in dead state
 	thread_id->status = TH_DEAD;
 	

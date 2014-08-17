@@ -56,7 +56,7 @@ osSemaphoreId osSemaphoreCreate (const osSemaphoreDef_t *semaphore_def, int32_t 
 		return NULL;
 	}
 	
-	for ( j = 0; j < semaphores[sem]->threads_q_cnt ; j++ )
+	for ( j = 0; j < MAX_THREADS_SEM ; j++ )
 	{
 		semaphores[sem]->threads_q[j].threadId = NULL;
 		semaphores[sem]->threads_q[j].expiryTime = 0;
@@ -78,6 +78,7 @@ int32_t osSemaphoreWait (osSemaphoreId semaphore_id, uint32_t millisec)
 	uint64_t microsec = ((uint64_t) millisec) * 1000;
 	uint32_t ticks = 0;
 	uint32_t idx,j;
+	osThreadId curr_th = osThreadGetId();
 	
 	// semaphore sanity check
 	if ( semaphore_id == NULL )
@@ -94,8 +95,8 @@ int32_t osSemaphoreWait (osSemaphoreId semaphore_id, uint32_t millisec)
 		{			
 			if (semaphore_id->threads_q_cnt != MAX_THREADS_SEM)
 			{
-				semaphore_id->thread_id = th_q[th_q_h];
-				semaphore_id->threads_q[semaphore_id->threads_q_cnt].threadId = th_q[th_q_h];
+				semaphore_id->thread_id = curr_th;
+				semaphore_id->threads_q[semaphore_id->threads_q_cnt].threadId = curr_th;
 				semaphore_id->threads_q[semaphore_id->threads_q_cnt].expiryTime = 0;
 				th_q[th_q_h]->semaphore_id = semaphore_id;
 				th_q[th_q_h]->semaphore_p = semaphore_id->threads_q_cnt;
@@ -114,8 +115,8 @@ int32_t osSemaphoreWait (osSemaphoreId semaphore_id, uint32_t millisec)
 		{			
 			if (semaphore_id->threads_q_cnt != MAX_THREADS_SEM)
 			{
-				semaphore_id->thread_id = th_q[th_q_h];
-				semaphore_id->threads_q[semaphore_id->threads_q_cnt].threadId = th_q[th_q_h];
+				semaphore_id->thread_id = curr_th;
+				semaphore_id->threads_q[semaphore_id->threads_q_cnt].threadId = curr_th;
 				semaphore_id->threads_q[semaphore_id->threads_q_cnt].expiryTime = 0;
 				th_q[th_q_h]->semaphore_id = semaphore_id;
 				th_q[th_q_h]->semaphore_p = semaphore_id->threads_q_cnt;				
@@ -130,10 +131,10 @@ int32_t osSemaphoreWait (osSemaphoreId semaphore_id, uint32_t millisec)
 			if (semaphore_id->threads_q_cnt != MAX_THREADS_SEM)
 			{
 				// set thread to blocked state and call scheduler
-				semaphore_id->threads_q[semaphore_id->threads_q_cnt].threadId = th_q[th_q_h];
+				semaphore_id->threads_q[semaphore_id->threads_q_cnt].threadId = curr_th;
 				semaphore_id->threads_q[semaphore_id->threads_q_cnt].expiryTime = ticks + osKernelSysTick() ;
-				th_q[th_q_h]->semaphore_id = semaphore_id;
-				th_q[th_q_h]->semaphore_p = semaphore_id->threads_q_cnt;	
+				curr_th->semaphore_id = semaphore_id;
+				curr_th->semaphore_p = semaphore_id->threads_q_cnt;	
         				
 				semaphore_id->threads_q_cnt++;				
 				// while the semaphore is blocked, keep on waiting
@@ -141,10 +142,10 @@ int32_t osSemaphoreWait (osSemaphoreId semaphore_id, uint32_t millisec)
 				while (semaphore_id->thread_id != NULL)
 				{
 					// semaphore (still) busy, check if the thread can still wait
-					if (semaphore_id->threads_q[th_q[th_q_h]->semaphore_p].expiryTime != osKernelSysTick() )
+					if (semaphore_id->threads_q[curr_th->semaphore_p].expiryTime != osKernelSysTick() )
 					{
 						// can no longer wait for the semaphore, unblock thread and return failure
-						idx = th_q[th_q_h]->semaphore_p;
+						idx = curr_th->semaphore_p;
 						
 						// remove thread from the semaphore queue
 						for ( j = idx; j < (semaphore_id->threads_q_cnt) - 1 ; j++ )
@@ -156,20 +157,20 @@ int32_t osSemaphoreWait (osSemaphoreId semaphore_id, uint32_t millisec)
 						semaphore_id->threads_q_cnt--;	
             
 						// remove semaphore from thread
-            th_q[th_q_h]->semaphore_id = NULL;
-						th_q[th_q_h]->semaphore_p = MAX_THREADS_SEM;
+            curr_th->semaphore_id = NULL;
+						curr_th->semaphore_p = MAX_THREADS_SEM;
 						
 						// return failure to access semaphore
 						return -1;
 					}
 					// mark thread as blocked and yield
-					th_q[th_q_h]->status = TH_BLOCKED;
+					curr_th->status = TH_BLOCKED;
 					//invoke scheduler
 					os_KernelInvokeScheduler ();					
 				}
 				
 				// semaphore no longer busy, so take it and move on
-				semaphore_id->thread_id = th_q[th_q_h];
+				semaphore_id->thread_id = curr_th;
 				
 				return 0;
 			}
@@ -187,6 +188,7 @@ osStatus osSemaphoreRelease (osSemaphoreId semaphore_id)
 {
 	osThreadId thread_id = NULL;
 	uint32_t j;
+	osThreadId curr_th = osThreadGetId();
 	
 	// semaphore sanity check
 	if ( semaphore_id == NULL )
@@ -202,20 +204,28 @@ osStatus osSemaphoreRelease (osSemaphoreId semaphore_id)
 		return osOK;
 	}
 	
+	// Is the thread holding the semaphore the current thread?
+	if ( thread_id != curr_th )
+	{
+		return osErrorParameter;
+	}	
+	
 	// Remove semaphore from thread 
 	thread_id->semaphore_p = MAX_THREADS_SEM;
 	thread_id->semaphore_id = NULL;
 	
-  // Remove thread from semaphore queue
-  for ( j = 0; j < semaphore_id->threads_q_cnt ; j++ )
-	{		
-		if (semaphore_id->threads_q[j].threadId == thread_id )
-		{	
-			semaphore_id->threads_q[j].threadId = NULL;
-			semaphore_id->threads_q[j].expiryTime = 0;
+	if (semaphore_id->threads_q_cnt != 0)
+	{
+		// Remove thread from semaphore queue
+		for ( j = 0; j < semaphore_id->threads_q_cnt ; j++ )
+		{		
+			if (semaphore_id->threads_q[j].threadId == thread_id )
+			{	
+				semaphore_id->threads_q[j].threadId = NULL;
+				semaphore_id->threads_q[j].expiryTime = 0;
+			}
 		}
 	}
-	
 	// Release semaphore
 	semaphore_id->thread_id = NULL;
 	
@@ -235,25 +245,29 @@ osStatus osSemaphoreDelete (osSemaphoreId semaphore_id)
 	{
 		return osErrorParameter;
 	}
-		
-	// unblock any threads waiting for this semaphore
-	for ( j = 0; j < semaphore_id->threads_q_cnt ; j++ )
-	{
-		semaphore_id->threads_q[j].threadId->semaphore_id = NULL;
-		semaphore_id->threads_q[j].threadId->semaphore_p = MAX_THREADS_SEM;
-		semaphore_id->threads_q[j].threadId->status = TH_READY; // if a thread can block on multiple semaphores, check if the thread is in queue for other semaphores
-		semaphore_id->threads_q[j].threadId = NULL;
-		semaphore_id->threads_q[j].expiryTime = 0;
-	}
-	
-	semaphore_id->thread_id = NULL; 
-	semaphore_id->threads_q_cnt = 0;
 	
 	// remove from semaphores queue
 	if (sem_counter == 0) // this should not happen
 	{
 		return osOK;
 	}
+	
+	if (semaphore_id->threads_q_cnt != 0 )
+	{	
+		// unblock any threads waiting for this semaphore
+		for ( j = 0; j < semaphore_id->threads_q_cnt ; j++ )
+		{
+			semaphore_id->threads_q[j].threadId->semaphore_id = NULL;
+			semaphore_id->threads_q[j].threadId->semaphore_p = MAX_THREADS_SEM;
+			semaphore_id->threads_q[j].threadId->status = TH_READY; // if a thread can block on multiple semaphores, check if the thread is in queue for other semaphores
+			semaphore_id->threads_q[j].threadId = NULL;
+			semaphore_id->threads_q[j].expiryTime = 0;
+		}
+		
+		semaphore_id->thread_id = NULL; 
+		semaphore_id->threads_q_cnt = 0;
+	}
+	
 	// search for the semaphore in the semaphore queue 
 	// break the link to it if found and remember index for shifting queue
 	for ( i = 0; i < sem_counter ; i++ )
@@ -297,6 +311,8 @@ osStatus os_SemaphoreRemoveThread (osThreadId thread_id)
 	
 	for ( i = 0; i < sem_counter ; i++ )
 	{	
+		if (semaphores[i]->threads_q_cnt != 0 )
+		{
 			for ( j = 0; j < semaphores[i]->threads_q_cnt ; j++ )
 			{		
 				if (semaphores[i]->threads_q[j].threadId == thread_id )
@@ -328,7 +344,8 @@ osStatus os_SemaphoreRemoveThread (osThreadId thread_id)
 						semaphores[i]->threads_q[j].threadId->semaphore_p = j; 	
 				}		
 			}			
-			semaphores[i]->threads_q_cnt--;				
+			semaphores[i]->threads_q_cnt--;	
+		}			
 	}
 	
 	return osOK;

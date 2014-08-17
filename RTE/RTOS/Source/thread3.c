@@ -48,7 +48,7 @@ void thread3 (void const *argument)
 		
     osThreadYield();                                            // suspend thread
 		
-		if (addTrace("thread3 back from yield") != TRACE_OK)
+		if (addTrace("thread3 back") != TRACE_OK)
 		{
 			stop_cpu;
 		}
