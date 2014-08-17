@@ -302,10 +302,12 @@ struct os_semaphore_cb
 /// Thread Definition structure contains startup information of a thread.
 /// \note CAN BE CHANGED: \b os_thread_def is implementation specific in every CMSIS-RTOS.
 typedef struct os_thread_def  {
-  os_pthread               pthread;    ///< start address of thread function
+  os_pthread             pthread;      ///< start address of thread function
   osPriority             tpriority;    ///< initial thread priority
   uint32_t               instances;    ///< maximum number of instances of that thread function
   uint32_t               stacksize;    ///< stack size requirements in bytes; 0 is default stack size
+// 	uint32_t               period;       ///< thread period
+// 	uint32_t               rel_time;     ///< thread release time	(initial)
 } osThreadDef_t;
 
 /// Timer Definition structure contains timer parameters.

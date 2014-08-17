@@ -189,7 +189,7 @@ void SVC_Handler_C(unsigned int * svc_args)
 			//next_task = rtr_q_h;
 			// Run scheduler to determine if a context switch is needed
 			scheduler();		  
-			if (curr_task!=next_task)
+			if (curr_task != next_task)
 			{ 
 				// Context switching needed
 				ScheduleContextSwitch();
@@ -251,7 +251,7 @@ void SysTick_Handler(void) // 1KHz
   systick_count++;
 	// Run scheduler to determine if a context switch is needed
   scheduler();
-  if (curr_task!=next_task)
+  if (curr_task != next_task)
 	{ 
 		// Context switching needed
     ScheduleContextSwitch();

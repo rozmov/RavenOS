@@ -77,6 +77,7 @@ int32_t osSemaphoreWait (osSemaphoreId semaphore_id, uint32_t millisec)
 {	
 	uint64_t microsec = ((uint64_t) millisec) * 1000;
 	uint32_t ticks = 0;
+	uint32_t idx,j;
 	
 	// semaphore sanity check
 	if ( semaphore_id == NULL )
@@ -128,17 +129,47 @@ int32_t osSemaphoreWait (osSemaphoreId semaphore_id, uint32_t millisec)
 			// enqueue thread to semaphore queue with appropriate time
 			if (semaphore_id->threads_q_cnt != MAX_THREADS_SEM)
 			{
-				semaphore_id->threads_q[semaphore_id->threads_q_cnt].threadId = th_q[th_q_h];
-				semaphore_id->threads_q[semaphore_id->threads_q_cnt].expiryTime = ticks;
-				
 				// set thread to blocked state and call scheduler
+				semaphore_id->threads_q[semaphore_id->threads_q_cnt].threadId = th_q[th_q_h];
+				semaphore_id->threads_q[semaphore_id->threads_q_cnt].expiryTime = ticks + osKernelSysTick() ;
 				th_q[th_q_h]->semaphore_id = semaphore_id;
-				th_q[th_q_h]->semaphore_p = semaphore_id->threads_q_cnt;
-				th_q[th_q_h]->status = TH_BLOCKED;
-				semaphore_id->threads_q_cnt++;
+				th_q[th_q_h]->semaphore_p = semaphore_id->threads_q_cnt;	
+        				
+				semaphore_id->threads_q_cnt++;				
+				// while the semaphore is blocked, keep on waiting
+				// if can no longer wait return fail
+				while (semaphore_id->thread_id != NULL)
+				{
+					// semaphore (still) busy, check if the thread can still wait
+					if (semaphore_id->threads_q[th_q[th_q_h]->semaphore_p].expiryTime != osKernelSysTick() )
+					{
+						// can no longer wait for the semaphore, unblock thread and return failure
+						idx = th_q[th_q_h]->semaphore_p;
+						
+						// remove thread from the semaphore queue
+						for ( j = idx; j < (semaphore_id->threads_q_cnt) - 1 ; j++ )
+						{
+								semaphore_id->threads_q[j] = semaphore_id->threads_q[j+1];
+								semaphore_id->threads_q[j].threadId->semaphore_p = j; 	
+						}		
+						
+						semaphore_id->threads_q_cnt--;	
+            
+						// remove semaphore from thread
+            th_q[th_q_h]->semaphore_id = NULL;
+						th_q[th_q_h]->semaphore_p = MAX_THREADS_SEM;
+						
+						// return failure to access semaphore
+						return -1;
+					}
+					// mark thread as blocked and yield
+					th_q[th_q_h]->status = TH_BLOCKED;
+					//invoke scheduler
+					os_KernelInvokeScheduler ();					
+				}
 				
-				//invoke scheduler
-				os_KernelInvokeScheduler ();
+				// semaphore no longer busy, so take it and move on
+				semaphore_id->thread_id = th_q[th_q_h];
 				
 				return 0;
 			}
