@@ -109,7 +109,8 @@ $(document).ready(function(){initNavTree('cmsis__os_8h.html','');});
 <a href="#define-members">Macros</a> &#124;
 <a href="#typedef-members">Typedefs</a> &#124;
 <a href="#enum-members">Enumerations</a> &#124;
-<a href="#func-members">Functions</a>  </div>
+<a href="#func-members">Functions</a> &#124;
+<a href="#var-members">Variables</a>  </div>
   <div class="headertitle">
 <div class="title">cmsis_os.h File Reference</div>  </div>
 </div><!--header-->
@@ -128,6 +129,8 @@ $(document).ready(function(){initNavTree('cmsis__os_8h.html','');});
 Data Structures</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structos__thread__cb.html">os_thread_cb</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Thread Block Control.  <a href="structos__thread__cb.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structos__thread__timed.html">os_thread_timed</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structos__semaphore__cb.html">os_semaphore_cb</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Semaphore Block Control.  <a href="structos__semaphore__cb.html#details">More...</a><br /></td></tr>
@@ -180,7 +183,7 @@ Macros</h2></td></tr>
 <tr class="memdesc:a01edde265710d883b6e237d34a6ef4a6"><td class="mdescLeft">&#160;</td><td class="mdescRight">maximum number of Signal Flags available per thread <br /></td></tr>
 <tr class="separator:a01edde265710d883b6e237d34a6ef4a6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7da4c7bfb340779c9fc7b321f5ab3e3a"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a7da4c7bfb340779c9fc7b321f5ab3e3a"></a>
-#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cmsis__os_8h.html#a7da4c7bfb340779c9fc7b321f5ab3e3a">osFeature_Semaphore</a>&#160;&#160;&#160;30</td></tr>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cmsis__os_8h.html#a7da4c7bfb340779c9fc7b321f5ab3e3a">osFeature_Semaphore</a>&#160;&#160;&#160;10</td></tr>
 <tr class="memdesc:a7da4c7bfb340779c9fc7b321f5ab3e3a"><td class="mdescLeft">&#160;</td><td class="mdescRight">maximum count for <a class="el" href="cmsis__os_8h.html#a97381e8e55cd47cec390bf57c96d6edb">osSemaphoreCreate</a> function <br /></td></tr>
 <tr class="separator:a7da4c7bfb340779c9fc7b321f5ab3e3a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6c97d38879ae86491628f6e647639bad"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a6c97d38879ae86491628f6e647639bad"></a>
@@ -191,10 +194,14 @@ Macros</h2></td></tr>
 #define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cmsis__os_8h.html#ae554ec16c23c5b7d65affade2a351891">osFeature_SysTick</a>&#160;&#160;&#160;1</td></tr>
 <tr class="memdesc:ae554ec16c23c5b7d65affade2a351891"><td class="mdescLeft">&#160;</td><td class="mdescRight">osKernelSysTick functions: 1=available, 0=not available <br /></td></tr>
 <tr class="separator:ae554ec16c23c5b7d65affade2a351891"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7d834905005d33312c6c3fc264247ab5"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a7d834905005d33312c6c3fc264247ab5"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cmsis__os_8h.html#a7d834905005d33312c6c3fc264247ab5">MAX_SEMAPHORES</a>&#160;&#160;&#160;<a class="el" href="cmsis__os_8h.html#a7da4c7bfb340779c9fc7b321f5ab3e3a">osFeature_Semaphore</a></td></tr>
+<tr class="memdesc:a7d834905005d33312c6c3fc264247ab5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Maximum number of semaphores supported. <br /></td></tr>
+<tr class="separator:a7d834905005d33312c6c3fc264247ab5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9eb9a7a797a42e4b55eb171ecc609ddb"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cmsis__os_8h.html#a9eb9a7a797a42e4b55eb171ecc609ddb">osWaitForever</a>&#160;&#160;&#160;0xFFFFFFFF</td></tr>
 <tr class="memdesc:a9eb9a7a797a42e4b55eb171ecc609ddb"><td class="mdescLeft">&#160;</td><td class="mdescRight">wait forever timeout value  <a href="#a9eb9a7a797a42e4b55eb171ecc609ddb">More...</a><br /></td></tr>
 <tr class="separator:a9eb9a7a797a42e4b55eb171ecc609ddb"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9e0954d52722673e2031233a2ab99960"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cmsis__os_8h.html#a9e0954d52722673e2031233a2ab99960">osKernelSysTickFrequency</a>&#160;&#160;&#160;100000000</td></tr>
+<tr class="memitem:a9e0954d52722673e2031233a2ab99960"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cmsis__os_8h.html#a9e0954d52722673e2031233a2ab99960">osKernelSysTickFrequency</a>&#160;&#160;&#160;1000</td></tr>
 <tr class="separator:a9e0954d52722673e2031233a2ab99960"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae12c190af42d7310d8006d64f4ed5a88"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cmsis__os_8h.html#ae12c190af42d7310d8006d64f4ed5a88">osKernelSysTickMicroSec</a>(microsec)&#160;&#160;&#160;(((uint64_t)microsec * (<a class="el" href="cmsis__os_8h.html#a9e0954d52722673e2031233a2ab99960">osKernelSysTickFrequency</a>)) / 1000000)</td></tr>
 <tr class="separator:ae12c190af42d7310d8006d64f4ed5a88"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -227,6 +234,9 @@ typedef struct <a class="el" href="structos__thread__cb.html">os_thread_cb</a>&#
 <tr class="memitem:a3acf673308feeb33614e7e374a158afe"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a3acf673308feeb33614e7e374a158afe"></a>
 typedef struct <a class="el" href="structos__semaphore__cb.html">os_semaphore_cb</a>&#160;</td><td class="memItemRight" valign="bottom"><b>os_semaphore_cb</b></td></tr>
 <tr class="separator:a3acf673308feeb33614e7e374a158afe"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a288427014ddd998633ff96585ceedf14"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a288427014ddd998633ff96585ceedf14"></a>
+typedef struct <a class="el" href="structos__thread__timed.html">os_thread_timed</a>&#160;</td><td class="memItemRight" valign="bottom"><b>os_thread_timed</b></td></tr>
+<tr class="separator:a288427014ddd998633ff96585ceedf14"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:adfeb153a84a81309e2d958268197617f"><td class="memItemLeft" align="right" valign="top">typedef struct <a class="el" href="structos__thread__cb.html">os_thread_cb</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cmsis__os_8h.html#adfeb153a84a81309e2d958268197617f">osThreadId</a></td></tr>
 <tr class="separator:adfeb153a84a81309e2d958268197617f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab8530dd4273f1f5382187732e14fcaa7"><td class="memItemLeft" align="right" valign="top">typedef struct os_timer_cb *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cmsis__os_8h.html#ab8530dd4273f1f5382187732e14fcaa7">osTimerId</a></td></tr>
@@ -358,6 +368,21 @@ Functions</h2></td></tr>
 <tr class="memitem:af8d8c5423ede32da632de69a9ad4e804"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="af8d8c5423ede32da632de69a9ad4e804"></a>
 <a class="el" href="cmsis__os_8h.html#ae2e091fefc4c767117727bd5aba4d99e">osStatus</a>&#160;</td><td class="memItemRight" valign="bottom"><b>os_SemaphoreRemoveThread</b> (<a class="el" href="cmsis__os_8h.html#adfeb153a84a81309e2d958268197617f">osThreadId</a> thread_id)</td></tr>
 <tr class="separator:af8d8c5423ede32da632de69a9ad4e804"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="var-members"></a>
+Variables</h2></td></tr>
+<tr class="memitem:a8b4086b7a6b46bb1dffcc0d1179c98da"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a8b4086b7a6b46bb1dffcc0d1179c98da"></a>
+<a class="el" href="cmsis__os_8h.html#adfeb153a84a81309e2d958268197617f">osThreadId</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cmsis__os_8h.html#a8b4086b7a6b46bb1dffcc0d1179c98da">th_q</a> [<a class="el" href="threads_8h.html#a8b5173357adb02a86c027316e0acdfa0">MAX_THREADS</a>]</td></tr>
+<tr class="memdesc:a8b4086b7a6b46bb1dffcc0d1179c98da"><td class="mdescLeft">&#160;</td><td class="mdescRight">Ready to Run Queue (thread queue) <br /></td></tr>
+<tr class="separator:a8b4086b7a6b46bb1dffcc0d1179c98da"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac45ab9b5c49e6fc28cf2f6aa77424bf5"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ac45ab9b5c49e6fc28cf2f6aa77424bf5"></a>
+uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cmsis__os_8h.html#ac45ab9b5c49e6fc28cf2f6aa77424bf5">th_q_h</a></td></tr>
+<tr class="memdesc:ac45ab9b5c49e6fc28cf2f6aa77424bf5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Ready to Run Queue Head. <br /></td></tr>
+<tr class="separator:ac45ab9b5c49e6fc28cf2f6aa77424bf5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a35826a679bc5d17a939431302cb00ef4"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a35826a679bc5d17a939431302cb00ef4"></a>
+uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cmsis__os_8h.html#a35826a679bc5d17a939431302cb00ef4">th_q_cnt</a></td></tr>
+<tr class="memdesc:a35826a679bc5d17a939431302cb00ef4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Ready to Run Queue thread counter. <br /></td></tr>
+<tr class="separator:a35826a679bc5d17a939431302cb00ef4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>This header file defines all kernel APIs. </p>
@@ -428,7 +453,7 @@ Functions</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">#define osKernelSysTickFrequency&#160;&#160;&#160;100000000</td>
+          <td class="memname">#define osKernelSysTickFrequency&#160;&#160;&#160;1000</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -611,7 +636,7 @@ Functions</h2></td></tr>
 </div><div class="memdoc">
 <b>Value:</b><div class="fragment"><div class="line"><span class="keyword">const</span> <a class="code" href="structos__thread__def.html">osThreadDef_t</a> os_thread_def_##name = \</div>
 <div class="line">{ (name), (priority), (instances), (stacksz)  }</div>
-<div class="ttc" id="structos__thread__def_html"><div class="ttname"><a href="structos__thread__def.html">os_thread_def</a></div><div class="ttdef"><b>Definition:</b> cmsis_os.h:286</div></div>
+<div class="ttc" id="structos__thread__def_html"><div class="ttname"><a href="structos__thread__def.html">os_thread_def</a></div><div class="ttdef"><b>Definition:</b> cmsis_os.h:304</div></div>
 </div><!-- fragment --><p>Create a Thread Definition with function, priority, and stack requirements. </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">name</td><td>name of the thread function. </td></tr>
@@ -673,7 +698,7 @@ Functions</h2></td></tr>
 </div><div class="memdoc">
 <b>Value:</b><div class="fragment"><div class="line"><span class="keyword">const</span> <a class="code" href="structos__timer__def.html">osTimerDef_t</a> os_timer_def_##name = \</div>
 <div class="line">{ (<span class="keyword">function</span>) }</div>
-<div class="ttc" id="structos__timer__def_html"><div class="ttname"><a href="structos__timer__def.html">os_timer_def</a></div><div class="ttdef"><b>Definition:</b> cmsis_os.h:295</div></div>
+<div class="ttc" id="structos__timer__def_html"><div class="ttname"><a href="structos__timer__def.html">os_timer_def</a></div><div class="ttdef"><b>Definition:</b> cmsis_os.h:315</div></div>
 </div><!-- fragment --><p>Define a Timer object. </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">name</td><td>name of the timer object. </td></tr>
@@ -1755,7 +1780,7 @@ Functions</h2></td></tr>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="dir_2cfa845288836d0010190eddcc80c178.html">RTE</a></li><li class="navelem"><a class="el" href="dir_37d2205f15e85812ee2baf1e2f5dde11.html">RTOS</a></li><li class="navelem"><a class="el" href="dir_5557ce608830b301ac6edb6ef8f5543b.html">Include</a></li><li class="navelem"><a class="el" href="cmsis__os_8h.html">cmsis_os.h</a></li>
-    <li class="footer">Generated on Sat Aug 16 2014 16:17:06 for RavenOS by
+    <li class="footer">Generated on Sun Aug 17 2014 06:00:39 for RavenOS by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.7 </li>
   </ul>

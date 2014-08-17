@@ -1,6 +1,7 @@
 var cmsis__os_8h =
 [
     [ "os_thread_cb", "structos__thread__cb.html", "structos__thread__cb" ],
+    [ "os_thread_timed", "structos__thread__timed.html", "structos__thread__timed" ],
     [ "os_semaphore_cb", "structos__semaphore__cb.html", "structos__semaphore__cb" ],
     [ "os_thread_def", "structos__thread__def.html", "structos__thread__def" ],
     [ "os_timer_def", "structos__timer__def.html", "structos__timer__def" ],
@@ -10,6 +11,7 @@ var cmsis__os_8h =
     [ "os_messageQ_def", "structos__message_q__def.html", "structos__message_q__def" ],
     [ "os_mailQ_def", "structos__mail_q__def.html", "structos__mail_q__def" ],
     [ "osEvent", "structos_event.html", "structos_event" ],
+    [ "MAX_SEMAPHORES", "cmsis__os_8h.html#a7d834905005d33312c6c3fc264247ab5", null ],
     [ "osCMSIS", "cmsis__os_8h.html#a702196bacccbb978620c736b209387f1", null ],
     [ "osCMSIS_KERNEL", "cmsis__os_8h.html#ab78dce646fabec479c5f34bc5175b7de", null ],
     [ "osFeature_MailQ", "cmsis__os_8h.html#aceb2e0071ce160d153047f2eac1aca8e", null ],
@@ -36,6 +38,7 @@ var cmsis__os_8h =
     [ "os_ptimer", "cmsis__os_8h.html#aa2d85e49bde9f6951ff3545cd323f065", null ],
     [ "os_semaphore_cb", "cmsis__os_8h.html#a3acf673308feeb33614e7e374a158afe", null ],
     [ "os_thread_cb", "cmsis__os_8h.html#aa0e7beefae8b2cd1a75f40afd55c1716", null ],
+    [ "os_thread_timed", "cmsis__os_8h.html#a288427014ddd998633ff96585ceedf14", null ],
     [ "osMailQDef_t", "cmsis__os_8h.html#a4478aff059e4a47e87e2f8d62f0f04c8", null ],
     [ "osMailQId", "cmsis__os_8h.html#a1dac049fb7725a8af8b26c71cbb373b5", null ],
     [ "osMessageQDef_t", "cmsis__os_8h.html#ae44dc32ab1acfe2a3190d31e41eba0bb", null ],
@@ -107,5 +110,8 @@ var cmsis__os_8h =
     [ "osTimerCreate", "cmsis__os_8h.html#aedd312bfdca04e0b8162b666e09a1ae6", null ],
     [ "osTimerDelete", "cmsis__os_8h.html#a746b8043d906849bd65e3900fcb483cf", null ],
     [ "osTimerStart", "cmsis__os_8h.html#a27a797a401b068e2644d1125f22a07ca", null ],
-    [ "osTimerStop", "cmsis__os_8h.html#a58f36b121a812936435cacc6e1e0e091", null ]
+    [ "osTimerStop", "cmsis__os_8h.html#a58f36b121a812936435cacc6e1e0e091", null ],
+    [ "th_q", "cmsis__os_8h.html#a8b4086b7a6b46bb1dffcc0d1179c98da", null ],
+    [ "th_q_cnt", "cmsis__os_8h.html#a35826a679bc5d17a939431302cb00ef4", null ],
+    [ "th_q_h", "cmsis__os_8h.html#ac45ab9b5c49e6fc28cf2f6aa77424bf5", null ]
 ];

@@ -1,6 +1,7 @@
 var searchData=
 [
   ['schedulecontextswitch',['ScheduleContextSwitch',['../kernel_8c.html#ac30fe917d3af62c1b47e2d4149b9a15f',1,'kernel.c']]],
+  ['scheduler',['scheduler',['../scheduler_8h.html#a9fa00b0be5d3c4781048861e2506eb63',1,'scheduler(void):&#160;scheduler.c'],['../scheduler_8c.html#a9fa00b0be5d3c4781048861e2506eb63',1,'scheduler(void):&#160;scheduler.c']]],
   ['sem0',['sem0',['../os_objects_8h.html#a751cae05baf289d311fc4fc024f02bc3',1,'osObjects.h']]],
   ['svc_5fhandler',['SVC_Handler',['../kernel_8c.html#a37a51408555bf2a31f8e00a7ec229b7a',1,'kernel.c']]],
   ['svc_5fhandler_5fc',['SVC_Handler_C',['../kernel_8c.html#a26c0ab883d9bde396a32f13b18951fec',1,'kernel.c']]],

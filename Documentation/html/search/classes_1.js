@@ -8,6 +8,7 @@ var searchData=
   ['os_5fsemaphore_5fdef',['os_semaphore_def',['../structos__semaphore__def.html',1,'']]],
   ['os_5fthread_5fcb',['os_thread_cb',['../structos__thread__cb.html',1,'']]],
   ['os_5fthread_5fdef',['os_thread_def',['../structos__thread__def.html',1,'']]],
+  ['os_5fthread_5ftimed',['os_thread_timed',['../structos__thread__timed.html',1,'']]],
   ['os_5ftimer_5fdef',['os_timer_def',['../structos__timer__def.html',1,'']]],
   ['osevent',['osEvent',['../structos_event.html',1,'']]]
 ];

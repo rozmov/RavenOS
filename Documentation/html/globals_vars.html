@@ -119,35 +119,46 @@ $(document).ready(function(){initNavTree('globals_vars.html','');});
 <li>counter
 : <a class="el" href="peripherals_8c.html#a61f7b3cbcedea4bae0c663c892d5d07f">peripherals.c</a>
 </li>
-<li>rtr_q
-: <a class="el" href="kernel_8c.html#a0d42e0e93383da364bc1211cf575dbbe">kernel.c</a>
-, <a class="el" href="threads_8c.html#a0d42e0e93383da364bc1211cf575dbbe">threads.c</a>
+<li>curr_task
+: <a class="el" href="scheduler_8c.html#a0f6665bff2ea2135202f5f12a38cbe17">scheduler.c</a>
 </li>
-<li>rtr_q_h
-: <a class="el" href="kernel_8c.html#adb42ff0b4b8133fa19fe29def0ee16ee">kernel.c</a>
-, <a class="el" href="threads_8c.html#adb42ff0b4b8133fa19fe29def0ee16ee">threads.c</a>
+<li>next_task
+: <a class="el" href="scheduler_8c.html#a2b9b764bed89b62bc2b1edf3f157fb5c">scheduler.c</a>
 </li>
-<li>rtr_q_idx
-: <a class="el" href="kernel_8c.html#a915328c14dea7ee932ee34026257947b">kernel.c</a>
-, <a class="el" href="threads_8c.html#a915328c14dea7ee932ee34026257947b">threads.c</a>
+<li>sid_Thread_Semaphore
+: <a class="el" href="sem0_8c.html#a90a9bf2599af499ebb00283af3d77aae">sem0.c</a>
 </li>
 <li>SystemCoreClock
 : <a class="el" href="system___t_m4_c123_8c.html#aa3cd3e43291e81e795d642b79b6088e6">system_TM4C123.c</a>
 </li>
+<li>th_q
+: <a class="el" href="cmsis__os_8h.html#a8b4086b7a6b46bb1dffcc0d1179c98da">cmsis_os.h</a>
+, <a class="el" href="threads_8c.html#a8b4086b7a6b46bb1dffcc0d1179c98da">threads.c</a>
+</li>
+<li>th_q_cnt
+: <a class="el" href="cmsis__os_8h.html#a35826a679bc5d17a939431302cb00ef4">cmsis_os.h</a>
+, <a class="el" href="threads_8c.html#a35826a679bc5d17a939431302cb00ef4">threads.c</a>
+</li>
+<li>th_q_h
+: <a class="el" href="cmsis__os_8h.html#ac45ab9b5c49e6fc28cf2f6aa77424bf5">cmsis_os.h</a>
+, <a class="el" href="threads_8c.html#ac45ab9b5c49e6fc28cf2f6aa77424bf5">threads.c</a>
+</li>
 <li>tid_thread0
-: <a class="el" href="thread0_8c.html#a931ec3a4f19c2abf74d1ecf38a256e41">thread0.c</a>
+: <a class="el" href="os_objects_8h.html#a931ec3a4f19c2abf74d1ecf38a256e41">osObjects.h</a>
+, <a class="el" href="thread0_8c.html#a931ec3a4f19c2abf74d1ecf38a256e41">thread0.c</a>
 </li>
 <li>tid_thread1
-: <a class="el" href="thread1_8c.html#ad17a7b180ec093eb407244491ff3ec42">thread1.c</a>
+: <a class="el" href="os_objects_8h.html#ad17a7b180ec093eb407244491ff3ec42">osObjects.h</a>
+, <a class="el" href="thread1_8c.html#ad17a7b180ec093eb407244491ff3ec42">thread1.c</a>
 </li>
 <li>timed_q
 : <a class="el" href="threads_8c.html#a7f79e2492c8d08449727a679afd013a0">threads.c</a>
 </li>
+<li>timed_q_cnt
+: <a class="el" href="threads_8c.html#a29fc864579f2cc52149ec805d99d9bcd">threads.c</a>
+</li>
 <li>timed_q_h
 : <a class="el" href="threads_8c.html#ac28df347c9f01314ec223db08fe4a5d7">threads.c</a>
-</li>
-<li>timed_q_idx
-: <a class="el" href="threads_8c.html#a36bd40e369e6d669bf8ee04c9d1add3d">threads.c</a>
 </li>
 <li>trace_counter
 : <a class="el" href="trace_8c.html#a34528aa0fa7eac7a27d7261fdf5dfd30">trace.c</a>
@@ -161,7 +172,7 @@ $(document).ready(function(){initNavTree('globals_vars.html','');});
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="footer">Generated on Sat Aug 16 2014 16:17:08 for RavenOS by
+    <li class="footer">Generated on Sun Aug 17 2014 06:00:40 for RavenOS by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.7 </li>
   </ul>

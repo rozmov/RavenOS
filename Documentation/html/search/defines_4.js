@@ -1,5 +1,6 @@
 var searchData=
 [
+  ['os_5fsystickticks',['os_sysTickTicks',['../kernel_8c.html#ad686975d5aee8044812757d81af91621',1,'kernel.c']]],
   ['oscmsis',['osCMSIS',['../cmsis__os_8h.html#a702196bacccbb978620c736b209387f1',1,'cmsis_os.h']]],
   ['oscmsis_5fkernel',['osCMSIS_KERNEL',['../cmsis__os_8h.html#ab78dce646fabec479c5f34bc5175b7de',1,'cmsis_os.h']]],
   ['osfeature_5fmailq',['osFeature_MailQ',['../cmsis__os_8h.html#aceb2e0071ce160d153047f2eac1aca8e',1,'cmsis_os.h']]],

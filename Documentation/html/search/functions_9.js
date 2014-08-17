@@ -1,8 +1,9 @@
 var searchData=
 [
-  ['os_5fkernelaskforcontextswitch',['os_KernelAskForContextSwitch',['../kernel_8h.html#ad7d6ea8381f2c90b55c308061e287b09',1,'os_KernelAskForContextSwitch(void):&#160;kernel.c'],['../kernel_8c.html#ad7d6ea8381f2c90b55c308061e287b09',1,'os_KernelAskForContextSwitch(void):&#160;kernel.c']]],
-  ['os_5fthreadgetbestthread',['os_ThreadGetBestThread',['../threads_8c.html#a1ff6e48580c53794a0f09a4e8cc8f6de',1,'threads.c']]],
-  ['os_5fthreadgetnextthread',['os_ThreadGetNextThread',['../threads_8c.html#aef04ef03a005f71eeff67c31624a251b',1,'threads.c']]],
+  ['os_5fkernelinvokescheduler',['os_KernelInvokeScheduler',['../kernel_8h.html#a405f8b5b73c549c942ea9915f57580ba',1,'os_KernelInvokeScheduler(void):&#160;kernel.c'],['../kernel_8c.html#a405f8b5b73c549c942ea9915f57580ba',1,'os_KernelInvokeScheduler(void):&#160;kernel.c']]],
+  ['os_5freevaluateblockedthread',['os_ReevaluateBlockedThread',['../scheduler_8c.html#a1a01d4efabc04644e0d0e6a21e5ee60b',1,'scheduler.c']]],
+  ['os_5fthreadgetbestthread',['os_ThreadGetBestThread',['../scheduler_8c.html#a1ff6e48580c53794a0f09a4e8cc8f6de',1,'scheduler.c']]],
+  ['os_5fthreadgetnextthread',['os_ThreadGetNextThread',['../scheduler_8c.html#aef04ef03a005f71eeff67c31624a251b',1,'scheduler.c']]],
   ['os_5fthreadremovethread',['os_ThreadRemoveThread',['../threads_8c.html#a9db4b1e27dc5009b45d6e85ccc401960',1,'threads.c']]],
   ['osdelay',['osDelay',['../cmsis__os_8h.html#a02e19d5e723bfb06ba9324d625162255',1,'cmsis_os.h']]],
   ['oskernelinitialize',['osKernelInitialize',['../cmsis__os_8h.html#a53d078a801022e202e8115c083ece68e',1,'kernel.c']]],
@@ -14,6 +15,7 @@ var searchData=
   ['osmutexrelease',['osMutexRelease',['../cmsis__os_8h.html#a006e4744d741e8e132c3d5bbc295afe1',1,'cmsis_os.h']]],
   ['osmutexwait',['osMutexWait',['../cmsis__os_8h.html#a5e1752b73f573ee015dbd9ef1edaba13',1,'cmsis_os.h']]],
   ['ossemaphorecreate',['osSemaphoreCreate',['../cmsis__os_8h.html#a97381e8e55cd47cec390bf57c96d6edb',1,'cmsis_os.h']]],
+  ['ossemaphoredef',['osSemaphoreDef',['../sem0_8c.html#a893c2b1094aaa60fc327682b58961844',1,'sem0.c']]],
   ['ossemaphoredelete',['osSemaphoreDelete',['../cmsis__os_8h.html#abae2801ac2c096f6e8c69a264908f595',1,'cmsis_os.h']]],
   ['ossemaphorerelease',['osSemaphoreRelease',['../cmsis__os_8h.html#ab108914997c49e14d8ff1ae0d1988ca0',1,'cmsis_os.h']]],
   ['ossemaphorewait',['osSemaphoreWait',['../cmsis__os_8h.html#acc15b0fc8ce1167fe43da33042e62098',1,'cmsis_os.h']]],

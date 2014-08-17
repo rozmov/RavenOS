@@ -126,12 +126,6 @@ Macros</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:aef04ef03a005f71eeff67c31624a251b"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="threads_8c.html#aef04ef03a005f71eeff67c31624a251b">os_ThreadGetNextThread</a> (void)</td></tr>
-<tr class="memdesc:aef04ef03a005f71eeff67c31624a251b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get thread with next highest priority.  <a href="#aef04ef03a005f71eeff67c31624a251b">More...</a><br /></td></tr>
-<tr class="separator:aef04ef03a005f71eeff67c31624a251b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1ff6e48580c53794a0f09a4e8cc8f6de"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="threads_8c.html#a1ff6e48580c53794a0f09a4e8cc8f6de">os_ThreadGetBestThread</a> (void)</td></tr>
-<tr class="memdesc:a1ff6e48580c53794a0f09a4e8cc8f6de"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get thread with highest priority.  <a href="#a1ff6e48580c53794a0f09a4e8cc8f6de">More...</a><br /></td></tr>
-<tr class="separator:a1ff6e48580c53794a0f09a4e8cc8f6de"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9db4b1e27dc5009b45d6e85ccc401960"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="threads_8c.html#a9db4b1e27dc5009b45d6e85ccc401960">os_ThreadRemoveThread</a> (<a class="el" href="cmsis__os_8h.html#adfeb153a84a81309e2d958268197617f">osThreadId</a> thread_id)</td></tr>
 <tr class="memdesc:a9db4b1e27dc5009b45d6e85ccc401960"><td class="mdescLeft">&#160;</td><td class="mdescRight">Remove thread from all the lists.  <a href="#a9db4b1e27dc5009b45d6e85ccc401960">More...</a><br /></td></tr>
 <tr class="separator:a9db4b1e27dc5009b45d6e85ccc401960"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -150,21 +144,18 @@ Functions</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="var-members"></a>
 Variables</h2></td></tr>
-<tr class="memitem:a9f55992bd1b92c05fbc74b8bc74f6ea1"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a9f55992bd1b92c05fbc74b8bc74f6ea1"></a>
-uint32_t&#160;</td><td class="memItemRight" valign="bottom"><b>PSP_array</b> [<a class="el" href="threads_8h.html#a8b5173357adb02a86c027316e0acdfa0">MAX_THREADS</a>]</td></tr>
-<tr class="separator:a9f55992bd1b92c05fbc74b8bc74f6ea1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0d42e0e93383da364bc1211cf575dbbe"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a0d42e0e93383da364bc1211cf575dbbe"></a>
-<a class="el" href="cmsis__os_8h.html#adfeb153a84a81309e2d958268197617f">osThreadId</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="threads_8c.html#a0d42e0e93383da364bc1211cf575dbbe">rtr_q</a> [<a class="el" href="threads_8h.html#a8b5173357adb02a86c027316e0acdfa0">MAX_THREADS</a>]</td></tr>
-<tr class="memdesc:a0d42e0e93383da364bc1211cf575dbbe"><td class="mdescLeft">&#160;</td><td class="mdescRight">Ready to Run Queue. <br /></td></tr>
-<tr class="separator:a0d42e0e93383da364bc1211cf575dbbe"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:adb42ff0b4b8133fa19fe29def0ee16ee"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="adb42ff0b4b8133fa19fe29def0ee16ee"></a>
-uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="threads_8c.html#adb42ff0b4b8133fa19fe29def0ee16ee">rtr_q_h</a></td></tr>
-<tr class="memdesc:adb42ff0b4b8133fa19fe29def0ee16ee"><td class="mdescLeft">&#160;</td><td class="mdescRight">Ready to Run Queue Head. <br /></td></tr>
-<tr class="separator:adb42ff0b4b8133fa19fe29def0ee16ee"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a915328c14dea7ee932ee34026257947b"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a915328c14dea7ee932ee34026257947b"></a>
-uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="threads_8c.html#a915328c14dea7ee932ee34026257947b">rtr_q_idx</a> = 0</td></tr>
-<tr class="memdesc:a915328c14dea7ee932ee34026257947b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Ready to Run Queue thread counter. <br /></td></tr>
-<tr class="separator:a915328c14dea7ee932ee34026257947b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8b4086b7a6b46bb1dffcc0d1179c98da"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a8b4086b7a6b46bb1dffcc0d1179c98da"></a>
+<a class="el" href="cmsis__os_8h.html#adfeb153a84a81309e2d958268197617f">osThreadId</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="threads_8c.html#a8b4086b7a6b46bb1dffcc0d1179c98da">th_q</a> [<a class="el" href="threads_8h.html#a8b5173357adb02a86c027316e0acdfa0">MAX_THREADS</a>]</td></tr>
+<tr class="memdesc:a8b4086b7a6b46bb1dffcc0d1179c98da"><td class="mdescLeft">&#160;</td><td class="mdescRight">Ready to Run Queue (thread queue) <br /></td></tr>
+<tr class="separator:a8b4086b7a6b46bb1dffcc0d1179c98da"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac45ab9b5c49e6fc28cf2f6aa77424bf5"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ac45ab9b5c49e6fc28cf2f6aa77424bf5"></a>
+uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="threads_8c.html#ac45ab9b5c49e6fc28cf2f6aa77424bf5">th_q_h</a> = 0</td></tr>
+<tr class="memdesc:ac45ab9b5c49e6fc28cf2f6aa77424bf5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Ready to Run Queue Head. <br /></td></tr>
+<tr class="separator:ac45ab9b5c49e6fc28cf2f6aa77424bf5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a35826a679bc5d17a939431302cb00ef4"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a35826a679bc5d17a939431302cb00ef4"></a>
+uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="threads_8c.html#a35826a679bc5d17a939431302cb00ef4">th_q_cnt</a> = 0</td></tr>
+<tr class="memdesc:a35826a679bc5d17a939431302cb00ef4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Ready to Run Queue thread counter. <br /></td></tr>
+<tr class="separator:a35826a679bc5d17a939431302cb00ef4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7f79e2492c8d08449727a679afd013a0"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a7f79e2492c8d08449727a679afd013a0"></a>
 <a class="el" href="cmsis__os_8h.html#adfeb153a84a81309e2d958268197617f">osThreadId</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="threads_8c.html#a7f79e2492c8d08449727a679afd013a0">timed_q</a> [<a class="el" href="threads_8h.html#a8b5173357adb02a86c027316e0acdfa0">MAX_THREADS</a>]</td></tr>
 <tr class="memdesc:a7f79e2492c8d08449727a679afd013a0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Waiting Queue for sleeping threads. <br /></td></tr>
@@ -173,10 +164,10 @@ uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="
 uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="threads_8c.html#ac28df347c9f01314ec223db08fe4a5d7">timed_q_h</a></td></tr>
 <tr class="memdesc:ac28df347c9f01314ec223db08fe4a5d7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Waiting Queue Head. <br /></td></tr>
 <tr class="separator:ac28df347c9f01314ec223db08fe4a5d7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a36bd40e369e6d669bf8ee04c9d1add3d"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a36bd40e369e6d669bf8ee04c9d1add3d"></a>
-uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="threads_8c.html#a36bd40e369e6d669bf8ee04c9d1add3d">timed_q_idx</a> = 0</td></tr>
-<tr class="memdesc:a36bd40e369e6d669bf8ee04c9d1add3d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Waiting Queue thread counter. <br /></td></tr>
-<tr class="separator:a36bd40e369e6d669bf8ee04c9d1add3d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a29fc864579f2cc52149ec805d99d9bcd"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a29fc864579f2cc52149ec805d99d9bcd"></a>
+uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="threads_8c.html#a29fc864579f2cc52149ec805d99d9bcd">timed_q_cnt</a> = 0</td></tr>
+<tr class="memdesc:a29fc864579f2cc52149ec805d99d9bcd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Waiting Queue thread counter. <br /></td></tr>
+<tr class="separator:a29fc864579f2cc52149ec805d99d9bcd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>This file defines thread implementation using the CMSIS interface. </p>
@@ -219,7 +210,7 @@ uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="
 </div><div class="memdoc">
 <b>Value:</b><div class="fragment"><div class="line"><span class="keyword">const</span> <a class="code" href="structos__thread__def.html">osThreadDef_t</a> os_thread_def_##name = \</div>
 <div class="line">{ (name), (priority), (instances), (stacksz)  }</div>
-<div class="ttc" id="structos__thread__def_html"><div class="ttname"><a href="structos__thread__def.html">os_thread_def</a></div><div class="ttdef"><b>Definition:</b> cmsis_os.h:286</div></div>
+<div class="ttc" id="structos__thread__def_html"><div class="ttname"><a href="structos__thread__def.html">os_thread_def</a></div><div class="ttdef"><b>Definition:</b> cmsis_os.h:304</div></div>
 </div><!-- fragment --><p>Create a Thread Definition with function, priority, and stack requirements. </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">name</td><td>name of the thread function. </td></tr>
@@ -234,44 +225,6 @@ uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="
 </div>
 </div>
 <h2 class="groupheader">Function Documentation</h2>
-<a class="anchor" id="a1ff6e48580c53794a0f09a4e8cc8f6de"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">uint32_t os_ThreadGetBestThread </td>
-          <td>(</td>
-          <td class="paramtype">void&#160;</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Get thread with highest priority. </p>
-<dl class="section return"><dt>Returns</dt><dd>Thread ID of the best thread to run </dd></dl>
-
-</div>
-</div>
-<a class="anchor" id="aef04ef03a005f71eeff67c31624a251b"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">uint32_t os_ThreadGetNextThread </td>
-          <td>(</td>
-          <td class="paramtype">void&#160;</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Get thread with next highest priority. </p>
-<dl class="section return"><dt>Returns</dt><dd>Thread ID of the next thread to run </dd></dl>
-
-</div>
-</div>
 <a class="anchor" id="a9db4b1e27dc5009b45d6e85ccc401960"></a>
 <div class="memitem">
 <div class="memproto">
@@ -458,7 +411,7 @@ uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="dir_2cfa845288836d0010190eddcc80c178.html">RTE</a></li><li class="navelem"><a class="el" href="dir_37d2205f15e85812ee2baf1e2f5dde11.html">RTOS</a></li><li class="navelem"><a class="el" href="dir_e18e8ca17cc8761131819f6fa843b03a.html">Source</a></li><li class="navelem"><a class="el" href="threads_8c.html">threads.c</a></li>
-    <li class="footer">Generated on Sat Aug 16 2014 16:17:06 for RavenOS by
+    <li class="footer">Generated on Sun Aug 17 2014 06:00:40 for RavenOS by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.7 </li>
   </ul>

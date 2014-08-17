@@ -195,6 +195,10 @@ $(document).ready(function(){initNavTree('globals_func.html','');});
 <li>incrementTraceCounter()
 : <a class="el" href="trace_8c.html#aeb40ece78e68cd3fb646724b4d2b717c">trace.c</a>
 </li>
+<li>Init_Semaphore0()
+: <a class="el" href="os_objects_8h.html#ad7d3b946e778b32a3ec7405f51ac6c4a">osObjects.h</a>
+, <a class="el" href="sem0_8c.html#ad7d3b946e778b32a3ec7405f51ac6c4a">sem0.c</a>
+</li>
 <li>Init_thread0()
 : <a class="el" href="os_objects_8h.html#a2a70e03dc85e518b7c1ad37b9f4ecb35">osObjects.h</a>
 , <a class="el" href="thread0_8c.html#a2a70e03dc85e518b7c1ad37b9f4ecb35">thread0.c</a>
@@ -210,6 +214,10 @@ $(document).ready(function(){initNavTree('globals_func.html','');});
 <li>Init_thread3()
 : <a class="el" href="os_objects_8h.html#a4ded95b8829e5de74a4b3760a62cc82a">osObjects.h</a>
 , <a class="el" href="thread3_8c.html#a4ded95b8829e5de74a4b3760a62cc82a">thread3.c</a>
+</li>
+<li>Init_threadIdle()
+: <a class="el" href="thread_idle_8h.html#a5e8a347d5d15ac589be66e14c120acf9">threadIdle.h</a>
+, <a class="el" href="thread_idle_8c.html#a5e8a347d5d15ac589be66e14c120acf9">threadIdle.c</a>
 </li>
 </ul>
 
@@ -234,15 +242,18 @@ $(document).ready(function(){initNavTree('globals_func.html','');});
 
 
 <h3><a class="anchor" id="index_o"></a>- o -</h3><ul>
-<li>os_KernelAskForContextSwitch()
-: <a class="el" href="kernel_8h.html#ad7d6ea8381f2c90b55c308061e287b09">kernel.h</a>
-, <a class="el" href="kernel_8c.html#ad7d6ea8381f2c90b55c308061e287b09">kernel.c</a>
+<li>os_KernelInvokeScheduler()
+: <a class="el" href="kernel_8h.html#a405f8b5b73c549c942ea9915f57580ba">kernel.h</a>
+, <a class="el" href="kernel_8c.html#a405f8b5b73c549c942ea9915f57580ba">kernel.c</a>
+</li>
+<li>os_ReevaluateBlockedThread()
+: <a class="el" href="scheduler_8c.html#a1a01d4efabc04644e0d0e6a21e5ee60b">scheduler.c</a>
 </li>
 <li>os_ThreadGetBestThread()
-: <a class="el" href="threads_8c.html#a1ff6e48580c53794a0f09a4e8cc8f6de">threads.c</a>
+: <a class="el" href="scheduler_8c.html#a1ff6e48580c53794a0f09a4e8cc8f6de">scheduler.c</a>
 </li>
 <li>os_ThreadGetNextThread()
-: <a class="el" href="threads_8c.html#aef04ef03a005f71eeff67c31624a251b">threads.c</a>
+: <a class="el" href="scheduler_8c.html#aef04ef03a005f71eeff67c31624a251b">scheduler.c</a>
 </li>
 <li>os_ThreadRemoveThread()
 : <a class="el" href="threads_8c.html#a9db4b1e27dc5009b45d6e85ccc401960">threads.c</a>
@@ -278,6 +289,9 @@ $(document).ready(function(){initNavTree('globals_func.html','');});
 </li>
 <li>osSemaphoreCreate()
 : <a class="el" href="cmsis__os_8h.html#a97381e8e55cd47cec390bf57c96d6edb">cmsis_os.h</a>
+</li>
+<li>osSemaphoreDef()
+: <a class="el" href="sem0_8c.html#a893c2b1094aaa60fc327682b58961844">sem0.c</a>
 </li>
 <li>osSemaphoreDelete()
 : <a class="el" href="cmsis__os_8h.html#abae2801ac2c096f6e8c69a264908f595">cmsis_os.h</a>
@@ -347,6 +361,10 @@ $(document).ready(function(){initNavTree('globals_func.html','');});
 <li>ScheduleContextSwitch()
 : <a class="el" href="kernel_8c.html#ac30fe917d3af62c1b47e2d4149b9a15f">kernel.c</a>
 </li>
+<li>scheduler()
+: <a class="el" href="scheduler_8h.html#a9fa00b0be5d3c4781048861e2506eb63">scheduler.h</a>
+, <a class="el" href="scheduler_8c.html#a9fa00b0be5d3c4781048861e2506eb63">scheduler.c</a>
+</li>
 <li>sem0()
 : <a class="el" href="os_objects_8h.html#a751cae05baf289d311fc4fc024f02bc3">osObjects.h</a>
 </li>
@@ -394,6 +412,10 @@ $(document).ready(function(){initNavTree('globals_func.html','');});
 : <a class="el" href="os_objects_8h.html#ae6789c87cdc94c090f74b5e558950ee7">osObjects.h</a>
 , <a class="el" href="thread3_8c.html#ae6789c87cdc94c090f74b5e558950ee7">thread3.c</a>
 </li>
+<li>threadIdle()
+: <a class="el" href="thread_idle_8h.html#a2d0620772fa9959681d65514b0fb19db">threadIdle.h</a>
+, <a class="el" href="thread_idle_8c.html#a2d0620772fa9959681d65514b0fb19db">threadIdle.c</a>
+</li>
 </ul>
 
 
@@ -414,7 +436,7 @@ $(document).ready(function(){initNavTree('globals_func.html','');});
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="footer">Generated on Sat Aug 16 2014 16:17:08 for RavenOS by
+    <li class="footer">Generated on Sun Aug 17 2014 06:00:40 for RavenOS by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.7 </li>
   </ul>

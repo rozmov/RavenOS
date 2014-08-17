@@ -1,4 +1,4 @@
 var kernel_8h =
 [
-    [ "os_KernelAskForContextSwitch", "kernel_8h.html#ad7d6ea8381f2c90b55c308061e287b09", null ]
+    [ "os_KernelInvokeScheduler", "kernel_8h.html#a405f8b5b73c549c942ea9915f57580ba", null ]
 ];

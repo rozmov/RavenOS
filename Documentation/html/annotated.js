@@ -9,6 +9,7 @@ var annotated =
     [ "os_semaphore_def", "structos__semaphore__def.html", "structos__semaphore__def" ],
     [ "os_thread_cb", "structos__thread__cb.html", "structos__thread__cb" ],
     [ "os_thread_def", "structos__thread__def.html", "structos__thread__def" ],
+    [ "os_thread_timed", "structos__thread__timed.html", "structos__thread__timed" ],
     [ "os_timer_def", "structos__timer__def.html", "structos__timer__def" ],
     [ "osEvent", "structos_event.html", "structos_event" ]
 ];

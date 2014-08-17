@@ -106,7 +106,8 @@ $(document).ready(function(){initNavTree('os_objects_8h.html','');});
 <div class="header">
   <div class="summary">
 <a href="#define-members">Macros</a> &#124;
-<a href="#func-members">Functions</a>  </div>
+<a href="#func-members">Functions</a> &#124;
+<a href="#var-members">Variables</a>  </div>
   <div class="headertitle">
 <div class="title">osObjects.h File Reference</div>  </div>
 </div><!--header-->
@@ -120,13 +121,15 @@ $(document).ready(function(){initNavTree('os_objects_8h.html','');});
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="define-members"></a>
 Macros</h2></td></tr>
-<tr class="memitem:a83c0473f91377cf427259bb66650d5ab"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="os_objects_8h.html#a83c0473f91377cf427259bb66650d5ab">stop_cpu</a>&#160;&#160;&#160;__breakpoint(0)</td></tr>
+<tr class="memitem:a83c0473f91377cf427259bb66650d5ab"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="os_objects_8h.html#a83c0473f91377cf427259bb66650d5ab">stop_cpu</a>&#160;&#160;&#160;while(1) {	}</td></tr>
 <tr class="separator:a83c0473f91377cf427259bb66650d5ab"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a90cb4ff3c8eb516c770c421a729a4eac"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="os_objects_8h.html#a90cb4ff3c8eb516c770c421a729a4eac">stop_cpu2</a>&#160;&#160;&#160;__breakpoint(0)</td></tr>
+<tr class="separator:a90cb4ff3c8eb516c770c421a729a4eac"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
 <tr class="memitem:a06fc557acb89682a365085c8c605a9c0"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="os_objects_8h.html#a06fc557acb89682a365085c8c605a9c0">thread0</a> (void const *argument)</td></tr>
-<tr class="memdesc:a06fc557acb89682a365085c8c605a9c0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Thread definition.  <a href="#a06fc557acb89682a365085c8c605a9c0">More...</a><br /></td></tr>
+<tr class="memdesc:a06fc557acb89682a365085c8c605a9c0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Thread definition for thread 0.  <a href="#a06fc557acb89682a365085c8c605a9c0">More...</a><br /></td></tr>
 <tr class="separator:a06fc557acb89682a365085c8c605a9c0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2a70e03dc85e518b7c1ad37b9f4ecb35"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a2a70e03dc85e518b7c1ad37b9f4ecb35"></a>
 int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="os_objects_8h.html#a2a70e03dc85e518b7c1ad37b9f4ecb35">Init_thread0</a> (void)</td></tr>
@@ -158,8 +161,25 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="os_o
 <tr class="memdesc:a751cae05baf289d311fc4fc024f02bc3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Semaphore definition. <br /></td></tr>
 <tr class="separator:a751cae05baf289d311fc4fc024f02bc3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad7d3b946e778b32a3ec7405f51ac6c4a"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ad7d3b946e778b32a3ec7405f51ac6c4a"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><b>Init_Semaphore0</b> (void)</td></tr>
+int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="os_objects_8h.html#ad7d3b946e778b32a3ec7405f51ac6c4a">Init_Semaphore0</a> (void)</td></tr>
+<tr class="memdesc:ad7d3b946e778b32a3ec7405f51ac6c4a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initializing Semaphore0. <br /></td></tr>
 <tr class="separator:ad7d3b946e778b32a3ec7405f51ac6c4a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="var-members"></a>
+Variables</h2></td></tr>
+<tr class="memitem:a931ec3a4f19c2abf74d1ecf38a256e41"><td class="memItemLeft" align="right" valign="top"><a class="el" href="cmsis__os_8h.html#adfeb153a84a81309e2d958268197617f">osThreadId</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="os_objects_8h.html#a931ec3a4f19c2abf74d1ecf38a256e41">tid_thread0</a></td></tr>
+<tr class="memdesc:a931ec3a4f19c2abf74d1ecf38a256e41"><td class="mdescLeft">&#160;</td><td class="mdescRight">Thread definition.  <a href="#a931ec3a4f19c2abf74d1ecf38a256e41">More...</a><br /></td></tr>
+<tr class="separator:a931ec3a4f19c2abf74d1ecf38a256e41"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad17a7b180ec093eb407244491ff3ec42"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ad17a7b180ec093eb407244491ff3ec42"></a>
+<a class="el" href="cmsis__os_8h.html#adfeb153a84a81309e2d958268197617f">osThreadId</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="os_objects_8h.html#ad17a7b180ec093eb407244491ff3ec42">tid_thread1</a></td></tr>
+<tr class="memdesc:ad17a7b180ec093eb407244491ff3ec42"><td class="mdescLeft">&#160;</td><td class="mdescRight">thread id <br /></td></tr>
+<tr class="separator:ad17a7b180ec093eb407244491ff3ec42"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab6cd2a9e7b8e0dbeba6d20735bcf6591"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ab6cd2a9e7b8e0dbeba6d20735bcf6591"></a>
+<a class="el" href="cmsis__os_8h.html#adfeb153a84a81309e2d958268197617f">osThreadId</a>&#160;</td><td class="memItemRight" valign="bottom"><b>tid_thread2</b></td></tr>
+<tr class="separator:ab6cd2a9e7b8e0dbeba6d20735bcf6591"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4d304f9843017d40efafad7f8f103bd3"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a4d304f9843017d40efafad7f8f103bd3"></a>
+<a class="el" href="cmsis__os_8h.html#adfeb153a84a81309e2d958268197617f">osThreadId</a>&#160;</td><td class="memItemRight" valign="bottom"><b>tid_thread3</b></td></tr>
+<tr class="separator:a4d304f9843017d40efafad7f8f103bd3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>This header file defines all objects when included in a C/C++ source file. </p>
@@ -170,12 +190,24 @@ int&#160;</td><td class="memItemRight" valign="bottom"><b>Init_Semaphore0</b> (v
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">#define stop_cpu&#160;&#160;&#160;__breakpoint(0)</td>
+          <td class="memname">#define stop_cpu&#160;&#160;&#160;while(1) {	}</td>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Use Breakpoint to stop when error is detected (KEIL MDK specific intrinsic)</p>
-<p>It can be changed to while(1) if needed </p>
+<p>Stop when error is detected - while(1) version </p>
+
+</div>
+</div>
+<a class="anchor" id="a90cb4ff3c8eb516c770c421a729a4eac"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define stop_cpu2&#160;&#160;&#160;__breakpoint(0)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Use Breakpoint to stop when error is detected (KEIL MDK specific intrinsic) </p>
 
 </div>
 </div>
@@ -194,8 +226,7 @@ int&#160;</td><td class="memItemRight" valign="bottom"><b>Init_Semaphore0</b> (v
       </table>
 </div><div class="memdoc">
 
-<p>Thread definition. </p>
-<p>Thread definition for thread 0.</p>
+<p>Thread definition for thread 0. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">argument</td><td>A pointer to the list of arguments. </td></tr>
@@ -277,13 +308,29 @@ int&#160;</td><td class="memItemRight" valign="bottom"><b>Init_Semaphore0</b> (v
 
 </div>
 </div>
+<h2 class="groupheader">Variable Documentation</h2>
+<a class="anchor" id="a931ec3a4f19c2abf74d1ecf38a256e41"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="cmsis__os_8h.html#adfeb153a84a81309e2d958268197617f">osThreadId</a> tid_thread0</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Thread definition. </p>
+<p>Thread definition. </p>
+
+</div>
+</div>
 </div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="dir_2cfa845288836d0010190eddcc80c178.html">RTE</a></li><li class="navelem"><a class="el" href="dir_37d2205f15e85812ee2baf1e2f5dde11.html">RTOS</a></li><li class="navelem"><a class="el" href="dir_5557ce608830b301ac6edb6ef8f5543b.html">Include</a></li><li class="navelem"><a class="el" href="os_objects_8h.html">osObjects.h</a></li>
-    <li class="footer">Generated on Sat Aug 16 2014 16:17:06 for RavenOS by
+    <li class="footer">Generated on Sun Aug 17 2014 06:00:39 for RavenOS by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.7 </li>
   </ul>
