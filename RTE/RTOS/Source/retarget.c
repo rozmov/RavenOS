@@ -1,4 +1,5 @@
-/******************************************************************************
+/*!
+ *****************************************************************************
  ** @file RETARGET.C
  ** @brief 'Retarget' layer for target-dependent low level functions      
  ** @copyright {
@@ -18,7 +19,8 @@
 #include "USART_TM4C123.h"
 #pragma import(__use_no_semihosting_swi)
 
-struct __FILE { int handle; /* Add whatever you need here */ };
+/// stdio retargeting handle
+struct __FILE { int handle; /*! Add whatever you need here */ };
 FILE __stdout;
 FILE __stdin;
 

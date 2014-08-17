@@ -1,3 +1,8 @@
+/*! \file kernel.h
+    \brief This header file defines all kernel related data
+		\details Makes available the context switch API for threads.
+*/
+
 #ifndef _KERNEL_H
 #define _KERNEL_H
 
@@ -5,10 +10,7 @@
 #include "threads.h"
 #include "cmsis_os.h" 
 
-extern osThreadId rtr_q[MAX_THREADS];
-extern uint32_t  PSP_array[MAX_THREADS];
-
-void osKernelAskForContextSwitch (void);
+void os_KernelInvokeScheduler (void);
 
 #endif
 

@@ -31,7 +31,7 @@
   <td id="projectlogo"><img alt="Logo" src="raven.jpg"/></td>
   <td style="padding-left: 0.5em;">
    <div id="projectname">RavenOS
-   &#160;<span id="projectnumber">1.2</span>
+   &#160;<span id="projectnumber">1.3</span>
    </div>
    <div id="projectbrief">Carleton University Real-Time Operating System</div>
   </td>
@@ -94,7 +94,7 @@ $(document).ready(function(){initNavTree('os_objects_8h_source.html','');});
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Data Structures</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Macros</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Pages</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Data Structures</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Enumerator</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Macros</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(9)"><span class="SelectionMark">&#160;</span>Pages</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -112,7 +112,7 @@ $(document).ready(function(){initNavTree('os_objects_8h_source.html','');});
 <div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="preprocessor">#ifndef _OSOBJECTS_H</span></div>
 <div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="preprocessor">#define _OSOBJECTS_H</span></div>
 <div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;</div>
-<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="preprocessor">#include &quot;cmsis_os.h&quot;</span>                                   <span class="comment">// CMSIS RTOS header file</span></div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="cmsis__os_8h.html">cmsis_os.h</a>&quot;</span>                                   <span class="comment">// CMSIS RTOS header file</span></div>
 <div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;</div>
 <div class="line"><a name="l00014"></a><span class="lineno"><a class="line" href="os_objects_8h.html#a83c0473f91377cf427259bb66650d5ab">   14</a></span>&#160;<span class="preprocessor">#define stop_cpu   __breakpoint(0)</span></div>
 <div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;</div>
@@ -132,6 +132,7 @@ $(document).ready(function(){initNavTree('os_objects_8h_source.html','');});
 <div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;<span class="keywordtype">int</span> Init_Semaphore0 (<span class="keywordtype">void</span>);</div>
 <div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;</div>
 <div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;<span class="preprocessor">#endif // _OSOBJECTS_H</span></div>
+<div class="ttc" id="cmsis__os_8h_html"><div class="ttname"><a href="cmsis__os_8h.html">cmsis_os.h</a></div><div class="ttdoc">This header file defines all kernel APIs. </div></div>
 <div class="ttc" id="os_objects_8h_html_a751cae05baf289d311fc4fc024f02bc3"><div class="ttname"><a href="os_objects_8h.html#a751cae05baf289d311fc4fc024f02bc3">sem0</a></div><div class="ttdeci">void sem0(void const *argument)</div><div class="ttdoc">Semaphore definition. </div></div>
 <div class="ttc" id="os_objects_8h_html_a3976657ef2858fbdaf2d7a57175b2bb5"><div class="ttname"><a href="os_objects_8h.html#a3976657ef2858fbdaf2d7a57175b2bb5">thread1</a></div><div class="ttdeci">void thread1(void const *argument)</div><div class="ttdoc">Thread definition for thread 1. </div><div class="ttdef"><b>Definition:</b> thread1.c:38</div></div>
 <div class="ttc" id="os_objects_8h_html_ae6789c87cdc94c090f74b5e558950ee7"><div class="ttname"><a href="os_objects_8h.html#ae6789c87cdc94c090f74b5e558950ee7">thread3</a></div><div class="ttdeci">void thread3(void const *argument)</div><div class="ttdoc">Thread definition for thread 3. </div><div class="ttdef"><b>Definition:</b> thread3.c:34</div></div>
@@ -147,7 +148,7 @@ $(document).ready(function(){initNavTree('os_objects_8h_source.html','');});
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="dir_2cfa845288836d0010190eddcc80c178.html">RTE</a></li><li class="navelem"><a class="el" href="dir_37d2205f15e85812ee2baf1e2f5dde11.html">RTOS</a></li><li class="navelem"><a class="el" href="dir_5557ce608830b301ac6edb6ef8f5543b.html">Include</a></li><li class="navelem"><a class="el" href="os_objects_8h.html">osObjects.h</a></li>
-    <li class="footer">Generated on Sat Aug 16 2014 05:51:41 for RavenOS by
+    <li class="footer">Generated on Sat Aug 16 2014 16:17:05 for RavenOS by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.7 </li>
   </ul>

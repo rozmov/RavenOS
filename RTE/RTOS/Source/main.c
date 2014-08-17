@@ -1,7 +1,7 @@
 /*! \file main.c
     \brief A program that demonstrates threads
 		\details Initialize threads and start the OS
-*/
+**/
 
 #define osObjectExternal                    // define objects in main module
 #include "osObjects.h"                      // RTOS object definitions

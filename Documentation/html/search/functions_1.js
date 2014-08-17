@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['decrementtracecounter',['decrementTraceCounter',['../trace_8c.html#ad869e9c1b721a7d3a98a4fc9b4bb5db6',1,'trace.c']]]
+  ['addtrace',['addTrace',['../trace_8h.html#a0c045565a7872689752c456352835196',1,'addTrace(char *message):&#160;trace.c'],['../trace_8c.html#a0c045565a7872689752c456352835196',1,'addTrace(char *message):&#160;trace.c']]]
 ];

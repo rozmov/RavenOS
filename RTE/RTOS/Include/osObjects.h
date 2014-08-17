@@ -1,7 +1,7 @@
 /*! \file osObjects.h
     \brief This header file defines all objects when included in a C/C++ source file
 		\details Defines the stop_cpu as a breakpoint, threads, semaphores.
-*/
+**/
 
 #ifndef _OSOBJECTS_H
 #define _OSOBJECTS_H

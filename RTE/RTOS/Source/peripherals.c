@@ -1,17 +1,24 @@
+/*! \file peripherals.c
+    \brief Implements peripheral level operations.
+	  \details UART operations use CMSIS Driver interface. LED operations use direct hardware access.
+*/
+
 #include <stdbool.h>
 #include "USART_TM4C123.h"
 #include "peripherals.h"
 
-#define LED_RED                GPIO_PIN_1
-#define LED_BLUE               GPIO_PIN_2
-#define LED_GREEN              GPIO_PIN_3
+#define LED_RED                GPIO_PIN_1   ///< Map the \a red LED to hardware pin 1
+#define LED_BLUE               GPIO_PIN_2   ///< Map the \a green LED to hardware pin 2
+#define LED_GREEN              GPIO_PIN_3   ///< Map the \a blue LED to hardware pin 3
 
 /*! \def MAX_COUNT
    Counter workload
    Max counter to achieve 1 second
 */
 #define MAX_COUNT               1333333
-/// \var counter Dummy counter representing the thread workload
+/*! \var counter 
+         Dummy counter representing the thread workload
+*/
 volatile uint32_t counter ;
 
 /*! \fn void LED_initialize(void)
@@ -78,7 +85,6 @@ void count1Sec(void)
   {
     counter++;
   }
- 
 }
 
 // -------------------------------------------------------------------------

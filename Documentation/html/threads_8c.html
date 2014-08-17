@@ -31,7 +31,7 @@
   <td id="projectlogo"><img alt="Logo" src="raven.jpg"/></td>
   <td style="padding-left: 0.5em;">
    <div id="projectname">RavenOS
-   &#160;<span id="projectnumber">1.2</span>
+   &#160;<span id="projectnumber">1.3</span>
    </div>
    <div id="projectbrief">Carleton University Real-Time Operating System</div>
   </td>
@@ -94,7 +94,7 @@ $(document).ready(function(){initNavTree('threads_8c.html','');});
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Data Structures</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Macros</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Pages</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Data Structures</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Enumerator</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Macros</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(9)"><span class="SelectionMark">&#160;</span>Pages</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -115,8 +115,8 @@ $(document).ready(function(){initNavTree('threads_8c.html','');});
 
 <p>This file defines thread implementation using the CMSIS interface.  
 <a href="#details">More...</a></p>
-<div class="textblock"><code>#include &quot;cmsis_os.h&quot;</code><br />
-<code>#include &quot;kernel.h&quot;</code><br />
+<div class="textblock"><code>#include &quot;<a class="el" href="cmsis__os_8h_source.html">cmsis_os.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="kernel_8h_source.html">kernel.h</a>&quot;</code><br />
 <code>#include &lt;stdlib.h&gt;</code><br />
 </div><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="define-members"></a>
@@ -126,32 +126,35 @@ Macros</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:aa1d3d12fba81df4911f7917ef79e1fea"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aa1d3d12fba81df4911f7917ef79e1fea"></a>
-uint32_t&#160;</td><td class="memItemRight" valign="bottom"><b>osThreadGetNextThread</b> (void)</td></tr>
-<tr class="separator:aa1d3d12fba81df4911f7917ef79e1fea"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a677aa80eadd9f8c4e3949d794de297be"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a677aa80eadd9f8c4e3949d794de297be"></a>
-uint32_t&#160;</td><td class="memItemRight" valign="bottom"><b>osThreadGetBestThread</b> (void)</td></tr>
-<tr class="separator:a677aa80eadd9f8c4e3949d794de297be"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a476bca0da1d8a6bd85aa4f932bfe99f2"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a476bca0da1d8a6bd85aa4f932bfe99f2"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>osThreadRemoveThread</b> (<a class="el" href="structos__thread__cb.html">osThreadId</a> thread_id)</td></tr>
-<tr class="separator:a476bca0da1d8a6bd85aa4f932bfe99f2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac59b5713cb083702dce759c73fd90dff"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structos__thread__cb.html">osThreadId</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="threads_8c.html#ac59b5713cb083702dce759c73fd90dff">osThreadCreate</a> (const <a class="el" href="structos__thread__def.html">osThreadDef_t</a> *thread_def, void *argument)</td></tr>
+<tr class="memitem:aef04ef03a005f71eeff67c31624a251b"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="threads_8c.html#aef04ef03a005f71eeff67c31624a251b">os_ThreadGetNextThread</a> (void)</td></tr>
+<tr class="memdesc:aef04ef03a005f71eeff67c31624a251b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get thread with next highest priority.  <a href="#aef04ef03a005f71eeff67c31624a251b">More...</a><br /></td></tr>
+<tr class="separator:aef04ef03a005f71eeff67c31624a251b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1ff6e48580c53794a0f09a4e8cc8f6de"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="threads_8c.html#a1ff6e48580c53794a0f09a4e8cc8f6de">os_ThreadGetBestThread</a> (void)</td></tr>
+<tr class="memdesc:a1ff6e48580c53794a0f09a4e8cc8f6de"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get thread with highest priority.  <a href="#a1ff6e48580c53794a0f09a4e8cc8f6de">More...</a><br /></td></tr>
+<tr class="separator:a1ff6e48580c53794a0f09a4e8cc8f6de"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9db4b1e27dc5009b45d6e85ccc401960"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="threads_8c.html#a9db4b1e27dc5009b45d6e85ccc401960">os_ThreadRemoveThread</a> (<a class="el" href="cmsis__os_8h.html#adfeb153a84a81309e2d958268197617f">osThreadId</a> thread_id)</td></tr>
+<tr class="memdesc:a9db4b1e27dc5009b45d6e85ccc401960"><td class="mdescLeft">&#160;</td><td class="mdescRight">Remove thread from all the lists.  <a href="#a9db4b1e27dc5009b45d6e85ccc401960">More...</a><br /></td></tr>
+<tr class="separator:a9db4b1e27dc5009b45d6e85ccc401960"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac59b5713cb083702dce759c73fd90dff"><td class="memItemLeft" align="right" valign="top"><a class="el" href="cmsis__os_8h.html#adfeb153a84a81309e2d958268197617f">osThreadId</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="threads_8c.html#ac59b5713cb083702dce759c73fd90dff">osThreadCreate</a> (const <a class="el" href="cmsis__os_8h.html#ac2c70c6eaadffd0e8bfb9c47485e80c1">osThreadDef_t</a> *thread_def, void *argument)</td></tr>
 <tr class="separator:ac59b5713cb083702dce759c73fd90dff"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab1df2a28925862ef8f9cf4e1c995c5a7"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structos__thread__cb.html">osThreadId</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="threads_8c.html#ab1df2a28925862ef8f9cf4e1c995c5a7">osThreadGetId</a> (void)</td></tr>
+<tr class="memitem:ab1df2a28925862ef8f9cf4e1c995c5a7"><td class="memItemLeft" align="right" valign="top"><a class="el" href="cmsis__os_8h.html#adfeb153a84a81309e2d958268197617f">osThreadId</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="threads_8c.html#ab1df2a28925862ef8f9cf4e1c995c5a7">osThreadGetId</a> (void)</td></tr>
 <tr class="separator:ab1df2a28925862ef8f9cf4e1c995c5a7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aea135bb90eb853eff39e0800b91bbeab"><td class="memItemLeft" align="right" valign="top">osStatus&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="threads_8c.html#aea135bb90eb853eff39e0800b91bbeab">osThreadTerminate</a> (<a class="el" href="structos__thread__cb.html">osThreadId</a> thread_id)</td></tr>
+<tr class="memitem:aea135bb90eb853eff39e0800b91bbeab"><td class="memItemLeft" align="right" valign="top"><a class="el" href="cmsis__os_8h.html#ae2e091fefc4c767117727bd5aba4d99e">osStatus</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="threads_8c.html#aea135bb90eb853eff39e0800b91bbeab">osThreadTerminate</a> (<a class="el" href="cmsis__os_8h.html#adfeb153a84a81309e2d958268197617f">osThreadId</a> thread_id)</td></tr>
 <tr class="separator:aea135bb90eb853eff39e0800b91bbeab"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af13a667493c5d629a90c13e113b99233"><td class="memItemLeft" align="right" valign="top">osStatus&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="threads_8c.html#af13a667493c5d629a90c13e113b99233">osThreadYield</a> (void)</td></tr>
+<tr class="memitem:af13a667493c5d629a90c13e113b99233"><td class="memItemLeft" align="right" valign="top"><a class="el" href="cmsis__os_8h.html#ae2e091fefc4c767117727bd5aba4d99e">osStatus</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="threads_8c.html#af13a667493c5d629a90c13e113b99233">osThreadYield</a> (void)</td></tr>
 <tr class="separator:af13a667493c5d629a90c13e113b99233"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0dfb90ccf1f6e4b54b9251b12d1cbc8b"><td class="memItemLeft" align="right" valign="top">osStatus&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="threads_8c.html#a0dfb90ccf1f6e4b54b9251b12d1cbc8b">osThreadSetPriority</a> (<a class="el" href="structos__thread__cb.html">osThreadId</a> thread_id, osPriority priority)</td></tr>
+<tr class="memitem:a0dfb90ccf1f6e4b54b9251b12d1cbc8b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="cmsis__os_8h.html#ae2e091fefc4c767117727bd5aba4d99e">osStatus</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="threads_8c.html#a0dfb90ccf1f6e4b54b9251b12d1cbc8b">osThreadSetPriority</a> (<a class="el" href="cmsis__os_8h.html#adfeb153a84a81309e2d958268197617f">osThreadId</a> thread_id, <a class="el" href="cmsis__os_8h.html#a7f2b42f1983b9107775ec2a1c69a849a">osPriority</a> priority)</td></tr>
 <tr class="separator:a0dfb90ccf1f6e4b54b9251b12d1cbc8b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4299d838978bc2aae5e4350754e6a4e9"><td class="memItemLeft" align="right" valign="top">osPriority&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="threads_8c.html#a4299d838978bc2aae5e4350754e6a4e9">osThreadGetPriority</a> (<a class="el" href="structos__thread__cb.html">osThreadId</a> thread_id)</td></tr>
+<tr class="memitem:a4299d838978bc2aae5e4350754e6a4e9"><td class="memItemLeft" align="right" valign="top"><a class="el" href="cmsis__os_8h.html#a7f2b42f1983b9107775ec2a1c69a849a">osPriority</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="threads_8c.html#a4299d838978bc2aae5e4350754e6a4e9">osThreadGetPriority</a> (<a class="el" href="cmsis__os_8h.html#adfeb153a84a81309e2d958268197617f">osThreadId</a> thread_id)</td></tr>
 <tr class="separator:a4299d838978bc2aae5e4350754e6a4e9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="var-members"></a>
 Variables</h2></td></tr>
+<tr class="memitem:a9f55992bd1b92c05fbc74b8bc74f6ea1"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a9f55992bd1b92c05fbc74b8bc74f6ea1"></a>
+uint32_t&#160;</td><td class="memItemRight" valign="bottom"><b>PSP_array</b> [<a class="el" href="threads_8h.html#a8b5173357adb02a86c027316e0acdfa0">MAX_THREADS</a>]</td></tr>
+<tr class="separator:a9f55992bd1b92c05fbc74b8bc74f6ea1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0d42e0e93383da364bc1211cf575dbbe"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a0d42e0e93383da364bc1211cf575dbbe"></a>
-<a class="el" href="structos__thread__cb.html">osThreadId</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="threads_8c.html#a0d42e0e93383da364bc1211cf575dbbe">rtr_q</a> [MAX_THREADS]</td></tr>
+<a class="el" href="cmsis__os_8h.html#adfeb153a84a81309e2d958268197617f">osThreadId</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="threads_8c.html#a0d42e0e93383da364bc1211cf575dbbe">rtr_q</a> [<a class="el" href="threads_8h.html#a8b5173357adb02a86c027316e0acdfa0">MAX_THREADS</a>]</td></tr>
 <tr class="memdesc:a0d42e0e93383da364bc1211cf575dbbe"><td class="mdescLeft">&#160;</td><td class="mdescRight">Ready to Run Queue. <br /></td></tr>
 <tr class="separator:a0d42e0e93383da364bc1211cf575dbbe"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:adb42ff0b4b8133fa19fe29def0ee16ee"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="adb42ff0b4b8133fa19fe29def0ee16ee"></a>
@@ -163,7 +166,7 @@ uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="
 <tr class="memdesc:a915328c14dea7ee932ee34026257947b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Ready to Run Queue thread counter. <br /></td></tr>
 <tr class="separator:a915328c14dea7ee932ee34026257947b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7f79e2492c8d08449727a679afd013a0"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a7f79e2492c8d08449727a679afd013a0"></a>
-<a class="el" href="structos__thread__cb.html">osThreadId</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="threads_8c.html#a7f79e2492c8d08449727a679afd013a0">timed_q</a> [MAX_THREADS]</td></tr>
+<a class="el" href="cmsis__os_8h.html#adfeb153a84a81309e2d958268197617f">osThreadId</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="threads_8c.html#a7f79e2492c8d08449727a679afd013a0">timed_q</a> [<a class="el" href="threads_8h.html#a8b5173357adb02a86c027316e0acdfa0">MAX_THREADS</a>]</td></tr>
 <tr class="memdesc:a7f79e2492c8d08449727a679afd013a0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Waiting Queue for sleeping threads. <br /></td></tr>
 <tr class="separator:a7f79e2492c8d08449727a679afd013a0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac28df347c9f01314ec223db08fe4a5d7"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ac28df347c9f01314ec223db08fe4a5d7"></a>
@@ -216,7 +219,7 @@ uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="
 </div><div class="memdoc">
 <b>Value:</b><div class="fragment"><div class="line"><span class="keyword">const</span> <a class="code" href="structos__thread__def.html">osThreadDef_t</a> os_thread_def_##name = \</div>
 <div class="line">{ (name), (priority), (instances), (stacksz)  }</div>
-<div class="ttc" id="structos__thread__def_html"><div class="ttname"><a href="structos__thread__def.html">os_thread_def</a></div><div class="ttdef"><b>Definition:</b> cmsis_os.h:281</div></div>
+<div class="ttc" id="structos__thread__def_html"><div class="ttname"><a href="structos__thread__def.html">os_thread_def</a></div><div class="ttdef"><b>Definition:</b> cmsis_os.h:286</div></div>
 </div><!-- fragment --><p>Create a Thread Definition with function, priority, and stack requirements. </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">name</td><td>name of the thread function. </td></tr>
@@ -231,14 +234,76 @@ uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="
 </div>
 </div>
 <h2 class="groupheader">Function Documentation</h2>
+<a class="anchor" id="a1ff6e48580c53794a0f09a4e8cc8f6de"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint32_t os_ThreadGetBestThread </td>
+          <td>(</td>
+          <td class="paramtype">void&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Get thread with highest priority. </p>
+<dl class="section return"><dt>Returns</dt><dd>Thread ID of the best thread to run </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="aef04ef03a005f71eeff67c31624a251b"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint32_t os_ThreadGetNextThread </td>
+          <td>(</td>
+          <td class="paramtype">void&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Get thread with next highest priority. </p>
+<dl class="section return"><dt>Returns</dt><dd>Thread ID of the next thread to run </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a9db4b1e27dc5009b45d6e85ccc401960"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void os_ThreadRemoveThread </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="cmsis__os_8h.html#adfeb153a84a81309e2d958268197617f">osThreadId</a>&#160;</td>
+          <td class="paramname"><em>thread_id</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Remove thread from all the lists. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">thread_idx</td><td>Thread ID of the thread to remove </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
 <a class="anchor" id="ac59b5713cb083702dce759c73fd90dff"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="structos__thread__cb.html">osThreadId</a> osThreadCreate </td>
+          <td class="memname"><a class="el" href="cmsis__os_8h.html#adfeb153a84a81309e2d958268197617f">osThreadId</a> osThreadCreate </td>
           <td>(</td>
-          <td class="paramtype">const <a class="el" href="structos__thread__def.html">osThreadDef_t</a> *&#160;</td>
+          <td class="paramtype">const <a class="el" href="cmsis__os_8h.html#ac2c70c6eaadffd0e8bfb9c47485e80c1">osThreadDef_t</a> *&#160;</td>
           <td class="paramname"><em>thread_def</em>, </td>
         </tr>
         <tr>
@@ -256,7 +321,7 @@ uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="
 </div><div class="memdoc">
 <p>Create a thread and add it to Active Threads and set it to state READY. </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">thread_def</td><td>thread definition referenced with osThread. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">thread_def</td><td>thread definition referenced with <a class="el" href="cmsis__os_8h.html#af0c7c6b5e09f8be198312144b5c9e453">osThread</a>. </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">argument</td><td>pointer that is passed to the thread function as start argument. </td></tr>
   </table>
   </dd>
@@ -273,7 +338,7 @@ uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="structos__thread__cb.html">osThreadId</a> osThreadGetId </td>
+          <td class="memname"><a class="el" href="cmsis__os_8h.html#adfeb153a84a81309e2d958268197617f">osThreadId</a> osThreadGetId </td>
           <td>(</td>
           <td class="paramtype">void&#160;</td>
           <td class="paramname"></td><td>)</td>
@@ -291,9 +356,9 @@ uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">osPriority osThreadGetPriority </td>
+          <td class="memname"><a class="el" href="cmsis__os_8h.html#a7f2b42f1983b9107775ec2a1c69a849a">osPriority</a> osThreadGetPriority </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="structos__thread__cb.html">osThreadId</a>&#160;</td>
+          <td class="paramtype"><a class="el" href="cmsis__os_8h.html#adfeb153a84a81309e2d958268197617f">osThreadId</a>&#160;</td>
           <td class="paramname"><em>thread_id</em></td><td>)</td>
           <td></td>
         </tr>
@@ -315,15 +380,15 @@ uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">osStatus osThreadSetPriority </td>
+          <td class="memname"><a class="el" href="cmsis__os_8h.html#ae2e091fefc4c767117727bd5aba4d99e">osStatus</a> osThreadSetPriority </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="structos__thread__cb.html">osThreadId</a>&#160;</td>
+          <td class="paramtype"><a class="el" href="cmsis__os_8h.html#adfeb153a84a81309e2d958268197617f">osThreadId</a>&#160;</td>
           <td class="paramname"><em>thread_id</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">osPriority&#160;</td>
+          <td class="paramtype"><a class="el" href="cmsis__os_8h.html#a7f2b42f1983b9107775ec2a1c69a849a">osPriority</a>&#160;</td>
           <td class="paramname"><em>priority</em>&#160;</td>
         </tr>
         <tr>
@@ -350,9 +415,9 @@ uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">osStatus osThreadTerminate </td>
+          <td class="memname"><a class="el" href="cmsis__os_8h.html#ae2e091fefc4c767117727bd5aba4d99e">osStatus</a> osThreadTerminate </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="structos__thread__cb.html">osThreadId</a>&#160;</td>
+          <td class="paramtype"><a class="el" href="cmsis__os_8h.html#adfeb153a84a81309e2d958268197617f">osThreadId</a>&#160;</td>
           <td class="paramname"><em>thread_id</em></td><td>)</td>
           <td></td>
         </tr>
@@ -374,7 +439,7 @@ uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">osStatus osThreadYield </td>
+          <td class="memname"><a class="el" href="cmsis__os_8h.html#ae2e091fefc4c767117727bd5aba4d99e">osStatus</a> osThreadYield </td>
           <td>(</td>
           <td class="paramtype">void&#160;</td>
           <td class="paramname"></td><td>)</td>
@@ -393,7 +458,7 @@ uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="dir_2cfa845288836d0010190eddcc80c178.html">RTE</a></li><li class="navelem"><a class="el" href="dir_37d2205f15e85812ee2baf1e2f5dde11.html">RTOS</a></li><li class="navelem"><a class="el" href="dir_e18e8ca17cc8761131819f6fa843b03a.html">Source</a></li><li class="navelem"><a class="el" href="threads_8c.html">threads.c</a></li>
-    <li class="footer">Generated on Sat Aug 16 2014 05:51:41 for RavenOS by
+    <li class="footer">Generated on Sat Aug 16 2014 16:17:06 for RavenOS by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.7 </li>
   </ul>

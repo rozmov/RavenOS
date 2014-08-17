@@ -31,7 +31,7 @@
   <td id="projectlogo"><img alt="Logo" src="raven.jpg"/></td>
   <td style="padding-left: 0.5em;">
    <div id="projectname">RavenOS
-   &#160;<span id="projectnumber">1.2</span>
+   &#160;<span id="projectnumber">1.3</span>
    </div>
    <div id="projectbrief">Carleton University Real-Time Operating System</div>
   </td>
@@ -79,7 +79,21 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
       <li><a href="globals.html"><span>All</span></a></li>
       <li><a href="globals_func.html"><span>Functions</span></a></li>
       <li><a href="globals_vars.html"><span>Variables</span></a></li>
+      <li><a href="globals_type.html"><span>Typedefs</span></a></li>
+      <li><a href="globals_enum.html"><span>Enumerations</span></a></li>
+      <li><a href="globals_eval.html"><span>Enumerator</span></a></li>
       <li class="current"><a href="globals_defs.html"><span>Macros</span></a></li>
+    </ul>
+  </div>
+  <div id="navrow4" class="tabs3">
+    <ul class="tablist">
+      <li><a href="#index_d"><span>d</span></a></li>
+      <li><a href="#index_h"><span>h</span></a></li>
+      <li><a href="#index_l"><span>l</span></a></li>
+      <li><a href="#index_m"><span>m</span></a></li>
+      <li><a href="#index_o"><span>o</span></a></li>
+      <li><a href="#index_s"><span>s</span></a></li>
+      <li class="current"><a href="#index_t"><span>t</span></a></li>
     </ul>
   </div>
 </div><!-- top -->
@@ -102,7 +116,7 @@ $(document).ready(function(){initNavTree('globals_defs.html','');});
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Data Structures</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Macros</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Pages</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Data Structures</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Enumerator</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Macros</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(9)"><span class="SelectionMark">&#160;</span>Pages</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -112,12 +126,59 @@ $(document).ready(function(){initNavTree('globals_defs.html','');});
 </div>
 
 <div class="contents">
-&#160;<ul>
+&#160;
+
+<h3><a class="anchor" id="index_d"></a>- d -</h3><ul>
+<li>DEFAULT_STACK_SIZE
+: <a class="el" href="threads_8h.html#a87dcbc4991a2a2fc4eb6fc6a24449f26">threads.h</a>
+</li>
+</ul>
+
+
+<h3><a class="anchor" id="index_h"></a>- h -</h3><ul>
 <li>HW32_REG
 : <a class="el" href="kernel_8c.html#aaa11c7df18ba462bf4c3da360d28f16b">kernel.c</a>
 </li>
+</ul>
+
+
+<h3><a class="anchor" id="index_l"></a>- l -</h3><ul>
+<li>LED0
+: <a class="el" href="peripherals_8h.html#ae8d5b4e7e2d9d21caaa4744d385d7cc7">peripherals.h</a>
+</li>
+<li>LED1
+: <a class="el" href="peripherals_8h.html#a8aa85ae9867fabf70ec72cd3bf6fb6b9">peripherals.h</a>
+</li>
+<li>LED2
+: <a class="el" href="peripherals_8h.html#ad09fe5bf321b9a2de26bd5e5b9af6424">peripherals.h</a>
+</li>
+<li>LED_BLUE
+: <a class="el" href="peripherals_8c.html#ae2e40566d27689f8581d7b0f12271d45">peripherals.c</a>
+</li>
+<li>LED_GREEN
+: <a class="el" href="peripherals_8c.html#aca338dbd19d7940923334629f6e5f3b7">peripherals.c</a>
+</li>
+<li>LED_RED
+: <a class="el" href="peripherals_8c.html#a31e20330f8ce94e0dd10b005a15c5898">peripherals.c</a>
+</li>
+</ul>
+
+
+<h3><a class="anchor" id="index_m"></a>- m -</h3><ul>
+<li>MAX_COUNT
+: <a class="el" href="peripherals_8c.html#ae14eaaed1fe7cdf491da54a714c426b3">peripherals.c</a>
+</li>
+<li>MAX_SEMAPHORES
+: <a class="el" href="semaphores_8h.html#a7d834905005d33312c6c3fc264247ab5">semaphores.h</a>
+</li>
 <li>MAX_STR_LEN
 : <a class="el" href="trace_8c.html#a58ce36916c399104e18d32ff090f21c6">trace.c</a>
+</li>
+<li>MAX_THREADS
+: <a class="el" href="threads_8h.html#a8b5173357adb02a86c027316e0acdfa0">threads.h</a>
+</li>
+<li>MAX_THREADS_SEM
+: <a class="el" href="semaphores_8h.html#a028b23dd8de6ebbc0cea39cac48ab2a3">semaphores.h</a>
 </li>
 <li>MEX_TRACE_ARR_LEN
 : <a class="el" href="trace_8c.html#af6f42601b8df266d856492e0182f747a">trace.c</a>
@@ -125,11 +186,93 @@ $(document).ready(function(){initNavTree('globals_defs.html','');});
 <li>MIN_TRACE_ARR_LEN
 : <a class="el" href="trace_8c.html#a817e4ed18d4c052f1bf9bd7f8261e954">trace.c</a>
 </li>
+</ul>
+
+
+<h3><a class="anchor" id="index_o"></a>- o -</h3><ul>
+<li>osCMSIS
+: <a class="el" href="cmsis__os_8h.html#a702196bacccbb978620c736b209387f1">cmsis_os.h</a>
+</li>
+<li>osCMSIS_KERNEL
+: <a class="el" href="cmsis__os_8h.html#ab78dce646fabec479c5f34bc5175b7de">cmsis_os.h</a>
+</li>
+<li>osFeature_MailQ
+: <a class="el" href="cmsis__os_8h.html#aceb2e0071ce160d153047f2eac1aca8e">cmsis_os.h</a>
+</li>
+<li>osFeature_MainThread
+: <a class="el" href="cmsis__os_8h.html#a22f7d235bc9f783933bd5a981fd79696">cmsis_os.h</a>
+</li>
+<li>osFeature_MessageQ
+: <a class="el" href="cmsis__os_8h.html#a479a6561f859e3d4818e25708593d203">cmsis_os.h</a>
+</li>
+<li>osFeature_Pool
+: <a class="el" href="cmsis__os_8h.html#add84b683001de327894851b428587caa">cmsis_os.h</a>
+</li>
+<li>osFeature_Semaphore
+: <a class="el" href="cmsis__os_8h.html#a7da4c7bfb340779c9fc7b321f5ab3e3a">cmsis_os.h</a>
+</li>
+<li>osFeature_Signals
+: <a class="el" href="cmsis__os_8h.html#a01edde265710d883b6e237d34a6ef4a6">cmsis_os.h</a>
+</li>
+<li>osFeature_SysTick
+: <a class="el" href="cmsis__os_8h.html#ae554ec16c23c5b7d65affade2a351891">cmsis_os.h</a>
+</li>
+<li>osFeature_Wait
+: <a class="el" href="cmsis__os_8h.html#a6c97d38879ae86491628f6e647639bad">cmsis_os.h</a>
+</li>
+<li>osKernelSystemId
+: <a class="el" href="cmsis__os_8h.html#a47cf03658f01cdffca688e9096b58289">cmsis_os.h</a>
+</li>
+<li>osKernelSysTickFrequency
+: <a class="el" href="cmsis__os_8h.html#a9e0954d52722673e2031233a2ab99960">cmsis_os.h</a>
+</li>
+<li>osKernelSysTickMicroSec
+: <a class="el" href="cmsis__os_8h.html#ae12c190af42d7310d8006d64f4ed5a88">cmsis_os.h</a>
+</li>
+<li>osMutex
+: <a class="el" href="cmsis__os_8h.html#a1122a86faa64b4a0880c76cf68d0c934">cmsis_os.h</a>
+</li>
+<li>osMutexDef
+: <a class="el" href="cmsis__os_8h.html#a9b522438489d7c402c95332b58bc94f3">cmsis_os.h</a>
+</li>
+<li>osSemaphore
+: <a class="el" href="cmsis__os_8h.html#a03761ee8d2c3cd4544e18364ab301dac">cmsis_os.h</a>
+</li>
+<li>osSemaphoreDef
+: <a class="el" href="cmsis__os_8h.html#a9e66fe361749071e5ab87826c43c2f1b">cmsis_os.h</a>
+</li>
+<li>osThread
+: <a class="el" href="cmsis__os_8h.html#af0c7c6b5e09f8be198312144b5c9e453">cmsis_os.h</a>
+</li>
 <li>osThreadDef
 : <a class="el" href="threads_8c.html#aee93d929beb350f16e5cc7fa602e229f">threads.c</a>
+, <a class="el" href="cmsis__os_8h.html#aee93d929beb350f16e5cc7fa602e229f">cmsis_os.h</a>
 </li>
+<li>osTimer
+: <a class="el" href="cmsis__os_8h.html#a1b8d670eaf964b2910fa06885e650678">cmsis_os.h</a>
+</li>
+<li>osTimerDef
+: <a class="el" href="cmsis__os_8h.html#a1c720627e08d1cc1afcad44e799ed492">cmsis_os.h</a>
+</li>
+<li>osWaitForever
+: <a class="el" href="cmsis__os_8h.html#a9eb9a7a797a42e4b55eb171ecc609ddb">cmsis_os.h</a>
+</li>
+</ul>
+
+
+<h3><a class="anchor" id="index_s"></a>- s -</h3><ul>
 <li>stop_cpu
 : <a class="el" href="os_objects_8h.html#a83c0473f91377cf427259bb66650d5ab">osObjects.h</a>
+</li>
+</ul>
+
+
+<h3><a class="anchor" id="index_t"></a>- t -</h3><ul>
+<li>TRACE_ERROR
+: <a class="el" href="trace_8h.html#a7c12181b2e8dc912219651ff42d22e42">trace.h</a>
+</li>
+<li>TRACE_OK
+: <a class="el" href="trace_8h.html#abe999116692a0cf8829e4a39e07f7c23">trace.h</a>
 </li>
 </ul>
 </div><!-- contents -->
@@ -137,7 +280,7 @@ $(document).ready(function(){initNavTree('globals_defs.html','');});
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="footer">Generated on Sat Aug 16 2014 05:51:42 for RavenOS by
+    <li class="footer">Generated on Sat Aug 16 2014 16:17:08 for RavenOS by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.7 </li>
   </ul>

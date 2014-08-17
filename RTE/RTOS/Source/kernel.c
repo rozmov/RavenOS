@@ -7,10 +7,13 @@
 #include "stdio.h"
 #include "osObjects.h"                      // RTOS object definitions
 #include "kernel.h"
+#include "scheduler.h"
 
 /*! \def HW32_REG(ADDRESS) 
          Macros for word accesses. */
 #define HW32_REG(ADDRESS)  (*((volatile unsigned long  *)(ADDRESS)))
+	
+#define os_sysTickTicks 16000 ///< Number of ticks between two system timer interrupts. This would generate 1000 interruts/s on a 16MHz clock.
 
 void __svc(0x00) os_start(void); ///< OS start scheduler
 void __svc(0x01) thread_yield(void); ///< Thread needs to schedule a switch of context
@@ -21,8 +24,8 @@ void ScheduleContextSwitch(void);
 /// \var systick_count Event to tasks
 volatile uint32_t systick_count=0;
 
-/// Stack for each task ( \ref DEFAULT_STACK_SIZE x 8 bytes)
-long long task_stack[MAX_THREADS][DEFAULT_STACK_SIZE];
+/// Stack for each task ( \ref DEFAULT_STACK_SIZE bytes)
+uint8_t task_stack[MAX_THREADS][DEFAULT_STACK_SIZE];
 
 /// Data used by OS
 uint32_t  curr_task=0;     ///< Current task
@@ -34,7 +37,8 @@ uint32_t kernel_running = 0; ///< flag whether the kernel is running of not
 
 //  ==== Kernel Control Functions ====
 
-/// Initialize the RTOS Kernel for creating objects.
+/// \fn osStatus osKernelInitialize (void)
+/// \brief Initialize the RTOS Kernel for creating objects.
 /// \return status code that indicates the execution status of the function.
 /// \note MUST REMAIN UNCHANGED: \b osKernelInitialize shall be consistent in every CMSIS-RTOS.
 osStatus osKernelInitialize (void)
@@ -43,7 +47,8 @@ osStatus osKernelInitialize (void)
 	return osOK;
 }
 
-/// Start the RTOS Kernel.
+/// \fn osStatus osKernelStart (void)
+/// \brief Start the RTOS Kernel.
 /// \return status code that indicates the execution status of the function.
 /// \note MUST REMAIN UNCHANGED: \b osKernelStart shall be consistent in every CMSIS-RTOS.
 osStatus osKernelStart (void)
@@ -53,7 +58,8 @@ osStatus osKernelStart (void)
 	return osOK;
 }
 
-/// Check if the RTOS kernel is already started.
+/// \fn int32_t osKernelRunning(void)
+/// \brief Check if the RTOS kernel is already started.
 /// \note MUST REMAIN UNCHANGED: \b osKernelRunning shall be consistent in every CMSIS-RTOS.
 /// \return 0 RTOS is not started, 1 RTOS is started.
 int32_t osKernelRunning(void)
@@ -63,7 +69,8 @@ int32_t osKernelRunning(void)
 
 #if (defined (osFeature_SysTick)  &&  (osFeature_SysTick != 0))     // System Timer available
 
-/// Get the RTOS kernel system timer counter 
+/// \fn uint32_t osKernelSysTick (void)
+/// \brief Get the RTOS kernel system timer counter 
 /// \note MUST REMAIN UNCHANGED: \b osKernelSysTick shall be consistent in every CMSIS-RTOS.
 /// \return RTOS kernel system timer as 32-bit value 
 uint32_t osKernelSysTick (void)
@@ -73,9 +80,9 @@ uint32_t osKernelSysTick (void)
 
 #endif    // System Timer available
 
-/// \fn void AskForContextSwitch (void)
-/// \brief Perform an SVC call to schedule a context switch.
-void osKernelAskForContextSwitch (void)
+/// \fn void os_KernelInvokeScheduler (void)
+/// \brief Perform an SVC call to invoke scheduler.
+void os_KernelInvokeScheduler (void)
 {
 	thread_yield();
   return ;
@@ -117,19 +124,20 @@ void SVC_Handler_C(unsigned int * svc_args)
   svc_number = ((char *) svc_args[6])[-2]; // Memory[(Stacked PC)-2]
   switch(svc_number) {
     case (0): // OS start
-      // Starting the task scheduler
-		
+      // The OS is not running at this point
+		  
       // Create stack frame for threads
-		  for (i = 0 ; i < rtr_q_idx ;i++)
+		  for (i = 0 ; i < th_q_cnt ;i++)
 			{
-				rtr_q[i]->stack_p = (uint32_t) task_stack[i];
-				PSP_array[i] = ((unsigned int) rtr_q[i]->stack_p) + (sizeof task_stack[i]) - 18*4;
-				HW32_REG((PSP_array[i] + (16<<2))) = (unsigned long) rtr_q[i]->start_p; // initial Program Counter
+				th_q[i]->stack_p = (uint32_t) task_stack[i];
+//				PSP_array[i] = ((unsigned int) rtr_q[i]->stack_p) + (sizeof task_stack[i]) - 18*4;
+				PSP_array[i] = ((unsigned int) th_q[i]->stack_p) + (th_q[i]->stack_size) - 18*4;
+				HW32_REG((PSP_array[i] + (16<<2))) = (unsigned long) th_q[i]->start_p; // initial Program Counter
 				HW32_REG((PSP_array[i] + (17<<2))) = 0x01000000;            // initial xPSR
 				HW32_REG((PSP_array[i]          )) = 0xFFFFFFFDUL;          // initial EXC_RETURN
 				HW32_REG((PSP_array[i] + ( 1<<2))) = 0x3;// initial CONTROL : unprivileged, PSP, no FP		
 				
-				rtr_q[i]->stack_p = PSP_array[i];
+				th_q[i]->stack_p = PSP_array[i];
 			}
 //      // Create stack frame for task0
 //      PSP_array[0] = ((unsigned int) task0_stack) + (sizeof task0_stack) - 18*4;
@@ -159,18 +167,33 @@ void SVC_Handler_C(unsigned int * svc_args)
 //      HW32_REG((PSP_array[3]          )) = 0xFFFFFFFDUL;          // initial EXC_RETURN
 //      HW32_REG((PSP_array[3] + ( 1<<2))) = 0x3;// initial CONTROL : unprivileged, PSP, no FP
 	
+ 	    // Starting the task scheduler
 //      curr_task = 0; // Switch to task #0 (Current task)
-      curr_task = rtr_q_h; // Switch to head ready-to-run task (Current task)		
-			rtr_q[rtr_q_h]->status = TH_RUNNING;
+
+			// Update thread to be run based on priority
+	    scheduler();
+      curr_task = next_task; // Switch to head ready-to-run task (Current task)		
+			th_q_h = curr_task;
+			th_q[curr_task]->status = TH_RUNNING;
       svc_exc_return = HW32_REG((PSP_array[curr_task])); // Return to thread with PSP
       __set_PSP((PSP_array[curr_task] + 10*4));  // Set PSP to @R0 of task 0 exception stack frame
       NVIC_SetPriority(PendSV_IRQn, 0xFF); // Set PendSV to lowest possible priority
-      SysTick_Config(168000);              // 1000 Hz SysTick interrupt on 168MHz core clock
+      if (SysTick_Config(os_sysTickTicks) == 0)   // 1000 Hz SysTick interrupt on 16MHz core clock
+			{
+				printf("ERROR: Impossible SysTick_Config number of ticks");
+			}
       __set_CONTROL(0x3);                  // Switch to use Process Stack, unprivileged state
       __ISB();       // Execute ISB after changing CONTROL (architectural recommendation)			
 		  break;
     case (1): // Thread Yield
-			ScheduleContextSwitch();
+			//next_task = rtr_q_h;
+			// Run scheduler to determine if a context switch is needed
+			scheduler();		  
+			if (curr_task!=next_task)
+			{ 
+				// Context switching needed
+				ScheduleContextSwitch();
+			}			
 			break;
     default:
       printf("ERROR: Unknown SVC service number");
@@ -224,19 +247,10 @@ __asm void PendSV_Handler(void)
      Increment systick counter, invoke scheduler and flag any context switching needed.
 */
 void SysTick_Handler(void) // 1KHz
-{ // Increment systick counter for LED blinking
+{ // Increment systick counter 
   systick_count++;
-  // Simple task round robin scheduler
-  switch(curr_task) {
-    case(0): next_task=1; break;
-    case(1): next_task=2; break;
-		case(2): next_task=3; break;
-    case(3): next_task=0; break;
-    default: next_task=0;
-      printf("ERROR:curr_task = %x\n", curr_task);
-      stop_cpu;
-      break; // Should not be here
-    }
+	// Run scheduler to determine if a context switch is needed
+  scheduler();
   if (curr_task!=next_task)
 	{ 
 		// Context switching needed
@@ -245,6 +259,11 @@ void SysTick_Handler(void) // 1KHz
   return;	
 }
 
+/*! \fn void ScheduleContextSwitch(void)
+    \brief Schedules a context switch
+
+     Sets PendSV to pending.
+*/
 void ScheduleContextSwitch(void)
 {
 	SCB->ICSR |= SCB_ICSR_PENDSVSET_Msk; // Set PendSV to pending

@@ -1,6 +1,6 @@
 /*! \file trace.c
     \brief This file defines tracing interfaces and tables
-	\details Provides tracing infrastructure for the RTOS
+	  \details Provides tracing infrastructure for the RTOS
 */
 
 #include "stdio.h"
@@ -17,7 +17,7 @@ uint32_t trace_counter = MIN_TRACE_ARR_LEN;  ///< The message table counter.
 
 /*! \fn uint32_t incrementTraceCounter()
     \brief Increment trace counter if trace table not full
-		\return Returns 0 if successful and 1 otherwise.
+		\return Returns \ref TRACE_OK if successful and \ref TRACE_ERROR  otherwise.
 */
 uint32_t incrementTraceCounter()
 {
@@ -32,7 +32,7 @@ uint32_t incrementTraceCounter()
 
 /*! \fn uint32_t decrementTraceCounter()
     \brief Decrement trace counter if trace table not empty
-		\return Returns 0 if successful and 1 otherwise.
+		\return Returns \ref TRACE_OK if successful and \ref TRACE_ERROR  otherwise.
 */
 uint32_t decrementTraceCounter()
 {
@@ -49,7 +49,7 @@ uint32_t decrementTraceCounter()
 /*! \fn uint32_t addTrace(char * message)
     \brief Add message to the trace table 
 		\param message Message to be added to the trace table, up to \ref MAX_STR_LEN characters
-		\return Returns 0 if successful and 1 otherwise.
+		\return Returns \ref TRACE_OK if successful and \ref TRACE_ERROR otherwise.
 */
 uint32_t addTrace(char * message)
 {

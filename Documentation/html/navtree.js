@@ -1,7 +1,7 @@
 var NAVTREE =
 [
   [ "RavenOS", "index.html", [
-    [ "Header File Template: cmsis_os.h", "cmsis_os_h.html", null ],
+    [ "Header File: cmsis_os.h", "cmsis_os_h.html", null ],
     [ "Data Structures", null, [
       [ "Data Structures", "annotated.html", "annotated" ],
       [ "Data Structure Index", "classes.html", null ],
@@ -16,6 +16,9 @@ var NAVTREE =
         [ "All", "globals.html", null ],
         [ "Functions", "globals_func.html", null ],
         [ "Variables", "globals_vars.html", null ],
+        [ "Typedefs", "globals_type.html", null ],
+        [ "Enumerations", "globals_enum.html", null ],
+        [ "Enumerator", "globals_eval.html", null ],
         [ "Macros", "globals_defs.html", null ]
       ] ]
     ] ]
@@ -24,7 +27,8 @@ var NAVTREE =
 
 var NAVTREEINDEX =
 [
-"_r_t_e___components_8h_source.html"
+"_r_t_e___components_8h_source.html",
+"system___t_m4_c123_8c.html#a6f92252911092c4fc470497c51dc4802"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

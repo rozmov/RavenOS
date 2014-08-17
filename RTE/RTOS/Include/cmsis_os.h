@@ -1,9 +1,14 @@
+/*! \file cmsis_os.h
+    \brief This header file defines all kernel APIs
+		\details For a description see \ref cmsis_os_h
+*/
+
 /* ----------------------------------------------------------------------
  * $Date:        5. February 2013
  * $Revision:    V1.02
  *
  * Project:      CMSIS-RTOS API
- * Title:        cmsis_os.h template header file
+ * Title:        cmsis_os.h header file
  *
  * Version 0.02
  *    Initial Proposal Phase
@@ -51,10 +56,10 @@
  *---------------------------------------------------------------------------*/
 
 /**
-\page cmsis_os_h Header File Template: cmsis_os.h
+\page cmsis_os_h Header File: cmsis_os.h
 
-The file \b cmsis_os.h is a template header file for a CMSIS-RTOS compliant Real-Time Operating System (RTOS).
-Each RTOS that is compliant with CMSIS-RTOS shall provide a specific \b cmsis_os.h header file that represents
+The file \b cmsis_os.h is a header file for a CMSIS-RTOS compliant Real-Time Operating System (RTOS).
+RavenOS RTOS ains to be compliant with CMSIS-RTOS and provides a specific \b cmsis_os.h header file that represents
 its implementation.
 
 The file cmsis_os.h contains:
@@ -145,9 +150,12 @@ used throughout the whole project.
 #define osFeature_MailQ        0       ///< Mail Queues:     1=available, 0=not available
 #define osFeature_MessageQ     0       ///< Message Queues:  1=available, 0=not available
 #define osFeature_Signals      0       ///< maximum number of Signal Flags available per thread
-#define osFeature_Semaphore    30      ///< maximum count for \ref osSemaphoreCreate function
+#define osFeature_Semaphore    10      ///< maximum count for \ref osSemaphoreCreate function
 #define osFeature_Wait         0       ///< osWait function: 1=available, 0=not available
 #define osFeature_SysTick      1       ///< osKernelSysTick functions: 1=available, 0=not available
+
+#define MAX_SEMAPHORES osFeature_Semaphore  ///< Maximum number of semaphores supported
+
 
 #include <stdint.h>
 #include <stddef.h>
@@ -220,6 +228,7 @@ typedef void (*os_ptimer) (void const *argument);
 
 typedef struct os_thread_cb os_thread_cb;
 typedef struct os_semaphore_cb os_semaphore_cb;
+typedef struct os_thread_timed os_thread_timed;
 
 
 /// Thread ID identifies the thread (pointer to a thread control block).
@@ -256,10 +265,10 @@ struct os_thread_cb
 {
 	osPriority priority;   ///< Thread Priority
 	osThreadStatus status; ///< Thread Status
-	uint32_t rtr_q_p;      ///< Ready to Run Queue Pointer
+	uint32_t th_q_p;       ///< Thread Queue Pointer / Index
 	uint32_t stack_p;      ///< Stack Pointer
 	uint32_t stack_size;   ///< Stack Size (bytes)
-	uint32_t semaphore_p;  ///< Semapore Pointer (in semaphore queue) if waiting on a semaphore
+	uint32_t semaphore_p;  ///< Semapore Pointer - where the thread is in semaphore queue, if waiting on a semaphore
 	osSemaphoreId semaphore_id; ///< Semaphore ID for semaphore currently blocked on
 	uint32_t time_count;   ///< Time until Timeout
 	uint32_t timed_q_p;    ///< Timed Queue Pointer
@@ -267,11 +276,25 @@ struct os_thread_cb
 	os_pthread start_p;    ///< Start address of thread function
 };
 
+// Thread related information for initialization and scheduling
+extern osThreadId th_q[MAX_THREADS];
+extern uint32_t th_q_h;
+extern uint32_t th_q_cnt;
+
+/*! \struct os_thread_timed
+    Expiry time for a thread structure.
+*/
+struct os_thread_timed
+{
+	osThreadId threadId;   ///< Thread timed
+	uint32_t   expiryTime; ///< Expiry time 
+};
+
 /// Semaphore Block Control
 struct os_semaphore_cb
 {
-	osThreadId                 threads_q[MAX_THREADS_SEM];    ///< queue of threads blocked on a semaphore.
-  uint32_t                   threads_q_idx;                 ///< indicated how many threads are blocked/usingg on this semaphore
+	os_thread_timed            threads_q[MAX_THREADS_SEM];    ///< queue of threads blocked on a semaphore.
+  uint32_t                   threads_q_cnt;                 ///< indicated how many threads are blocked/usingg on this semaphore
 	osThreadId                 thread_id;                     ///< the thread currently controlling the semaphore.
 } ;
 
@@ -370,7 +393,7 @@ uint32_t osKernelSysTick (void);
 
 /// The RTOS kernel system timer frequency in Hz
 /// \note Reflects the system timer setting and is typically defined in a configuration file.
-#define osKernelSysTickFrequency 100000000
+#define osKernelSysTickFrequency 1000
 
 /// Convert a microseconds value to a RTOS kernel system timer value.
 /// \param         microsec     time value in microseconds.
@@ -633,7 +656,7 @@ osStatus osSemaphoreDelete (osSemaphoreId semaphore_id);
 /// \brief Delete a Thread from all semaphore queues.
 /// \param[in]     thread_id  thread object.
 /// \return status code that indicates the execution status of the function.
-osStatus osSemaphoreRemoveThread (osThreadId thread_id);
+osStatus os_SemaphoreRemoveThread (osThreadId thread_id);
 
 #endif     // Semaphore available
 

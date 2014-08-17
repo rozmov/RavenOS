@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['addtrace',['addTrace',['../trace_8h.html#a0c045565a7872689752c456352835196',1,'addTrace(char *message):&#160;trace.c'],['../trace_8c.html#a0c045565a7872689752c456352835196',1,'addTrace(char *message):&#160;trace.c']]]
+  ['_5fsys_5fexit',['_sys_exit',['../retarget_8c.html#a7b9ac395975163ef0a591db5c48ad7ae',1,'retarget.c']]],
+  ['_5fttywrch',['_ttywrch',['../retarget_8c.html#a1647e9479b4be5731d79c81af76826c5',1,'retarget.c']]]
 ];

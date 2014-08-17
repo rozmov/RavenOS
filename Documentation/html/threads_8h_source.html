@@ -31,7 +31,7 @@
   <td id="projectlogo"><img alt="Logo" src="raven.jpg"/></td>
   <td style="padding-left: 0.5em;">
    <div id="projectname">RavenOS
-   &#160;<span id="projectnumber">1.2</span>
+   &#160;<span id="projectnumber">1.3</span>
    </div>
    <div id="projectbrief">Carleton University Real-Time Operating System</div>
   </td>
@@ -94,7 +94,7 @@ $(document).ready(function(){initNavTree('threads_8h_source.html','');});
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Data Structures</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Macros</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Pages</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Data Structures</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Enumerator</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Macros</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(9)"><span class="SelectionMark">&#160;</span>Pages</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -108,36 +108,37 @@ $(document).ready(function(){initNavTree('threads_8h_source.html','');});
 <div class="title">threads.h</div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#ifndef _THREADS_H</span></div>
-<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="preprocessor">#define _THREADS_H</span></div>
-<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;</div>
-<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="preprocessor">#include &lt;stdint.h&gt;</span></div>
-<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;</div>
-<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="preprocessor">#define MAX_THREADS 10</span></div>
-<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="preprocessor">#define DEFAULT_STACK_SIZE 128 </span></div>
-<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="preprocessor"></span></div>
-<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="keyword">typedef</span> <span class="keyword">enum</span> os_thread_status </div>
-<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;{</div>
-<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;    TH_RUNNING,</div>
-<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;    TH_READY,</div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;    TH_BLOCKED,</div>
-<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;    TH_ASLEEP</div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;} osThreadStatus;</div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;</div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<span class="keyword">extern</span> uint32_t <a class="code" href="threads_8c.html#adb42ff0b4b8133fa19fe29def0ee16ee">rtr_q_h</a>;</div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;<span class="keyword">extern</span> uint32_t <a class="code" href="threads_8c.html#a915328c14dea7ee932ee34026257947b">rtr_q_idx</a>;</div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;</div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;<span class="preprocessor">#endif // _THREADS_H</span></div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;</div>
-<div class="ttc" id="threads_8c_html_adb42ff0b4b8133fa19fe29def0ee16ee"><div class="ttname"><a href="threads_8c.html#adb42ff0b4b8133fa19fe29def0ee16ee">rtr_q_h</a></div><div class="ttdeci">uint32_t rtr_q_h</div><div class="ttdoc">Ready to Run Queue Head. </div><div class="ttdef"><b>Definition:</b> threads.c:24</div></div>
-<div class="ttc" id="threads_8c_html_a915328c14dea7ee932ee34026257947b"><div class="ttname"><a href="threads_8c.html#a915328c14dea7ee932ee34026257947b">rtr_q_idx</a></div><div class="ttdeci">uint32_t rtr_q_idx</div><div class="ttdoc">Ready to Run Queue thread counter. </div><div class="ttdef"><b>Definition:</b> threads.c:25</div></div>
+<a href="threads_8h.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;</div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="preprocessor">#ifndef _THREADS_H</span></div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="preprocessor">#define _THREADS_H</span></div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;</div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="preprocessor">#include &lt;stdint.h&gt;</span></div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;</div>
+<div class="line"><a name="l00011"></a><span class="lineno"><a class="line" href="threads_8h.html#a8b5173357adb02a86c027316e0acdfa0">   11</a></span>&#160;<span class="preprocessor">#define MAX_THREADS 10         </span></div>
+<div class="line"><a name="l00012"></a><span class="lineno"><a class="line" href="threads_8h.html#a87dcbc4991a2a2fc4eb6fc6a24449f26">   12</a></span>&#160;<span class="preprocessor">#define DEFAULT_STACK_SIZE 128 </span></div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="preprocessor"></span></div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="keyword">typedef</span> <span class="keyword">enum</span> <a class="code" href="threads_8h.html#a356483ad40f04f0a68cc364ad0e9c96c">os_thread_status</a> </div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;{</div>
+<div class="line"><a name="l00017"></a><span class="lineno"><a class="line" href="threads_8h.html#a356483ad40f04f0a68cc364ad0e9c96ca9ef536c92b019be506ce8bef07fa2b03">   17</a></span>&#160;    <a class="code" href="threads_8h.html#a356483ad40f04f0a68cc364ad0e9c96ca9ef536c92b019be506ce8bef07fa2b03">TH_RUNNING</a>,         </div>
+<div class="line"><a name="l00018"></a><span class="lineno"><a class="line" href="threads_8h.html#a356483ad40f04f0a68cc364ad0e9c96ca43ada29ec0a3d099fffd0f364d972b5e">   18</a></span>&#160;    <a class="code" href="threads_8h.html#a356483ad40f04f0a68cc364ad0e9c96ca43ada29ec0a3d099fffd0f364d972b5e">TH_READY</a>,           </div>
+<div class="line"><a name="l00019"></a><span class="lineno"><a class="line" href="threads_8h.html#a356483ad40f04f0a68cc364ad0e9c96ca1ce9393902ad806168a031a081a4f1af">   19</a></span>&#160;    <a class="code" href="threads_8h.html#a356483ad40f04f0a68cc364ad0e9c96ca1ce9393902ad806168a031a081a4f1af">TH_BLOCKED</a>,         </div>
+<div class="line"><a name="l00020"></a><span class="lineno"><a class="line" href="threads_8h.html#a356483ad40f04f0a68cc364ad0e9c96ca94aea4d5b3836e58f0434560b9ba4598">   20</a></span>&#160;    <a class="code" href="threads_8h.html#a356483ad40f04f0a68cc364ad0e9c96ca94aea4d5b3836e58f0434560b9ba4598">TH_ASLEEP</a>           </div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;} osThreadStatus;</div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;</div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;<span class="preprocessor">#endif // _THREADS_H</span></div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;</div>
+<div class="ttc" id="threads_8h_html_a356483ad40f04f0a68cc364ad0e9c96ca1ce9393902ad806168a031a081a4f1af"><div class="ttname"><a href="threads_8h.html#a356483ad40f04f0a68cc364ad0e9c96ca1ce9393902ad806168a031a081a4f1af">TH_BLOCKED</a></div><div class="ttdoc">Thread "Blocked" state, the process is blocked on a semaphore. </div><div class="ttdef"><b>Definition:</b> threads.h:19</div></div>
+<div class="ttc" id="threads_8h_html_a356483ad40f04f0a68cc364ad0e9c96ca94aea4d5b3836e58f0434560b9ba4598"><div class="ttname"><a href="threads_8h.html#a356483ad40f04f0a68cc364ad0e9c96ca94aea4d5b3836e58f0434560b9ba4598">TH_ASLEEP</a></div><div class="ttdoc">Thread "Asleep" state, the process has finished processing this period and is currently dormant...</div><div class="ttdef"><b>Definition:</b> threads.h:20</div></div>
+<div class="ttc" id="threads_8h_html_a356483ad40f04f0a68cc364ad0e9c96ca43ada29ec0a3d099fffd0f364d972b5e"><div class="ttname"><a href="threads_8h.html#a356483ad40f04f0a68cc364ad0e9c96ca43ada29ec0a3d099fffd0f364d972b5e">TH_READY</a></div><div class="ttdoc">Thread "Ready" state, the process is in the Ready-to-Run queue. </div><div class="ttdef"><b>Definition:</b> threads.h:18</div></div>
+<div class="ttc" id="threads_8h_html_a356483ad40f04f0a68cc364ad0e9c96ca9ef536c92b019be506ce8bef07fa2b03"><div class="ttname"><a href="threads_8h.html#a356483ad40f04f0a68cc364ad0e9c96ca9ef536c92b019be506ce8bef07fa2b03">TH_RUNNING</a></div><div class="ttdoc">Thread "Runnning" state, this is the currently running process. </div><div class="ttdef"><b>Definition:</b> threads.h:17</div></div>
+<div class="ttc" id="threads_8h_html_a356483ad40f04f0a68cc364ad0e9c96c"><div class="ttname"><a href="threads_8h.html#a356483ad40f04f0a68cc364ad0e9c96c">os_thread_status</a></div><div class="ttdeci">os_thread_status</div><div class="ttdoc">Thread Status : Running, Blocked or Asleep. </div><div class="ttdef"><b>Definition:</b> threads.h:15</div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a class="el" href="dir_2cfa845288836d0010190eddcc80c178.html">RTE</a></li><li class="navelem"><a class="el" href="dir_37d2205f15e85812ee2baf1e2f5dde11.html">RTOS</a></li><li class="navelem"><a class="el" href="dir_5557ce608830b301ac6edb6ef8f5543b.html">Include</a></li><li class="navelem"><b>threads.h</b></li>
-    <li class="footer">Generated on Sat Aug 16 2014 05:51:41 for RavenOS by
+    <li class="navelem"><a class="el" href="dir_2cfa845288836d0010190eddcc80c178.html">RTE</a></li><li class="navelem"><a class="el" href="dir_37d2205f15e85812ee2baf1e2f5dde11.html">RTOS</a></li><li class="navelem"><a class="el" href="dir_5557ce608830b301ac6edb6ef8f5543b.html">Include</a></li><li class="navelem"><a class="el" href="threads_8h.html">threads.h</a></li>
+    <li class="footer">Generated on Sat Aug 16 2014 16:17:06 for RavenOS by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.7 </li>
   </ul>
