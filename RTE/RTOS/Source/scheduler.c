@@ -58,6 +58,15 @@ void scheduler(void)
 		//need a context switch - let the kernel handle this	
 	}	
 	
+	if (th_q_cnt == 0)
+	{
+		next = 0;
+		while(1)
+		{		
+				// Should not be here
+		};
+	}
+	
 	next_task = next;
 	return;	
 }

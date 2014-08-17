@@ -6,10 +6,6 @@
 #ifndef _KERNEL_H
 #define _KERNEL_H
 
-#include <stdint.h>
-#include "threads.h"
-#include "cmsis_os.h" 
-
 void os_KernelInvokeScheduler (void);
 
 #endif

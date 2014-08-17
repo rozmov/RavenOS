@@ -21,7 +21,7 @@ const osThreadDef_t os_thread_def_##name = \
 { (name), (priority), (instances), (stacksz)  }
 
 osThreadId th_q[MAX_THREADS]; ///< Ready to Run Queue (thread queue)
-uint32_t th_q_h;              ///< Ready to Run Queue Head 
+uint32_t th_q_h = 0;          ///< Ready to Run Queue Head 
 uint32_t th_q_cnt = 0;        ///< Ready to Run Queue thread counter
 
 osThreadId timed_q[MAX_THREADS]; ///< Waiting Queue for sleeping threads

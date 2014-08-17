@@ -2,12 +2,13 @@
     \brief Implements kernel level operations.
 	  \details Maps operations to CMSIS interface. Performs scheduling and context switching.
 */
-
+#include "threadIdle.h"
 #include "TM4C123.h"
 #include "stdio.h"
 #include "osObjects.h"                      // RTOS object definitions
 #include "kernel.h"
 #include "scheduler.h"
+
 
 /*! \def HW32_REG(ADDRESS) 
          Macros for word accesses. */
@@ -43,7 +44,14 @@ uint32_t kernel_running = 0; ///< flag whether the kernel is running of not
 /// \note MUST REMAIN UNCHANGED: \b osKernelInitialize shall be consistent in every CMSIS-RTOS.
 osStatus osKernelInitialize (void)
 {
-	// nothing for now
+	// Initialize the Idle thread
+	if (Init_threadIdle() != 0)
+	{
+		while(1)
+		{		
+				// Should not be here
+		};
+	}
 	return osOK;
 }
 
@@ -177,16 +185,15 @@ void SVC_Handler_C(unsigned int * svc_args)
 			th_q[curr_task]->status = TH_RUNNING;
       svc_exc_return = HW32_REG((PSP_array[curr_task])); // Return to thread with PSP
       __set_PSP((PSP_array[curr_task] + 10*4));  // Set PSP to @R0 of task 0 exception stack frame
-      NVIC_SetPriority(PendSV_IRQn, 0xFF); // Set PendSV to lowest possible priority
-      if (SysTick_Config(os_sysTickTicks) == 0)   // 1000 Hz SysTick interrupt on 16MHz core clock
+      NVIC_SetPriority(PendSV_IRQn, 0xFF);       // Set PendSV to lowest possible priority
+      if (SysTick_Config(os_sysTickTicks) == 0)  // 1000 Hz SysTick interrupt on 16MHz core clock
 			{
-				printf("ERROR: Impossible SysTick_Config number of ticks");
+				//printf("ERROR: Impossible SysTick_Config number of ticks");
 			}
       __set_CONTROL(0x3);                  // Switch to use Process Stack, unprivileged state
       __ISB();       // Execute ISB after changing CONTROL (architectural recommendation)			
 		  break;
     case (1): // Thread Yield
-			//next_task = rtr_q_h;
 			// Run scheduler to determine if a context switch is needed
 			scheduler();		  
 			if (curr_task != next_task)

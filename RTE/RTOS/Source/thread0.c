@@ -3,14 +3,14 @@
 		\details Initialize and implement thread
 */
 
-#include "cmsis_os.h"                                           // CMSIS RTOS header file
+#include "cmsis_os.h"                    // CMSIS RTOS header file
 #include "peripherals.h" 
 #include "osObjects.h"
 #include "trace.h"
 
 osThreadDef (thread0, osPriorityBelowNormal, 1, 100);
 
-osThreadId tid_thread0;                                          ///< thread id
+osThreadId tid_thread0;          ///< thread0 id
 void task0(void);
 
 /*! \fn int Init_thread0 (void)
@@ -18,12 +18,19 @@ void task0(void);
 */
 int Init_thread0 (void) 
 {
-  tid_thread0 = osThreadCreate (osThread(thread0), NULL);
-  if(!tid_thread0) return(-1);
-  
+//  tid_thread0 = osThreadCreate (osThread(thread0), NULL);
+//	
+//  if (tid_thread0 == NULL) 
+//	{
+//		return(-1);
+//  }
+	
 	if (addTrace("thread0 init") != TRACE_OK)
 	{
-		stop_cpu;
+		while(1)
+		{		
+				// Should not be here
+		};
 	}
 	
   return(0);
