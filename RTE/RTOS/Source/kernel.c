@@ -172,10 +172,6 @@ void SVC_Handler_C(unsigned int * svc_args)
 				// Context switching needed
 				ScheduleContextSwitch();
 		  }				
-//			svc_exc_return = HW32_REG((PSP_array[curr_task])); // Return to thread with PSP
-//			__set_PSP((PSP_array[curr_task] + 10*4));  // Set PSP to @R0 of task 0 exception stack frame
-
-//      __set_CONTROL(0x3);                  // Switch to use Process Stack, unprivileged state
       __ISB();       // Execute ISB after changing CONTROL (architectural recommendation)						
 			break;
     default:

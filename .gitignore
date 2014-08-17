@@ -61,5 +61,6 @@ Icon
 *.lnp
 *.axf
 *._ip
+*._ia
 Documentation/raven.jpg
 Objects/RavenOS.htm
