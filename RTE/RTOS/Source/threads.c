@@ -37,32 +37,76 @@ void os_ThreadRemoveThread(osThreadId thread_id);
 /// \note MUST REMAIN UNCHANGED: \b osThreadCreate shall be consistent in every CMSIS-RTOS.
 osThreadId osThreadCreate (const osThreadDef_t *thread_def, void *argument)
 {
-	uint32_t th;
-  /// If we are instantiating a thread and there is still room in the thread queue, add the thread to the queue.
-	if ( (thread_def->instances > 0) && (thread_def->instances < (MAX_THREADS - th_q_cnt)))
+	uint32_t th, instances;
+	
+	// check multiple instances of the thread function already present 
+	// and check the maximum presented has been met
+	if ( thread_def->instances <= 0) 
+	{	
+		return NULL;
+	}	
+	instances = 0;
+	for (th = 0; th < th_q_cnt; th++)
 	{
+		if (th_q[th] != NULL)
+		{
+			if (th_q[th]->start_p == thread_def->pthread)
+			{
+				instances++;
+			}
+		}
+	}
+	if (instances >= thread_def->instances)
+	{
+		// thread function instance maximum already met, cannot create another one
+		return NULL;
+	}
+		
+  /// If there is still room in the thread queue, add the thread to the queue.
+	if ( 0 < (MAX_THREADS - th_q_cnt))
+	{
+		// Instantiate only one thread, since we can only return one thread id...
+		// If the user would like to instantiate another thread with the same name, 
+		// the user would need to call create again with a decrement in the number of instances.
 		th = th_q_cnt;
 		th_q_cnt++;
+		// could also consider re-using dead threads in order to avoid burning out threads
 	}
 	else
 	{
 		return NULL;
 	}
 	
+	// check if the thread was already instantiated previously (should not happen)
+	if (th_q[th] != NULL)
+	{
+		return NULL;
+	}
+	
+	// the definition does not exist, nothing to feed from, so exiting
+	if ( thread_def == NULL )
+	{
+		return NULL;
+	}
+	
 	th_q[th] = (osThreadId) calloc(1, sizeof(os_thread_cb));
-	// no more memory available, so do not create thread
+	// no more heap memory available, so do not create thread
 	if (th_q[th] == NULL)
 	{
 		th_q_cnt--;
 		return NULL;
 	}
 	
-	th_q[th]->th_q_p = th;
+	th_q[th]->th_q_p   = th;
 	th_q[th]->priority = thread_def->tpriority;
 	th_q[th]->status   = TH_READY;
 	
-	// Kernel did not start yet, so no stack allocated
-	th_q[th]->stack_p  = NULL;
+	th_q[th]->semaphore_id = NULL;
+	th_q[th]->semaphore_p  = MAX_THREADS_SEM;
+	
+	th_q[th]->timed_q_p   = NULL;
+	th_q[th]->timed_ret   = osOK;
+	th_q[th]->time_count  = 0;    /// Ready-to-Run	
 	
 	if (thread_def->stacksize == 0)
 	{
@@ -73,15 +117,12 @@ osThreadId osThreadCreate (const osThreadDef_t *thread_def, void *argument)
 		th_q[th]->stack_size = thread_def->stacksize;
 	}
 	
-	th_q[th]->semaphore_id = NULL;
-	th_q[th]->semaphore_p  = MAX_THREADS_SEM;
-	
-	th_q[th]->timed_q_p   = NULL;
-	th_q[th]->timed_ret   = osOK;
-	th_q[th]->time_count  = 0;    /// Ready-to-Run
-	
 	th_q[th]->start_p = thread_def->pthread;
-  
+	
+	// Whether already running or not, the kernel should be able to allocate stack space to the thread
+	// Need the stack_size and the start_p already initialized in order to allocate the stack for the thread
+	os_KernelStackAlloc(th);	
+
 	return th_q[th];
 }
 	
@@ -200,6 +241,8 @@ void os_ThreadRemoveThread(osThreadId thread_id)
 	
 	// set the thread in dead state
 	thread_id->status = TH_DEAD;
-	
+	// stack size already allocated, so just park the thread in TH_DEAD state
+	// this particular thread cannot be 'revived', it will be dead until the end of the program/forever
+	return;
 }
 

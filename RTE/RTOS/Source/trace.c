@@ -59,12 +59,12 @@ uint32_t addTrace(char * message)
 		return TRACE_ERROR;
 	}
 	
+	strcpy(trace_table[trace_counter], message);
+	
 	if (incrementTraceCounter() != TRACE_OK)
 	{
 		return TRACE_ERROR;
 	}	
-	
-	strcpy(trace_table[trace_counter], message);
 	
 	return TRACE_OK;
 }

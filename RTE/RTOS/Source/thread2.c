@@ -29,6 +29,29 @@ int Init_thread2 (void)
   return(0);
 }
 
+/*! \fn int Terminate_thread2 (void) 
+    \brief Terminating thread2
+*/
+int Terminate_thread2 (void) 
+{	
+	if (osThreadTerminate(tid_thread2) != osOK)
+	{
+		if (addTrace("could not terminate thread0") != TRACE_OK)
+		{
+			dumpTrace();
+			addTrace("could not terminate thread0") ;
+		}			
+		return(-1);
+	}
+
+	if (addTrace("terminated thread0") != TRACE_OK)
+	{
+		dumpTrace();
+		addTrace("terminated thread0") ;
+	}		
+  return(0);
+}
+
 /*! \fn void thread2 (void const *argument)
     \brief Thread definition for thread 2.
     \param argument A pointer to the list of arguments.
@@ -43,23 +66,40 @@ void thread2 (void const *argument)
   while (1) {
     task2(); // thread code 
 		
-		if (addTrace("thread2 yields") != TRACE_OK)
+    // This should terminate the current thread0 thread		
+		if (Terminate_thread0() != 0)
 		{
-			stop_cpu;
-		}
-		
-		if (osThreadTerminate(tid_thread0) != osOK)
-		{
-			if (addTrace("could not terminate thread0") != TRACE_OK)
-			{
-				dumpTrace();
-				addTrace("could not terminate thread0") ;
+			while(1)
+			{		
+					// Should not be here
 			}			
 		}
 		
+		// This should create a new thread0 thread
+		if (Init_thread0() != 0)
+		{
+			while(1)
+			{		
+					// Should not be here
+			}
+		}
+
+		if (addTrace("thread2 set priority to osPriorityBelowNormal") != TRACE_OK)
+		{
+			stop_cpu;
+		}		
 		osThreadSetPriority(osThreadGetId(), osPriorityBelowNormal);
+		
+		if (addTrace("thread2 set priority of tid_thread3 to osPriorityNormal") != TRACE_OK)
+		{
+			stop_cpu;
+		}
 		osThreadSetPriority(tid_thread3, osPriorityNormal);
 		
+		if (addTrace("thread2 yields") != TRACE_OK)
+		{
+			stop_cpu;
+		}		
     osThreadYield();                                            // suspend thread
 		
 		if (addTrace("thread2 back from yield") != TRACE_OK)

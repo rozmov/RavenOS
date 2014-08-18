@@ -8,7 +8,7 @@
 #include "osObjects.h"
 #include "trace.h"
 
-osThreadDef (thread0, osPriorityBelowNormal, 1, 100);
+osThreadDef (thread0, osPriorityBelowNormal, 2, 100);
 
 osThreadId tid_thread0;          ///< thread0 id
 void task0(void);
@@ -31,6 +31,29 @@ int Init_thread0 (void)
 		addTrace("thread0 init");
 	}
 	
+  return(0);
+}
+
+/*! \fn int Terminate_thread0 (void) 
+    \brief Terminating thread0
+*/
+int Terminate_thread0 (void) 
+{	
+	if (osThreadTerminate(tid_thread0) != osOK)
+	{
+		if (addTrace("could not terminate thread0") != TRACE_OK)
+		{
+			dumpTrace();
+			addTrace("could not terminate thread0") ;
+		}			
+		return(-1);
+	}
+
+	if (addTrace("terminated thread0") != TRACE_OK)
+	{
+		dumpTrace();
+		addTrace("terminated thread0") ;
+	}		
   return(0);
 }
 

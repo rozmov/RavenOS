@@ -19,18 +19,22 @@
 extern osThreadId tid_thread0;
 extern void thread0 (void const *argument);             // function prototype
 int Init_thread0 (void);
+int Terminate_thread0 (void);
 
 extern osThreadId tid_thread1;
 extern void thread1 (void const *argument);             // function prototype
 int Init_thread1 (void);
+int Terminate_thread1 (void);
 
 extern osThreadId tid_thread2;
 extern void thread2 (void const *argument);             // function prototype
 int Init_thread2 (void);
+int Terminate_thread2 (void);
 
 extern osThreadId tid_thread3;
 extern void thread3 (void const *argument);             // function prototype
 int Init_thread3 (void);
+int Terminate_thread3 (void);
 
 /// Semaphore definition
 extern void sem0 (void const *argument);             // function prototype

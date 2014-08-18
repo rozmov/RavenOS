@@ -6,7 +6,11 @@
 #ifndef _KERNEL_H
 #define _KERNEL_H
 
+#include <stdint.h>
+
 void os_KernelInvokeScheduler (void);
+void os_KernelStackAlloc (uint32_t thread_idx);
+
 
 #endif
 

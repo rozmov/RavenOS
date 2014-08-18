@@ -17,8 +17,9 @@
 	
 #define os_sysTickTicks 16000 ///< Number of ticks between two system timer interrupts. This would generate 1000 interruts/s on a 16MHz clock.
 
-void __svc(0x00) os_start(void); ///< OS start scheduler
-void __svc(0x01) thread_yield(void); ///< Thread needs to schedule a switch of context
+void __svc(0x00) os_start(void);              ///< OS start scheduler
+void __svc(0x01) thread_yield(void);          ///< Thread needs to schedule a switch of context
+void __svc(0x02) stack_alloc(int thread_idx); ///< Initialize the process stack pointer PSP_array[thread_idx]
 void SVC_Handler_C(unsigned int * svc_args);
 void HardFault_Handler_C(unsigned int * svc_args);
 void ScheduleContextSwitch(void);
@@ -97,6 +98,15 @@ void os_KernelInvokeScheduler (void)
   return ;
 }
 
+/// \fn void os_KernelStackAlloc (void)
+/// \brief Perform an SVC call to allocate stack for a thread
+/// \param thread_idx The thread index in the PSP table to initialize
+void os_KernelStackAlloc (uint32_t thread_idx)
+{
+	stack_alloc(thread_idx);
+  return ;
+}
+
 
 // -------------------------------------------------------------------------
 /*! \fn __asm void SVC_Handler(void)
@@ -132,30 +142,30 @@ void SVC_Handler_C(unsigned int * svc_args)
   uint8_t svc_number, i;	
   svc_number = ((char *) svc_args[6])[-2]; // Memory[(Stacked PC)-2]
   switch(svc_number) {
-    case (0): // OS start
-      // The OS is not running at this point
-		  
-      // Create stack frame for threads
-		  for (i = 0 ; i < th_q_cnt ;i++)
-			{
-				th_q[i]->stack_p = (uint32_t) task_stack[i];
-//				PSP_array[i] = ((unsigned int) rtr_q[i]->stack_p) + (sizeof task_stack[i]) - 18*4;
-				PSP_array[i] = ((unsigned int) th_q[i]->stack_p) + (th_q[i]->stack_size) - 18*4;
-				HW32_REG((PSP_array[i] + (16<<2))) = (unsigned long) th_q[i]->start_p; // initial Program Counter
-				HW32_REG((PSP_array[i] + (17<<2))) = 0x01000000;            // initial xPSR
-				HW32_REG((PSP_array[i]          )) = 0xFFFFFFFDUL;          // initial EXC_RETURN
-				HW32_REG((PSP_array[i] + ( 1<<2))) = 0x3;// initial CONTROL : unprivileged, PSP, no FP		
-				
-				th_q[i]->stack_p = PSP_array[i];
-			}
+    case (0): // OS start		  
  	    // Starting the task scheduler
 			// Update thread to be run based on priority
 	    scheduler();
       curr_task = next_task; // Switch to head ready-to-run task (Current task)		
 			th_q_h = curr_task;
 			th_q[curr_task]->status = TH_RUNNING;
-      svc_exc_return = HW32_REG((PSP_array[curr_task])); // Return to thread with PSP
-      __set_PSP((PSP_array[curr_task] + 10*4));  // Set PSP to @R0 of task 0 exception stack frame
+		  if (PSP_array[curr_task] == NULL)
+			{
+				printf("ERROR: Stack not allocated for current task (task %u), allocating. \n\r", curr_task);
+				i = curr_task;
+				th_q[i]->stack_p = (uint32_t) task_stack[i];
+				PSP_array[i] = ((unsigned int) th_q[i]->stack_p) + (th_q[i]->stack_size) - 18*4;
+				HW32_REG((PSP_array[i] + (16<<2))) = (unsigned long) th_q[i]->start_p; // initial Program Counter
+				HW32_REG((PSP_array[i] + (17<<2))) = 0x01000000;            // initial xPSR
+				HW32_REG((PSP_array[i]          )) = 0xFFFFFFFDUL;          // initial EXC_RETURN
+				HW32_REG((PSP_array[i] + ( 1<<2))) = 0x3;// initial CONTROL : unprivileged, PSP, no FP		
+				
+				th_q[i]->stack_p = PSP_array[i];				
+			}
+
+			svc_exc_return = HW32_REG((PSP_array[curr_task])); // Return to thread with PSP
+			__set_PSP((PSP_array[curr_task] + 10*4));  // Set PSP to @R0 of task 0 exception stack frame
+
       NVIC_SetPriority(PendSV_IRQn, 0xFF);       // Set PendSV to lowest possible priority
       if (SysTick_Config(os_sysTickTicks) != 0)  // 1000 Hz SysTick interrupt on 16MHz core clock
 			{
@@ -171,9 +181,27 @@ void SVC_Handler_C(unsigned int * svc_args)
 			{ 
 				// Context switching needed
 				ScheduleContextSwitch();
-		  }				
+		  }	
+      //__set_CONTROL(0x3);                  // Switch to use Process Stack, unprivileged state			
       __ISB();       // Execute ISB after changing CONTROL (architectural recommendation)						
 			break;
+    case (2): // Stack Allocation
+      // Create stack frame for thread
+		  i = svc_args[0];  
+//		  for (i = 0 ; i < th_q_cnt ;i++)
+//			{
+			th_q[i]->stack_p = (uint32_t) task_stack[i];
+			PSP_array[i] = ((unsigned int) th_q[i]->stack_p) + (th_q[i]->stack_size) - 18*4;
+			HW32_REG((PSP_array[i] + (16<<2))) = (unsigned long) th_q[i]->start_p; // initial Program Counter
+			HW32_REG((PSP_array[i] + (17<<2))) = 0x01000000;            // initial xPSR
+			HW32_REG((PSP_array[i]          )) = 0xFFFFFFFDUL;          // initial EXC_RETURN
+			HW32_REG((PSP_array[i] + ( 1<<2))) = 0x3;// initial CONTROL : unprivileged, PSP, no FP		
+			
+			th_q[i]->stack_p = PSP_array[i];
+//			}		
+		  //__set_CONTROL(0x3);                  // Switch to use Process Stack, unprivileged state	
+      __ISB();       // Execute ISB after changing CONTROL (architectural recommendation)						
+			break;			
     default:
       printf("ERROR: Unknown SVC service number\n\r");
       printf("- SVC number 0x%x\n\r", svc_number);
