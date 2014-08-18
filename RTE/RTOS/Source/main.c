@@ -19,16 +19,13 @@ int main(void)
 	
 	// initialize peripherals
 	UART_initialize();
-  printf("Simple context switching demo\n\r");
+  printf("RavenOS demo\n\r");
   LED_initialize(); 
 	
 	printf("Initializing threads\n\r");
   if (Init_thread0() != 0)
 	{
-		while(1)
-		{		
-				// Should not be here
-		};
+		stop_cpu;
 	}
   if (Init_thread1() != 0)
 	{
@@ -42,12 +39,12 @@ int main(void)
 	{
 		stop_cpu;
 	}
-//	
-//	printf("Initializing semaphores\n\r");
-//  if (Init_Semaphore0() != 0)
-//	{
-//		stop_cpu;
-//	}	
+	
+	printf("Initializing semaphores\n\r");
+  if (Init_Semaphore0() != 0)
+	{
+		stop_cpu;
+	}	
 	
 	printf("Start kernel\n\r");
 	osKernelStart ();                         // start thread execution 

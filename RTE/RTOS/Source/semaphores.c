@@ -187,7 +187,7 @@ int32_t osSemaphoreWait (osSemaphoreId semaphore_id, uint32_t millisec)
 osStatus osSemaphoreRelease (osSemaphoreId semaphore_id)
 {
 	osThreadId thread_id = NULL;
-	uint32_t j;
+	uint32_t j, idx;
 	osThreadId curr_th = osThreadGetId();
 	
 	// semaphore sanity check
@@ -217,13 +217,31 @@ osStatus osSemaphoreRelease (osSemaphoreId semaphore_id)
 	if (semaphore_id->threads_q_cnt != 0)
 	{
 		// Remove thread from semaphore queue
+		idx = semaphore_id->threads_q_cnt;
 		for ( j = 0; j < semaphore_id->threads_q_cnt ; j++ )
 		{		
 			if (semaphore_id->threads_q[j].threadId == thread_id )
 			{	
 				semaphore_id->threads_q[j].threadId = NULL;
 				semaphore_id->threads_q[j].expiryTime = 0;
+				idx = j;
 			}
+		}
+		// found the thread in the queue?
+		if (idx != semaphore_id->threads_q_cnt)
+		{
+			// more over the rest of the queue
+			for ( j = idx; j < semaphore_id->threads_q_cnt -1 ; j++ )
+			{		
+				semaphore_id->threads_q[j] = semaphore_id->threads_q[j+1];
+				if (semaphore_id->threads_q[j].threadId != NULL) // sanity, this should not happen
+				{
+					// updating the thread with the new location within the semaphore queue
+					semaphore_id->threads_q[j].threadId->semaphore_p = j;
+				}
+			}			
+			// decrement threads count
+			semaphore_id->threads_q_cnt--;			
 		}
 	}
 	// Release semaphore

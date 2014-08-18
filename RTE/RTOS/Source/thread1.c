@@ -3,7 +3,6 @@
 		\details Initialize and implement thread
 */
 
-#include "cmsis_os.h"                                          // CMSIS RTOS header file
 #include "peripherals.h" 
 #include "osObjects.h"
 #include "trace.h"
@@ -18,7 +17,6 @@ void task1(void);
 */
 int Init_thread1 (void) 
 {
-
   tid_thread1 = osThreadCreate (osThread(thread1), NULL);
   if(!tid_thread1) return(-1);
   
@@ -27,7 +25,29 @@ int Init_thread1 (void)
 		stop_cpu;
 	}
 	
-	
+  return(0);
+}
+
+/*! \fn int Terminate_thread1 (void) 
+    \brief Terminating thread1
+*/
+int Terminate_thread1 (void) 
+{	
+	if (osThreadTerminate(tid_thread1) != osOK)
+	{
+		if (addTrace("could not terminate thread1") != TRACE_OK)
+		{
+			dumpTrace();
+			addTrace("could not terminate thread1") ;
+		}			
+		return(-1);
+	}
+
+	if (addTrace("terminated thread1") != TRACE_OK)
+	{
+		dumpTrace();
+		addTrace("terminated thread1") ;
+	}		
   return(0);
 }
 
@@ -36,22 +56,55 @@ int Init_thread1 (void)
     \param argument A pointer to the list of arguments.
 */
 void thread1 (void const *argument) 
-{
+{	
 	if (addTrace("thread1 start run") != TRACE_OK)
 	{
 		stop_cpu;
 	}
 	
   while (1) {
-    task1(); // thread code 
 		
+		count1Sec();
+		if (addTrace("thread1 take sem0 attempt") != TRACE_OK)
+		{
+			stop_cpu;
+		}			
+    if ( osSemaphoreWait (sid_Semaphore0, 10) != -1 ) // wait 10 mSec
+		{		
+			task1(); // thread code 
+			if (addTrace("thread1 take sem0 success; now releasing") != TRACE_OK)
+			{
+				stop_cpu;
+			}	
+			if (osSemaphoreRelease (sid_Semaphore0) != osOK)
+			{
+				if (addTrace("thread1 release sem0 fail") != TRACE_OK)
+				{
+					stop_cpu;
+				}						
+			}
+		}
+		else
+		{
+			if (addTrace("thread1 take sem0 fail") != TRACE_OK)
+			{
+				stop_cpu;
+			}				
+		}
+
+		count1Sec();
+		
+		
+		if (addTrace("thread1 set thread2 priority to osPriorityNormal") != TRACE_OK)
+		{
+			stop_cpu;
+		}			
+		osThreadSetPriority(tid_thread2, osPriorityNormal);
+				
 		if (addTrace("thread1 yields") != TRACE_OK)
 		{
 			stop_cpu;
 		}
-		
-		osThreadSetPriority(tid_thread2, osPriorityNormal);
-		
     osThreadYield();                                            // suspend thread
 		
 		if (addTrace("thread1 back from yield") != TRACE_OK)
@@ -69,6 +122,4 @@ void task1(void)
 {
   if (osKernelSysTick() & 0x100) {LED_blink(LED1);} // Set   LED 1
   else                       {LED_blink(LED1);} // Clear LED 1
-	
-	count1Sec();
 }

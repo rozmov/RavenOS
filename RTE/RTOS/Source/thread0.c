@@ -3,7 +3,6 @@
 		\details Initialize and implement thread
 */
 
-#include "cmsis_os.h"                    // CMSIS RTOS header file
 #include "peripherals.h" 
 #include "osObjects.h"
 #include "trace.h"
@@ -63,32 +62,60 @@ int Terminate_thread0 (void)
 */
 void thread0 (void const *argument) 
 {
+	
 	if (addTrace("thread0 start run") != TRACE_OK)
 	{
-		dumpTrace();
-		addTrace("thread0 start run");
+		stop_cpu;
 	}
 	
   while (1) 
-	{
-    
-		task0(); // thread code 
+	{	
+		count1Sec();
+		if (addTrace("thread0 take sem0 attempt") != TRACE_OK)
+		{
+			stop_cpu;
+		}			
+    if ( osSemaphoreWait (sid_Semaphore0, 0) != -1 ) // wait 0 mSec
+		{
+      task0(); // thread code 
+			if (addTrace("thread0 take sem0 success; now releasing") != TRACE_OK)
+			{
+				stop_cpu;
+			}	
+			if (osSemaphoreRelease (sid_Semaphore0) != osOK)
+			{
+				if (addTrace("thread0 release sem0 fail") != TRACE_OK)
+				{
+					stop_cpu;
+				}						
+			}
+		}
+		else
+		{
+			if (addTrace("thread0 take sem0 fail") != TRACE_OK)
+			{
+				stop_cpu;
+			}				
+		}
+
+		count1Sec();
+		
+		if (addTrace("thread0 set priority to osPriorityLow") != TRACE_OK)
+		{
+			stop_cpu;
+		}			
+		osThreadSetPriority(osThreadGetId(), osPriorityLow);
+		    
 		
 		if (addTrace("thread0 yields") != TRACE_OK)
 		{
-			dumpTrace();
-			addTrace("thread0 yields");
-		}
-		
-		osThreadSetPriority(tid_thread0, osPriorityLow);
-		
-		
+			stop_cpu;
+		}	
     osThreadYield();  // suspend thread
 		
 		if (addTrace("thread0 back from yield") != TRACE_OK)
 		{
-			dumpTrace();
-			addTrace("thread0 back from yield");
+			stop_cpu;
 		}		
 		
   }
@@ -102,6 +129,4 @@ void task0(void)
 { 
   if (osKernelSysTick() & 0x80) {LED_blink(LED0);} // Set   LED 0
   else                      {LED_blink(LED0);} // Clear LED 0
-	
-	count1Sec();
 }

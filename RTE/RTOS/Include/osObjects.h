@@ -37,7 +37,9 @@ int Init_thread3 (void);
 int Terminate_thread3 (void);
 
 /// Semaphore definition
+extern osSemaphoreId sid_Semaphore0;
 extern void sem0 (void const *argument);             // function prototype
 int Init_Semaphore0 (void);
+int Delete_Semaphore0 (void);
 
 #endif // _OSOBJECTS_H

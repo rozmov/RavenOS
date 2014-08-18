@@ -3,13 +3,12 @@
 		\details Initialize and implement thread
 */
 
-#include "cmsis_os.h"                                           // CMSIS RTOS header file
 #include "trace.h"
 #include "osObjects.h"
 
 osThreadDef (thread3, osPriorityBelowNormal, 1, 100);
 
-osThreadId tid_thread3;                                          // thread id
+osThreadId tid_thread3;   ///< thread3 id
 void task3(void);
 
 /*! \fn int Init_thread3 (void)

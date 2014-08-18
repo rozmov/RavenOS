@@ -3,14 +3,13 @@
 		\details Initialize and implement thread
 */
 
-#include "cmsis_os.h"                                           // CMSIS RTOS header file
 #include "peripherals.h" 
 #include "osObjects.h"
 #include "trace.h"
 
 osThreadDef (thread2, osPriorityBelowNormal, 1, 100);
 
-osThreadId tid_thread2;                                          // thread id
+osThreadId tid_thread2;                                          ///< thread id
 void task2(void);
 
 /*! \fn int Init_thread2 (void)
@@ -36,18 +35,18 @@ int Terminate_thread2 (void)
 {	
 	if (osThreadTerminate(tid_thread2) != osOK)
 	{
-		if (addTrace("could not terminate thread0") != TRACE_OK)
+		if (addTrace("could not terminate thread2") != TRACE_OK)
 		{
 			dumpTrace();
-			addTrace("could not terminate thread0") ;
+			addTrace("could not terminate thread2") ;
 		}			
 		return(-1);
 	}
 
-	if (addTrace("terminated thread0") != TRACE_OK)
+	if (addTrace("terminated thread2") != TRACE_OK)
 	{
 		dumpTrace();
-		addTrace("terminated thread0") ;
+		addTrace("terminated thread2") ;
 	}		
   return(0);
 }
@@ -64,8 +63,36 @@ void thread2 (void const *argument)
 	}
 	
   while (1) {
-    task2(); // thread code 
-		
+		count1Sec();
+		if (addTrace("thread2 take sem0 attempt") != TRACE_OK)
+		{
+			stop_cpu;
+		}			
+    if ( osSemaphoreWait (sid_Semaphore0, 0) != -1 ) // wait 0 mSec
+		{		
+			task2(); // thread code 
+			if (addTrace("thread2 take sem0 success; now releasing") != TRACE_OK)
+			{
+				stop_cpu;
+			}	
+			if (osSemaphoreRelease (sid_Semaphore0) != osOK)
+			{
+				if (addTrace("thread2 release sem0 fail") != TRACE_OK)
+				{
+					stop_cpu;
+				}						
+			}
+		}
+		else
+		{
+			if (addTrace("thread2 take sem0 fail") != TRACE_OK)
+			{
+				stop_cpu;
+			}				
+		}
+
+		count1Sec();
+				
     // This should terminate the current thread0 thread		
 		if (Terminate_thread0() != 0)
 		{
@@ -90,7 +117,7 @@ void thread2 (void const *argument)
 		}		
 		osThreadSetPriority(osThreadGetId(), osPriorityBelowNormal);
 		
-		if (addTrace("thread2 set priority of tid_thread3 to osPriorityNormal") != TRACE_OK)
+		if (addTrace("thread2 set priority of thread3 to osPriorityNormal") != TRACE_OK)
 		{
 			stop_cpu;
 		}
