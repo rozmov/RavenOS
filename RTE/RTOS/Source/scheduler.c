@@ -35,7 +35,10 @@ void scheduler(void)
 	if (next != th_q_h)
 	{
 		// leave the current head in the ready to run queue, but make the next best thing active
-		th_q[th_q_h]->status = TH_READY;
+		if ( th_q[th_q_h]->status == TH_RUNNING )
+		{
+			th_q[th_q_h]->status = TH_READY;
+		}	
 		th_q_h = next;
 		th_q[th_q_h]->status = TH_RUNNING;	
 		
@@ -112,43 +115,70 @@ uint32_t os_ThreadGetBestThread(void)
 ///          take it out of the blocked state and into the ready to run queue
 void os_ReevaluateBlockedThread(void)
 {
-	uint32_t i;
+	uint32_t i, semaphore_p;
+	osSemaphoreId semaphore_id;
 	
-	// search for any thread that is ready to go except head
 	for ( i = 0; i < th_q_cnt ; i++ )
 	{
-		if (th_q[i]->status == TH_BLOCKED)
+		if (th_q[i]->status != TH_BLOCKED)
 		{
-			//sanity
-			if ( th_q[i]->semaphore_id == NULL)
-		  {
-				//add trace
-				return;
-			}
-			
-			if (th_q[i]->semaphore_p == MAX_THREADS_SEM)
-			{
-				//add trace
-				return;				
-			}
-			
-			//check if the semaphore is free
-			if (th_q[i]->semaphore_id->thread_id == NULL)
-			{
-				// give the thread a chance to run 
-				th_q[i]->status = TH_READY;
-				return;
-			}
-			
-			// check if time expired
-			if (osKernelSysTick() == th_q[i]->semaphore_id->threads_q[th_q[i]->semaphore_p].expiryTime)
-			{
-				// unblock thread 
-				th_q[i]->status = TH_READY;			
-				return;				
-			}
+			continue;
 		}
-				
+		//sanity
+		if ( th_q[i]->semaphore_id == NULL)
+		{
+			return;
+		}
+		
+		if (th_q[i]->semaphore_p == MAX_THREADS_SEM)
+		{
+			return;				
+		}
+		
+		semaphore_id = th_q[i]->semaphore_id;
+		semaphore_p  = th_q[i]->semaphore_p;
+					
+		//check if the semaphore is free
+		if (semaphore_id->thread_id == NULL)
+		{
+			// give the thread a chance to run 
+			th_q[i]->status = TH_READY;
+			return;
+		}
+		
+		// check if time expired
+		if (osWaitForever == semaphore_id->threads_q[semaphore_p].expiryTime)
+		{
+			return;
+		}
+		else
+		if (osKernelSysTick() == semaphore_id->threads_q[semaphore_p].expiryTime)
+		{			
+			if ( os_RemoveThreadFromSemaphore(th_q[i], semaphore_id) != osOK)
+			{
+				return;
+			}
+			
+			if ( os_SearchThreadAllSemaphores(th_q[i], &semaphore_id, &semaphore_p) == osOK)
+			{
+				if (semaphore_p == MAX_THREADS_SEM)
+				{
+					// unblock thread 
+					th_q[i]->status = TH_READY;	
+				}
+				else
+				{
+					th_q[i]->semaphore_id = semaphore_id;
+					th_q[i]->semaphore_p  = semaphore_p;
+				}					
+			}
+			else
+			{
+				return;
+			}
+		
+			return;				
+		}			
 	}	
 	return;
 }

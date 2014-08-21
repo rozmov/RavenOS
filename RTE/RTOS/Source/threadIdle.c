@@ -46,5 +46,22 @@ void threadIdle (void const *argument)
   while (1) 
 	{
 		
+		if (addTrace("threadIdle yields") != TRACE_OK)
+		{
+			while (1) 
+			{
+				
+			}
+		}		
+    osThreadYield();                                            // suspend thread
+		
+		if (addTrace("threadIdle back from yield") != TRACE_OK)
+		{
+			while (1) 
+			{
+				
+			}
+		}
+		
   }
 }

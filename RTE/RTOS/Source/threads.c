@@ -39,12 +39,19 @@ osThreadId osThreadCreate (const osThreadDef_t *thread_def, void *argument)
 {
 	uint32_t th, instances;
 	
+	// the definition does not exist, nothing to feed from, so exiting
+	if ( thread_def == NULL )
+	{
+		return NULL;
+	}	
+	
 	// check multiple instances of the thread function already present 
 	// and check the maximum presented has been met
 	if ( thread_def->instances <= 0) 
 	{	
 		return NULL;
 	}	
+	
 	instances = 0;
 	for (th = 0; th < th_q_cnt; th++)
 	{
@@ -61,7 +68,19 @@ osThreadId osThreadCreate (const osThreadDef_t *thread_def, void *argument)
 		// thread function instance maximum already met, cannot create another one
 		return NULL;
 	}
-		
+	
+	// check that stack size requested can be supported
+	if ( thread_def->stacksize > DEFAULT_STACK_SIZE )
+	{
+		return NULL;
+	}	
+	
+  // check that the priority is whithin limits
+	if ( (thread_def->tpriority < osPriorityIdle) || (thread_def->tpriority > osPriorityRealtime) )
+	{
+		return NULL;
+	}
+	
   /// If there is still room in the thread queue, add the thread to the queue.
 	if ( 0 < (MAX_THREADS - th_q_cnt))
 	{
@@ -69,6 +88,13 @@ osThreadId osThreadCreate (const osThreadDef_t *thread_def, void *argument)
 		// If the user would like to instantiate another thread with the same name, 
 		// the user would need to call create again with a decrement in the number of instances.
 		th = th_q_cnt;
+		
+		// check if the thread was already instantiated previously (should not happen)
+		if (th_q[th] != NULL)
+		{
+			return NULL;
+		}
+		
 		th_q_cnt++;
 		// could also consider re-using dead threads in order to avoid burning out threads
 	}
@@ -77,18 +103,7 @@ osThreadId osThreadCreate (const osThreadDef_t *thread_def, void *argument)
 		return NULL;
 	}
 	
-	// check if the thread was already instantiated previously (should not happen)
-	if (th_q[th] != NULL)
-	{
-		return NULL;
-	}
-	
-	// the definition does not exist, nothing to feed from, so exiting
-	if ( thread_def == NULL )
-	{
-		return NULL;
-	}
-	
+  // allocate the TCB for this newly created thread
 	th_q[th] = (osThreadId) calloc(1, sizeof(os_thread_cb));
 	// no more heap memory available, so do not create thread
 	if (th_q[th] == NULL)

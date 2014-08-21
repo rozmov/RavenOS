@@ -37,14 +37,28 @@ void thread3 (void const *argument)
 		stop_cpu;
 	}
 	
-  while (1) {
+  while (1) 
+	{
     task3(); // thread code 
+		
+		// give a chance to the other tasks to run now
+		if (addTrace("thread3 set priority to osPriorityBelowNormal") != TRACE_OK)
+		{
+			stop_cpu;
+		}		
+		osThreadSetPriority(osThreadGetId(), osPriorityBelowNormal);
+		
+		if (addTrace("thread3 set priority of thread0 to osPriorityNormal") != TRACE_OK)
+		{
+			stop_cpu;
+		}
+		osThreadSetPriority(tid_thread0, osPriorityNormal);
+		
 		
 		if (addTrace("thread3 yields") != TRACE_OK)
 		{
 			stop_cpu;
-		}
-		
+		}		
     osThreadYield();                                            // suspend thread
 		
 		if (addTrace("thread3 back") != TRACE_OK)
@@ -60,6 +74,10 @@ void thread3 (void const *argument)
 */
 void task3(void)
 { 
-    /// Print trace information
-		dumpTrace();
+	/// Print trace information
+	dumpTrace();
+	if (addTrace("thread3 dumped trace") != TRACE_OK)
+	{
+		stop_cpu;
+	}
 }

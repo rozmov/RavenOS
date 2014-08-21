@@ -62,14 +62,13 @@ void thread1 (void const *argument)
 		stop_cpu;
 	}
 	
-  while (1) {
-		
-		count1Sec();
+  while (1) 
+	{	
 		if (addTrace("thread1 take sem0 attempt") != TRACE_OK)
 		{
 			stop_cpu;
 		}			
-    if ( osSemaphoreWait (sid_Semaphore0, 10) != -1 ) // wait 10 mSec
+    if ( osSemaphoreWait (sid_Semaphore0, 100) != -1 ) // wait mSec
 		{		
 			task1(); // thread code 
 			if (addTrace("thread1 take sem0 success; now releasing") != TRACE_OK)
@@ -92,10 +91,10 @@ void thread1 (void const *argument)
 			}				
 		}
 
-		count1Sec();
+//		count1Sec();
 		
 		
-		if (addTrace("thread1 set thread2 priority to osPriorityNormal") != TRACE_OK)
+		if (addTrace("thread1 set thread0 priority to osPriorityNormal") != TRACE_OK)
 		{
 			stop_cpu;
 		}			
@@ -122,4 +121,8 @@ void task1(void)
 {
   if (osKernelSysTick() & 0x100) {LED_blink(LED1);} // Set   LED 1
   else                       {LED_blink(LED1);} // Clear LED 1
+	if (addTrace("thread1 flips LED") != TRACE_OK)
+	{
+		stop_cpu;
+	}	
 }

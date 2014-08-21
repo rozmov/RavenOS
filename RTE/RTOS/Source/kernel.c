@@ -46,6 +46,9 @@ uint32_t kernel_running = 0; ///< flag whether the kernel is running of not
 /// \note MUST REMAIN UNCHANGED: \b osKernelInitialize shall be consistent in every CMSIS-RTOS.
 osStatus osKernelInitialize (void)
 {
+	// Enable double-word stack alignment
+	SCB->CCR |= SCB_CCR_STKALIGN_Msk; // Set STKALIGN bit (bit 9) of CCR
+	
 	// Initialize the Idle thread
 	if (Init_threadIdle() != 0)
 	{
@@ -313,7 +316,7 @@ void HardFault_Handler_C(unsigned int * svc_args)
 		printf ("PSP # %d = %x\n\r",i, PSP_array[i]);
 	}
   printf ("Stacked PC = %x\n\r", svc_args[6]);
-  stop_cpu;	
+  stop_cpu2;	
 }
 // -------------------------------------------------------------------------
 

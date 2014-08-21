@@ -62,13 +62,13 @@ void thread2 (void const *argument)
 		stop_cpu;
 	}
 	
-  while (1) {
-		count1Sec();
+  while (1) 
+	{		
 		if (addTrace("thread2 take sem0 attempt") != TRACE_OK)
 		{
 			stop_cpu;
 		}			
-    if ( osSemaphoreWait (sid_Semaphore0, 0) != -1 ) // wait 0 mSec
+    if ( osSemaphoreWait (sid_Semaphore0, 200) != -1 ) // wait 20 mSec
 		{		
 			task2(); // thread code 
 			if (addTrace("thread2 take sem0 success; now releasing") != TRACE_OK)
@@ -91,25 +91,25 @@ void thread2 (void const *argument)
 			}				
 		}
 
-		count1Sec();
+//		count1Sec();
 				
-    // This should terminate the current thread0 thread		
-		if (Terminate_thread0() != 0)
-		{
-			while(1)
-			{		
-					// Should not be here
-			}			
-		}
-		
-		// This should create a new thread0 thread
-		if (Init_thread0() != 0)
-		{
-			while(1)
-			{		
-					// Should not be here
-			}
-		}
+//    // This should terminate the current thread0 thread		
+//		if (Terminate_thread0() != 0)
+//		{
+//			while(1)
+//			{		
+//					// Should not be here
+//			}			
+//		}
+//		
+//		// This should create a new thread0 thread
+//		if (Init_thread0() != 0)
+//		{
+//			while(1)
+//			{		
+//					// Should not be here
+//			}
+//		}
 
 		if (addTrace("thread2 set priority to osPriorityBelowNormal") != TRACE_OK)
 		{
@@ -145,5 +145,8 @@ void task2(void)
   if (osKernelSysTick() & 0x200) {LED_blink(LED2);} // Set   LED 2
   else                       {LED_blink(LED2);} // Clear LED 2
 	
-	count1Sec();
+	if (addTrace("thread2 flips LED") != TRACE_OK)
+	{
+		stop_cpu;
+	}
 }
