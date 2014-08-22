@@ -268,8 +268,8 @@ struct os_thread_cb
 	uint32_t th_q_p;       ///< Thread Queue Pointer / Index
 	uint32_t stack_p;      ///< Stack Pointer
 	uint32_t stack_size;   ///< Stack Size (bytes)
-	uint32_t semaphore_p;  ///< Semapore Pointer - where the thread is in semaphore queue, if waiting on a semaphore
-	osSemaphoreId semaphore_id; ///< Semaphore ID for semaphore currently blocked on
+	uint32_t semaphore_p;  ///< Semapore Pointer - where the thread is in semaphore queue (either waiting or active)
+	osSemaphoreId semaphore_id; ///< Semaphore ID for semaphore currently blocked on or holding
 	uint32_t time_count;   ///< Time until Timeout
 	uint32_t timed_q_p;    ///< Timed Queue Pointer
 	osStatus timed_ret;    ///< Exit Status from Sleep
@@ -294,9 +294,12 @@ struct os_thread_timed
 /// Semaphore Block Control
 struct os_semaphore_cb
 {
-	os_thread_timed            threads_q[MAX_THREADS_SEM];    ///< queue of threads blocked on a semaphore.
-  uint32_t                   threads_q_cnt;                 ///< indicated how many threads are blocked/usingg on this semaphore
-	osThreadId                 thread_id;                     ///< the thread currently controlling the semaphore.
+	os_thread_timed            threads_q[MAX_THREADS_SEM];     ///< queue of threads blocked on a semaphore.
+  uint32_t                   threads_q_cnt;                  ///< indicated how many threads are blocked on this semaphore
+	osThreadId                 threads_own_q[MAX_THREADS_SEM]; ///< queue of threads using a semaphore.
+  uint32_t                   threads_own_q_cnt;              ///< indicated how many threads are using on this semaphore	
+	osThreadId                 thread_id;                      ///< the thread currently controlling the semaphore.
+	uint32_t                   ownCount;                    ///< number of tokens for this semaphore
 } ;
 
 
@@ -661,19 +664,19 @@ osStatus osSemaphoreDelete (osSemaphoreId semaphore_id);
 /// \return status code that indicates the execution status of the function.
 osStatus os_SemaphoreRemoveThread (osThreadId thread_id);
 
-/// \fn osStatus os_RemoveThreadFromSemaphore (osThreadId thread_id, osSemaphoreId semaphore_id)
+/// \fn osStatus os_RemoveThreadFromSemaphoreBlockedQ (osThreadId thread_id, osSemaphoreId semaphore_id)
 /// \brief Remove thread from a blocked semaphore queue.
 /// \param[in]     thread_id  thread object.
 /// \return status code that indicates the execution status of the function.
-osStatus os_RemoveThreadFromSemaphore (osThreadId thread_id, osSemaphoreId semaphore_id);
+osStatus os_RemoveThreadFromSemaphoreBlockedQ (osThreadId thread_id, osSemaphoreId semaphore_id);
 
-/// \fn osStatus os_SearchThreadAllSemaphores (osThreadId thread_id, osSemaphoreId* semaphore_id_p, uint32_t* semaphore_p_p )
+/// \fn osStatus os_SearchThreadAllSemaphoresBlockedQ (osThreadId thread_id, osSemaphoreId* semaphore_id_p, uint32_t* semaphore_p_p )
 /// \brief Search for the thread in all blocked semaphore queue.
 /// \param[in]     thread_id  thread object.
 /// \param[in]     semaphore_id  pointer to semaphore object for returning
-/// \return index withing one of the semaphores the thread is blocked; 
+/// \return index within one of the semaphores the thread is blocked; 
 ///   - MAX_THREADS_SEM is not found or error
-osStatus os_SearchThreadAllSemaphores (osThreadId thread_id, osSemaphoreId* semaphore_id_p, uint32_t* semaphore_p_p );
+osStatus os_SearchThreadAllSemaphoresBlockedQ (osThreadId thread_id, osSemaphoreId* semaphore_id_p, uint32_t* semaphore_p_p );
 
 #endif     // Semaphore available
 

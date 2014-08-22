@@ -154,7 +154,7 @@ void SVC_Handler_C(unsigned int * svc_args)
 			th_q[curr_task]->status = TH_RUNNING;
 		  if (PSP_array[curr_task] == NULL)
 			{
-				printf("ERROR: Stack not allocated for current task (task %u), allocating. \n\r", curr_task);
+				//printf("ERROR: Stack not allocated for current task (task %u), allocating. \n\r", curr_task);
 				i = curr_task;
 				th_q[i]->stack_p = (uint32_t) task_stack[i];
 				PSP_array[i] = ((unsigned int) th_q[i]->stack_p) + (th_q[i]->stack_size) - 18*4;
@@ -172,7 +172,7 @@ void SVC_Handler_C(unsigned int * svc_args)
       NVIC_SetPriority(PendSV_IRQn, 0xFF);       // Set PendSV to lowest possible priority
       if (SysTick_Config(os_sysTickTicks) != 0)  // 1000 Hz SysTick interrupt on 16MHz core clock
 			{
-				printf("ERROR: Impossible SysTick_Config number of ticks\n\r");
+				//printf("ERROR: Impossible SysTick_Config number of ticks\n\r");
 			}
       __set_CONTROL(0x3);                  // Switch to use Process Stack, unprivileged state
       __ISB();       // Execute ISB after changing CONTROL (architectural recommendation)			
@@ -191,8 +191,7 @@ void SVC_Handler_C(unsigned int * svc_args)
     case (2): // Stack Allocation
       // Create stack frame for thread
 		  i = svc_args[0];  
-//		  for (i = 0 ; i < th_q_cnt ;i++)
-//			{
+
 			th_q[i]->stack_p = (uint32_t) task_stack[i];
 			PSP_array[i] = ((unsigned int) th_q[i]->stack_p) + (th_q[i]->stack_size) - 18*4;
 			HW32_REG((PSP_array[i] + (16<<2))) = (unsigned long) th_q[i]->start_p; // initial Program Counter
@@ -201,13 +200,13 @@ void SVC_Handler_C(unsigned int * svc_args)
 			HW32_REG((PSP_array[i] + ( 1<<2))) = 0x3;// initial CONTROL : unprivileged, PSP, no FP		
 			
 			th_q[i]->stack_p = PSP_array[i];
-//			}		
+		
 		  //__set_CONTROL(0x3);                  // Switch to use Process Stack, unprivileged state	
       __ISB();       // Execute ISB after changing CONTROL (architectural recommendation)						
 			break;			
     default:
-      printf("ERROR: Unknown SVC service number\n\r");
-      printf("- SVC number 0x%x\n\r", svc_number);
+//      printf("ERROR: Unknown SVC service number\n\r");
+//      printf("- SVC number 0x%x\n\r", svc_number);
       stop_cpu2;
       break;
   } // end switch
@@ -303,19 +302,19 @@ __asm void HardFault_Handler(void)
 */
 void HardFault_Handler_C(unsigned int * svc_args)
 {
-	uint32_t i;
+//	uint32_t i;
 	
-  printf("[HardFault]\n\r");
-	printf("Buffered trace:\n\r");
-	dumpTrace();
-	printf("Environment:\n\r");
-  printf ("curr_task = %d\n\r", curr_task);
-  printf ("next_task = %d\n\r", next_task);
-	for ( i = 0; i < MAX_THREADS ; i++ )
-	{
-		printf ("PSP # %d = %x\n\r",i, PSP_array[i]);
-	}
-  printf ("Stacked PC = %x\n\r", svc_args[6]);
+//  printf("[HardFault]\n\r");
+//	printf("Buffered trace:\n\r");
+//	dumpTrace();
+//	printf("Environment:\n\r");
+//  printf ("curr_task = %d\n\r", curr_task);
+//  printf ("next_task = %d\n\r", next_task);
+//	for ( i = 0; i < MAX_THREADS ; i++ )
+//	{
+//		printf ("PSP # %d = %x\n\r",i, PSP_array[i]);
+//	}
+//  printf ("Stacked PC = %x\n\r", svc_args[6]);
   stop_cpu2;	
 }
 // -------------------------------------------------------------------------
