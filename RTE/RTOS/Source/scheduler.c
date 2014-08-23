@@ -16,6 +16,7 @@ extern uint32_t  next_task;     ///< Next task
 uint32_t os_ThreadGetNextThread(void);
 uint32_t os_ThreadGetBestThread(void);
 void os_ReevaluateBlockedThread(void);
+osStatus os_ReevaluateThread(osThreadId thread_id);
 
 /*! \fn void scheduler(void)
     \brief Prepares the next task to be run and sets \red next_task.
@@ -154,7 +155,7 @@ osStatus os_ReevaluateThread(osThreadId thread_id)
 		semaphore_p  = thread_id->semaphore_p;
 					
 		//check if the semaphore is free
-		if (semaphore_id->thread_id == NULL)
+		if (semaphore_id->threads_own_q_cnt < semaphore_id->ownCount )
 		{
 			// give the thread a chance to run 
 			thread_id->status = TH_READY;
@@ -162,36 +163,46 @@ osStatus os_ReevaluateThread(osThreadId thread_id)
 		}
 		
 		// if it can wait forever, continue with the next thread
-		if (osWaitForever == semaphore_id->threads_q[semaphore_p].expiryTime)
+		if (osWaitForever == semaphore_id->threads_q[semaphore_p].expiryTime &&
+			  osWaitForever == semaphore_id->threads_q[semaphore_p].ticks)
 		{
 			return osOK;
 		}
 		else // check if time expired
-		if (osKernelSysTick() == semaphore_id->threads_q[semaphore_p].expiryTime)
+		if (osKernelSysTick() == semaphore_id->threads_q[semaphore_p].expiryTime &&
+			  0 == semaphore_id->threads_q[semaphore_p].ticks)
 		{			
-			if ( os_RemoveThreadFromSemaphore(thread_id, semaphore_id) != osOK)
+			if ( os_RemoveThreadFromSemaphoreBlockedQ(thread_id, semaphore_id) != osOK)
 			{
 				return osErrorTimeoutResource;
 			}
 			
-			if ( os_SearchThreadAllSemaphores(thread_id, &semaphore_id, &semaphore_p) == osOK)
+			if ( os_SearchThreadAllSemaphoresBlockedQ(thread_id, &semaphore_id, &semaphore_p) == osOK)
 			{
 				if (semaphore_p == MAX_THREADS_SEM)
 				{
 					// unblock thread 
 					thread_id->status = TH_READY;	
+					return osOK;
 				}
 				else
 				{
 					thread_id->semaphore_id = semaphore_id;
 					thread_id->semaphore_p  = semaphore_p;
+					return osOK;
 				}					
 			}
 			else
 			{
 				return osOK;
-			}
-		
-			return osOK;				
+			}						
 		}		
+		else // time did not expire yet, reduce the number of ticks
+		{
+			if (0 < semaphore_id->threads_q[semaphore_p].ticks)
+			{
+				semaphore_id->threads_q[semaphore_p].ticks--;
+			}
+			return osOK;
+		}
 }

@@ -31,9 +31,12 @@ uint32_t sem_counter = 0;                 ///< Semaphore Queue counter
 
 
 // Prototypes
-uint32_t os_SearchThreadInSemaphoreQ (osThreadId thread_id, osSemaphoreId semaphore_id);
 osStatus os_SearchThreadSemaphoresExcept (osThreadId thread_id,osSemaphoreId semaphore_id, osSemaphoreId* semaphore_id_p, uint32_t* semaphore_p_p );
 osStatus os_RemoveThreadFromSemaphoreOwnerQ (osThreadId thread_id, osSemaphoreId semaphore_id);
+osStatus os_InsertThreadInSemaphoreOwnerQ (osThreadId thread_id, osSemaphoreId semaphore_id);
+osStatus os_InsertThreadInSemaphoreBlockedQ (osThreadId thread_id, osSemaphoreId semaphore_id, uint32_t expiryTime, uint32_t ticks);
+uint32_t os_SearchThreadInSemaphoreOwnerQ (osThreadId thread_id, osSemaphoreId semaphore_id);
+uint32_t os_SearchThreadInSemaphoreBlockedQ (osThreadId thread_id, osSemaphoreId semaphore_id);
 
 
 /// Create and Initialize a Semaphore object used for managing resources.
@@ -99,7 +102,6 @@ int32_t osSemaphoreWait (osSemaphoreId semaphore_id, uint32_t millisec)
 {	
 	uint64_t microsec = ((uint64_t) millisec) * 1000;
 	uint32_t ticks = 0;
-	uint32_t idx,j;
 	osThreadId curr_th = osThreadGetId();
 	
 	// semaphore sanity check
@@ -107,133 +109,71 @@ int32_t osSemaphoreWait (osSemaphoreId semaphore_id, uint32_t millisec)
 	{
 		return osErrorParameter;
 	}	
+
+	if (os_InsertThreadInSemaphoreOwnerQ(curr_th,semaphore_id) == osOK)
+	{
+		// semaphore is free -> take semaphore
+		return 0;
+	}	
 	
-	// check if semaphore is free
-	// if free take semaphore
-	// if not, add thread to the semaphore queue, mark thread as blocked and invoke scheduler 
-	/// \todo do \a not add the thread currently holding the semaphore to the blocked queue 
   if ( millisec == 0 )
 	{
-		if ( semaphore_id->thread_id != NULL ) 
-		{			
-			return -1; // semaphore taken, but can't wait
-		}
-		
-		if (semaphore_id->ownCount == 0)
-		{
-			// all tokens taken for this semaphore, but can't wait, so return unsuccessful
-			return -1;
-		}
-		
-		if (semaphore_id->threads_own_q_cnt == MAX_THREADS_SEM)
-		{ // no room in queue
-			return -1; 
-		}
-		
-		semaphore_id->thread_id = curr_th;
-		semaphore_id->threads_own_q[semaphore_id->threads_own_q_cnt] = curr_th;
-		curr_th->semaphore_id = semaphore_id;
-		curr_th->semaphore_p = semaphore_id->threads_own_q_cnt;
-		semaphore_id->threads_own_q_cnt++;
-		semaphore_id->ownCount--;
-		return 0;	
-    		
+		// all tokens taken for this semaphore, but can't wait, so return unsuccessful
+		return -1;			
 	}
-	else // thread can wait on semaphore
+	 
+	// thread can wait on semaphore	
+	// add thread to the semaphore queue, mark thread as blocked and invoke scheduler  
+	
+	// enqueue thread to semaphore queue with appropriate time
+	if (semaphore_id->threads_q_cnt == MAX_THREADS_SEM)
 	{
-		if ( semaphore_id->thread_id == NULL ) // semaphore is currently not taken/free
-		{			
-			if (semaphore_id->threads_own_q_cnt == MAX_THREADS_SEM)
-			{ // no room in queue
-				return -1; 
-			}
-			
-			semaphore_id->thread_id = curr_th;
-			semaphore_id->threads_own_q[semaphore_id->threads_own_q_cnt] = curr_th;
-			curr_th->semaphore_id = semaphore_id;
-			curr_th->semaphore_p = semaphore_id->threads_own_q_cnt;
-			semaphore_id->threads_own_q_cnt++;
-			semaphore_id->ownCount--;
-			return 0;	
-					
-		}	
-    else // semaphore taken, add current thread to semaphore queue
-		{
-			// enqueue thread to semaphore queue with appropriate time
-			if (semaphore_id->threads_q_cnt == MAX_THREADS_SEM)
-			{
-				return -1; // no room in queue	
-			}
-						
-			// set thread to blocked state and call scheduler for context switch if any
-			semaphore_id->threads_q[semaphore_id->threads_q_cnt].threadId = curr_th;
-			if (osWaitForever == millisec)
-			{
-				semaphore_id->threads_q[semaphore_id->threads_q_cnt].expiryTime = osWaitForever;
-				semaphore_id->threads_q[semaphore_id->threads_q_cnt].ticks = osWaitForever;
-			}
-			else
-			{
-				ticks = (uint32_t) osKernelSysTickMicroSec(microsec);
-				semaphore_id->threads_q[semaphore_id->threads_q_cnt].expiryTime = ticks + osKernelSysTick() ;
-				semaphore_id->threads_q[semaphore_id->threads_q_cnt].ticks = ticks;
-			}
-							
-			curr_th->semaphore_id = semaphore_id;
-			curr_th->semaphore_p = semaphore_id->threads_q_cnt;	
-			
-			semaphore_id->threads_q_cnt++;				
-						
-			// while the semaphore is blocked, keep on waiting
-			// if can no longer wait return fail
-			while (semaphore_id->thread_id != NULL)
-			{
-				
-				// mark thread as blocked and yield
-				curr_th->status = TH_BLOCKED;
-				//invoke scheduler
-				os_KernelInvokeScheduler ();						
-				
-				if ( semaphore_id->thread_id == osThreadGetId() )
-				{
-					// the thread has been granted semaphore control
-					return 0;
-				}
-				
-				// semaphore (still) busy with another thread, check if the thread can still wait
-				if (semaphore_id->threads_q[curr_th->semaphore_p].expiryTime == osWaitForever &&
-						semaphore_id->threads_q[semaphore_id->threads_q_cnt].ticks == osWaitForever)
-				{
-					// can wait forever
-				}
-				else 
-				{
-					// this thread has been awaken, but need to establish if semaphore still busy,
-					// if so, blocking again
-					// let scheduler check if thread should be awaken or not
-				}
-			
-			}
-			
-			// semaphore no longer busy
-
-			if (semaphore_id->threads_own_q_cnt == MAX_THREADS_SEM)
-			{ // no room in queue
-				return -1; 
-			}
-			
-			// add to owner's queue
-			semaphore_id->thread_id = curr_th;
-			semaphore_id->threads_own_q[semaphore_id->threads_own_q_cnt] = curr_th;
-			curr_th->semaphore_id = semaphore_id;
-			curr_th->semaphore_p = semaphore_id->threads_own_q_cnt;
-			semaphore_id->threads_own_q_cnt++;		
-			semaphore_id->ownCount--;
-			
-			return 0;
-					
-		}					
+		return -1; // no room in queue	
 	}
+				
+	// add thread to blocked queue on semaphore
+	if (osWaitForever == millisec)
+	{		
+		if (os_InsertThreadInSemaphoreBlockedQ(curr_th,semaphore_id, osWaitForever, osWaitForever) != osOK)
+		{
+			return -1; // no room in queue or something else went wrong and cannot block on this semaphore
+		}			
+	}
+	else
+	{
+		ticks = (uint32_t) osKernelSysTickMicroSec(microsec);
+		if (os_InsertThreadInSemaphoreBlockedQ(curr_th,semaphore_id, ticks + osKernelSysTick(), ticks) != osOK)
+		{
+			return -1; // no room in queue or something else went wrong and cannot block on this semaphore
+		}	
+	}			
+				
+	// while the semaphore is taken, keep on waiting
+	// if can no longer wait, return fail
+	while (semaphore_id->threads_own_q_cnt == semaphore_id->ownCount &&
+		     semaphore_id->threads_q[curr_th->semaphore_p].ticks != 0)
+	{
+		// set thread to blocked state and yield
+		curr_th->status = TH_BLOCKED;
+		//invoke scheduler
+		os_KernelInvokeScheduler ();						
+	}
+	
+	// semaphore no longer busy or thread wait time expired
+	
+	if (semaphore_id->threads_q[curr_th->semaphore_p].ticks == 0)
+	{
+		return -1; // timeout...
+	}
+
+	if (os_InsertThreadInSemaphoreOwnerQ(curr_th,semaphore_id) == osOK)
+	{
+		// semaphore is free -> take semaphore
+		return 0;
+	}	
+	
+	return -1;
+				
 }
 
 
@@ -243,107 +183,106 @@ int32_t osSemaphoreWait (osSemaphoreId semaphore_id, uint32_t millisec)
 /// \note MUST REMAIN UNCHANGED: \b osSemaphoreRelease shall be consistent in every CMSIS-RTOS.
 osStatus osSemaphoreRelease (osSemaphoreId semaphore_id)
 {
-	osThreadId thread_id = NULL;
 	uint32_t j, idx, sem_p;
 	osPriority maxPriority = osPriorityIdle;
-	osThreadId curr_th = osThreadGetId();
+	osThreadId thread_id = osThreadGetId();
 	osStatus rc;
 	osSemaphoreId sem_id;
 	
-	// semaphore sanity check
 	if ( semaphore_id == NULL )
-	{
+	{ // semaphore has not been created yet
 		return osErrorParameter;
 	}
-		
-	thread_id = semaphore_id->thread_id;
-	
-	// if there is no thread currently holding the semaphore, we are done
-	if ( thread_id == NULL )
-	{
+	if (semaphore_id->threads_own_q_cnt == 0)
+	{ // no owners, so nothing to release
 		return osOK;
-	}
-	
-	// Is the thread holding the semaphore the current thread?
-	// Only the owner of the semaphore can release it
-	if ( thread_id != curr_th )
-	{
-		return osErrorParameter;
 	}	
 	
-	if (semaphore_id->threads_own_q_cnt != 0)
+	if ((rc = os_RemoveThreadFromSemaphoreOwnerQ(thread_id, semaphore_id)) != osOK)
 	{
-		if ((rc = os_RemoveThreadFromSemaphoreOwnerQ(thread_id, semaphore_id)) != osOK)
-		{
-			return rc;
-		}
-		// unblock the thread, if not blocked on other semaphore
-		if ( os_SearchThreadAllSemaphoresBlockedQ(thread_id, &sem_id, &sem_p) == osOK)
-		{
-			if (sem_p == MAX_THREADS_SEM)
-			{
-				// unblock thread 
-				thread_id->status = TH_READY;
-			}
-		}
-	
-	  // unblock a process from the queue if any left and assign the semaphore to it
+		return rc;
+	}
+	// check if not blocked on other semaphore
+	if ( (rc = os_SearchThreadAllSemaphoresBlockedQ(thread_id, &sem_id, &sem_p)) != osOK)
+	{
+		return rc;
+	}		
 
-		idx = semaphore_id->threads_q_cnt;
-		maxPriority = osPriorityIdle;
-    
-		// unblock the thread with highest priority waiting in the queue
-		
-		// search for the thread with highest priority waiting in the queue
-		for ( j = 0; j < semaphore_id->threads_q_cnt ; j++ )
-		{		
-			//sanity
-			if ( semaphore_id->threads_q[j].threadId != NULL)
-			{
-				if (semaphore_id->threads_q[j].threadId->priority > maxPriority )
-				{
-					maxPriority = semaphore_id->threads_q[j].threadId->priority;
-					idx = j; // remember the highest priority thread in the queue so far
-					thread_id = semaphore_id->threads_q[j].threadId;
-				}
-			}
-		}
-		
-		// assign the semaphore to the newly found thread and 
-		// unblock the thread, if any found and not blocked on other semaphore
-		if (idx != semaphore_id->threads_q_cnt)
-		{
-			// assign thread to semaphore
-			semaphore_id->thread_id = thread_id;
-			
-			if ( os_SearchThreadSemaphoresExcept(thread_id, semaphore_id, &sem_id, &sem_p) == osOK)
-			{
-				// if thread is not blocked on any other semaphores,
-				// or the semaphore it is blocked on is its own 
-				if (sem_p == MAX_THREADS_SEM || sem_id->thread_id == thread_id)
-				{
-					// unblock thread 					
-					semaphore_id->thread_id->status = TH_READY;
-					// Thread(s) status change - invoke scheduler to re-evaluate running thread
-					os_KernelInvokeScheduler ();					
-				}			
-				else
-				{
-           // thread blocked on another semaphore
-				}
-			}
-			else
-			{
-				return osErrorValue;
-			}
-		}
+	if (sem_p == MAX_THREADS_SEM)
+	{
+		// not blocked on any other semaphores, continue to run
 	}
 	else
 	{
-		// Release semaphore
-		semaphore_id->thread_id = NULL;
+		// need to block thread on semaphore (already in the blocked queue)
+		thread_id->semaphore_id = sem_id;
+		thread_id->semaphore_p = sem_p;
+		thread_id->status = TH_BLOCKED;
 	}
 	
+	// unblock a thread from the queue based on thread priority if any left and assign the semaphore to it
+
+	if (semaphore_id->threads_q_cnt == 0)
+	{
+		// no threads blocked on this semaphore
+		return osOK;
+	}
+	
+	// unblock the thread with highest priority waiting in the queue
+	
+	idx = semaphore_id->threads_q_cnt;
+	maxPriority = osPriorityIdle;
+		
+	// search for the thread with highest priority waiting in the queue
+	for ( j = 0; j < semaphore_id->threads_q_cnt ; j++ )
+	{		
+		//sanity
+		if ( semaphore_id->threads_q[j].threadId != NULL)
+		{
+			if (semaphore_id->threads_q[j].threadId->priority > maxPriority )
+			{
+				maxPriority = semaphore_id->threads_q[j].threadId->priority;
+				idx = j; // remember the highest priority thread in the queue so far
+				thread_id = semaphore_id->threads_q[j].threadId;
+			}
+		}
+	}
+	
+	// assign the semaphore to the newly found thread and 
+	// unblock the thread (if any found) from this semaphore
+	if (idx == semaphore_id->threads_q_cnt)
+	{
+		return osErrorValue;
+	}	
+	
+	if ((rc = os_RemoveThreadFromSemaphoreBlockedQ(thread_id, semaphore_id)) != osOK)
+	{
+		return rc;
+	}
+	
+	if ((rc =os_InsertThreadInSemaphoreOwnerQ(thread_id,semaphore_id)) != osOK)
+	{
+		return rc;
+	}		
+			
+//	if ( os_SearchThreadSemaphoresExcept(thread_id, semaphore_id, &sem_id, &sem_p) == osOK)
+//	{
+//		// if thread is not blocked on any other semaphores,
+//		// or the semaphore it is blocked on is its own 
+//		if (sem_p == MAX_THREADS_SEM)
+//		{
+			// unblock thread 				
+			thread_id->status = TH_READY;			
+			
+			// Thread(s) status change - invoke scheduler to re-evaluate running thread
+			os_KernelInvokeScheduler ();					
+//		}			
+//		else
+//		{
+//			 // thread blocked on another semaphore
+//		}
+//	}
+
 	return osOK;
 }
 
@@ -365,7 +304,7 @@ osStatus osSemaphoreDelete (osSemaphoreId semaphore_id)
 	// check if the semaphore is currently in use or it contains threads in queue
 	// return error if semaphore still in use/contains blocked threads pending
 	// should only delete a semaphore if not in use or with threads pending
-	if ((semaphore_id->thread_id != NULL) || (semaphore_id->threads_q_cnt != 0))
+	if (semaphore_id->threads_q_cnt != 0)
 	{
 		return osErrorValue;
 	}	
@@ -410,8 +349,7 @@ osStatus osSemaphoreDelete (osSemaphoreId semaphore_id)
 /// \return status code that indicates the execution status of the function.
 osStatus os_SemaphoreRemoveThread (osThreadId thread_id)
 {
-	uint32_t i,j, idx = MAX_THREADS_SEM;
-	osStatus rc = osOK;
+	uint32_t i;
 	
 	if (sem_counter == 0)
 	{
@@ -508,7 +446,6 @@ osStatus os_RemoveThreadFromOwnSemaphoreBlockedQ (osThreadId thread_id)
 osStatus os_RemoveThreadFromOwnSemaphoreOwnerQ (osThreadId thread_id)
 {
 	uint32_t j, semaphore_p;
-	osStatus rc = osOK;
 	osSemaphoreId semaphore_id;
 
 	//sanity
@@ -566,7 +503,7 @@ osStatus os_RemoveThreadFromOwnSemaphoreOwnerQ (osThreadId thread_id)
 	thread_id->semaphore_p = MAX_THREADS_SEM;
 	thread_id->semaphore_id = NULL;
 
-	return rc;
+	return osOK;
 }
 
 /// \fn osStatus os_RemoveThreadFromSemaphoreBlockedQ (osThreadId thread_id, osSemaphoreId semaphore_id)
@@ -605,7 +542,8 @@ osStatus os_RemoveThreadFromSemaphoreBlockedQ (osThreadId thread_id, osSemaphore
 	}
 	
 	// check if this is the thread currently controlling the semaphore
-	if (semaphore_id->thread_id == thread_id && thread_id->semaphore_id == semaphore_id)
+	if ( thread_id->semaphore_id == semaphore_id &&
+		   os_SearchThreadInSemaphoreOwnerQ(thread_id, semaphore_id))
 	{
 		if ((rc = os_RemoveThreadFromOwnSemaphoreBlockedQ(thread_id)) != osOK)
 		{
@@ -615,7 +553,7 @@ osStatus os_RemoveThreadFromSemaphoreBlockedQ (osThreadId thread_id, osSemaphore
 	}
 	
   // search for the thread in the given semaphore queue	
-	idx = os_SearchThreadInSemaphoreQ(thread_id,semaphore_id);
+	idx = os_SearchThreadInSemaphoreBlockedQ(thread_id,semaphore_id);
 
 	if (idx != MAX_THREADS_SEM)
 	{
@@ -680,18 +618,15 @@ osStatus os_RemoveThreadFromSemaphoreOwnerQ (osThreadId thread_id, osSemaphoreId
 		return osErrorParameter;
 	}
 	
-	// check if this is the thread currently controlling the semaphore
-	if (semaphore_id->thread_id == thread_id && thread_id->semaphore_id == semaphore_id)
+	// check if this thread is currently controlling the semaphore and remove it from it
+	if ((rc = os_RemoveThreadFromOwnSemaphoreOwnerQ(thread_id)) == osOK)
 	{
-		if ((rc = os_RemoveThreadFromOwnSemaphoreOwnerQ(thread_id)) != osOK)
-		{
-			return rc;
-		}
-		return osOK;
+		return rc;
 	}
+
 	
   // search for the thread in the given semaphore queue	
-	idx = os_SearchThreadInSemaphoreQ(thread_id,semaphore_id);
+	idx = os_SearchThreadInSemaphoreBlockedQ(thread_id,semaphore_id);
 
 	if (idx != MAX_THREADS_SEM)
 	{
@@ -708,8 +643,12 @@ osStatus os_RemoveThreadFromSemaphoreOwnerQ (osThreadId thread_id, osSemaphoreId
 			}
 			semaphore_id->threads_own_q[j]->semaphore_p = j; 	
 		}		
-		semaphore_id->threads_own_q_cnt--;
-		semaphore_id->ownCount++;
+		
+		if (semaphore_id->threads_own_q_cnt != 0)
+		{
+			semaphore_id->threads_own_q_cnt--;
+		}		
+		
 		rc = osOK;
 	}			
 	else
@@ -721,7 +660,74 @@ osStatus os_RemoveThreadFromSemaphoreOwnerQ (osThreadId thread_id, osSemaphoreId
 	return rc;
 }
 
+/// \fn osStatus os_InsertThreadInSemaphoreOwnerQ (osThreadId thread_id, osSemaphoreId semaphore_id)
+/// \brief Insert thread in the owners semaphore queue.
+/// \param[in]     thread_id  thread object.
+/// \param[in]     semaphore_id  semaphore object
+/// \return status code that indicates the execution status of the function.
+osStatus os_InsertThreadInSemaphoreOwnerQ (osThreadId thread_id, osSemaphoreId semaphore_id)
+{
+	if ( thread_id == NULL)
+	{
+		return osErrorParameter;
+	}
+	if (semaphore_id == NULL)
+	{
+		return osErrorParameter;
+	}		
+	
+	if (semaphore_id->threads_own_q_cnt == MAX_THREADS_SEM)
+	{
+		return osErrorResource;			
+	}	
+	
+	if (semaphore_id->threads_own_q_cnt == semaphore_id->ownCount)
+	{
+		return osErrorResource;			
+	}		
+	
+	semaphore_id->threads_own_q[semaphore_id->threads_own_q_cnt] = thread_id;
+	thread_id->semaphore_id = semaphore_id;
+	thread_id->semaphore_p = semaphore_id->threads_own_q_cnt;
+	semaphore_id->threads_own_q_cnt++;
+	
+	return osOK;
+}
 
+/// \fn osStatus os_InsertThreadInSemaphoreBlockedQ (osThreadId thread_id, osSemaphoreId semaphore_id, uint32_t expiryTime, uint32_t ticks)
+/// \brief Insert thread in the blocked semaphore queue.
+/// \param[in]     thread_id  thread object.
+/// \param[in]     semaphore_id  semaphore object
+/// \param[in]     expiryTime to  give up waiting on semaphore
+/// \param[in]     ticks to spend on semaphore
+/// \return status code that indicates the execution status of the function.
+osStatus os_InsertThreadInSemaphoreBlockedQ (osThreadId thread_id, osSemaphoreId semaphore_id, uint32_t expiryTime, uint32_t ticks)
+{
+	if ( thread_id == NULL)
+	{
+		return osErrorParameter;
+	}
+	if (semaphore_id == NULL)
+	{
+		return osErrorParameter;
+	}		
+	
+	if (semaphore_id->threads_q_cnt == MAX_THREADS_SEM)
+	{ // no room in queue
+		return osErrorResource; 
+	}
+	
+	semaphore_id->threads_q[semaphore_id->threads_q_cnt].threadId = thread_id;
+	semaphore_id->threads_q[semaphore_id->threads_q_cnt].expiryTime = expiryTime;
+	semaphore_id->threads_q[semaphore_id->threads_q_cnt].ticks = ticks;
+	
+	thread_id->semaphore_id = semaphore_id;
+	thread_id->semaphore_p = semaphore_id->threads_q_cnt;
+	
+	semaphore_id->threads_q_cnt++;
+	
+	return osOK;
+}
 
 /// \fn uint32_t os_SearchThreadInSemaphoreBlockedQ (osThreadId thread_id, osSemaphoreId semaphore_id)
 /// \brief Remove thread from a blocked semaphore queue.
@@ -745,6 +751,37 @@ uint32_t os_SearchThreadInSemaphoreBlockedQ (osThreadId thread_id, osSemaphoreId
 	for ( j = 0; j < semaphore_id->threads_q_cnt ; j++ )
 	{		
 		if (semaphore_id->threads_q[j].threadId == thread_id )
+		{
+			idx = j;
+			break;
+		}
+	}	
+	
+	return idx;
+}
+
+/// \fn uint32_t os_SearchThreadInSemaphoreOwnerQ (osThreadId thread_id, osSemaphoreId semaphore_id)
+/// \brief Search for thread in the owners semaphore queue.
+/// \param[in]     thread_id  thread object.
+/// \param[in]     semaphore_id  semaphore object.
+/// \return the index within the semaphore queue; MAX_THREADS_SEM is not found or error
+uint32_t os_SearchThreadInSemaphoreOwnerQ (osThreadId thread_id, osSemaphoreId semaphore_id)
+{
+	uint32_t j, idx = MAX_THREADS_SEM;
+
+	if ( thread_id == NULL)
+	{
+		return MAX_THREADS_SEM;
+	}
+	if (semaphore_id == NULL)
+	{
+		return MAX_THREADS_SEM;
+	}		
+		
+  // search for the thread in the given semaphore queue	
+	for ( j = 0; j < semaphore_id->threads_q_cnt ; j++ )
+	{		
+		if (semaphore_id->threads_own_q[j] == thread_id )
 		{
 			idx = j;
 			break;

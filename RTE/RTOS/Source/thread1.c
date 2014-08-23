@@ -110,6 +110,15 @@ void thread1 (void const *argument)
 		{
 			stop_cpu;
 		}
+		
+		// This should terminate the current thread1 thread		
+		if (Terminate_thread1() != 0)
+		{
+			while(1)
+			{		
+					// Should not be here
+			}			
+		}
   }
 }
 

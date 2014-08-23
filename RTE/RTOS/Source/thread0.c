@@ -146,6 +146,15 @@ void thread0 (void const *argument)
 			stop_cpu;
 		}		
 		
+    // This should terminate the current thread0 thread		
+		if (Terminate_thread0() != 0)
+		{
+			while(1)
+			{		
+					// Should not be here
+			}			
+		}
+		
   }
 }
 

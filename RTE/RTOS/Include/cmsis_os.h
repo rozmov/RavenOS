@@ -298,8 +298,7 @@ struct os_semaphore_cb
   uint32_t                   threads_q_cnt;                  ///< indicated how many threads are blocked on this semaphore
 	osThreadId                 threads_own_q[MAX_THREADS_SEM]; ///< queue of threads using a semaphore.
   uint32_t                   threads_own_q_cnt;              ///< indicated how many threads are using on this semaphore	
-	osThreadId                 thread_id;                      ///< the thread currently controlling the semaphore.
-	uint32_t                   ownCount;                    ///< number of tokens for this semaphore
+	uint32_t                   ownCount;                       ///< number of tokens for this semaphore
 } ;
 
 

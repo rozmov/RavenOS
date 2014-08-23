@@ -31,12 +31,12 @@ volatile uint32_t systick_count=0;
 uint8_t task_stack[MAX_THREADS][DEFAULT_STACK_SIZE];
 
 /// Data used by OS
-uint32_t  curr_task=0;     ///< Current task
-uint32_t  next_task=1;     ///< Next task
-uint32_t  PSP_array[MAX_THREADS];    ///< Process Stack Pointer for each task
-uint32_t  svc_exc_return;  ///< EXC_RETURN use by SVC
-
-uint32_t kernel_running = 0; ///< flag whether the kernel is running of not
+uint32_t curr_task=0;               ///< Current task
+uint32_t next_task=1;               ///< Next task
+uint32_t PSP_array[MAX_THREADS];    ///< Process Stack Pointer for each task
+uint32_t svc_exc_return;            ///< EXC_RETURN use by SVC
+uint32_t kernel_running = 0;         ///< flag whether the kernel is running or not
+uint32_t kernel_busy = 0;            ///< flag whether the kernel is busy or not
 
 //  ==== Kernel Control Functions ====
 
@@ -48,6 +48,13 @@ osStatus osKernelInitialize (void)
 {
 	// Enable double-word stack alignment
 	SCB->CCR |= SCB_CCR_STKALIGN_Msk; // Set STKALIGN bit (bit 9) of CCR
+	
+	//
+	// Enable lazy stacking for interrupt handlers.  This allows floating-point
+	// instructions to be used within interrupt handlers, but at the expense of
+	// extra stack usage.
+	//
+//	ROM_FPULazyStackingEnable();	
 	
 	// Initialize the Idle thread
 	if (Init_threadIdle() != 0)
@@ -178,6 +185,7 @@ void SVC_Handler_C(unsigned int * svc_args)
       __ISB();       // Execute ISB after changing CONTROL (architectural recommendation)			
 		  break;
     case (1): // Thread Yield
+			kernel_busy = 1;
 			// Run scheduler to determine if a context switch is needed
 			scheduler();		  
 			if (curr_task != next_task)
@@ -185,10 +193,12 @@ void SVC_Handler_C(unsigned int * svc_args)
 				// Context switching needed
 				ScheduleContextSwitch();
 		  }	
+			kernel_busy = 0;
       //__set_CONTROL(0x3);                  // Switch to use Process Stack, unprivileged state			
       __ISB();       // Execute ISB after changing CONTROL (architectural recommendation)						
 			break;
     case (2): // Stack Allocation
+			kernel_busy = 1;
       // Create stack frame for thread
 		  i = svc_args[0];  
 
@@ -200,7 +210,7 @@ void SVC_Handler_C(unsigned int * svc_args)
 			HW32_REG((PSP_array[i] + ( 1<<2))) = 0x3;// initial CONTROL : unprivileged, PSP, no FP		
 			
 			th_q[i]->stack_p = PSP_array[i];
-		
+		  kernel_busy = 0;
 		  //__set_CONTROL(0x3);                  // Switch to use Process Stack, unprivileged state	
       __ISB();       // Execute ISB after changing CONTROL (architectural recommendation)						
 			break;			
@@ -253,10 +263,12 @@ __asm void PendSV_Handler(void)
 /*! \fn void SysTick_Handler(void)
     \brief Invokes the scheduler
 
-     Increment systick counter, invoke scheduler and flag any context switching needed.
+     Increment systick counter, invoke scheduler and flag any context switching needed for PendSV to take care of.
 */
 void SysTick_Handler(void) // 1KHz
-{ // Increment systick counter 
+{
+	kernel_busy = 1;
+	// Increment systick counter 
   systick_count++;
 	// Run scheduler to determine if a context switch is needed
   scheduler();
@@ -265,6 +277,7 @@ void SysTick_Handler(void) // 1KHz
 		// Context switching needed
     ScheduleContextSwitch();
   }
+	kernel_busy = 0;
   return;	
 }
 
