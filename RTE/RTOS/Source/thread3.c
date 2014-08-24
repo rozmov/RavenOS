@@ -6,7 +6,7 @@
 #include "trace.h"
 #include "osObjects.h"
 
-osThreadDef (thread3, osPriorityLow, 1, 100);
+osThreadDef (thread3, osPriorityLow, 1, 100);  ///< thread definition
 
 osThreadId tid_thread3;   ///< thread3 id
 void task3(void);
@@ -17,13 +17,14 @@ void task3(void);
 */
 int Init_thread3 (void) 
 {
-  tid_thread3 = osThreadCreate (osThread(thread3), NULL);
-  if(!tid_thread3) return(-1);
-	
-  if (addTrace("thread3 init") != TRACE_OK)
+	if (addTrace("thread3 terminate attempt") != TRACE_OK)
 	{
 		stop_cpu;
-	}
+	}	
+	
+  tid_thread3 = osThreadCreate (osThread(thread3), NULL);
+  if(!tid_thread3) return(-1);
+
   return(0);
 }
 
@@ -53,7 +54,7 @@ void thread3 (void const *argument)
 		stop_cpu;
 	}
 	
-  while (1) /// \todo may need a throttle mechanism in place to stop this thread from running if no other thread (but Idle) present
+  while (1) 
 	{
     task3(); // thread code 
 		
@@ -64,23 +65,19 @@ void thread3 (void const *argument)
 		}		
 		osThreadSetPriority(osThreadGetId(), osPriorityLow);
 		
-		if (addTrace("thread3 set priority of thread0 to osPriorityNormal") != TRACE_OK)
-		{
-			stop_cpu;
-		}
-		osThreadSetPriority(tid_thread0, osPriorityNormal);
-		
-		
 		if (addTrace("thread3 yields") != TRACE_OK)
 		{
 			stop_cpu;
-		}		
-    osThreadYield();                                            // suspend thread
-		
+		}
+		while (getTraceCounter() <= 4) // throttle mechanism in place to stop this thread from running if no other thread (but Idle) present
+		{
+			osThreadYield();             // suspend thread
+		}
 		if (addTrace("thread3 back") != TRACE_OK)
 		{
 			stop_cpu;
 		}
+		
   }
 }
 

@@ -7,7 +7,7 @@
 #include "osObjects.h"
 #include "trace.h"
 
-osThreadDef (thread0, osPriorityBelowNormal, 2, 100);
+osThreadDef (thread0, osPriorityBelowNormal, 2, 100);  ///< thread definition
 
 osThreadId tid_thread0;          ///< thread0 id
 void task0(void);
@@ -38,6 +38,11 @@ int Init_thread0 (void)
 */
 int Terminate_thread0 (void) 
 {	
+	if (addTrace("thread0 terminate attempt") != TRACE_OK)
+	{
+		stop_cpu;
+	}		
+	
 	if (osThreadTerminate(tid_thread0) != osOK)
 	{
 		if (addTrace("could not terminate thread0") != TRACE_OK)
@@ -47,10 +52,6 @@ int Terminate_thread0 (void)
 		return(-1);
 	}
 
-	if (addTrace("terminated thread0") != TRACE_OK)
-	{
-		stop_cpu;
-	}		
   return(0);
 }
 
@@ -74,14 +75,15 @@ void thread0 (void const *argument)
 			stop_cpu;
 		}			
     if ( osSemaphoreWait (sid_Semaphore0, 0) != -1 ) // wait 0 mSec
-		{
-      task0(); // thread code 
+		{      
 			if (addTrace("thread0 take sem0 success") != TRACE_OK)
 			{
 				stop_cpu;
 			}	
-
-//			count1Sec();
+			
+			task0(); // thread code 
+			count1Sec();
+			task0();
 			
 			if (addTrace("thread0 set priority to osPriorityLow") != TRACE_OK)
 			{

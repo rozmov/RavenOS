@@ -104,6 +104,10 @@ $(document).ready(function(){initNavTree('semaphores_8c.html','');});
 </div>
 
 <div class="header">
+  <div class="summary">
+<a href="#define-members">Macros</a> &#124;
+<a href="#func-members">Functions</a> &#124;
+<a href="#var-members">Variables</a>  </div>
   <div class="headertitle">
 <div class="title">semaphores.c File Reference</div>  </div>
 </div><!--header-->
@@ -114,16 +118,620 @@ $(document).ready(function(){initNavTree('semaphores_8c.html','');});
 <div class="textblock"><code>#include &quot;<a class="el" href="cmsis__os_8h_source.html">cmsis_os.h</a>&quot;</code><br />
 <code>#include &lt;stdlib.h&gt;</code><br />
 <code>#include &quot;<a class="el" href="kernel_8h_source.html">kernel.h</a>&quot;</code><br />
-</div><a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+</div><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="define-members"></a>
+Macros</h2></td></tr>
+<tr class="memitem:a9e66fe361749071e5ab87826c43c2f1b"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="semaphores_8c.html#a9e66fe361749071e5ab87826c43c2f1b">osSemaphoreDef</a>(name)&#160;&#160;&#160;const <a class="el" href="cmsis__os_8h.html#ad2b7c126fea0df2aa5568da553437d21">osSemaphoreDef_t</a> os_semaphore_def_##name = { 0 }</td></tr>
+<tr class="separator:a9e66fe361749071e5ab87826c43c2f1b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a03761ee8d2c3cd4544e18364ab301dac"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="semaphores_8c.html#a03761ee8d2c3cd4544e18364ab301dac">osSemaphore</a>(name)&#160;&#160;&#160;&amp;os_semaphore_def_##name</td></tr>
+<tr class="separator:a03761ee8d2c3cd4544e18364ab301dac"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
+Functions</h2></td></tr>
+<tr class="memitem:a734d95b68a29cf25b71adffba5a1f181"><td class="memItemLeft" align="right" valign="top"><a class="el" href="cmsis__os_8h.html#ae2e091fefc4c767117727bd5aba4d99e">osStatus</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="semaphores_8c.html#a734d95b68a29cf25b71adffba5a1f181">os_RemoveThreadFromSemaphoreBlockedQ</a> (<a class="el" href="cmsis__os_8h.html#adfeb153a84a81309e2d958268197617f">osThreadId</a> thread_id, <a class="el" href="cmsis__os_8h.html#aa8968896c84094aa973683c84fa06f84">osSemaphoreId</a> semaphore_id)</td></tr>
+<tr class="separator:a734d95b68a29cf25b71adffba5a1f181"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afbe20b19f5aec1e27c5643542adfd544"><td class="memItemLeft" align="right" valign="top"><a class="el" href="cmsis__os_8h.html#ae2e091fefc4c767117727bd5aba4d99e">osStatus</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="semaphores_8c.html#afbe20b19f5aec1e27c5643542adfd544">os_RemoveThreadFromSemaphoreOwnerQ</a> (<a class="el" href="cmsis__os_8h.html#adfeb153a84a81309e2d958268197617f">osThreadId</a> thread_id, <a class="el" href="cmsis__os_8h.html#aa8968896c84094aa973683c84fa06f84">osSemaphoreId</a> semaphore_id)</td></tr>
+<tr class="separator:afbe20b19f5aec1e27c5643542adfd544"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3387b88698b0cb050a17350b79c7789f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="cmsis__os_8h.html#ae2e091fefc4c767117727bd5aba4d99e">osStatus</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="semaphores_8c.html#a3387b88698b0cb050a17350b79c7789f">os_InsertThreadInSemaphoreOwnerQ</a> (<a class="el" href="cmsis__os_8h.html#adfeb153a84a81309e2d958268197617f">osThreadId</a> thread_id, <a class="el" href="cmsis__os_8h.html#aa8968896c84094aa973683c84fa06f84">osSemaphoreId</a> semaphore_id)</td></tr>
+<tr class="separator:a3387b88698b0cb050a17350b79c7789f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a28c78166c50f06807a4290f9f8a37d26"><td class="memItemLeft" align="right" valign="top"><a class="el" href="cmsis__os_8h.html#ae2e091fefc4c767117727bd5aba4d99e">osStatus</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="semaphores_8c.html#a28c78166c50f06807a4290f9f8a37d26">os_InsertThreadInSemaphoreBlockedQ</a> (<a class="el" href="cmsis__os_8h.html#adfeb153a84a81309e2d958268197617f">osThreadId</a> thread_id, <a class="el" href="cmsis__os_8h.html#aa8968896c84094aa973683c84fa06f84">osSemaphoreId</a> semaphore_id, uint32_t expiryTime, uint32_t ticks)</td></tr>
+<tr class="separator:a28c78166c50f06807a4290f9f8a37d26"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa46a19b54de67d23b7416fd37df16990"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="semaphores_8c.html#aa46a19b54de67d23b7416fd37df16990">os_SearchThreadInSemaphoreOwnerQ</a> (<a class="el" href="cmsis__os_8h.html#adfeb153a84a81309e2d958268197617f">osThreadId</a> thread_id, <a class="el" href="cmsis__os_8h.html#aa8968896c84094aa973683c84fa06f84">osSemaphoreId</a> semaphore_id)</td></tr>
+<tr class="separator:aa46a19b54de67d23b7416fd37df16990"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7badc8243de28cde5ce32e7514f66b89"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="semaphores_8c.html#a7badc8243de28cde5ce32e7514f66b89">os_SearchThreadInSemaphoreBlockedQ</a> (<a class="el" href="cmsis__os_8h.html#adfeb153a84a81309e2d958268197617f">osThreadId</a> thread_id, <a class="el" href="cmsis__os_8h.html#aa8968896c84094aa973683c84fa06f84">osSemaphoreId</a> semaphore_id)</td></tr>
+<tr class="separator:a7badc8243de28cde5ce32e7514f66b89"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abbeb4c0c442b5f70874904914f90b92d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="cmsis__os_8h.html#ae2e091fefc4c767117727bd5aba4d99e">osStatus</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="semaphores_8c.html#abbeb4c0c442b5f70874904914f90b92d">os_SearchThreadAllSemaphoresBlockedQ</a> (<a class="el" href="cmsis__os_8h.html#adfeb153a84a81309e2d958268197617f">osThreadId</a> thread_id, <a class="el" href="cmsis__os_8h.html#aa8968896c84094aa973683c84fa06f84">osSemaphoreId</a> *semaphore_id_p, uint32_t *semaphore_p_p)</td></tr>
+<tr class="separator:abbeb4c0c442b5f70874904914f90b92d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acf078b9bd476f8f8e386787a8249520a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="cmsis__os_8h.html#ae2e091fefc4c767117727bd5aba4d99e">osStatus</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="semaphores_8c.html#acf078b9bd476f8f8e386787a8249520a">os_SearchThreadSemaphoresExcept</a> (<a class="el" href="cmsis__os_8h.html#adfeb153a84a81309e2d958268197617f">osThreadId</a> thread_id, <a class="el" href="cmsis__os_8h.html#aa8968896c84094aa973683c84fa06f84">osSemaphoreId</a> semaphore_id, <a class="el" href="cmsis__os_8h.html#aa8968896c84094aa973683c84fa06f84">osSemaphoreId</a> *semaphore_id_p, uint32_t *semaphore_p_p)</td></tr>
+<tr class="separator:acf078b9bd476f8f8e386787a8249520a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a97381e8e55cd47cec390bf57c96d6edb"><td class="memItemLeft" align="right" valign="top"><a class="el" href="cmsis__os_8h.html#aa8968896c84094aa973683c84fa06f84">osSemaphoreId</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="semaphores_8c.html#a97381e8e55cd47cec390bf57c96d6edb">osSemaphoreCreate</a> (const <a class="el" href="cmsis__os_8h.html#ad2b7c126fea0df2aa5568da553437d21">osSemaphoreDef_t</a> *semaphore_def, int32_t count)</td></tr>
+<tr class="separator:a97381e8e55cd47cec390bf57c96d6edb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acc15b0fc8ce1167fe43da33042e62098"><td class="memItemLeft" align="right" valign="top">int32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="semaphores_8c.html#acc15b0fc8ce1167fe43da33042e62098">osSemaphoreWait</a> (<a class="el" href="cmsis__os_8h.html#aa8968896c84094aa973683c84fa06f84">osSemaphoreId</a> semaphore_id, uint32_t millisec)</td></tr>
+<tr class="separator:acc15b0fc8ce1167fe43da33042e62098"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab108914997c49e14d8ff1ae0d1988ca0"><td class="memItemLeft" align="right" valign="top"><a class="el" href="cmsis__os_8h.html#ae2e091fefc4c767117727bd5aba4d99e">osStatus</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="semaphores_8c.html#ab108914997c49e14d8ff1ae0d1988ca0">osSemaphoreRelease</a> (<a class="el" href="cmsis__os_8h.html#aa8968896c84094aa973683c84fa06f84">osSemaphoreId</a> semaphore_id)</td></tr>
+<tr class="separator:ab108914997c49e14d8ff1ae0d1988ca0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abae2801ac2c096f6e8c69a264908f595"><td class="memItemLeft" align="right" valign="top"><a class="el" href="cmsis__os_8h.html#ae2e091fefc4c767117727bd5aba4d99e">osStatus</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="semaphores_8c.html#abae2801ac2c096f6e8c69a264908f595">osSemaphoreDelete</a> (<a class="el" href="cmsis__os_8h.html#aa8968896c84094aa973683c84fa06f84">osSemaphoreId</a> semaphore_id)</td></tr>
+<tr class="separator:abae2801ac2c096f6e8c69a264908f595"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af8d8c5423ede32da632de69a9ad4e804"><td class="memItemLeft" align="right" valign="top"><a class="el" href="cmsis__os_8h.html#ae2e091fefc4c767117727bd5aba4d99e">osStatus</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="semaphores_8c.html#af8d8c5423ede32da632de69a9ad4e804">os_SemaphoreRemoveThread</a> (<a class="el" href="cmsis__os_8h.html#adfeb153a84a81309e2d958268197617f">osThreadId</a> thread_id)</td></tr>
+<tr class="memdesc:af8d8c5423ede32da632de69a9ad4e804"><td class="mdescLeft">&#160;</td><td class="mdescRight">Remove thread from all semaphore queues.  <a href="#af8d8c5423ede32da632de69a9ad4e804">More...</a><br /></td></tr>
+<tr class="separator:af8d8c5423ede32da632de69a9ad4e804"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2b6a805614532b189eee8d00f6f972ec"><td class="memItemLeft" align="right" valign="top"><a class="el" href="cmsis__os_8h.html#ae2e091fefc4c767117727bd5aba4d99e">osStatus</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="semaphores_8c.html#a2b6a805614532b189eee8d00f6f972ec">os_RemoveThreadFromOwnSemaphoreBlockedQ</a> (<a class="el" href="cmsis__os_8h.html#adfeb153a84a81309e2d958268197617f">osThreadId</a> thread_id)</td></tr>
+<tr class="separator:a2b6a805614532b189eee8d00f6f972ec"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6316a4d8f2b7885b7a3691c3b46cf2f6"><td class="memItemLeft" align="right" valign="top"><a class="el" href="cmsis__os_8h.html#ae2e091fefc4c767117727bd5aba4d99e">osStatus</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="semaphores_8c.html#a6316a4d8f2b7885b7a3691c3b46cf2f6">os_RemoveThreadFromOwnSemaphoreOwnerQ</a> (<a class="el" href="cmsis__os_8h.html#adfeb153a84a81309e2d958268197617f">osThreadId</a> thread_id)</td></tr>
+<tr class="separator:a6316a4d8f2b7885b7a3691c3b46cf2f6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="var-members"></a>
+Variables</h2></td></tr>
+<tr class="memitem:ac9fbe5ca618ef8eb98dbe9b0e632f85b"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ac9fbe5ca618ef8eb98dbe9b0e632f85b"></a>
+<a class="el" href="cmsis__os_8h.html#aa8968896c84094aa973683c84fa06f84">osSemaphoreId</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="semaphores_8c.html#ac9fbe5ca618ef8eb98dbe9b0e632f85b">semaphores</a> [<a class="el" href="cmsis__os_8h.html#a7d834905005d33312c6c3fc264247ab5">MAX_SEMAPHORES</a>]</td></tr>
+<tr class="memdesc:ac9fbe5ca618ef8eb98dbe9b0e632f85b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Semaphore Queue. <br /></td></tr>
+<tr class="separator:ac9fbe5ca618ef8eb98dbe9b0e632f85b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4711d20103e7164651d13554d9429c1c"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a4711d20103e7164651d13554d9429c1c"></a>
+uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="semaphores_8c.html#a4711d20103e7164651d13554d9429c1c">sem_counter</a> = 0</td></tr>
+<tr class="memdesc:a4711d20103e7164651d13554d9429c1c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Semaphore Queue counter. <br /></td></tr>
+<tr class="separator:a4711d20103e7164651d13554d9429c1c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Semaphore implementation according to CMSIS interfaces. </p>
-<p>Defines semaphore defienition, creation and attributes manipulation. </p>
-</div></div><!-- contents -->
+<p>Defines a semaphore and semaphore creation and attributes manipulation </p>
+</div><h2 class="groupheader">Macro Definition Documentation</h2>
+<a class="anchor" id="a03761ee8d2c3cd4544e18364ab301dac"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define osSemaphore</td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">name</td><td>)</td>
+          <td>&#160;&#160;&#160;&amp;os_semaphore_def_##name</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Access a Semaphore definition. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">name</td><td>name of the semaphore object. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section note"><dt>Note</dt><dd>CAN BE CHANGED: The parameter to <b>osSemaphore</b> shall be consistent but the macro body is implementation specific in every CMSIS-RTOS. </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a9e66fe361749071e5ab87826c43c2f1b"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define osSemaphoreDef</td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">name</td><td>)</td>
+          <td>&#160;&#160;&#160;const <a class="el" href="cmsis__os_8h.html#ad2b7c126fea0df2aa5568da553437d21">osSemaphoreDef_t</a> os_semaphore_def_##name = { 0 }</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Define a Semaphore object. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">name</td><td>name of the semaphore object. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section note"><dt>Note</dt><dd>CAN BE CHANGED: The parameter to <b>osSemaphoreDef</b> shall be consistent but the macro body is implementation specific in every CMSIS-RTOS. </dd></dl>
+
+</div>
+</div>
+<h2 class="groupheader">Function Documentation</h2>
+<a class="anchor" id="a28c78166c50f06807a4290f9f8a37d26"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="cmsis__os_8h.html#ae2e091fefc4c767117727bd5aba4d99e">osStatus</a> os_InsertThreadInSemaphoreBlockedQ </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="cmsis__os_8h.html#adfeb153a84a81309e2d958268197617f">osThreadId</a>&#160;</td>
+          <td class="paramname"><em>thread_id</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="cmsis__os_8h.html#aa8968896c84094aa973683c84fa06f84">osSemaphoreId</a>&#160;</td>
+          <td class="paramname"><em>semaphore_id</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint32_t&#160;</td>
+          <td class="paramname"><em>expiryTime</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint32_t&#160;</td>
+          <td class="paramname"><em>ticks</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Insert thread in the blocked semaphore queue. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">thread_id</td><td>thread object. </td></tr>
+    <tr><td class="paramname">semaphore_id</td><td>semaphore object </td></tr>
+    <tr><td class="paramname">expiryTime</td><td>to give up waiting on semaphore </td></tr>
+    <tr><td class="paramname">ticks</td><td>to spend on semaphore </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>status code that indicates the execution status of the function. </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a3387b88698b0cb050a17350b79c7789f"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="cmsis__os_8h.html#ae2e091fefc4c767117727bd5aba4d99e">osStatus</a> os_InsertThreadInSemaphoreOwnerQ </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="cmsis__os_8h.html#adfeb153a84a81309e2d958268197617f">osThreadId</a>&#160;</td>
+          <td class="paramname"><em>thread_id</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="cmsis__os_8h.html#aa8968896c84094aa973683c84fa06f84">osSemaphoreId</a>&#160;</td>
+          <td class="paramname"><em>semaphore_id</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Insert thread in the owners semaphore queue. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">thread_id</td><td>thread object. </td></tr>
+    <tr><td class="paramname">semaphore_id</td><td>semaphore object </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>status code that indicates the execution status of the function. </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a2b6a805614532b189eee8d00f6f972ec"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="cmsis__os_8h.html#ae2e091fefc4c767117727bd5aba4d99e">osStatus</a> os_RemoveThreadFromOwnSemaphoreBlockedQ </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="cmsis__os_8h.html#adfeb153a84a81309e2d958268197617f">osThreadId</a>&#160;</td>
+          <td class="paramname"><em>thread_id</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Remove thread from currently blocked semaphore queue. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">thread_id</td><td>thread object. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>status code that indicates the execution status of the function. </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a6316a4d8f2b7885b7a3691c3b46cf2f6"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="cmsis__os_8h.html#ae2e091fefc4c767117727bd5aba4d99e">osStatus</a> os_RemoveThreadFromOwnSemaphoreOwnerQ </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="cmsis__os_8h.html#adfeb153a84a81309e2d958268197617f">osThreadId</a>&#160;</td>
+          <td class="paramname"><em>thread_id</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Remove thread from currently blocked semaphore queue. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">thread_id</td><td>thread object. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>status code that indicates the execution status of the function. </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a734d95b68a29cf25b71adffba5a1f181"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="cmsis__os_8h.html#ae2e091fefc4c767117727bd5aba4d99e">osStatus</a> os_RemoveThreadFromSemaphoreBlockedQ </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="cmsis__os_8h.html#adfeb153a84a81309e2d958268197617f">osThreadId</a>&#160;</td>
+          <td class="paramname"><em>thread_id</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="cmsis__os_8h.html#aa8968896c84094aa973683c84fa06f84">osSemaphoreId</a>&#160;</td>
+          <td class="paramname"><em>semaphore_id</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Remove thread from a blocked semaphore queue. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">thread_id</td><td>thread object. </td></tr>
+    <tr><td class="paramname">semaphore_id</td><td>semaphore object </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>status code that indicates the execution status of the function. </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="afbe20b19f5aec1e27c5643542adfd544"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="cmsis__os_8h.html#ae2e091fefc4c767117727bd5aba4d99e">osStatus</a> os_RemoveThreadFromSemaphoreOwnerQ </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="cmsis__os_8h.html#adfeb153a84a81309e2d958268197617f">osThreadId</a>&#160;</td>
+          <td class="paramname"><em>thread_id</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="cmsis__os_8h.html#aa8968896c84094aa973683c84fa06f84">osSemaphoreId</a>&#160;</td>
+          <td class="paramname"><em>semaphore_id</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Remove thread from a blocked semaphore queue. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">thread_id</td><td>thread object. </td></tr>
+    <tr><td class="paramname">semaphore_id</td><td>semaphore object </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>status code that indicates the execution status of the function. </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="abbeb4c0c442b5f70874904914f90b92d"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="cmsis__os_8h.html#ae2e091fefc4c767117727bd5aba4d99e">osStatus</a> os_SearchThreadAllSemaphoresBlockedQ </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="cmsis__os_8h.html#adfeb153a84a81309e2d958268197617f">osThreadId</a>&#160;</td>
+          <td class="paramname"><em>thread_id</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="cmsis__os_8h.html#aa8968896c84094aa973683c84fa06f84">osSemaphoreId</a> *&#160;</td>
+          <td class="paramname"><em>semaphore_id_p</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint32_t *&#160;</td>
+          <td class="paramname"><em>semaphore_p_p</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Search for the thread in all blocked semaphore queue. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">thread_id</td><td>thread object. </td></tr>
+    <tr><td class="paramname">semaphore_id_p</td><td>pointer to semaphore object for returning </td></tr>
+    <tr><td class="paramname">semaphore_p_p</td><td>pointer to index to semaphore object for returning </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>index withing one of the semaphores the thread is blocked;<ul>
+<li>MAX_THREADS_SEM if not found or error </li>
+</ul>
+</dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a7badc8243de28cde5ce32e7514f66b89"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint32_t os_SearchThreadInSemaphoreBlockedQ </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="cmsis__os_8h.html#adfeb153a84a81309e2d958268197617f">osThreadId</a>&#160;</td>
+          <td class="paramname"><em>thread_id</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="cmsis__os_8h.html#aa8968896c84094aa973683c84fa06f84">osSemaphoreId</a>&#160;</td>
+          <td class="paramname"><em>semaphore_id</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Remove thread from a blocked semaphore queue. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">thread_id</td><td>thread object. </td></tr>
+    <tr><td class="paramname">semaphore_id</td><td>semaphore object. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>the index within the semaphore queue; MAX_THREADS_SEM is not found or error </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="aa46a19b54de67d23b7416fd37df16990"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint32_t os_SearchThreadInSemaphoreOwnerQ </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="cmsis__os_8h.html#adfeb153a84a81309e2d958268197617f">osThreadId</a>&#160;</td>
+          <td class="paramname"><em>thread_id</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="cmsis__os_8h.html#aa8968896c84094aa973683c84fa06f84">osSemaphoreId</a>&#160;</td>
+          <td class="paramname"><em>semaphore_id</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Search for thread in the owners semaphore queue. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">thread_id</td><td>thread object. </td></tr>
+    <tr><td class="paramname">semaphore_id</td><td>semaphore object. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>the index within the semaphore queue; MAX_THREADS_SEM is not found or error </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="acf078b9bd476f8f8e386787a8249520a"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="cmsis__os_8h.html#ae2e091fefc4c767117727bd5aba4d99e">osStatus</a> os_SearchThreadSemaphoresExcept </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="cmsis__os_8h.html#adfeb153a84a81309e2d958268197617f">osThreadId</a>&#160;</td>
+          <td class="paramname"><em>thread_id</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="cmsis__os_8h.html#aa8968896c84094aa973683c84fa06f84">osSemaphoreId</a>&#160;</td>
+          <td class="paramname"><em>semaphore_id</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="cmsis__os_8h.html#aa8968896c84094aa973683c84fa06f84">osSemaphoreId</a> *&#160;</td>
+          <td class="paramname"><em>semaphore_id_p</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint32_t *&#160;</td>
+          <td class="paramname"><em>semaphore_p_p</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Search for the thread in all blocked semaphore queue. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">thread_id</td><td>thread object. </td></tr>
+    <tr><td class="paramname">semaphore_id</td><td>semaphore object to exclude in search </td></tr>
+    <tr><td class="paramname">semaphore_id_p</td><td>pointer to semaphore object for returning </td></tr>
+    <tr><td class="paramname">semaphore_p_p</td><td>pointer to pointer to semaphore object for returning </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>index withing one of the semaphores the thread is blocked;<ul>
+<li>MAX_THREADS_SEM if not found or error </li>
+</ul>
+</dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="af8d8c5423ede32da632de69a9ad4e804"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="cmsis__os_8h.html#ae2e091fefc4c767117727bd5aba4d99e">osStatus</a> os_SemaphoreRemoveThread </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="cmsis__os_8h.html#adfeb153a84a81309e2d958268197617f">osThreadId</a>&#160;</td>
+          <td class="paramname"><em>thread_id</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Remove thread from all semaphore queues. </p>
+<p>Remove thread from all semaphore queues. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">thread_id</td><td>thread object. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>status code that indicates the execution status of the function. </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a97381e8e55cd47cec390bf57c96d6edb"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="cmsis__os_8h.html#aa8968896c84094aa973683c84fa06f84">osSemaphoreId</a> osSemaphoreCreate </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="cmsis__os_8h.html#ad2b7c126fea0df2aa5568da553437d21">osSemaphoreDef_t</a> *&#160;</td>
+          <td class="paramname"><em>semaphore_def</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int32_t&#160;</td>
+          <td class="paramname"><em>count</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Create and Initialize a Semaphore object used for managing resources. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">semaphore_def</td><td>semaphore definition referenced with <a class="el" href="semaphores_8c.html#a03761ee8d2c3cd4544e18364ab301dac">osSemaphore</a>. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">count</td><td>number of available resources. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>semaphore ID for reference by other functions or NULL in case of error. </dd></dl>
+<dl class="section note"><dt>Note</dt><dd>MUST REMAIN UNCHANGED: <b>osSemaphoreCreate</b> shall be consistent in every CMSIS-RTOS. </dd></dl>
+<p>If we are instantiating a thread and there is still room in the thread queue, add the thread to the queue. </p>
+
+</div>
+</div>
+<a class="anchor" id="abae2801ac2c096f6e8c69a264908f595"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="cmsis__os_8h.html#ae2e091fefc4c767117727bd5aba4d99e">osStatus</a> osSemaphoreDelete </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="cmsis__os_8h.html#aa8968896c84094aa973683c84fa06f84">osSemaphoreId</a>&#160;</td>
+          <td class="paramname"><em>semaphore_id</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Delete a Semaphore that was created by <a class="el" href="semaphores_8c.html#a97381e8e55cd47cec390bf57c96d6edb">osSemaphoreCreate</a>. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">semaphore_id</td><td>semaphore object referenced with <a class="el" href="semaphores_8c.html#a97381e8e55cd47cec390bf57c96d6edb">osSemaphoreCreate</a>. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>status code that indicates the execution status of the function. </dd></dl>
+<dl class="section note"><dt>Note</dt><dd>MUST REMAIN UNCHANGED: <b>osSemaphoreDelete</b> shall be consistent in every CMSIS-RTOS. </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="ab108914997c49e14d8ff1ae0d1988ca0"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="cmsis__os_8h.html#ae2e091fefc4c767117727bd5aba4d99e">osStatus</a> osSemaphoreRelease </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="cmsis__os_8h.html#aa8968896c84094aa973683c84fa06f84">osSemaphoreId</a>&#160;</td>
+          <td class="paramname"><em>semaphore_id</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Release a Semaphore token. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">semaphore_id</td><td>semaphore object referenced with <a class="el" href="semaphores_8c.html#a97381e8e55cd47cec390bf57c96d6edb">osSemaphoreCreate</a>. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>status code that indicates the execution status of the function. </dd></dl>
+<dl class="section note"><dt>Note</dt><dd>MUST REMAIN UNCHANGED: <b>osSemaphoreRelease</b> shall be consistent in every CMSIS-RTOS. </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="acc15b0fc8ce1167fe43da33042e62098"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int32_t osSemaphoreWait </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="cmsis__os_8h.html#aa8968896c84094aa973683c84fa06f84">osSemaphoreId</a>&#160;</td>
+          <td class="paramname"><em>semaphore_id</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint32_t&#160;</td>
+          <td class="paramname"><em>millisec</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Wait until a Semaphore token becomes available. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">semaphore_id</td><td>semaphore object referenced with <a class="el" href="semaphores_8c.html#a97381e8e55cd47cec390bf57c96d6edb">osSemaphoreCreate</a>. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">millisec</td><td>timeout value or 0 in case of no time-out. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>number of available tokens, or -1 in case of incorrect parameters. </dd></dl>
+<dl class="section note"><dt>Note</dt><dd>MUST REMAIN UNCHANGED: <b>osSemaphoreWait</b> shall be consistent in every CMSIS-RTOS. </dd></dl>
+
+</div>
+</div>
+</div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="dir_2cfa845288836d0010190eddcc80c178.html">RTE</a></li><li class="navelem"><a class="el" href="dir_37d2205f15e85812ee2baf1e2f5dde11.html">RTOS</a></li><li class="navelem"><a class="el" href="dir_e18e8ca17cc8761131819f6fa843b03a.html">Source</a></li><li class="navelem"><a class="el" href="semaphores_8c.html">semaphores.c</a></li>
-    <li class="footer">Generated on Sun Aug 17 2014 06:00:40 for RavenOS by
+    <li class="footer">Generated on Sun Aug 24 2014 16:49:05 for RavenOS by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.7 </li>
   </ul>

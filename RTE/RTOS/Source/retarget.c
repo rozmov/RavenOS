@@ -20,9 +20,9 @@
 #pragma import(__use_no_semihosting_swi)
 
 /// stdio retargeting handle
-struct __FILE { int handle; /*! Add whatever you need here */ };
-FILE __stdout;
-FILE __stdin;
+struct __FILE { int handle; /*!< file handle */ };
+FILE __stdout; /*!< standard output */
+FILE __stdin;  /*!< standard input */
 
 /*! \fn void UART0_putc(char ch)
     \brief Output a character to UART

@@ -1,6 +1,6 @@
 /*! \file threads.c
     \brief This file defines thread implementation using the CMSIS interface
-		\details Defines thread defienition, creation and attributes manipulation.
+		\details Thread definition, creation and attributes manipulation.
 */
 
 #include "cmsis_os.h" 
@@ -223,14 +223,13 @@ osPriority osThreadGetPriority (osThreadId thread_id)
 }
 
 
-/// \fn void os_ThreadRemoveThread(osThreadId thread_id)
-/// \brief Remove thread from all the lists.
-/// \param thread_idx  Thread ID of the thread to remove
+/// Remove thread from all the lists.
+/// \param thread_id  Thread ID of the thread to remove
 void os_ThreadRemoveThread(osThreadId thread_id)
 {
 	uint32_t i, idx;
 
-	// remove from any semaphore blocked queue and update the queue
+	// remove from any semaphore queues
 	os_SemaphoreRemoveThread(thread_id);
 	
 	// remove from timed queue and update the queue

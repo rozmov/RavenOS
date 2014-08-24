@@ -264,10 +264,10 @@
 /*----------------------------------------------------------------------------
   Define clocks
  *----------------------------------------------------------------------------*/
-#define XTALM       (16000000UL)            /* Main         oscillator freq */
-#define XTALI       (12000000UL)            /* Internal     oscillator freq */
-#define XTAL30K     (   30000UL)            /* Internal 30K oscillator freq */
-#define XTAL32K     (   32768UL)            /* external 32K oscillator freq */
+#define XTALM       (16000000UL)            /*!< Main         oscillator freq */
+#define XTALI       (12000000UL)            /*!< Internal     oscillator freq */
+#define XTAL30K     (   30000UL)            /*!< Internal 30K oscillator freq */
+#define XTAL32K     (   32768UL)            /*!< external 32K oscillator freq */
 
 #define PLL_CLK    (400000000UL)
 #define ADC_CLK     (PLL_CLK/25)
@@ -564,9 +564,6 @@ void SystemCoreClockUpdate (void)            /* Get Core Clock Frequency      */
 
 /**
  * Initialize the system
- *
- * @param  none
- * @return none
  *
  * @brief  Setup the microcontroller system.
  *         Initialize the System.

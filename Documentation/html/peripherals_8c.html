@@ -139,16 +139,16 @@ Macros</h2></td></tr>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
 <tr class="memitem:a1a20b70d3e6a3181b0f9c75f371d8ded"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="peripherals_8c.html#a1a20b70d3e6a3181b0f9c75f371d8ded">LED_initialize</a> (void)</td></tr>
-<tr class="memdesc:a1a20b70d3e6a3181b0f9c75f371d8ded"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialize LED.  <a href="#a1a20b70d3e6a3181b0f9c75f371d8ded">More...</a><br /></td></tr>
+<tr class="memdesc:a1a20b70d3e6a3181b0f9c75f371d8ded"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initializing the LEDs : RED, BLUE, GREN.  <a href="#a1a20b70d3e6a3181b0f9c75f371d8ded">More...</a><br /></td></tr>
 <tr class="separator:a1a20b70d3e6a3181b0f9c75f371d8ded"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a148e57ed8da14984f743a7b120b1d489"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="peripherals_8c.html#a148e57ed8da14984f743a7b120b1d489">LED_blink</a> (uint32_t id)</td></tr>
-<tr class="memdesc:a148e57ed8da14984f743a7b120b1d489"><td class="mdescLeft">&#160;</td><td class="mdescRight">Blink LED.  <a href="#a148e57ed8da14984f743a7b120b1d489">More...</a><br /></td></tr>
+<tr class="memdesc:a148e57ed8da14984f743a7b120b1d489"><td class="mdescLeft">&#160;</td><td class="mdescRight">Toggle a colour of the RGB LED.  <a href="#a148e57ed8da14984f743a7b120b1d489">More...</a><br /></td></tr>
 <tr class="separator:a148e57ed8da14984f743a7b120b1d489"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae9563b14d9b3ebfa06551e2eacb410c3"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="peripherals_8c.html#ae9563b14d9b3ebfa06551e2eacb410c3">count1Sec</a> (void)</td></tr>
-<tr class="memdesc:ae9563b14d9b3ebfa06551e2eacb410c3"><td class="mdescLeft">&#160;</td><td class="mdescRight">1s busy incrementing a counter  <a href="#ae9563b14d9b3ebfa06551e2eacb410c3">More...</a><br /></td></tr>
+<tr class="memdesc:ae9563b14d9b3ebfa06551e2eacb410c3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Keep the processor busy for 1s by incrementing a counter.  <a href="#ae9563b14d9b3ebfa06551e2eacb410c3">More...</a><br /></td></tr>
 <tr class="separator:ae9563b14d9b3ebfa06551e2eacb410c3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:afec9f3d800b27c62145e1769d04827b4"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="peripherals_8c.html#afec9f3d800b27c62145e1769d04827b4">UART_initialize</a> (void)</td></tr>
-<tr class="memdesc:afec9f3d800b27c62145e1769d04827b4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialize UART.  <a href="#afec9f3d800b27c62145e1769d04827b4">More...</a><br /></td></tr>
+<tr class="memdesc:afec9f3d800b27c62145e1769d04827b4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initializing UART for printing to serial console.  <a href="#afec9f3d800b27c62145e1769d04827b4">More...</a><br /></td></tr>
 <tr class="separator:afec9f3d800b27c62145e1769d04827b4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="var-members"></a>
@@ -188,8 +188,8 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>1s busy incrementing a counter </p>
 <p>Keep the processor busy for 1s by incrementing a counter. </p>
+<p>1s busy incrementing a counter </p>
 
 </div>
 </div>
@@ -207,11 +207,11 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Blink LED. </p>
-<p>Toggle a colour of the RGB LED.</p>
+<p>Toggle a colour of the RGB LED. </p>
+<p>Blink LED.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">led</td><td>The LED colour to toggle (LED_RED, LED_GREEN, LED_BLUE) </td></tr>
+    <tr><td class="paramname">id</td><td>The LED to toggle (LED0, LED1, LED2) </td></tr>
   </table>
   </dd>
 </dl>
@@ -233,9 +233,8 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Initializing the LEDs : RED, BLUE, GREN. </p>
 <p>Initialize LED. </p>
-<p>Initializing the LEDs : RED, BLUE, GREN.</p>
-<p>Prototypes </p>
 
 </div>
 </div>
@@ -253,8 +252,8 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Initialize UART. </p>
-<p>Initializing UART for printing to serial console.</p>
+<p>Initializing UART for printing to serial console. </p>
+<p>Initialize UART.</p>
 <p>Use the CMSIS Driver implementation of the USART to initialize UART0. </p>
 
 </div>
@@ -279,7 +278,7 @@ Variables</h2></td></tr>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="dir_2cfa845288836d0010190eddcc80c178.html">RTE</a></li><li class="navelem"><a class="el" href="dir_37d2205f15e85812ee2baf1e2f5dde11.html">RTOS</a></li><li class="navelem"><a class="el" href="dir_e18e8ca17cc8761131819f6fa843b03a.html">Source</a></li><li class="navelem"><a class="el" href="peripherals_8c.html">peripherals.c</a></li>
-    <li class="footer">Generated on Sun Aug 17 2014 06:00:40 for RavenOS by
+    <li class="footer">Generated on Sun Aug 24 2014 16:49:05 for RavenOS by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.7 </li>
   </ul>

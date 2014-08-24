@@ -113,7 +113,8 @@ $(document).ready(function(){initNavTree('kernel_8h.html','');});
 
 <p>This header file defines all kernel related data.  
 <a href="#details">More...</a></p>
-
+<div class="textblock"><code>#include &lt;stdint.h&gt;</code><br />
+</div>
 <p><a href="kernel_8h_source.html">Go to the source code of this file.</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
@@ -122,17 +123,45 @@ Functions</h2></td></tr>
 void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="kernel_8h.html#a405f8b5b73c549c942ea9915f57580ba">os_KernelInvokeScheduler</a> (void)</td></tr>
 <tr class="memdesc:a405f8b5b73c549c942ea9915f57580ba"><td class="mdescLeft">&#160;</td><td class="mdescRight">Perform an SVC call to invoke scheduler. <br /></td></tr>
 <tr class="separator:a405f8b5b73c549c942ea9915f57580ba"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2aad0b69b73fccfe5c4bfa13285b6e8e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="kernel_8h.html#a2aad0b69b73fccfe5c4bfa13285b6e8e">os_KernelStackAlloc</a> (uint32_t thread_idx)</td></tr>
+<tr class="memdesc:a2aad0b69b73fccfe5c4bfa13285b6e8e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Perform an SVC call to allocate stack for a thread.  <a href="#a2aad0b69b73fccfe5c4bfa13285b6e8e">More...</a><br /></td></tr>
+<tr class="separator:a2aad0b69b73fccfe5c4bfa13285b6e8e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>This header file defines all kernel related data. </p>
 <p>Makes available the context switch API for threads. </p>
-</div></div><!-- contents -->
+</div><h2 class="groupheader">Function Documentation</h2>
+<a class="anchor" id="a2aad0b69b73fccfe5c4bfa13285b6e8e"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void os_KernelStackAlloc </td>
+          <td>(</td>
+          <td class="paramtype">uint32_t&#160;</td>
+          <td class="paramname"><em>thread_idx</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Perform an SVC call to allocate stack for a thread. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">thread_idx</td><td>The thread index in the PSP table to initialize </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+</div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="dir_2cfa845288836d0010190eddcc80c178.html">RTE</a></li><li class="navelem"><a class="el" href="dir_37d2205f15e85812ee2baf1e2f5dde11.html">RTOS</a></li><li class="navelem"><a class="el" href="dir_5557ce608830b301ac6edb6ef8f5543b.html">Include</a></li><li class="navelem"><a class="el" href="kernel_8h.html">kernel.h</a></li>
-    <li class="footer">Generated on Sun Aug 17 2014 06:00:39 for RavenOS by
+    <li class="footer">Generated on Sun Aug 24 2014 16:49:04 for RavenOS by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.7 </li>
   </ul>

@@ -130,9 +130,12 @@ Functions</h2></td></tr>
 <tr class="memitem:a1a01d4efabc04644e0d0e6a21e5ee60b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="scheduler_8c.html#a1a01d4efabc04644e0d0e6a21e5ee60b">os_ReevaluateBlockedThread</a> (void)</td></tr>
 <tr class="memdesc:a1a01d4efabc04644e0d0e6a21e5ee60b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Re-evaluate all blocked threads.  <a href="#a1a01d4efabc04644e0d0e6a21e5ee60b">More...</a><br /></td></tr>
 <tr class="separator:a1a01d4efabc04644e0d0e6a21e5ee60b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a55fbac450d43684ac8f3bbf62988acba"><td class="memItemLeft" align="right" valign="top"><a class="el" href="cmsis__os_8h.html#ae2e091fefc4c767117727bd5aba4d99e">osStatus</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="scheduler_8c.html#a55fbac450d43684ac8f3bbf62988acba">os_ReevaluateThread</a> (<a class="el" href="cmsis__os_8h.html#adfeb153a84a81309e2d958268197617f">osThreadId</a> thread_id)</td></tr>
+<tr class="memdesc:a55fbac450d43684ac8f3bbf62988acba"><td class="mdescLeft">&#160;</td><td class="mdescRight">Re-evaluate all blocked threads.  <a href="#a55fbac450d43684ac8f3bbf62988acba">More...</a><br /></td></tr>
+<tr class="separator:a55fbac450d43684ac8f3bbf62988acba"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9fa00b0be5d3c4781048861e2506eb63"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a9fa00b0be5d3c4781048861e2506eb63"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="scheduler_8c.html#a9fa00b0be5d3c4781048861e2506eb63">scheduler</a> (void)</td></tr>
-<tr class="memdesc:a9fa00b0be5d3c4781048861e2506eb63"><td class="mdescLeft">&#160;</td><td class="mdescRight">Prepares the next task to be run and sets  next_task. <br /></td></tr>
+<tr class="memdesc:a9fa00b0be5d3c4781048861e2506eb63"><td class="mdescLeft">&#160;</td><td class="mdescRight">Prepares the next task to be run and sets <a class="el" href="scheduler_8c.html#a2b9b764bed89b62bc2b1edf3f157fb5c">next_task</a>. <br /></td></tr>
 <tr class="separator:a9fa00b0be5d3c4781048861e2506eb63"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="var-members"></a>
@@ -164,6 +167,25 @@ uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="
           <td>(</td>
           <td class="paramtype">void&#160;</td>
           <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Re-evaluate all blocked threads. </p>
+<p>If a thread expires on a semaphore, but the semaphore is still taken, take it out of the blocked state and into the ready to run queue </p>
+
+</div>
+</div>
+<a class="anchor" id="a55fbac450d43684ac8f3bbf62988acba"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="cmsis__os_8h.html#ae2e091fefc4c767117727bd5aba4d99e">osStatus</a> os_ReevaluateThread </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="cmsis__os_8h.html#adfeb153a84a81309e2d958268197617f">osThreadId</a>&#160;</td>
+          <td class="paramname"><em>thread_id</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
@@ -218,7 +240,7 @@ uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="dir_2cfa845288836d0010190eddcc80c178.html">RTE</a></li><li class="navelem"><a class="el" href="dir_37d2205f15e85812ee2baf1e2f5dde11.html">RTOS</a></li><li class="navelem"><a class="el" href="dir_e18e8ca17cc8761131819f6fa843b03a.html">Source</a></li><li class="navelem"><a class="el" href="scheduler_8c.html">scheduler.c</a></li>
-    <li class="footer">Generated on Sun Aug 17 2014 06:00:40 for RavenOS by
+    <li class="footer">Generated on Sun Aug 24 2014 16:49:05 for RavenOS by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.7 </li>
   </ul>

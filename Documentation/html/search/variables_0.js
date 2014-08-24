@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['counter',['counter',['../peripherals_8c.html#a61f7b3cbcedea4bae0c663c892d5d07f',1,'peripherals.c']]],
-  ['curr_5ftask',['curr_task',['../scheduler_8c.html#a0f6665bff2ea2135202f5f12a38cbe17',1,'scheduler.c']]]
+  ['_5f_5fstdin',['__stdin',['../retarget_8c.html#abb2a819d3c88269eba04ea62d759bef5',1,'retarget.c']]],
+  ['_5f_5fstdout',['__stdout',['../retarget_8c.html#ac1f65ebf7d6f28fb49530ee0095306cb',1,'retarget.c']]]
 ];

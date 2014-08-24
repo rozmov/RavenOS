@@ -13,5 +13,6 @@
 
 uint32_t addTrace(char * message);
 void dumpTrace(void);
+uint32_t getTraceCounter(void);
 
 #endif // _TRACE_H

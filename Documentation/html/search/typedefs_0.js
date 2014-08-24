@@ -2,6 +2,9 @@ var searchData=
 [
   ['os_5fpthread',['os_pthread',['../cmsis__os_8h.html#aee631e5ea1b700fc35695cc7bc574cf7',1,'cmsis_os.h']]],
   ['os_5fptimer',['os_ptimer',['../cmsis__os_8h.html#aa2d85e49bde9f6951ff3545cd323f065',1,'cmsis_os.h']]],
+  ['os_5fsemaphore_5fcb',['os_semaphore_cb',['../cmsis__os_8h.html#a3acf673308feeb33614e7e374a158afe',1,'cmsis_os.h']]],
+  ['os_5fthread_5fcb',['os_thread_cb',['../cmsis__os_8h.html#aa0e7beefae8b2cd1a75f40afd55c1716',1,'cmsis_os.h']]],
+  ['os_5fthread_5ftimed',['os_thread_timed',['../cmsis__os_8h.html#a288427014ddd998633ff96585ceedf14',1,'cmsis_os.h']]],
   ['osmailqdef_5ft',['osMailQDef_t',['../cmsis__os_8h.html#a4478aff059e4a47e87e2f8d62f0f04c8',1,'cmsis_os.h']]],
   ['osmailqid',['osMailQId',['../cmsis__os_8h.html#a1dac049fb7725a8af8b26c71cbb373b5',1,'cmsis_os.h']]],
   ['osmessageqdef_5ft',['osMessageQDef_t',['../cmsis__os_8h.html#ae44dc32ab1acfe2a3190d31e41eba0bb',1,'cmsis_os.h']]],
@@ -14,6 +17,7 @@ var searchData=
   ['ossemaphoreid',['osSemaphoreId',['../cmsis__os_8h.html#aa8968896c84094aa973683c84fa06f84',1,'cmsis_os.h']]],
   ['osthreaddef_5ft',['osThreadDef_t',['../cmsis__os_8h.html#ac2c70c6eaadffd0e8bfb9c47485e80c1',1,'cmsis_os.h']]],
   ['osthreadid',['osThreadId',['../cmsis__os_8h.html#adfeb153a84a81309e2d958268197617f',1,'cmsis_os.h']]],
+  ['osthreadstatus',['osThreadStatus',['../threads_8h.html#afb74ee1b0e49d183897bbe2dacd37cbb',1,'threads.h']]],
   ['ostimerdef_5ft',['osTimerDef_t',['../cmsis__os_8h.html#a4fa06198874bc76e8dc26db38fc2f9d6',1,'cmsis_os.h']]],
   ['ostimerid',['osTimerId',['../cmsis__os_8h.html#ab8530dd4273f1f5382187732e14fcaa7',1,'cmsis_os.h']]]
 ];

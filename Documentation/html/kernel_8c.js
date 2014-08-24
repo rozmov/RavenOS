@@ -5,6 +5,7 @@ var kernel_8c =
     [ "HardFault_Handler", "kernel_8c.html#ac665fd9d3df5b21cf4dee052d7cc6620", null ],
     [ "HardFault_Handler_C", "kernel_8c.html#a4dac502265d65c7133fe4c0332451c7d", null ],
     [ "os_KernelInvokeScheduler", "kernel_8c.html#a405f8b5b73c549c942ea9915f57580ba", null ],
+    [ "os_KernelStackAlloc", "kernel_8c.html#a2aad0b69b73fccfe5c4bfa13285b6e8e", null ],
     [ "osKernelRunning", "kernel_8c.html#a3b571de44cd3094c643247a7397f86b5", null ],
     [ "osKernelStart", "kernel_8c.html#aab668ffd2ea76bb0a77ab0ab385eaef2", null ],
     [ "PendSV_Handler", "kernel_8c.html#ad628297c6eafc9b3a38fdd08377b42c5", null ],

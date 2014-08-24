@@ -226,9 +226,9 @@ typedef void (*os_ptimer) (void const *argument);
 #include "threads.h"
 #include "semaphores.h"
 
-typedef struct os_thread_cb os_thread_cb;
-typedef struct os_semaphore_cb os_semaphore_cb;
-typedef struct os_thread_timed os_thread_timed;
+typedef struct os_thread_cb os_thread_cb;       ///< Thread Control Block 
+typedef struct os_semaphore_cb os_semaphore_cb; ///< Semaphore Control Block 
+typedef struct os_thread_timed os_thread_timed; ///< Sleeping Thread  
 
 
 /// Thread ID identifies the thread (pointer to a thread control block).
@@ -657,25 +657,10 @@ osStatus osSemaphoreRelease (osSemaphoreId semaphore_id);
 /// \note MUST REMAIN UNCHANGED: \b osSemaphoreDelete shall be consistent in every CMSIS-RTOS.
 osStatus osSemaphoreDelete (osSemaphoreId semaphore_id);
 
-/// \fn osStatus osSemaphoreRemoveThread (osThreadId thread_id)
-/// \brief Delete a Thread from all semaphore queues.
+/// \brief Remove thread from all semaphore queues.
 /// \param[in]     thread_id  thread object.
 /// \return status code that indicates the execution status of the function.
 osStatus os_SemaphoreRemoveThread (osThreadId thread_id);
-
-/// \fn osStatus os_RemoveThreadFromSemaphoreBlockedQ (osThreadId thread_id, osSemaphoreId semaphore_id)
-/// \brief Remove thread from a blocked semaphore queue.
-/// \param[in]     thread_id  thread object.
-/// \return status code that indicates the execution status of the function.
-osStatus os_RemoveThreadFromSemaphoreBlockedQ (osThreadId thread_id, osSemaphoreId semaphore_id);
-
-/// \fn osStatus os_SearchThreadAllSemaphoresBlockedQ (osThreadId thread_id, osSemaphoreId* semaphore_id_p, uint32_t* semaphore_p_p )
-/// \brief Search for the thread in all blocked semaphore queue.
-/// \param[in]     thread_id  thread object.
-/// \param[in]     semaphore_id  pointer to semaphore object for returning
-/// \return index within one of the semaphores the thread is blocked; 
-///   - MAX_THREADS_SEM is not found or error
-osStatus os_SearchThreadAllSemaphoresBlockedQ (osThreadId thread_id, osSemaphoreId* semaphore_id_p, uint32_t* semaphore_p_p );
 
 #endif     // Semaphore available
 

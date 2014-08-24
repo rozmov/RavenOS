@@ -3,12 +3,12 @@
     \details Initialize and implement idle thread. Which should be scheduled even if other threads are running.
 */
 
-#include "cmsis_os.h"                                           // CMSIS RTOS header file
+#include "cmsis_os.h"                              // CMSIS RTOS header file
 #include "trace.h"
 #include "threadIdle.h"
 
-osThreadDef (threadIdle, osPriorityIdle, 1, 100);
-osThreadId tid_threadIdle;        // thread id
+osThreadDef (threadIdle, osPriorityIdle, 1, 100);  ///< thread definition
+osThreadId tid_threadIdle;                         ///< thread id
 
 /*! \fn int Init_threadIdle (void)
     \brief Initializing Idle thread 

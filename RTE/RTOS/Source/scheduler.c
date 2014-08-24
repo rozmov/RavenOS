@@ -18,8 +18,8 @@ uint32_t os_ThreadGetBestThread(void);
 void os_ReevaluateBlockedThread(void);
 osStatus os_ReevaluateThread(osThreadId thread_id);
 
-/*! \fn void scheduler(void)
-    \brief Prepares the next task to be run and sets \red next_task.
+/*! 
+    \brief Prepares the next task to be run and sets \ref next_task.
 */
 void scheduler(void)
 {
@@ -59,7 +59,6 @@ void scheduler(void)
 	return;	
 }
 
-/// \fn uint32_t os_ThreadGetNextThread(void)
 /// \brief Get thread with next highest priority.
 /// \return Thread ID of the next thread to run
 uint32_t os_ThreadGetNextThread(void)
@@ -85,7 +84,6 @@ uint32_t os_ThreadGetNextThread(void)
 	return temp;
 }
 
-/// \fn uint32_t os_ThreadGetBestThread(void)
 /// \brief Get ready/running thread with highest priority.
 /// \return Thread ID of the best thread to run
 uint32_t os_ThreadGetBestThread(void)
@@ -110,7 +108,6 @@ uint32_t os_ThreadGetBestThread(void)
 	return temp;
 }
 
-/// \fn void os_ReevaluateBlockedThread(void)
 /// \brief Re-evaluate all blocked threads 
 /// \details If a thread expires on a semaphore, but the semaphore is still taken, 
 ///          take it out of the blocked state and into the ready to run queue
@@ -132,7 +129,6 @@ void os_ReevaluateBlockedThread(void)
 	return;
 }
 
-/// \fn void os_ReevaluateBlockedThread(void)
 /// \brief Re-evaluate all blocked threads 
 /// \details If a thread expires on a semaphore, but the semaphore is still taken, 
 ///          take it out of the blocked state and into the ready to run queue
@@ -176,30 +172,9 @@ osStatus os_ReevaluateThread(osThreadId thread_id)
 	if (osKernelSysTick() == semaphore_id->threads_q[semaphore_p].expiryTime &&
 			0 == semaphore_id->threads_q[semaphore_p].ticks)
 	{			
-//		if ( os_RemoveThreadFromSemaphoreBlockedQ(thread_id, semaphore_id) != osOK)
-//		{
-//			return osErrorTimeoutResource;
-//		}
-		
-//		if ( os_SearchThreadAllSemaphoresBlockedQ(thread_id, &semaphore_id, &semaphore_p) == osOK)
-//		{
-//			if (semaphore_p == MAX_THREADS_SEM)
-//			{
 				// unblock thread 
 				thread_id->status = TH_READY;	
-				return osOK;
-//			}
-//			else
-//			{
-//				thread_id->semaphore_id = semaphore_id;
-//				thread_id->semaphore_p  = semaphore_p;
-//				return osOK;
-//			}					
-//		}
-//		else
-//		{
-//			return osOK;
-//		}						
+				return osOK;					
 	}		
 	else // time did not expire yet, reduce the number of ticks
 	{

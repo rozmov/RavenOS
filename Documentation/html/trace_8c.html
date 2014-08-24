@@ -130,32 +130,36 @@ Macros</h2></td></tr>
 #define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="trace_8c.html#a817e4ed18d4c052f1bf9bd7f8261e954">MIN_TRACE_ARR_LEN</a>&#160;&#160;&#160;0</td></tr>
 <tr class="memdesc:a817e4ed18d4c052f1bf9bd7f8261e954"><td class="mdescLeft">&#160;</td><td class="mdescRight">Minimum size of the message buffer. <br /></td></tr>
 <tr class="separator:a817e4ed18d4c052f1bf9bd7f8261e954"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af6f42601b8df266d856492e0182f747a"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="af6f42601b8df266d856492e0182f747a"></a>
-#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="trace_8c.html#af6f42601b8df266d856492e0182f747a">MEX_TRACE_ARR_LEN</a>&#160;&#160;&#160;50</td></tr>
-<tr class="memdesc:af6f42601b8df266d856492e0182f747a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Maximum size of the message buffer. <br /></td></tr>
-<tr class="separator:af6f42601b8df266d856492e0182f747a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a74f9628c18bb6cce05ab31546fca35ba"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a74f9628c18bb6cce05ab31546fca35ba"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="trace_8c.html#a74f9628c18bb6cce05ab31546fca35ba">MAX_TRACE_ARR_LEN</a>&#160;&#160;&#160;50</td></tr>
+<tr class="memdesc:a74f9628c18bb6cce05ab31546fca35ba"><td class="mdescLeft">&#160;</td><td class="mdescRight">Maximum size of the message buffer. <br /></td></tr>
+<tr class="separator:a74f9628c18bb6cce05ab31546fca35ba"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:aeb40ece78e68cd3fb646724b4d2b717c"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="trace_8c.html#aeb40ece78e68cd3fb646724b4d2b717c">incrementTraceCounter</a> ()</td></tr>
-<tr class="memdesc:aeb40ece78e68cd3fb646724b4d2b717c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Increment trace counter if trace table not full.  <a href="#aeb40ece78e68cd3fb646724b4d2b717c">More...</a><br /></td></tr>
-<tr class="separator:aeb40ece78e68cd3fb646724b4d2b717c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad869e9c1b721a7d3a98a4fc9b4bb5db6"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="trace_8c.html#ad869e9c1b721a7d3a98a4fc9b4bb5db6">decrementTraceCounter</a> ()</td></tr>
-<tr class="memdesc:ad869e9c1b721a7d3a98a4fc9b4bb5db6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Decrement trace counter if trace table not empty.  <a href="#ad869e9c1b721a7d3a98a4fc9b4bb5db6">More...</a><br /></td></tr>
-<tr class="separator:ad869e9c1b721a7d3a98a4fc9b4bb5db6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a71887a301d7504612011c655a127008d"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="trace_8c.html#a71887a301d7504612011c655a127008d">getTraceCounter</a> (void)</td></tr>
+<tr class="memdesc:a71887a301d7504612011c655a127008d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Getter function for the current trace counter.  <a href="#a71887a301d7504612011c655a127008d">More...</a><br /></td></tr>
+<tr class="separator:a71887a301d7504612011c655a127008d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afde720d31599a848b0ad96d47dbaf555"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="trace_8c.html#afde720d31599a848b0ad96d47dbaf555">incrementTraceCounter</a> (void)</td></tr>
+<tr class="memdesc:afde720d31599a848b0ad96d47dbaf555"><td class="mdescLeft">&#160;</td><td class="mdescRight">Increment trace counter if trace table not full.  <a href="#afde720d31599a848b0ad96d47dbaf555">More...</a><br /></td></tr>
+<tr class="separator:afde720d31599a848b0ad96d47dbaf555"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac86a8c7e8dec40007457bc35176ebd9f"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="trace_8c.html#ac86a8c7e8dec40007457bc35176ebd9f">decrementTraceCounter</a> (void)</td></tr>
+<tr class="memdesc:ac86a8c7e8dec40007457bc35176ebd9f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Decrement trace counter if trace table not empty.  <a href="#ac86a8c7e8dec40007457bc35176ebd9f">More...</a><br /></td></tr>
+<tr class="separator:ac86a8c7e8dec40007457bc35176ebd9f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0c045565a7872689752c456352835196"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="trace_8c.html#a0c045565a7872689752c456352835196">addTrace</a> (char *message)</td></tr>
 <tr class="memdesc:a0c045565a7872689752c456352835196"><td class="mdescLeft">&#160;</td><td class="mdescRight">Add message to the trace table.  <a href="#a0c045565a7872689752c456352835196">More...</a><br /></td></tr>
 <tr class="separator:a0c045565a7872689752c456352835196"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa78bb2aec0867c8b709cd3a1da3e2e34"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aa78bb2aec0867c8b709cd3a1da3e2e34"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>dumpTrace</b> (void)</td></tr>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="trace_8c.html#aa78bb2aec0867c8b709cd3a1da3e2e34">dumpTrace</a> (void)</td></tr>
+<tr class="memdesc:aa78bb2aec0867c8b709cd3a1da3e2e34"><td class="mdescLeft">&#160;</td><td class="mdescRight">Dump messages from the trace table to output. <br /></td></tr>
 <tr class="separator:aa78bb2aec0867c8b709cd3a1da3e2e34"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="var-members"></a>
 Variables</h2></td></tr>
-<tr class="memitem:a56e0b97f8626ec21f1d3eda3e8aae66e"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a56e0b97f8626ec21f1d3eda3e8aae66e"></a>
-char&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="trace_8c.html#a56e0b97f8626ec21f1d3eda3e8aae66e">trace_table</a> [<a class="el" href="trace_8c.html#af6f42601b8df266d856492e0182f747a">MEX_TRACE_ARR_LEN</a>][<a class="el" href="trace_8c.html#a58ce36916c399104e18d32ff090f21c6">MAX_STR_LEN</a>]</td></tr>
-<tr class="memdesc:a56e0b97f8626ec21f1d3eda3e8aae66e"><td class="mdescLeft">&#160;</td><td class="mdescRight">The message table. <br /></td></tr>
-<tr class="separator:a56e0b97f8626ec21f1d3eda3e8aae66e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9d2153983845df2f4ebea84362bdea94"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a9d2153983845df2f4ebea84362bdea94"></a>
+char&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="trace_8c.html#a9d2153983845df2f4ebea84362bdea94">trace_table</a> [<a class="el" href="trace_8c.html#a74f9628c18bb6cce05ab31546fca35ba">MAX_TRACE_ARR_LEN</a>][<a class="el" href="trace_8c.html#a58ce36916c399104e18d32ff090f21c6">MAX_STR_LEN</a>]</td></tr>
+<tr class="memdesc:a9d2153983845df2f4ebea84362bdea94"><td class="mdescLeft">&#160;</td><td class="mdescRight">The message table. <br /></td></tr>
+<tr class="separator:a9d2153983845df2f4ebea84362bdea94"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a34528aa0fa7eac7a27d7261fdf5dfd30"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a34528aa0fa7eac7a27d7261fdf5dfd30"></a>
 uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="trace_8c.html#a34528aa0fa7eac7a27d7261fdf5dfd30">trace_counter</a> = <a class="el" href="trace_8c.html#a817e4ed18d4c052f1bf9bd7f8261e954">MIN_TRACE_ARR_LEN</a></td></tr>
 <tr class="memdesc:a34528aa0fa7eac7a27d7261fdf5dfd30"><td class="mdescLeft">&#160;</td><td class="mdescRight">The message table counter. <br /></td></tr>
@@ -191,13 +195,14 @@ uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="
 
 </div>
 </div>
-<a class="anchor" id="ad869e9c1b721a7d3a98a4fc9b4bb5db6"></a>
+<a class="anchor" id="ac86a8c7e8dec40007457bc35176ebd9f"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
           <td class="memname">uint32_t decrementTraceCounter </td>
           <td>(</td>
+          <td class="paramtype">void&#160;</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
         </tr>
@@ -209,13 +214,33 @@ uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="
 
 </div>
 </div>
-<a class="anchor" id="aeb40ece78e68cd3fb646724b4d2b717c"></a>
+<a class="anchor" id="a71887a301d7504612011c655a127008d"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint32_t getTraceCounter </td>
+          <td>(</td>
+          <td class="paramtype">void&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Getter function for the current trace counter. </p>
+<dl class="section return"><dt>Returns</dt><dd>Returns current trace counter. </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="afde720d31599a848b0ad96d47dbaf555"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
           <td class="memname">uint32_t incrementTraceCounter </td>
           <td>(</td>
+          <td class="paramtype">void&#160;</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
         </tr>
@@ -233,7 +258,7 @@ uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="dir_2cfa845288836d0010190eddcc80c178.html">RTE</a></li><li class="navelem"><a class="el" href="dir_37d2205f15e85812ee2baf1e2f5dde11.html">RTOS</a></li><li class="navelem"><a class="el" href="dir_e18e8ca17cc8761131819f6fa843b03a.html">Source</a></li><li class="navelem"><a class="el" href="trace_8c.html">trace.c</a></li>
-    <li class="footer">Generated on Sun Aug 17 2014 06:00:40 for RavenOS by
+    <li class="footer">Generated on Sun Aug 24 2014 16:49:05 for RavenOS by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.7 </li>
   </ul>

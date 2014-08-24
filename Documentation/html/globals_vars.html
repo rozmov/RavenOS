@@ -116,6 +116,12 @@ $(document).ready(function(){initNavTree('globals_vars.html','');});
 
 <div class="contents">
 &#160;<ul>
+<li>__stdin
+: <a class="el" href="retarget_8c.html#abb2a819d3c88269eba04ea62d759bef5">retarget.c</a>
+</li>
+<li>__stdout
+: <a class="el" href="retarget_8c.html#ac1f65ebf7d6f28fb49530ee0095306cb">retarget.c</a>
+</li>
 <li>counter
 : <a class="el" href="peripherals_8c.html#a61f7b3cbcedea4bae0c663c892d5d07f">peripherals.c</a>
 </li>
@@ -125,8 +131,15 @@ $(document).ready(function(){initNavTree('globals_vars.html','');});
 <li>next_task
 : <a class="el" href="scheduler_8c.html#a2b9b764bed89b62bc2b1edf3f157fb5c">scheduler.c</a>
 </li>
-<li>sid_Thread_Semaphore
-: <a class="el" href="sem0_8c.html#a90a9bf2599af499ebb00283af3d77aae">sem0.c</a>
+<li>sem_counter
+: <a class="el" href="semaphores_8c.html#a4711d20103e7164651d13554d9429c1c">semaphores.c</a>
+</li>
+<li>semaphores
+: <a class="el" href="semaphores_8c.html#ac9fbe5ca618ef8eb98dbe9b0e632f85b">semaphores.c</a>
+</li>
+<li>sid_Semaphore0
+: <a class="el" href="sem0_8c.html#ae9ce7d64772370bb23c2f53affd72d28">sem0.c</a>
+, <a class="el" href="os_objects_8h.html#ae9ce7d64772370bb23c2f53affd72d28">osObjects.h</a>
 </li>
 <li>SystemCoreClock
 : <a class="el" href="system___t_m4_c123_8c.html#aa3cd3e43291e81e795d642b79b6088e6">system_TM4C123.c</a>
@@ -136,20 +149,31 @@ $(document).ready(function(){initNavTree('globals_vars.html','');});
 , <a class="el" href="threads_8c.html#a8b4086b7a6b46bb1dffcc0d1179c98da">threads.c</a>
 </li>
 <li>th_q_cnt
-: <a class="el" href="cmsis__os_8h.html#a35826a679bc5d17a939431302cb00ef4">cmsis_os.h</a>
-, <a class="el" href="threads_8c.html#a35826a679bc5d17a939431302cb00ef4">threads.c</a>
+: <a class="el" href="threads_8c.html#a35826a679bc5d17a939431302cb00ef4">threads.c</a>
+, <a class="el" href="cmsis__os_8h.html#a35826a679bc5d17a939431302cb00ef4">cmsis_os.h</a>
 </li>
 <li>th_q_h
 : <a class="el" href="cmsis__os_8h.html#ac45ab9b5c49e6fc28cf2f6aa77424bf5">cmsis_os.h</a>
 , <a class="el" href="threads_8c.html#ac45ab9b5c49e6fc28cf2f6aa77424bf5">threads.c</a>
 </li>
 <li>tid_thread0
-: <a class="el" href="os_objects_8h.html#a931ec3a4f19c2abf74d1ecf38a256e41">osObjects.h</a>
-, <a class="el" href="thread0_8c.html#a931ec3a4f19c2abf74d1ecf38a256e41">thread0.c</a>
+: <a class="el" href="thread0_8c.html#a931ec3a4f19c2abf74d1ecf38a256e41">thread0.c</a>
+, <a class="el" href="os_objects_8h.html#a931ec3a4f19c2abf74d1ecf38a256e41">osObjects.h</a>
 </li>
 <li>tid_thread1
 : <a class="el" href="os_objects_8h.html#ad17a7b180ec093eb407244491ff3ec42">osObjects.h</a>
 , <a class="el" href="thread1_8c.html#ad17a7b180ec093eb407244491ff3ec42">thread1.c</a>
+</li>
+<li>tid_thread2
+: <a class="el" href="os_objects_8h.html#ab6cd2a9e7b8e0dbeba6d20735bcf6591">osObjects.h</a>
+, <a class="el" href="thread2_8c.html#ab6cd2a9e7b8e0dbeba6d20735bcf6591">thread2.c</a>
+</li>
+<li>tid_thread3
+: <a class="el" href="os_objects_8h.html#a4d304f9843017d40efafad7f8f103bd3">osObjects.h</a>
+, <a class="el" href="thread3_8c.html#a4d304f9843017d40efafad7f8f103bd3">thread3.c</a>
+</li>
+<li>tid_threadIdle
+: <a class="el" href="thread_idle_8c.html#a8989a8291643681626aa41ea82e21f48">threadIdle.c</a>
 </li>
 <li>timed_q
 : <a class="el" href="threads_8c.html#a7f79e2492c8d08449727a679afd013a0">threads.c</a>
@@ -164,7 +188,7 @@ $(document).ready(function(){initNavTree('globals_vars.html','');});
 : <a class="el" href="trace_8c.html#a34528aa0fa7eac7a27d7261fdf5dfd30">trace.c</a>
 </li>
 <li>trace_table
-: <a class="el" href="trace_8c.html#a56e0b97f8626ec21f1d3eda3e8aae66e">trace.c</a>
+: <a class="el" href="trace_8c.html#a9d2153983845df2f4ebea84362bdea94">trace.c</a>
 </li>
 </ul>
 </div><!-- contents -->
@@ -172,7 +196,7 @@ $(document).ready(function(){initNavTree('globals_vars.html','');});
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="footer">Generated on Sun Aug 17 2014 06:00:40 for RavenOS by
+    <li class="footer">Generated on Sun Aug 24 2014 16:49:06 for RavenOS by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.7 </li>
   </ul>

@@ -31,10 +31,10 @@ int main(void)
 	{
 		stop_cpu;
 	}
-//  if (Init_thread2() != 0)
-//	{
-//		stop_cpu;
-//	}	
+  if (Init_thread2() != 0)
+	{
+		stop_cpu;
+	}	
   if (Init_thread3() != 0)
 	{
 		stop_cpu;

@@ -1,15 +1,12 @@
-/*! \file semaphores.c
-    \brief Semaphore implementation according to CMSIS interfaces
-		\details Defines semaphore defienition, creation and attributes manipulation.
-*/
+/// \file semaphores.c
+/// \brief Semaphore implementation according to CMSIS interfaces
+/// \details Defines a semaphore and semaphore creation and attributes manipulation
 
 #include "cmsis_os.h" 
 #include <stdlib.h>
 #include "kernel.h"
 
 //  ==== Semaphore Management Functions ====
-
-#if (defined (osFeature_Semaphore)  &&  (osFeature_Semaphore != 0))     // Semaphore available
 
 /// Define a Semaphore object.
 /// \param         name          name of the semaphore object.
@@ -31,12 +28,14 @@ uint32_t sem_counter = 0;                 ///< Semaphore Queue counter
 
 
 // Prototypes
-osStatus os_SearchThreadSemaphoresExcept (osThreadId thread_id,osSemaphoreId semaphore_id, osSemaphoreId* semaphore_id_p, uint32_t* semaphore_p_p );
+osStatus os_RemoveThreadFromSemaphoreBlockedQ (osThreadId thread_id, osSemaphoreId semaphore_id);
 osStatus os_RemoveThreadFromSemaphoreOwnerQ (osThreadId thread_id, osSemaphoreId semaphore_id);
 osStatus os_InsertThreadInSemaphoreOwnerQ (osThreadId thread_id, osSemaphoreId semaphore_id);
 osStatus os_InsertThreadInSemaphoreBlockedQ (osThreadId thread_id, osSemaphoreId semaphore_id, uint32_t expiryTime, uint32_t ticks);
 uint32_t os_SearchThreadInSemaphoreOwnerQ (osThreadId thread_id, osSemaphoreId semaphore_id);
 uint32_t os_SearchThreadInSemaphoreBlockedQ (osThreadId thread_id, osSemaphoreId semaphore_id);
+osStatus os_SearchThreadAllSemaphoresBlockedQ (osThreadId thread_id, osSemaphoreId* semaphore_id_p, uint32_t* semaphore_p_p );
+osStatus os_SearchThreadSemaphoresExcept (osThreadId thread_id,osSemaphoreId semaphore_id, osSemaphoreId* semaphore_id_p, uint32_t* semaphore_p_p );
 
 
 /// Create and Initialize a Semaphore object used for managing resources.
@@ -363,9 +362,8 @@ osStatus osSemaphoreDelete (osSemaphoreId semaphore_id)
 	return osOK;
 }
 
-/// \fn osStatus osSemaphoreRemoveThread (osThreadId thread_id)
-/// \brief Remove thread from all semaphore queues.
-/// \param[in]     thread_id  thread object.
+/// Remove thread from all semaphore queues.
+/// \param     thread_id  thread object.
 /// \return status code that indicates the execution status of the function.
 osStatus os_SemaphoreRemoveThread (osThreadId thread_id)
 {
@@ -390,9 +388,8 @@ osStatus os_SemaphoreRemoveThread (osThreadId thread_id)
 	return osOK;
 }
 
-/// \fn osStatus os_RemoveThreadFromOwnSemaphoreBlockedQ (osThreadId thread_id)
-/// \brief Remove thread from currently blocked semaphore queue.
-/// \param[in]     thread_id  thread object.
+/// Remove thread from currently blocked semaphore queue.
+/// \param     thread_id  thread object.
 /// \return status code that indicates the execution status of the function.
 osStatus os_RemoveThreadFromOwnSemaphoreBlockedQ (osThreadId thread_id)
 {
@@ -458,9 +455,8 @@ osStatus os_RemoveThreadFromOwnSemaphoreBlockedQ (osThreadId thread_id)
 	return osOK;
 }
 
-/// \fn osStatus os_RemoveThreadFromOwnSemaphoreBlockedQ (osThreadId thread_id)
-/// \brief Remove thread from currently blocked semaphore queue.
-/// \param[in]     thread_id  thread object.
+/// Remove thread from currently blocked semaphore queue.
+/// \param     thread_id  thread object.
 /// \return status code that indicates the execution status of the function.
 osStatus os_RemoveThreadFromOwnSemaphoreOwnerQ (osThreadId thread_id)
 {
@@ -525,10 +521,9 @@ osStatus os_RemoveThreadFromOwnSemaphoreOwnerQ (osThreadId thread_id)
 	return osOK;
 }
 
-/// \fn osStatus os_RemoveThreadFromSemaphoreBlockedQ (osThreadId thread_id, osSemaphoreId semaphore_id)
-/// \brief Remove thread from a blocked semaphore queue.
-/// \param[in]     thread_id  thread object.
-/// \param[in]     semaphore_id  semaphore object
+/// Remove thread from a blocked semaphore queue.
+/// \param     thread_id  thread object.
+/// \param     semaphore_id  semaphore object
 /// \return status code that indicates the execution status of the function.
 osStatus os_RemoveThreadFromSemaphoreBlockedQ (osThreadId thread_id, osSemaphoreId semaphore_id)
 {
@@ -602,10 +597,9 @@ osStatus os_RemoveThreadFromSemaphoreBlockedQ (osThreadId thread_id, osSemaphore
 	return rc;
 }
 
-/// \fn osStatus os_RemoveThreadFromSemaphoreOwnerQ (osThreadId thread_id, osSemaphoreId semaphore_id)
-/// \brief Remove thread from a blocked semaphore queue.
-/// \param[in]     thread_id  thread object.
-/// \param[in]     semaphore_id  semaphore object
+/// Remove thread from a blocked semaphore queue.
+/// \param     thread_id  thread object.
+/// \param     semaphore_id  semaphore object
 /// \return status code that indicates the execution status of the function.
 osStatus os_RemoveThreadFromSemaphoreOwnerQ (osThreadId thread_id, osSemaphoreId semaphore_id)
 {
@@ -679,10 +673,9 @@ osStatus os_RemoveThreadFromSemaphoreOwnerQ (osThreadId thread_id, osSemaphoreId
 	return rc;
 }
 
-/// \fn osStatus os_InsertThreadInSemaphoreOwnerQ (osThreadId thread_id, osSemaphoreId semaphore_id)
-/// \brief Insert thread in the owners semaphore queue.
-/// \param[in]     thread_id  thread object.
-/// \param[in]     semaphore_id  semaphore object
+/// Insert thread in the owners semaphore queue.
+/// \param     thread_id  thread object.
+/// \param     semaphore_id  semaphore object
 /// \return status code that indicates the execution status of the function.
 osStatus os_InsertThreadInSemaphoreOwnerQ (osThreadId thread_id, osSemaphoreId semaphore_id)
 {
@@ -713,12 +706,11 @@ osStatus os_InsertThreadInSemaphoreOwnerQ (osThreadId thread_id, osSemaphoreId s
 	return osOK;
 }
 
-/// \fn osStatus os_InsertThreadInSemaphoreBlockedQ (osThreadId thread_id, osSemaphoreId semaphore_id, uint32_t expiryTime, uint32_t ticks)
-/// \brief Insert thread in the blocked semaphore queue.
-/// \param[in]     thread_id  thread object.
-/// \param[in]     semaphore_id  semaphore object
-/// \param[in]     expiryTime to  give up waiting on semaphore
-/// \param[in]     ticks to spend on semaphore
+/// Insert thread in the blocked semaphore queue.
+/// \param     thread_id  thread object.
+/// \param     semaphore_id  semaphore object
+/// \param     expiryTime to  give up waiting on semaphore
+/// \param     ticks to spend on semaphore
 /// \return status code that indicates the execution status of the function.
 osStatus os_InsertThreadInSemaphoreBlockedQ (osThreadId thread_id, osSemaphoreId semaphore_id, uint32_t expiryTime, uint32_t ticks)
 {
@@ -748,10 +740,9 @@ osStatus os_InsertThreadInSemaphoreBlockedQ (osThreadId thread_id, osSemaphoreId
 	return osOK;
 }
 
-/// \fn uint32_t os_SearchThreadInSemaphoreBlockedQ (osThreadId thread_id, osSemaphoreId semaphore_id)
-/// \brief Remove thread from a blocked semaphore queue.
-/// \param[in]     thread_id  thread object.
-/// \param[in]     semaphore_id  semaphore object.
+/// Remove thread from a blocked semaphore queue.
+/// \param     thread_id  thread object.
+/// \param     semaphore_id  semaphore object.
 /// \return the index within the semaphore queue; MAX_THREADS_SEM is not found or error
 uint32_t os_SearchThreadInSemaphoreBlockedQ (osThreadId thread_id, osSemaphoreId semaphore_id)
 {
@@ -779,10 +770,9 @@ uint32_t os_SearchThreadInSemaphoreBlockedQ (osThreadId thread_id, osSemaphoreId
 	return idx;
 }
 
-/// \fn uint32_t os_SearchThreadInSemaphoreOwnerQ (osThreadId thread_id, osSemaphoreId semaphore_id)
-/// \brief Search for thread in the owners semaphore queue.
-/// \param[in]     thread_id  thread object.
-/// \param[in]     semaphore_id  semaphore object.
+/// Search for thread in the owners semaphore queue.
+/// \param     thread_id  thread object.
+/// \param     semaphore_id  semaphore object.
 /// \return the index within the semaphore queue; MAX_THREADS_SEM is not found or error
 uint32_t os_SearchThreadInSemaphoreOwnerQ (osThreadId thread_id, osSemaphoreId semaphore_id)
 {
@@ -810,13 +800,12 @@ uint32_t os_SearchThreadInSemaphoreOwnerQ (osThreadId thread_id, osSemaphoreId s
 	return idx;
 }
 
-/// \fn osStatus os_SearchThreadAllSemaphoresBlockedQ (osThreadId thread_id, osSemaphoreId* semaphore_id_p, uint32_t* semaphore_p_p )
-/// \brief Search for the thread in all blocked semaphore queue.
-/// \param[in]     thread_id  thread object.
-/// \param[in]     semaphore_id_p  pointer to semaphore object for returning
-/// \param[in]     semaphore_p_p  pointer to index to semaphore object for returning
+/// Search for the thread in all blocked semaphore queue.
+/// \param     thread_id  thread object.
+/// \param     semaphore_id_p  pointer to semaphore object for returning
+/// \param     semaphore_p_p  pointer to index to semaphore object for returning
 /// \return index withing one of the semaphores the thread is blocked; 
-///   - MAX_THREADS_SEM is not found or error
+///   - MAX_THREADS_SEM if not found or error
 osStatus os_SearchThreadAllSemaphoresBlockedQ (osThreadId thread_id, osSemaphoreId* semaphore_id_p, uint32_t* semaphore_p_p )
 {
 	uint32_t i, j;
@@ -859,14 +848,13 @@ osStatus os_SearchThreadAllSemaphoresBlockedQ (osThreadId thread_id, osSemaphore
 	return osOK;
 }
 
-/// \fn osStatus os_SearchThreadSemaphoresExcept (osThreadId thread_id,osSemaphoreId semaphore_id, osSemaphoreId* semaphore_id_p, uint32_t* semaphore_p_p )
-/// \brief Search for the thread in all blocked semaphore queue.
-/// \param[in]     thread_id  thread object.
-/// \param[in]     semaphore_id semaphore object to exclude in search
-/// \param[in]     semaphore_id_p  pointer to semaphore object for returning
-/// \param[in]     semaphore_p_p  pointer to pointer to semaphore object for returning
+/// Search for the thread in all blocked semaphore queue.
+/// \param     thread_id  thread object.
+/// \param     semaphore_id semaphore object to exclude in search
+/// \param     semaphore_id_p  pointer to semaphore object for returning
+/// \param     semaphore_p_p  pointer to pointer to semaphore object for returning
 /// \return index withing one of the semaphores the thread is blocked; 
-///   - MAX_THREADS_SEM is not found or error
+///   - MAX_THREADS_SEM if not found or error
 osStatus os_SearchThreadSemaphoresExcept (osThreadId thread_id,osSemaphoreId semaphore_id, osSemaphoreId* semaphore_id_p, uint32_t* semaphore_p_p )
 {
 	uint32_t i, j;
@@ -915,4 +903,4 @@ osStatus os_SearchThreadSemaphoresExcept (osThreadId thread_id,osSemaphoreId sem
 	return osOK;
 }
 
-#endif     // Semaphore available
+

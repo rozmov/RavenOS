@@ -10,16 +10,26 @@
 
 #define MAX_STR_LEN       64  ///< Maximum length of a trace message
 #define MIN_TRACE_ARR_LEN  0  ///< Minimum size of the message buffer
-#define MEX_TRACE_ARR_LEN 50  ///< Maximum size of the message buffer
+#define MAX_TRACE_ARR_LEN 50  ///< Maximum size of the message buffer
 
-char trace_table[MEX_TRACE_ARR_LEN][MAX_STR_LEN]; ///< The message table.
+char trace_table[MAX_TRACE_ARR_LEN][MAX_STR_LEN]; ///< The message table.
 uint32_t trace_counter = MIN_TRACE_ARR_LEN;  ///< The message table counter.
 
-/*! \fn uint32_t incrementTraceCounter()
+/*! 
+    \brief Getter function for the current trace counter 
+		\return Returns current trace counter.
+*/
+uint32_t getTraceCounter(void)
+{
+	return trace_counter;
+}
+
+
+/*! 
     \brief Increment trace counter if trace table not full
 		\return Returns \ref TRACE_OK if successful and \ref TRACE_ERROR  otherwise.
 */
-uint32_t incrementTraceCounter()
+uint32_t incrementTraceCounter(void)
 {
 	if (trace_counter + 1 == MAX_STR_LEN)
 	{
@@ -30,11 +40,11 @@ uint32_t incrementTraceCounter()
 	return TRACE_OK;
 }
 
-/*! \fn uint32_t decrementTraceCounter()
+/*! 
     \brief Decrement trace counter if trace table not empty
 		\return Returns \ref TRACE_OK if successful and \ref TRACE_ERROR  otherwise.
 */
-uint32_t decrementTraceCounter()
+uint32_t decrementTraceCounter(void)
 {
 	if (trace_counter == MIN_TRACE_ARR_LEN)
 	{
@@ -46,7 +56,7 @@ uint32_t decrementTraceCounter()
 }
 
 
-/*! \fn uint32_t addTrace(char * message)
+/*! 
     \brief Add message to the trace table 
 		\param message Message to be added to the trace table, up to \ref MAX_STR_LEN characters
 		\return Returns \ref TRACE_OK if successful and \ref TRACE_ERROR otherwise.
@@ -70,7 +80,7 @@ uint32_t addTrace(char * message)
 }
 
 
-/*! \fn
+/*!
     \brief Dump messages from the trace table to output 
 */
 void dumpTrace(void)
@@ -83,4 +93,5 @@ void dumpTrace(void)
     idx++;		
 	}	
 }
+
 

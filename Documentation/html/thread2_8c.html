@@ -114,15 +114,15 @@ $(document).ready(function(){initNavTree('thread2_8c.html','');});
 
 <p>A thread that toggles the BLUE LED.  
 <a href="#details">More...</a></p>
-<div class="textblock"><code>#include &quot;<a class="el" href="cmsis__os_8h_source.html">cmsis_os.h</a>&quot;</code><br />
-<code>#include &quot;<a class="el" href="peripherals_8h_source.html">peripherals.h</a>&quot;</code><br />
+<div class="textblock"><code>#include &quot;<a class="el" href="peripherals_8h_source.html">peripherals.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="os_objects_8h_source.html">osObjects.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="trace_8h_source.html">trace.h</a>&quot;</code><br />
 </div><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
 <tr class="memitem:a611f7c8411b19f85c123f1714710526f"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a611f7c8411b19f85c123f1714710526f"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>osThreadDef</b> (<a class="el" href="thread2_8c.html#a1fcc06cb578bc7e8cd58f191f8bae643">thread2</a>, <a class="el" href="cmsis__os_8h.html#a7f2b42f1983b9107775ec2a1c69a849aa193b650117c209b4a203954542bcc3e6">osPriorityBelowNormal</a>, 1, 100)</td></tr>
+&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="thread2_8c.html#a611f7c8411b19f85c123f1714710526f">osThreadDef</a> (<a class="el" href="thread2_8c.html#a1fcc06cb578bc7e8cd58f191f8bae643">thread2</a>, <a class="el" href="cmsis__os_8h.html#a7f2b42f1983b9107775ec2a1c69a849aa193b650117c209b4a203954542bcc3e6">osPriorityBelowNormal</a>, 1, 100)</td></tr>
+<tr class="memdesc:a611f7c8411b19f85c123f1714710526f"><td class="mdescLeft">&#160;</td><td class="mdescRight">thread definition <br /></td></tr>
 <tr class="separator:a611f7c8411b19f85c123f1714710526f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a03bef279de31d91a79b14f31c4530dfc"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a03bef279de31d91a79b14f31c4530dfc"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="thread2_8c.html#a03bef279de31d91a79b14f31c4530dfc">task2</a> (void)</td></tr>
@@ -132,6 +132,10 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="thre
 int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="thread2_8c.html#ae8780d78ea250bba4edce3221a4acdc1">Init_thread2</a> (void)</td></tr>
 <tr class="memdesc:ae8780d78ea250bba4edce3221a4acdc1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initializing thread2. <br /></td></tr>
 <tr class="separator:ae8780d78ea250bba4edce3221a4acdc1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af6b5d59955df7c3c6e230eda03a66eab"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="af6b5d59955df7c3c6e230eda03a66eab"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="thread2_8c.html#af6b5d59955df7c3c6e230eda03a66eab">Terminate_thread2</a> (void)</td></tr>
+<tr class="memdesc:af6b5d59955df7c3c6e230eda03a66eab"><td class="mdescLeft">&#160;</td><td class="mdescRight">Terminating thread2. <br /></td></tr>
+<tr class="separator:af6b5d59955df7c3c6e230eda03a66eab"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1fcc06cb578bc7e8cd58f191f8bae643"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="thread2_8c.html#a1fcc06cb578bc7e8cd58f191f8bae643">thread2</a> (void const *argument)</td></tr>
 <tr class="memdesc:a1fcc06cb578bc7e8cd58f191f8bae643"><td class="mdescLeft">&#160;</td><td class="mdescRight">Thread definition for thread 2.  <a href="#a1fcc06cb578bc7e8cd58f191f8bae643">More...</a><br /></td></tr>
 <tr class="separator:a1fcc06cb578bc7e8cd58f191f8bae643"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -139,7 +143,8 @@ int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="threa
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="var-members"></a>
 Variables</h2></td></tr>
 <tr class="memitem:ab6cd2a9e7b8e0dbeba6d20735bcf6591"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ab6cd2a9e7b8e0dbeba6d20735bcf6591"></a>
-<a class="el" href="cmsis__os_8h.html#adfeb153a84a81309e2d958268197617f">osThreadId</a>&#160;</td><td class="memItemRight" valign="bottom"><b>tid_thread2</b></td></tr>
+<a class="el" href="cmsis__os_8h.html#adfeb153a84a81309e2d958268197617f">osThreadId</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="thread2_8c.html#ab6cd2a9e7b8e0dbeba6d20735bcf6591">tid_thread2</a></td></tr>
+<tr class="memdesc:ab6cd2a9e7b8e0dbeba6d20735bcf6591"><td class="mdescLeft">&#160;</td><td class="mdescRight">thread id <br /></td></tr>
 <tr class="separator:ab6cd2a9e7b8e0dbeba6d20735bcf6591"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
@@ -176,7 +181,7 @@ Variables</h2></td></tr>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="dir_2cfa845288836d0010190eddcc80c178.html">RTE</a></li><li class="navelem"><a class="el" href="dir_37d2205f15e85812ee2baf1e2f5dde11.html">RTOS</a></li><li class="navelem"><a class="el" href="dir_e18e8ca17cc8761131819f6fa843b03a.html">Source</a></li><li class="navelem"><a class="el" href="thread2_8c.html">thread2.c</a></li>
-    <li class="footer">Generated on Sun Aug 17 2014 06:00:40 for RavenOS by
+    <li class="footer">Generated on Sun Aug 24 2014 16:49:05 for RavenOS by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.7 </li>
   </ul>

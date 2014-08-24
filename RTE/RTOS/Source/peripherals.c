@@ -21,7 +21,7 @@
 */
 volatile uint32_t counter ;
 
-/*! \fn void LED_initialize(void)
+/*! 
     \brief Initializing the LEDs : RED, BLUE, GREN
 */
 void LED_initialize(void)
@@ -39,9 +39,9 @@ void LED_initialize(void)
 }
 
 // -------------------------------------------------------------------------
-/*! \fn void LED_blink( uint32_t led )
+/*!
     \brief Toggle a colour of the RGB LED
-    \param led The LED colour to toggle (LED_RED, LED_GREEN, LED_BLUE)
+    \param id The LED to toggle (LED0, LED1, LED2)
 */
 void LED_blink( uint32_t id )
 {
@@ -74,7 +74,7 @@ void LED_blink( uint32_t id )
   }
 }
  
-/*! \fn void count1Sec(void)
+/*! 
     \brief Keep the processor busy for 1s by incrementing a counter.
 */
 void count1Sec(void)
@@ -88,7 +88,7 @@ void count1Sec(void)
 }
 
 // -------------------------------------------------------------------------
-/*! \fn void UART_initialize(void)
+/*!
     \brief Initializing UART for printing to serial console
     \details Use the CMSIS Driver implementation of the USART to initialize UART0.
 */

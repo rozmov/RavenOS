@@ -127,7 +127,6 @@ Macros</h2></td></tr>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
 <tr class="memitem:a9db4b1e27dc5009b45d6e85ccc401960"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="threads_8c.html#a9db4b1e27dc5009b45d6e85ccc401960">os_ThreadRemoveThread</a> (<a class="el" href="cmsis__os_8h.html#adfeb153a84a81309e2d958268197617f">osThreadId</a> thread_id)</td></tr>
-<tr class="memdesc:a9db4b1e27dc5009b45d6e85ccc401960"><td class="mdescLeft">&#160;</td><td class="mdescRight">Remove thread from all the lists.  <a href="#a9db4b1e27dc5009b45d6e85ccc401960">More...</a><br /></td></tr>
 <tr class="separator:a9db4b1e27dc5009b45d6e85ccc401960"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac59b5713cb083702dce759c73fd90dff"><td class="memItemLeft" align="right" valign="top"><a class="el" href="cmsis__os_8h.html#adfeb153a84a81309e2d958268197617f">osThreadId</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="threads_8c.html#ac59b5713cb083702dce759c73fd90dff">osThreadCreate</a> (const <a class="el" href="cmsis__os_8h.html#ac2c70c6eaadffd0e8bfb9c47485e80c1">osThreadDef_t</a> *thread_def, void *argument)</td></tr>
 <tr class="separator:ac59b5713cb083702dce759c73fd90dff"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -171,7 +170,7 @@ uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>This file defines thread implementation using the CMSIS interface. </p>
-<p>Defines thread defienition, creation and attributes manipulation. </p>
+<p>Thread definition, creation and attributes manipulation. </p>
 </div><h2 class="groupheader">Macro Definition Documentation</h2>
 <a class="anchor" id="aee93d929beb350f16e5cc7fa602e229f"></a>
 <div class="memitem">
@@ -210,7 +209,7 @@ uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="
 </div><div class="memdoc">
 <b>Value:</b><div class="fragment"><div class="line"><span class="keyword">const</span> <a class="code" href="structos__thread__def.html">osThreadDef_t</a> os_thread_def_##name = \</div>
 <div class="line">{ (name), (priority), (instances), (stacksz)  }</div>
-<div class="ttc" id="structos__thread__def_html"><div class="ttname"><a href="structos__thread__def.html">os_thread_def</a></div><div class="ttdef"><b>Definition:</b> cmsis_os.h:304</div></div>
+<div class="ttc" id="structos__thread__def_html"><div class="ttname"><a href="structos__thread__def.html">os_thread_def</a></div><div class="ttdef"><b>Definition:</b> cmsis_os.h:307</div></div>
 </div><!-- fragment --><p>Create a Thread Definition with function, priority, and stack requirements. </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">name</td><td>name of the thread function. </td></tr>
@@ -238,11 +237,9 @@ uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p>Remove thread from all the lists. </p>
-<dl class="params"><dt>Parameters</dt><dd>
+<p>Remove thread from all the lists. </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">thread_idx</td><td>Thread ID of the thread to remove </td></tr>
+    <tr><td class="paramname">thread_id</td><td>Thread ID of the thread to remove </td></tr>
   </table>
   </dd>
 </dl>
@@ -281,7 +278,7 @@ uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>thread ID for reference by other functions or NULL in case of error. </dd></dl>
 <dl class="section note"><dt>Note</dt><dd>MUST REMAIN UNCHANGED: <b>osThreadCreate</b> shall be consistent in every CMSIS-RTOS. </dd></dl>
-<p>If we are instantiating a thread and there is still room in the thread queue, add the thread to the queue.</p>
+<p>If there is still room in the thread queue, add the thread to the queue.</p>
 <p>Ready-to-Run </p>
 
 </div>
@@ -411,7 +408,7 @@ uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="dir_2cfa845288836d0010190eddcc80c178.html">RTE</a></li><li class="navelem"><a class="el" href="dir_37d2205f15e85812ee2baf1e2f5dde11.html">RTOS</a></li><li class="navelem"><a class="el" href="dir_e18e8ca17cc8761131819f6fa843b03a.html">Source</a></li><li class="navelem"><a class="el" href="threads_8c.html">threads.c</a></li>
-    <li class="footer">Generated on Sun Aug 17 2014 06:00:40 for RavenOS by
+    <li class="footer">Generated on Sun Aug 24 2014 16:49:05 for RavenOS by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.7 </li>
   </ul>

@@ -7,9 +7,9 @@
 #include "osObjects.h"
 #include "trace.h"
 
-osThreadDef (thread2, osPriorityBelowNormal, 1, 100);
+osThreadDef (thread2, osPriorityBelowNormal, 1, 100);  ///< thread definition
 
-osThreadId tid_thread2;                                          ///< thread id
+osThreadId tid_thread2;                                ///< thread id
 void task2(void);
 
 /*! \fn int Init_thread2 (void)
@@ -17,14 +17,14 @@ void task2(void);
 */
 int Init_thread2 (void) 
 {
+	if (addTrace("thread2 terminate attempt") != TRACE_OK)
+	{
+		stop_cpu;
+	}	
+	
   tid_thread2 = osThreadCreate (osThread(thread2), NULL);
   if(!tid_thread2) return(-1);
   
-	if (addTrace("thread2 init") != TRACE_OK)
-	{
-		stop_cpu;
-	}
-	
   return(0);
 }
 
@@ -68,13 +68,21 @@ void thread2 (void const *argument)
 		{
 			stop_cpu;
 		}			
-    if ( osSemaphoreWait (sid_Semaphore0, 200) != -1 ) // wait 20 mSec
-		{		
-			task2(); // thread code 
+    if ( osSemaphoreWait (sid_Semaphore0, osWaitForever) != -1 ) // wait forever
+		{					 
 			if (addTrace("thread2 take sem0 success; now releasing") != TRACE_OK)
 			{
 				stop_cpu;
 			}	
+			
+			task2(); // thread code
+			count1Sec();
+			task2();
+			
+			if (addTrace("thread2 release sem0 attempt") != TRACE_OK)
+			{
+				stop_cpu;
+			}				
 			if (osSemaphoreRelease (sid_Semaphore0) != osOK)
 			{
 				if (addTrace("thread2 release sem0 fail") != TRACE_OK)
@@ -91,37 +99,11 @@ void thread2 (void const *argument)
 			}				
 		}
 
-//		count1Sec();
-				
-//    // This should terminate the current thread0 thread		
-//		if (Terminate_thread0() != 0)
-//		{
-//			while(1)
-//			{		
-//					// Should not be here
-//			}			
-//		}
-//		
-//		// This should create a new thread0 thread
-//		if (Init_thread0() != 0)
-//		{
-//			while(1)
-//			{		
-//					// Should not be here
-//			}
-//		}
-
 		if (addTrace("thread2 set priority to osPriorityBelowNormal") != TRACE_OK)
 		{
 			stop_cpu;
 		}		
 		osThreadSetPriority(osThreadGetId(), osPriorityBelowNormal);
-		
-		if (addTrace("thread2 set priority of thread3 to osPriorityNormal") != TRACE_OK)
-		{
-			stop_cpu;
-		}
-		osThreadSetPriority(tid_thread3, osPriorityNormal);
 		
 		if (addTrace("thread2 yields") != TRACE_OK)
 		{
@@ -137,10 +119,7 @@ void thread2 (void const *argument)
 		// This should terminate the current thread2 thread		
 		if (Terminate_thread2() != 0)
 		{
-			while(1)
-			{		
-					// Should not be here
-			}			
+			stop_cpu;		
 		}
 		
   }

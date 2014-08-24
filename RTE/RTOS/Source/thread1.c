@@ -7,7 +7,7 @@
 #include "osObjects.h"
 #include "trace.h"
 
-osThreadDef (thread1, osPriorityBelowNormal, 1, 100);
+osThreadDef (thread1, osPriorityBelowNormal, 1, 100);  ///< thread definition
 
 osThreadId tid_thread1;     ///< thread id
 void task1(void);
@@ -17,13 +17,13 @@ void task1(void);
 */
 int Init_thread1 (void) 
 {
-  tid_thread1 = osThreadCreate (osThread(thread1), NULL);
-  if(!tid_thread1) return(-1);
-  
-	if (addTrace("thread1 init") != TRACE_OK)
+	if (addTrace("thread1 terminate attempt") != TRACE_OK)
 	{
 		stop_cpu;
-	}
+	}	
+	
+  tid_thread1 = osThreadCreate (osThread(thread1), NULL);
+  if(!tid_thread1) return(-1);
 	
   return(0);
 }
@@ -68,13 +68,21 @@ void thread1 (void const *argument)
 		{
 			stop_cpu;
 		}			
-    if ( osSemaphoreWait (sid_Semaphore0, 100) != -1 ) // wait mSec
-		{		
-			task1(); // thread code 
-			if (addTrace("thread1 take sem0 success; now releasing") != TRACE_OK)
+    if ( osSemaphoreWait (sid_Semaphore0, 1100) != -1 ) // wait mSec
+		{					
+			if (addTrace("thread1 take sem0 success") != TRACE_OK)
 			{
 				stop_cpu;
 			}	
+			
+			task1(); // thread code 
+  		count1Sec();			
+			task1();
+			
+			if (addTrace("thread1 release sem0 attempt") != TRACE_OK)
+			{
+				stop_cpu;
+			}				
 			if (osSemaphoreRelease (sid_Semaphore0) != osOK)
 			{
 				if (addTrace("thread1 release sem0 fail") != TRACE_OK)
@@ -89,10 +97,7 @@ void thread1 (void const *argument)
 			{
 				stop_cpu;
 			}				
-		}
-
-//		count1Sec();
-		
+		}	
 		
 		if (addTrace("thread1 set thread0 priority to osPriorityNormal") != TRACE_OK)
 		{

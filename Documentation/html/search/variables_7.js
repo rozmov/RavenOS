@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['queue_5fsz',['queue_sz',['../structos__message_q__def.html#a8a83a3a8c0aa8057b13807d2a54077e0',1,'os_messageQ_def::queue_sz()'],['../structos__mail_q__def.html#a8a83a3a8c0aa8057b13807d2a54077e0',1,'os_mailQ_def::queue_sz()']]]
+  ['next_5ftask',['next_task',['../scheduler_8c.html#a2b9b764bed89b62bc2b1edf3f157fb5c',1,'scheduler.c']]]
 ];

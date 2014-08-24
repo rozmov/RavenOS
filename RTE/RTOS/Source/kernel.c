@@ -17,9 +17,9 @@
 	
 #define os_sysTickTicks 16000 ///< Number of ticks between two system timer interrupts. This would generate 1000 interruts/s on a 16MHz clock.
 
-void __svc(0x00) os_start(void);              ///< OS start scheduler
-void __svc(0x01) thread_yield(void);          ///< Thread needs to schedule a switch of context
-void __svc(0x02) stack_alloc(int thread_idx); ///< Initialize the process stack pointer PSP_array[thread_idx]
+void __svc(0x00) os_start(void);              // OS start scheduler
+void __svc(0x01) thread_yield(void);          // Thread needs to schedule a switch of context
+void __svc(0x02) stack_alloc(int thread_idx); // Initialize the process stack pointer PSP_array[thread_idx]
 void SVC_Handler_C(unsigned int * svc_args);
 void HardFault_Handler_C(unsigned int * svc_args);
 void ScheduleContextSwitch(void);
@@ -100,7 +100,6 @@ uint32_t osKernelSysTick (void)
 
 #endif    // System Timer available
 
-/// \fn void os_KernelInvokeScheduler (void)
 /// \brief Perform an SVC call to invoke scheduler.
 void os_KernelInvokeScheduler (void)
 {
@@ -108,7 +107,6 @@ void os_KernelInvokeScheduler (void)
   return ;
 }
 
-/// \fn void os_KernelStackAlloc (void)
 /// \brief Perform an SVC call to allocate stack for a thread
 /// \param thread_idx The thread index in the PSP table to initialize
 void os_KernelStackAlloc (uint32_t thread_idx)
@@ -119,7 +117,7 @@ void os_KernelStackAlloc (uint32_t thread_idx)
 
 
 // -------------------------------------------------------------------------
-/*! \fn __asm void SVC_Handler(void)
+/*! 
     \brief SVC exception handler
     \details Extracts the stack frame location, saves the current EXC_RETURN, 
     runs the C part of the handler, and restores the new EXC_RETURN.
@@ -139,7 +137,7 @@ __asm void SVC_Handler(void)
   ALIGN  4
 }
 
-/*! \fn void SVC_Handler_C(unsigned int * svc_args)
+/*! 
     \brief C part of the SVC exception handler
 
      SVC 0 is initializing the OS and starting the scheduler.
@@ -224,7 +222,7 @@ void SVC_Handler_C(unsigned int * svc_args)
 }	
 
 // -------------------------------------------------------------------------
-/*! \fn __asm void PendSV_Handler(void)
+/*! 
     \brief Handles context switch.
 
      Saves the current process context (stack, registers, pointer to stack).
@@ -261,7 +259,7 @@ __asm void PendSV_Handler(void)
   ALIGN  4
 }
 // -------------------------------------------------------------------------
-/*! \fn void SysTick_Handler(void)
+/*! 
     \brief Invokes the scheduler
 
      Increment systick counter, invoke scheduler and flag any context switching needed for PendSV to take care of.
@@ -295,7 +293,7 @@ void ScheduleContextSwitch(void)
 
 
 // -------------------------------------------------------------------------
-/*! \fn __asm void HardFault_Handler(void)
+/*! 
     \brief Report HardFault when things goes wrong
 */
 __asm void HardFault_Handler(void) 
@@ -307,7 +305,7 @@ __asm void HardFault_Handler(void)
   B      __cpp(HardFault_Handler_C)
 }	
 
-/*! \fn void HardFault_Handler_C(unsigned int * svc_args)
+/*!
     \brief C part of the handler
 
      Printing process ID, processes stacks and stacked PC

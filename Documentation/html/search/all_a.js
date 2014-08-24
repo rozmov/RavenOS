@@ -1,14 +1,11 @@
 var searchData=
 [
-  ['mail_5fid',['mail_id',['../structos_event.html#ac86175a4b1706bee596f3018322df26e',1,'osEvent']]],
-  ['main',['main',['../main_8c.html#a840291bc02cba5474a4cb46a9b9566fe',1,'main.c']]],
-  ['main_2ec',['main.c',['../main_8c.html',1,'']]],
-  ['max_5fcount',['MAX_COUNT',['../peripherals_8c.html#ae14eaaed1fe7cdf491da54a714c426b3',1,'peripherals.c']]],
-  ['max_5fsemaphores',['MAX_SEMAPHORES',['../cmsis__os_8h.html#a7d834905005d33312c6c3fc264247ab5',1,'cmsis_os.h']]],
-  ['max_5fstr_5flen',['MAX_STR_LEN',['../trace_8c.html#a58ce36916c399104e18d32ff090f21c6',1,'trace.c']]],
-  ['max_5fthreads',['MAX_THREADS',['../threads_8h.html#a8b5173357adb02a86c027316e0acdfa0',1,'threads.h']]],
-  ['max_5fthreads_5fsem',['MAX_THREADS_SEM',['../semaphores_8h.html#a028b23dd8de6ebbc0cea39cac48ab2a3',1,'semaphores.h']]],
-  ['message_5fid',['message_id',['../structos_event.html#af394cbe21dde7377974e63af38cd87b0',1,'osEvent']]],
-  ['mex_5ftrace_5farr_5flen',['MEX_TRACE_ARR_LEN',['../trace_8c.html#af6f42601b8df266d856492e0182f747a',1,'trace.c']]],
-  ['min_5ftrace_5farr_5flen',['MIN_TRACE_ARR_LEN',['../trace_8c.html#a817e4ed18d4c052f1bf9bd7f8261e954',1,'trace.c']]]
+  ['led0',['LED0',['../peripherals_8h.html#ae8d5b4e7e2d9d21caaa4744d385d7cc7',1,'peripherals.h']]],
+  ['led1',['LED1',['../peripherals_8h.html#a8aa85ae9867fabf70ec72cd3bf6fb6b9',1,'peripherals.h']]],
+  ['led2',['LED2',['../peripherals_8h.html#ad09fe5bf321b9a2de26bd5e5b9af6424',1,'peripherals.h']]],
+  ['led_5fblink',['LED_blink',['../peripherals_8h.html#a0e456ffdaacb58c029dfd606fa350c36',1,'LED_blink(uint32_t led):&#160;peripherals.c'],['../peripherals_8c.html#a148e57ed8da14984f743a7b120b1d489',1,'LED_blink(uint32_t id):&#160;peripherals.c']]],
+  ['led_5fblue',['LED_BLUE',['../peripherals_8c.html#ae2e40566d27689f8581d7b0f12271d45',1,'peripherals.c']]],
+  ['led_5fgreen',['LED_GREEN',['../peripherals_8c.html#aca338dbd19d7940923334629f6e5f3b7',1,'peripherals.c']]],
+  ['led_5finitialize',['LED_initialize',['../peripherals_8h.html#a1a20b70d3e6a3181b0f9c75f371d8ded',1,'LED_initialize(void):&#160;peripherals.c'],['../peripherals_8c.html#a1a20b70d3e6a3181b0f9c75f371d8ded',1,'LED_initialize(void):&#160;peripherals.c']]],
+  ['led_5fred',['LED_RED',['../peripherals_8c.html#a31e20330f8ce94e0dd10b005a15c5898',1,'peripherals.c']]]
 ];
