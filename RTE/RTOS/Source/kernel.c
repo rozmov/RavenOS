@@ -161,7 +161,7 @@ void SVC_Handler_C(unsigned int * svc_args)
 			th_q[curr_task]->status = TH_RUNNING;
 		  if (PSP_array[curr_task] == NULL)
 			{
-				//printf("ERROR: Stack not allocated for current task (task %u), allocating. \n\r", curr_task);
+				// Stack not allocated for current task, allocating
 				i = curr_task;
 				th_q[i]->stack_p = (uint32_t) task_stack[i];
 				PSP_array[i] = ((unsigned int) th_q[i]->stack_p) + (th_q[i]->stack_size) - 18*4;
@@ -179,6 +179,7 @@ void SVC_Handler_C(unsigned int * svc_args)
       NVIC_SetPriority(PendSV_IRQn, 0xFF);       // Set PendSV to lowest possible priority
       if (SysTick_Config(os_sysTickTicks) != 0)  // 1000 Hz SysTick interrupt on 16MHz core clock
 			{
+				stop_cpu2;
 				//printf("ERROR: Impossible SysTick_Config number of ticks\n\r");
 			}
       __set_CONTROL(0x3);                  // Switch to use Process Stack, unprivileged state

@@ -19,7 +19,7 @@ int main(void)
 	
 	// initialize peripherals
 	UART_initialize();
-  printf("RavenOS demo\n\r");
+  printf("\n\rRavenOS demo\n\r");
   LED_initialize(); 
 	
 	printf("Initializing threads\n\r");

@@ -6,13 +6,14 @@
 #include "trace.h"
 #include "osObjects.h"
 
-osThreadDef (thread3, osPriorityBelowNormal, 1, 100);
+osThreadDef (thread3, osPriorityLow, 1, 100);
 
 osThreadId tid_thread3;   ///< thread3 id
 void task3(void);
 
 /*! \fn int Init_thread3 (void)
     \brief Initializing thread 3
+		\return 0=successful; -1=failure
 */
 int Init_thread3 (void) 
 {
@@ -23,6 +24,21 @@ int Init_thread3 (void)
 	{
 		stop_cpu;
 	}
+  return(0);
+}
+
+/*! \fn int Terminate_thread3 (void) 
+    \brief Terminating thread3
+		\return 0=successful; -1=failure
+*/
+int Terminate_thread3 (void) 
+{	
+	dumpTrace();
+	
+	if (osThreadTerminate(tid_thread3) != osOK)
+	{		
+		return(-1);
+	}		
   return(0);
 }
 
@@ -37,16 +53,16 @@ void thread3 (void const *argument)
 		stop_cpu;
 	}
 	
-  while (1) 
+  while (1) /// \todo may need a throttle mechanism in place to stop this thread from running if no other thread (but Idle) present
 	{
     task3(); // thread code 
 		
 		// give a chance to the other tasks to run now
-		if (addTrace("thread3 set priority to osPriorityBelowNormal") != TRACE_OK)
+		if (addTrace("thread3 set priority to osPriorityLow") != TRACE_OK)
 		{
 			stop_cpu;
 		}		
-		osThreadSetPriority(osThreadGetId(), osPriorityBelowNormal);
+		osThreadSetPriority(osThreadGetId(), osPriorityLow);
 		
 		if (addTrace("thread3 set priority of thread0 to osPriorityNormal") != TRACE_OK)
 		{

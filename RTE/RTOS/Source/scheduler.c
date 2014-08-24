@@ -140,69 +140,73 @@ osStatus os_ReevaluateThread(osThreadId thread_id)
 {
 	uint32_t semaphore_p;
 	osSemaphoreId semaphore_id;
-	//sanity
-		if ( thread_id->semaphore_id == NULL)
-		{
-			return osErrorParameter;
-		}
+
+	if ( thread_id == NULL)
+	{
+		return osErrorParameter;
+	}	
+	if ( thread_id->semaphore_id == NULL)
+	{
+		return osErrorParameter;
+	}
+	
+	if (thread_id->semaphore_p == MAX_THREADS_SEM)
+	{
+		return osErrorParameter;				
+	}
 		
-		if (thread_id->semaphore_p == MAX_THREADS_SEM)
-		{
-			return osErrorParameter;				
-		}
+	semaphore_id = thread_id->semaphore_id;
+	semaphore_p  = thread_id->semaphore_p;
+				
+	//check if the semaphore is free
+	if (semaphore_id->threads_own_q_cnt < semaphore_id->ownCount )
+	{
+		// give the thread a chance to run 
+		thread_id->status = TH_READY;
+		return osOK;
+	}
+	
+	// if it can wait forever, continue with the next thread
+	if (osWaitForever == semaphore_id->threads_q[semaphore_p].expiryTime &&
+			osWaitForever == semaphore_id->threads_q[semaphore_p].ticks)
+	{
+		return osOK;
+	}
+	else // check if time expired
+	if (osKernelSysTick() == semaphore_id->threads_q[semaphore_p].expiryTime &&
+			0 == semaphore_id->threads_q[semaphore_p].ticks)
+	{			
+//		if ( os_RemoveThreadFromSemaphoreBlockedQ(thread_id, semaphore_id) != osOK)
+//		{
+//			return osErrorTimeoutResource;
+//		}
 		
-		semaphore_id = thread_id->semaphore_id;
-		semaphore_p  = thread_id->semaphore_p;
-					
-		//check if the semaphore is free
-		if (semaphore_id->threads_own_q_cnt < semaphore_id->ownCount )
-		{
-			// give the thread a chance to run 
-			thread_id->status = TH_READY;
-			return osOK;
-		}
-		
-		// if it can wait forever, continue with the next thread
-		if (osWaitForever == semaphore_id->threads_q[semaphore_p].expiryTime &&
-			  osWaitForever == semaphore_id->threads_q[semaphore_p].ticks)
-		{
-			return osOK;
-		}
-		else // check if time expired
-		if (osKernelSysTick() == semaphore_id->threads_q[semaphore_p].expiryTime &&
-			  0 == semaphore_id->threads_q[semaphore_p].ticks)
-		{			
-			if ( os_RemoveThreadFromSemaphoreBlockedQ(thread_id, semaphore_id) != osOK)
-			{
-				return osErrorTimeoutResource;
-			}
-			
-			if ( os_SearchThreadAllSemaphoresBlockedQ(thread_id, &semaphore_id, &semaphore_p) == osOK)
-			{
-				if (semaphore_p == MAX_THREADS_SEM)
-				{
-					// unblock thread 
-					thread_id->status = TH_READY;	
-					return osOK;
-				}
-				else
-				{
-					thread_id->semaphore_id = semaphore_id;
-					thread_id->semaphore_p  = semaphore_p;
-					return osOK;
-				}					
-			}
-			else
-			{
+//		if ( os_SearchThreadAllSemaphoresBlockedQ(thread_id, &semaphore_id, &semaphore_p) == osOK)
+//		{
+//			if (semaphore_p == MAX_THREADS_SEM)
+//			{
+				// unblock thread 
+				thread_id->status = TH_READY;	
 				return osOK;
-			}						
-		}		
-		else // time did not expire yet, reduce the number of ticks
+//			}
+//			else
+//			{
+//				thread_id->semaphore_id = semaphore_id;
+//				thread_id->semaphore_p  = semaphore_p;
+//				return osOK;
+//			}					
+//		}
+//		else
+//		{
+//			return osOK;
+//		}						
+	}		
+	else // time did not expire yet, reduce the number of ticks
+	{
+		if (0 < semaphore_id->threads_q[semaphore_p].ticks)
 		{
-			if (0 < semaphore_id->threads_q[semaphore_p].ticks)
-			{
-				semaphore_id->threads_q[semaphore_p].ticks--;
-			}
-			return osOK;
+			semaphore_id->threads_q[semaphore_p].ticks--;
 		}
+		return osOK;
+	}
 }

@@ -26,8 +26,7 @@ int Init_thread0 (void)
 	
 	if (addTrace("thread0 init") != TRACE_OK)
 	{
-		dumpTrace();
-		addTrace("thread0 init");
+		stop_cpu;
 	}
 	
   return(0);
@@ -35,6 +34,7 @@ int Init_thread0 (void)
 
 /*! \fn int Terminate_thread0 (void) 
     \brief Terminating thread0
+		\return 0=successful; -1=failure
 */
 int Terminate_thread0 (void) 
 {	
@@ -42,16 +42,14 @@ int Terminate_thread0 (void)
 	{
 		if (addTrace("could not terminate thread0") != TRACE_OK)
 		{
-			dumpTrace();
-			addTrace("could not terminate thread0") ;
+			stop_cpu;
 		}			
 		return(-1);
 	}
 
 	if (addTrace("terminated thread0") != TRACE_OK)
 	{
-		dumpTrace();
-		addTrace("terminated thread0") ;
+		stop_cpu;
 	}		
   return(0);
 }
@@ -146,6 +144,15 @@ void thread0 (void const *argument)
 			stop_cpu;
 		}		
 		
+		if (addTrace("thread0 delete sem0") != TRACE_OK)
+		{
+			stop_cpu;
+		}				
+		if (Delete_Semaphore0() != 0)
+		{
+			stop_cpu;
+		}			
+				
     // This should terminate the current thread0 thread		
 		if (Terminate_thread0() != 0)
 		{

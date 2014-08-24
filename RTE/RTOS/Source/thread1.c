@@ -98,7 +98,7 @@ void thread1 (void const *argument)
 		{
 			stop_cpu;
 		}			
-		osThreadSetPriority(tid_thread2, osPriorityNormal);
+		osThreadSetPriority(tid_thread0, osPriorityNormal);
 				
 		if (addTrace("thread1 yields") != TRACE_OK)
 		{
