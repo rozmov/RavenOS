@@ -57,7 +57,7 @@ var searchData=
   ['osfeature_5fsignals',['osFeature_Signals',['../cmsis__os_8h.html#a01edde265710d883b6e237d34a6ef4a6',1,'cmsis_os.h']]],
   ['osfeature_5fsystick',['osFeature_SysTick',['../cmsis__os_8h.html#ae554ec16c23c5b7d65affade2a351891',1,'cmsis_os.h']]],
   ['osfeature_5fwait',['osFeature_Wait',['../cmsis__os_8h.html#a6c97d38879ae86491628f6e647639bad',1,'cmsis_os.h']]],
-  ['oskernelinitialize',['osKernelInitialize',['../cmsis__os_8h.html#a53d078a801022e202e8115c083ece68e',1,'kernel.c']]],
+  ['oskernelinitialize',['osKernelInitialize',['../cmsis__os_8h.html#a53d078a801022e202e8115c083ece68e',1,'cmsis_os.h']]],
   ['oskernelrunning',['osKernelRunning',['../cmsis__os_8h.html#a3b571de44cd3094c643247a7397f86b5',1,'osKernelRunning(void):&#160;kernel.c'],['../kernel_8c.html#a3b571de44cd3094c643247a7397f86b5',1,'osKernelRunning(void):&#160;kernel.c']]],
   ['oskernelstart',['osKernelStart',['../cmsis__os_8h.html#aab668ffd2ea76bb0a77ab0ab385eaef2',1,'osKernelStart(void):&#160;kernel.c'],['../kernel_8c.html#aab668ffd2ea76bb0a77ab0ab385eaef2',1,'osKernelStart(void):&#160;kernel.c']]],
   ['oskernelsystemid',['osKernelSystemId',['../cmsis__os_8h.html#a47cf03658f01cdffca688e9096b58289',1,'cmsis_os.h']]],

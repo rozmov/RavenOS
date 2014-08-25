@@ -12,7 +12,7 @@ osThreadDef (thread2, osPriorityBelowNormal, 1, 100);  ///< thread definition
 osThreadId tid_thread2;                                ///< thread id
 void task2(void);
 
-/*! \fn int Init_thread2 (void)
+/*! 
     \brief Initializing thread2
 */
 int Init_thread2 (void) 
@@ -28,7 +28,7 @@ int Init_thread2 (void)
   return(0);
 }
 
-/*! \fn int Terminate_thread2 (void) 
+/*!  
     \brief Terminating thread2
 */
 int Terminate_thread2 (void) 
@@ -50,7 +50,7 @@ int Terminate_thread2 (void)
   return(0);
 }
 
-/*! \fn void thread2 (void const *argument)
+/*! 
     \brief Thread definition for thread 2.
     \param argument A pointer to the list of arguments.
 */
@@ -125,7 +125,7 @@ void thread2 (void const *argument)
 }
 
 // -------------------------------------------------------------------------
-/*! \fn void task2(void)
+/*! 
     \brief Toggle LED #2
 */
 void task2(void)

@@ -11,7 +11,7 @@ osThreadDef (thread3, osPriorityLow, 1, 100);  ///< thread definition
 osThreadId tid_thread3;   ///< thread3 id
 void task3(void);
 
-/*! \fn int Init_thread3 (void)
+/*! 
     \brief Initializing thread 3
 		\return 0=successful; -1=failure
 */
@@ -28,7 +28,7 @@ int Init_thread3 (void)
   return(0);
 }
 
-/*! \fn int Terminate_thread3 (void) 
+/*!  
     \brief Terminating thread3
 		\return 0=successful; -1=failure
 */
@@ -43,7 +43,7 @@ int Terminate_thread3 (void)
   return(0);
 }
 
-/*! \fn void thread3 (void const *argument)
+/*! 
     \brief Thread definition for thread 3.
     \param argument A pointer to the list of arguments.
 */
@@ -82,7 +82,7 @@ void thread3 (void const *argument)
 }
 
 // -------------------------------------------------------------------------
-/*! \fn void task3(void)
+/*! 
     \brief Print trace information to UART
 */
 void task3(void)

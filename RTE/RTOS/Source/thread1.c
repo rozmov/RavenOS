@@ -12,7 +12,7 @@ osThreadDef (thread1, osPriorityBelowNormal, 1, 100);  ///< thread definition
 osThreadId tid_thread1;     ///< thread id
 void task1(void);
 
-/*! \fn int Init_thread1 (void)
+/*! 
     \brief Initializing thread1
 */
 int Init_thread1 (void) 
@@ -49,7 +49,7 @@ int Terminate_thread1 (void)
   return(0);
 }
 
-/*! \fn void thread1 (void const *argument)
+/*! 
     \brief Thread definition for thread 1.
     \param argument A pointer to the list of arguments.
 */
@@ -126,7 +126,7 @@ void thread1 (void const *argument)
 }
 
 // -------------------------------------------------------------------------
-/*! \fn void task1(void)
+/*! 
     \brief Toggle LED #1
 */
 void task1(void)

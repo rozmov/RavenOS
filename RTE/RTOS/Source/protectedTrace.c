@@ -31,10 +31,6 @@ uint32_t addTraceProtected(char * message)
 	
 	if ( osSemaphoreWait (sid_Semaphore1, osWaitForever) != -1 ) // wait forever
 	{					 
-//		if (addTrace(" take sem1 success") != TRACE_OK)
-//		{
-//			stop_cpu;
-//		}	
 		
 		if (addTrace(message) != TRACE_OK)
 		{

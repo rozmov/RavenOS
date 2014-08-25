@@ -40,7 +40,6 @@ uint32_t kernel_busy = 0;            ///< flag whether the kernel is busy or not
 
 //  ==== Kernel Control Functions ====
 
-/// \fn osStatus osKernelInitialize (void)
 /// \brief Initialize the RTOS Kernel for creating objects.
 /// \return status code that indicates the execution status of the function.
 /// \note MUST REMAIN UNCHANGED: \b osKernelInitialize shall be consistent in every CMSIS-RTOS.
@@ -67,7 +66,6 @@ osStatus osKernelInitialize (void)
 	return osOK;
 }
 
-/// \fn osStatus osKernelStart (void)
 /// \brief Start the RTOS Kernel.
 /// \return status code that indicates the execution status of the function.
 /// \note MUST REMAIN UNCHANGED: \b osKernelStart shall be consistent in every CMSIS-RTOS.
@@ -78,7 +76,6 @@ osStatus osKernelStart (void)
 	return osOK;
 }
 
-/// \fn int32_t osKernelRunning(void)
 /// \brief Check if the RTOS kernel is already started.
 /// \note MUST REMAIN UNCHANGED: \b osKernelRunning shall be consistent in every CMSIS-RTOS.
 /// \return 0 RTOS is not started, 1 RTOS is started.
@@ -89,7 +86,6 @@ int32_t osKernelRunning(void)
 
 #if (defined (osFeature_SysTick)  &&  (osFeature_SysTick != 0))     // System Timer available
 
-/// \fn uint32_t osKernelSysTick (void)
 /// \brief Get the RTOS kernel system timer counter 
 /// \note MUST REMAIN UNCHANGED: \b osKernelSysTick shall be consistent in every CMSIS-RTOS.
 /// \return RTOS kernel system timer as 32-bit value 
@@ -114,7 +110,6 @@ void os_KernelStackAlloc (uint32_t thread_idx)
 	stack_alloc(thread_idx);
   return ;
 }
-
 
 // -------------------------------------------------------------------------
 /*! 
@@ -178,7 +173,7 @@ void SVC_Handler_C(unsigned int * svc_args)
       if (SysTick_Config(os_sysTickTicks) != 0)  // 1000 Hz SysTick interrupt on 16MHz core clock
 			{
 				stop_cpu2;
-				//printf("ERROR: Impossible SysTick_Config number of ticks\n\r");
+				// Impossible SysTick_Config number of ticks
 			}
       __set_CONTROL(0x3);                  // Switch to use Process Stack, unprivileged state
       __ISB();       // Execute ISB after changing CONTROL (architectural recommendation)			
@@ -317,8 +312,6 @@ void HardFault_Handler_C(unsigned int * svc_args)
 //	uint32_t i;
 	
 //  printf("[HardFault]\n\r");
-//	printf("Buffered trace:\n\r");
-//	dumpTrace();
 //	printf("Environment:\n\r");
 //  printf ("curr_task = %d\n\r", curr_task);
 //  printf ("next_task = %d\n\r", next_task);

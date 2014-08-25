@@ -17,7 +17,7 @@ var searchData=
   ['os_5fthreadgetnextthread',['os_ThreadGetNextThread',['../scheduler_8c.html#aef04ef03a005f71eeff67c31624a251b',1,'scheduler.c']]],
   ['os_5fthreadremovethread',['os_ThreadRemoveThread',['../threads_8c.html#a9db4b1e27dc5009b45d6e85ccc401960',1,'threads.c']]],
   ['osdelay',['osDelay',['../cmsis__os_8h.html#a02e19d5e723bfb06ba9324d625162255',1,'cmsis_os.h']]],
-  ['oskernelinitialize',['osKernelInitialize',['../cmsis__os_8h.html#a53d078a801022e202e8115c083ece68e',1,'kernel.c']]],
+  ['oskernelinitialize',['osKernelInitialize',['../cmsis__os_8h.html#a53d078a801022e202e8115c083ece68e',1,'cmsis_os.h']]],
   ['oskernelrunning',['osKernelRunning',['../cmsis__os_8h.html#a3b571de44cd3094c643247a7397f86b5',1,'osKernelRunning(void):&#160;kernel.c'],['../kernel_8c.html#a3b571de44cd3094c643247a7397f86b5',1,'osKernelRunning(void):&#160;kernel.c']]],
   ['oskernelstart',['osKernelStart',['../cmsis__os_8h.html#aab668ffd2ea76bb0a77ab0ab385eaef2',1,'osKernelStart(void):&#160;kernel.c'],['../kernel_8c.html#aab668ffd2ea76bb0a77ab0ab385eaef2',1,'osKernelStart(void):&#160;kernel.c']]],
   ['oskernelsystick',['osKernelSysTick',['../cmsis__os_8h.html#ad0262e4688e95d1e9038afd9bcc16001',1,'cmsis_os.h']]],
