@@ -1,6 +1,6 @@
 /*! \file sem0.c
-    \brief This file contains semaphore 0 related API implementations
-		\details Defines the semaphore, and initializes it .
+    \brief  LED Semaphore
+		\details Contains semaphore 0 related API implementations. Defines the semaphore, and initializes it .
 */
 #include "trace.h"
 #include "osObjects.h"

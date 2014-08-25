@@ -249,7 +249,7 @@ void os_ThreadRemoveThread(osThreadId thread_id)
 				timed_q[i] = timed_q[i+1];
 				timed_q[i]->timed_q_p = i; 	
 		}
-		
+		timed_q[timed_q_cnt - 1] = NULL;
 		timed_q_cnt--;	
 	}	
 	

@@ -17,7 +17,7 @@ void task2(void);
 */
 int Init_thread2 (void) 
 {
-	if (addTrace("thread2 terminate attempt") != TRACE_OK)
+	if (addTrace("thread2 init") != TRACE_OK)
 	{
 		stop_cpu;
 	}	
@@ -33,21 +33,20 @@ int Init_thread2 (void)
 */
 int Terminate_thread2 (void) 
 {	
+	if (addTraceProtected("thread2 terminate attempt ") != TRACE_OK)
+	{
+		stop_cpu;
+	}	
+	
 	if (osThreadTerminate(tid_thread2) != osOK)
 	{
-		if (addTrace("could not terminate thread2") != TRACE_OK)
+		if (addTraceProtected("could not terminate thread2") != TRACE_OK)
 		{
-			dumpTrace();
-			addTrace("could not terminate thread2") ;
+			stop_cpu;
 		}			
 		return(-1);
 	}
-
-	if (addTrace("terminated thread2") != TRACE_OK)
-	{
-		dumpTrace();
-		addTrace("terminated thread2") ;
-	}		
+	
   return(0);
 }
 
@@ -57,20 +56,20 @@ int Terminate_thread2 (void)
 */
 void thread2 (void const *argument) 
 {
-  if (addTrace("thread2 start run") != TRACE_OK)
+  if (addTraceProtected("thread2 start run") != TRACE_OK)
 	{
 		stop_cpu;
 	}
 	
   while (1) 
 	{		
-		if (addTrace("thread2 take sem0 attempt") != TRACE_OK)
+		if (addTraceProtected("thread2 take sem0 attempt") != TRACE_OK)
 		{
 			stop_cpu;
-		}			
+		}		
     if ( osSemaphoreWait (sid_Semaphore0, osWaitForever) != -1 ) // wait forever
 		{					 
-			if (addTrace("thread2 take sem0 success; now releasing") != TRACE_OK)
+			if (addTraceProtected("thread2 take sem0 success") != TRACE_OK)
 			{
 				stop_cpu;
 			}	
@@ -79,13 +78,13 @@ void thread2 (void const *argument)
 			count1Sec();
 			task2();
 			
-			if (addTrace("thread2 release sem0 attempt") != TRACE_OK)
+			if (addTraceProtected("thread2 release sem0 attempt") != TRACE_OK)
 			{
 				stop_cpu;
 			}				
 			if (osSemaphoreRelease (sid_Semaphore0) != osOK)
 			{
-				if (addTrace("thread2 release sem0 fail") != TRACE_OK)
+				if (addTraceProtected("thread2 release sem0 fail") != TRACE_OK)
 				{
 					stop_cpu;
 				}						
@@ -93,25 +92,25 @@ void thread2 (void const *argument)
 		}
 		else
 		{
-			if (addTrace("thread2 take sem0 fail") != TRACE_OK)
+			if (addTraceProtected("thread2 take sem0 fail") != TRACE_OK)
 			{
 				stop_cpu;
 			}				
 		}
 
-		if (addTrace("thread2 set priority to osPriorityBelowNormal") != TRACE_OK)
+		if (addTraceProtected("thread2 set priority to osPriorityBelowNormal") != TRACE_OK)
 		{
 			stop_cpu;
 		}		
 		osThreadSetPriority(osThreadGetId(), osPriorityBelowNormal);
 		
-		if (addTrace("thread2 yields") != TRACE_OK)
+		if (addTraceProtected("thread2 yields") != TRACE_OK)
 		{
 			stop_cpu;
 		}		
     osThreadYield();                                            // suspend thread
 		
-		if (addTrace("thread2 back from yield") != TRACE_OK)
+		if (addTraceProtected("thread2 back from yield") != TRACE_OK)
 		{
 			stop_cpu;
 		}
@@ -131,10 +130,9 @@ void thread2 (void const *argument)
 */
 void task2(void)
 { 
-  if (osKernelSysTick() & 0x200) {LED_blink(LED2);} // Set   LED 2
-  else                       {LED_blink(LED2);} // Clear LED 2
+  LED_blink(LED2);
 	
-	if (addTrace("thread2 flips LED") != TRACE_OK)
+	if (addTraceProtected("thread2 flips LED") != TRACE_OK)
 	{
 		stop_cpu;
 	}

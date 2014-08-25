@@ -45,7 +45,10 @@ int main(void)
 	{
 		stop_cpu;
 	}	
-	
+  if (Init_Semaphore1() != 0)
+	{
+		stop_cpu;
+	}		
 	printf("Start kernel\n\r");
 	osKernelStart ();                         // start thread execution 
   

@@ -309,7 +309,6 @@ osStatus osSemaphoreRelease (osSemaphoreId semaphore_id)
 osStatus osSemaphoreDelete (osSemaphoreId semaphore_id)
 {
 	uint32_t i, idx = MAX_SEMAPHORES;
-//  uint32_t j, ctsw = 0;
 	
 	if (semaphore_id == NULL)
 	{
@@ -353,7 +352,9 @@ osStatus osSemaphoreDelete (osSemaphoreId semaphore_id)
 		{
 				semaphores[i] = semaphores[i+1];	
 		}		
+		semaphores[sem_counter-1] = NULL;
 	}			
+	
 	
 	sem_counter--;
 	
@@ -391,135 +392,141 @@ osStatus os_SemaphoreRemoveThread (osThreadId thread_id)
 /// Remove thread from currently blocked semaphore queue.
 /// \param     thread_id  thread object.
 /// \return status code that indicates the execution status of the function.
-osStatus os_RemoveThreadFromOwnSemaphoreBlockedQ (osThreadId thread_id)
-{
-	uint32_t j, semaphore_p;
-	osSemaphoreId semaphore_id;
+//osStatus os_RemoveThreadFromOwnSemaphoreBlockedQ (osThreadId thread_id)
+//{
+//	uint32_t j, semaphore_p;
+//	osSemaphoreId semaphore_id;
 
-	//sanity
-	if ( thread_id == NULL)
-	{
-		return osErrorParameter;
-	}
-	if (semaphore_id == NULL)
-	{
-		return osErrorParameter;
-	}		
-	
-	if ( thread_id->semaphore_id == NULL)
-	{
-		return osErrorParameter;
-	}
-	
-	if (thread_id->semaphore_p == MAX_THREADS_SEM)
-	{
-		return osErrorParameter;			
-	}
-	
-	if (semaphore_id->threads_q_cnt == 0)
-	{
-		return osErrorParameter;
-	}
-	
-	semaphore_id = thread_id->semaphore_id;
-	semaphore_p  = thread_id->semaphore_p;
-	
-	if (semaphore_id->threads_q[semaphore_p].threadId == NULL)
-	{
-		return osErrorParameter;
-	}
+//	//sanity
+//	if ( thread_id == NULL)
+//	{
+//		return osErrorParameter;
+//	}
+//	if (semaphore_id == NULL)
+//	{
+//		return osErrorParameter;
+//	}		
+//	
+//	if ( thread_id->semaphore_id == NULL)
+//	{
+//		return osErrorParameter;
+//	}
+//	
+//	if (thread_id->semaphore_p == MAX_THREADS_SEM)
+//	{
+//		return osErrorParameter;			
+//	}
+//	
+//	if (semaphore_id->threads_q_cnt == 0)
+//	{
+//		return osErrorParameter;
+//	}
+//	
+//	semaphore_id = thread_id->semaphore_id;
+//	semaphore_p  = thread_id->semaphore_p;
+//	
+//	if (semaphore_id->threads_q[semaphore_p].threadId == NULL)
+//	{
+//		return osErrorParameter;
+//	}
 
-	if (semaphore_id->threads_q[semaphore_p].threadId != thread_id)
-	{
-		return osErrorParameter;
-	}
-	
-	// remove thread from the semaphore queue
-	semaphore_id->threads_q[semaphore_p].threadId = NULL;
-	semaphore_id->threads_q[semaphore_p].expiryTime = 0;
-	
-	for ( j = semaphore_p; j < (semaphore_id->threads_q_cnt) - 1 ; j++ )
-	{
-			semaphore_id->threads_q[j] = semaphore_id->threads_q[j+1];
-			if ( semaphore_id->threads_q[j].threadId != NULL)
-			{
-				semaphore_id->threads_q[j].threadId->semaphore_p = j; 
-			}
-	}		
-	semaphore_id->threads_q_cnt--;															
-			
-	
-	thread_id->semaphore_p = MAX_THREADS_SEM;
-	thread_id->semaphore_id = NULL;
+//	if (semaphore_id->threads_q[semaphore_p].threadId != thread_id)
+//	{
+//		return osErrorParameter;
+//	}
+//	
+//	// remove thread from the semaphore queue
+//	semaphore_id->threads_q[semaphore_p].threadId = NULL;
+//	semaphore_id->threads_q[semaphore_p].expiryTime = 0;
+//	
+//	for ( j = semaphore_p; j < (semaphore_id->threads_q_cnt) - 1 ; j++ )
+//	{
+//			semaphore_id->threads_q[j] = semaphore_id->threads_q[j+1];
+//			if ( semaphore_id->threads_q[j].threadId != NULL)
+//			{
+//				semaphore_id->threads_q[j].threadId->semaphore_p = j; 
+//			}
+//	}
+//	
+//	semaphore_id->threads_q[(semaphore_id->threads_q_cnt) - 1].threadId = NULL;
+//	semaphore_id->threads_q[(semaphore_id->threads_q_cnt) - 1].expiryTime = 0;
+//	semaphore_id->threads_q[(semaphore_id->threads_q_cnt) - 1].ticks = 0;
+//	
+//	semaphore_id->threads_q_cnt--;															
+//				
+//	thread_id->semaphore_p = MAX_THREADS_SEM;
+//	thread_id->semaphore_id = NULL;
 
-	return osOK;
-}
+//	return osOK;
+//}
 
 /// Remove thread from currently blocked semaphore queue.
 /// \param     thread_id  thread object.
 /// \return status code that indicates the execution status of the function.
-osStatus os_RemoveThreadFromOwnSemaphoreOwnerQ (osThreadId thread_id)
-{
-	uint32_t j, semaphore_p;
-	osSemaphoreId semaphore_id;
+//osStatus os_RemoveThreadFromOwnSemaphoreOwnerQ (osThreadId thread_id)
+//{
+//	uint32_t j, semaphore_p;
+//	osSemaphoreId semaphore_id;
 
-	//sanity
-	if ( thread_id == NULL)
-	{
-		return osErrorParameter;
-	}
-	if (semaphore_id == NULL)
-	{
-		return osErrorParameter;
-	}		
-	
-	if ( thread_id->semaphore_id == NULL)
-	{
-		return osErrorParameter;
-	}
-	
-	if (thread_id->semaphore_p == MAX_THREADS_SEM)
-	{
-		return osErrorParameter;			
-	}
-	
-	if (semaphore_id->threads_own_q_cnt == 0)
-	{
-		return osErrorParameter;
-	}
-	
-	semaphore_id = thread_id->semaphore_id;
-	semaphore_p  = thread_id->semaphore_p;
-	
-	if (semaphore_id->threads_own_q[semaphore_p] == NULL)
-	{
-		return osErrorParameter;
-	}
+//	//sanity
+//	if ( thread_id == NULL)
+//	{
+//		return osErrorParameter;
+//	}
+//	if (semaphore_id == NULL)
+//	{
+//		return osErrorParameter;
+//	}		
+//	
+//	if ( thread_id->semaphore_id == NULL)
+//	{
+//		return osErrorParameter;
+//	}
+//	
+//	if (thread_id->semaphore_p == MAX_THREADS_SEM)
+//	{
+//		return osErrorParameter;			
+//	}
+//	
+//	if (semaphore_id->threads_own_q_cnt == 0)
+//	{
+//		return osErrorParameter;
+//	}
+//	
+//	semaphore_id = thread_id->semaphore_id;
+//	semaphore_p  = thread_id->semaphore_p;
+//	
+//	if (semaphore_id->threads_own_q[semaphore_p] == NULL)
+//	{
+//		return osErrorParameter;
+//	}
 
-	if (semaphore_id->threads_own_q[semaphore_p] != thread_id)
-	{
-		return osErrorParameter;
-	}
-	
-	// remove thread from the semaphore queue
-	semaphore_id->threads_own_q[semaphore_p] = NULL;
-	
-	for ( j = semaphore_p; j < (semaphore_id->threads_own_q_cnt) - 1 ; j++ )
-	{
-			semaphore_id->threads_own_q[j] = semaphore_id->threads_own_q[j+1];
-			if ( semaphore_id->threads_own_q[j] != NULL)
-			{
-				semaphore_id->threads_own_q[j]->semaphore_p = j; 
-			}
-	}		
-	semaphore_id->threads_own_q_cnt--;															
-			
-	
-	thread_id->semaphore_p = MAX_THREADS_SEM;
-	thread_id->semaphore_id = NULL;
+//	if (semaphore_id->threads_own_q[semaphore_p] != thread_id)
+//	{
+//		return osErrorParameter;
+//	}
+//	
+//	// remove thread from the semaphore queue
+//	semaphore_id->threads_own_q[semaphore_p] = NULL;
+//	
+//	for ( j = semaphore_p; j < (semaphore_id->threads_own_q_cnt) - 1 ; j++ )
+//	{
+//			semaphore_id->threads_own_q[j] = semaphore_id->threads_own_q[j+1];
+//			if ( semaphore_id->threads_own_q[j] != NULL)
+//			{
+//				semaphore_id->threads_own_q[j]->semaphore_p = j; 
+//			}
+//	}		
+//	
+//	semaphore_id->threads_own_q[(semaphore_id->threads_own_q_cnt) - 1] = NULL;
+//	
+//	semaphore_id->threads_own_q_cnt--;															
+//				
+//	thread_id->semaphore_p = MAX_THREADS_SEM;
+//	thread_id->semaphore_id = NULL;
 
-	return osOK;
-}
+//	return osOK;
+//}
 
 /// Remove thread from a blocked semaphore queue.
 /// \param     thread_id  thread object.
@@ -528,13 +535,13 @@ osStatus os_RemoveThreadFromOwnSemaphoreOwnerQ (osThreadId thread_id)
 osStatus os_RemoveThreadFromSemaphoreBlockedQ (osThreadId thread_id, osSemaphoreId semaphore_id)
 {
 	uint32_t j, idx = MAX_THREADS_SEM;
-	osStatus rc = osOK;
+//	osStatus rc = osOK;
 
-	//sanity
 	if ( thread_id == NULL)
 	{
 		return osErrorParameter;
 	}
+	
 	if (semaphore_id == NULL)
 	{
 		return osErrorParameter;
@@ -555,46 +562,52 @@ osStatus os_RemoveThreadFromSemaphoreBlockedQ (osThreadId thread_id, osSemaphore
 		return osErrorParameter;
 	}
 	
-	// check if this is the thread currently controlling the semaphore
-	if ( thread_id->semaphore_id == semaphore_id &&
-		   os_SearchThreadInSemaphoreOwnerQ(thread_id, semaphore_id))
-	{
-		if ((rc = os_RemoveThreadFromOwnSemaphoreBlockedQ(thread_id)) != osOK)
-		{
-			return rc;
-		}
-		return osOK;
-	}
+//	// check if this is the thread currently controlling the semaphore
+//	if ( thread_id->semaphore_id == semaphore_id &&
+//		   os_SearchThreadInSemaphoreOwnerQ(thread_id, semaphore_id) != MAX_THREADS_SEM)
+//	{
+//		if ((rc = os_RemoveThreadFromOwnSemaphoreBlockedQ(thread_id)) != osOK)
+//		{
+//			return rc;
+//		}
+//		return osOK;
+//	}
 	
   // search for the thread in the given semaphore queue	
 	idx = os_SearchThreadInSemaphoreBlockedQ(thread_id,semaphore_id);
 
-	if (idx != MAX_THREADS_SEM)
-	{
-		// remove the thread from the semaphore's queue
-		semaphore_id->threads_q[idx].threadId = NULL;
-		semaphore_id->threads_q[idx].expiryTime = 0;
-				
-		for ( j = idx; j < (semaphore_id->threads_q_cnt) - 1 ; j++ )
-		{
-			semaphore_id->threads_q[j] = semaphore_id->threads_q[j+1];
-			if (semaphore_id->threads_q[j].threadId == NULL)
-			{
-				// one of the threads in the queue is NULL
-				return osErrorValue;
-			}
-			semaphore_id->threads_q[j].threadId->semaphore_p = j; 	
-		}		
-		semaphore_id->threads_q_cnt--;
-		rc = osOK;
-	}			
-	else
+	if (idx == MAX_THREADS_SEM)
 	{
 		// this thread was not in the provided semaphore's queue
-		rc = osOK;
+		return osOK;
 	}
 	
-	return rc;
+	// if the thread is blocke don this queue, then it must be pointing to it; need to clear
+	semaphore_id->threads_q[idx].threadId->semaphore_id = NULL;
+	semaphore_id->threads_q[idx].threadId->semaphore_p = MAX_THREADS_SEM;
+	// remove the thread from the semaphore's queue
+	semaphore_id->threads_q[idx].threadId = NULL;
+	semaphore_id->threads_q[idx].expiryTime = 0;	
+	semaphore_id->threads_q[idx].ticks = 0;
+	
+	for ( j = idx; j < (semaphore_id->threads_q_cnt) - 1 ; j++ )
+	{
+		semaphore_id->threads_q[j] = semaphore_id->threads_q[j+1];
+		if (semaphore_id->threads_q[j].threadId == NULL)
+		{
+			// one of the threads in the queue is NULL
+			return osErrorValue;
+		}
+		semaphore_id->threads_q[j].threadId->semaphore_p = j; 	
+	}	
+	
+	semaphore_id->threads_q[(semaphore_id->threads_q_cnt) - 1].threadId = NULL;
+	semaphore_id->threads_q[(semaphore_id->threads_q_cnt) - 1].expiryTime = 0;
+	semaphore_id->threads_q[(semaphore_id->threads_q_cnt) - 1].ticks = 0;
+	
+	semaphore_id->threads_q_cnt--;
+
+	return osOK;
 }
 
 /// Remove thread from a blocked semaphore queue.
@@ -604,7 +617,7 @@ osStatus os_RemoveThreadFromSemaphoreBlockedQ (osThreadId thread_id, osSemaphore
 osStatus os_RemoveThreadFromSemaphoreOwnerQ (osThreadId thread_id, osSemaphoreId semaphore_id)
 {
 	uint32_t j, idx = MAX_THREADS_SEM;
-	osStatus rc = osOK;
+//	osStatus rc = osOK;
 
 	//sanity
 	if ( thread_id == NULL)
@@ -616,61 +629,55 @@ osStatus os_RemoveThreadFromSemaphoreOwnerQ (osThreadId thread_id, osSemaphoreId
 		return osErrorParameter;
 	}		
 	
-	if ( thread_id->semaphore_id == NULL)
-	{
-		return osErrorParameter;
-	}
+//	if ( thread_id->semaphore_id == NULL)
+//	{
+//		return osErrorParameter;
+//	}
 	
-	if (thread_id->semaphore_p == MAX_THREADS_SEM)
-	{
-		return osErrorParameter;			
-	}
+//	if (thread_id->semaphore_p == MAX_THREADS_SEM)
+//	{
+//		return osErrorParameter;			
+//	}
 	
 	if (semaphore_id->threads_own_q_cnt == 0)
 	{
 		return osErrorParameter;
 	}
 	
-	// check if this thread is currently controlling the semaphore and remove it from it
-	if ((rc = os_RemoveThreadFromOwnSemaphoreOwnerQ(thread_id)) == osOK)
-	{
-		return rc;
-	}
+//	// check if this thread is currently controlling the semaphore and remove it from it
+//	if ((rc = os_RemoveThreadFromOwnSemaphoreOwnerQ(thread_id)) == osOK)
+//	{
+//		return rc;
+//	}
 
 	
   // search for the thread in the given semaphore queue	
 	idx = os_SearchThreadInSemaphoreOwnerQ(thread_id,semaphore_id);
 
-	if (idx != MAX_THREADS_SEM)
-	{
-		// remove the thread from the semaphore's queue
-		semaphore_id->threads_own_q[idx] = NULL;
-				
-		for ( j = idx; j < (semaphore_id->threads_own_q_cnt) - 1 ; j++ )
-		{
-			semaphore_id->threads_own_q[j] = semaphore_id->threads_own_q[j+1];
-			if (semaphore_id->threads_own_q[j] == NULL)
-			{
-				// one of the threads in the queue is NULL
-				return osErrorValue;
-			}
-			semaphore_id->threads_own_q[j]->semaphore_p = j; 	
-		}		
-		
-		if (semaphore_id->threads_own_q_cnt != 0)
-		{
-			semaphore_id->threads_own_q_cnt--;
-		}		
-		
-		rc = osOK;
-	}			
-	else
+	if (idx == MAX_THREADS_SEM)
 	{
 		// this thread was not in the provided semaphore's queue
-		rc = osOK;
+		return osOK;
 	}
-	
-	return rc;
+
+	// remove the thread from the semaphore's queue
+	semaphore_id->threads_own_q[idx] = NULL;
+			
+	for ( j = idx; j < (semaphore_id->threads_own_q_cnt) - 1 ; j++ )
+	{
+		semaphore_id->threads_own_q[j] = semaphore_id->threads_own_q[j+1];
+		if (semaphore_id->threads_own_q[j] == NULL)
+		{
+			// one of the threads in the queue is NULL
+			return osErrorValue;
+		}
+//		semaphore_id->threads_own_q[j]->semaphore_p = j; 	
+	}
+
+	semaphore_id->threads_own_q[(semaphore_id->threads_own_q_cnt) - 1] = NULL;
+	semaphore_id->threads_own_q_cnt--;	
+		
+	return osOK;
 }
 
 /// Insert thread in the owners semaphore queue.
@@ -699,8 +706,8 @@ osStatus os_InsertThreadInSemaphoreOwnerQ (osThreadId thread_id, osSemaphoreId s
 	}		
 	
 	semaphore_id->threads_own_q[semaphore_id->threads_own_q_cnt] = thread_id;
-	thread_id->semaphore_id = semaphore_id;
-	thread_id->semaphore_p = semaphore_id->threads_own_q_cnt;
+//	thread_id->semaphore_id = semaphore_id;
+//	thread_id->semaphore_p = semaphore_id->threads_own_q_cnt;
 	semaphore_id->threads_own_q_cnt++;
 	
 	return osOK;
@@ -726,6 +733,13 @@ osStatus os_InsertThreadInSemaphoreBlockedQ (osThreadId thread_id, osSemaphoreId
 	if (semaphore_id->threads_q_cnt == MAX_THREADS_SEM)
 	{ // no room in queue
 		return osErrorResource; 
+	}
+	
+	// check if thread already in semaphore blocked queue
+	if (os_SearchThreadInSemaphoreBlockedQ(thread_id, semaphore_id) != MAX_THREADS_SEM)
+	{
+		// already blocked on this semaphore
+		return osOK;
 	}
 	
 	semaphore_id->threads_q[semaphore_id->threads_q_cnt].threadId = thread_id;
@@ -788,7 +802,7 @@ uint32_t os_SearchThreadInSemaphoreOwnerQ (osThreadId thread_id, osSemaphoreId s
 	}		
 		
   // search for the thread in the given semaphore queue	
-	for ( j = 0; j < semaphore_id->threads_q_cnt ; j++ )
+	for ( j = 0; j < semaphore_id->threads_own_q_cnt ; j++ )
 	{		
 		if (semaphore_id->threads_own_q[j] == thread_id )
 		{

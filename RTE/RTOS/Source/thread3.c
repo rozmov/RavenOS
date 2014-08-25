@@ -17,7 +17,7 @@ void task3(void);
 */
 int Init_thread3 (void) 
 {
-	if (addTrace("thread3 terminate attempt") != TRACE_OK)
+	if (addTrace("thread3 init") != TRACE_OK)
 	{
 		stop_cpu;
 	}	
@@ -34,7 +34,7 @@ int Init_thread3 (void)
 */
 int Terminate_thread3 (void) 
 {	
-	dumpTrace();
+	dumpTraceProtected();
 	
 	if (osThreadTerminate(tid_thread3) != osOK)
 	{		
@@ -49,7 +49,7 @@ int Terminate_thread3 (void)
 */
 void thread3 (void const *argument) 
 {
-	if (addTrace("thread3 start run") != TRACE_OK)
+	if (addTraceProtected("thread3 start run") != TRACE_OK)
 	{
 		stop_cpu;
 	}
@@ -59,13 +59,13 @@ void thread3 (void const *argument)
     task3(); // thread code 
 		
 		// give a chance to the other tasks to run now
-		if (addTrace("thread3 set priority to osPriorityLow") != TRACE_OK)
+		if (addTraceProtected("thread3 set priority to osPriorityLow") != TRACE_OK)
 		{
 			stop_cpu;
 		}		
 		osThreadSetPriority(osThreadGetId(), osPriorityLow);
 		
-		if (addTrace("thread3 yields") != TRACE_OK)
+		if (addTraceProtected("thread3 yields") != TRACE_OK)
 		{
 			stop_cpu;
 		}
@@ -73,7 +73,7 @@ void thread3 (void const *argument)
 		{
 			osThreadYield();             // suspend thread
 		}
-		if (addTrace("thread3 back") != TRACE_OK)
+		if (addTraceProtected("thread3 back") != TRACE_OK)
 		{
 			stop_cpu;
 		}
@@ -88,8 +88,8 @@ void thread3 (void const *argument)
 void task3(void)
 { 
 	/// Print trace information
-	dumpTrace();
-	if (addTrace("thread3 dumped trace") != TRACE_OK)
+	dumpTraceProtected();
+	if (addTraceProtected("thread3 dumped trace") != TRACE_OK)
 	{
 		stop_cpu;
 	}

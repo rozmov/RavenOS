@@ -41,4 +41,9 @@ extern osSemaphoreId sid_Semaphore0;
 int Init_Semaphore0 (void);
 int Delete_Semaphore0 (void);
 
+extern osSemaphoreId sid_Semaphore1;
+int Init_Semaphore1 (void);
+int Delete_Semaphore1 (void);
+
+
 #endif // _OSOBJECTS_H

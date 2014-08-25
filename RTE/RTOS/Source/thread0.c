@@ -38,14 +38,14 @@ int Init_thread0 (void)
 */
 int Terminate_thread0 (void) 
 {	
-	if (addTrace("thread0 terminate attempt") != TRACE_OK)
+	if (addTraceProtected("thread0 terminate attempt") != TRACE_OK)
 	{
 		stop_cpu;
 	}		
 	
 	if (osThreadTerminate(tid_thread0) != osOK)
 	{
-		if (addTrace("could not terminate thread0") != TRACE_OK)
+		if (addTraceProtected("could not terminate thread0") != TRACE_OK)
 		{
 			stop_cpu;
 		}			
@@ -62,7 +62,7 @@ int Terminate_thread0 (void)
 void thread0 (void const *argument) 
 {
 	
-	if (addTrace("thread0 start run") != TRACE_OK)
+	if (addTraceProtected("thread0 start run") != TRACE_OK)
 	{
 		stop_cpu;
 	}
@@ -70,13 +70,13 @@ void thread0 (void const *argument)
   while (1) 
 	{	
 		
-		if (addTrace("thread0 take sem0 attempt") != TRACE_OK)
+		if (addTraceProtected("thread0 take sem0 attempt") != TRACE_OK)
 		{
 			stop_cpu;
 		}			
-    if ( osSemaphoreWait (sid_Semaphore0, 0) != -1 ) // wait 0 mSec
+    if ( osSemaphoreWait (sid_Semaphore0, 0) != -1 ) // no wait
 		{      
-			if (addTrace("thread0 take sem0 success") != TRACE_OK)
+			if (addTraceProtected("thread0 take sem0 success") != TRACE_OK)
 			{
 				stop_cpu;
 			}	
@@ -85,33 +85,33 @@ void thread0 (void const *argument)
 			count1Sec();
 			task0();
 			
-			if (addTrace("thread0 set priority to osPriorityLow") != TRACE_OK)
+			if (addTraceProtected("thread0 set priority to osPriorityLow") != TRACE_OK)
 			{
 				stop_cpu;
 			}			
 			osThreadSetPriority(osThreadGetId(), osPriorityLow);
 							
 			
-			if (addTrace("thread0 yields") != TRACE_OK)
+			if (addTraceProtected("thread0 yields") != TRACE_OK)
 			{
 				stop_cpu;
 			}	
 			osThreadYield();  // suspend thread			
 				
-			if (addTrace("thread0 release sem0 attempt") != TRACE_OK)
+			if (addTraceProtected("thread0 release sem0 attempt") != TRACE_OK)
 			{
 				stop_cpu;
 			}				
 			if (osSemaphoreRelease (sid_Semaphore0) != osOK)
 			{
-				if (addTrace("thread0 release sem0 fail") != TRACE_OK)
+				if (addTraceProtected("thread0 release sem0 fail") != TRACE_OK)
 				{
 					stop_cpu;
 				}						
 			}
 			else
 			{
-				if (addTrace("thread0 release sem0 success") != TRACE_OK)
+				if (addTraceProtected("thread0 release sem0 success") != TRACE_OK)
 				{
 					stop_cpu;
 				}					
@@ -120,33 +120,31 @@ void thread0 (void const *argument)
 		}
 		else
 		{
-			if (addTrace("thread0 take sem0 fail") != TRACE_OK)
+			if (addTraceProtected("thread0 take sem0 fail") != TRACE_OK)
 			{
 				stop_cpu;
 			}				
 		}
-
-//		count1Sec();
 		
-		if (addTrace("thread0 set priority to osPriorityLow") != TRACE_OK)
+		if (addTraceProtected("thread0 set priority to osPriorityLow") != TRACE_OK)
 		{
 			stop_cpu;
 		}			
 		osThreadSetPriority(osThreadGetId(), osPriorityLow);
 		    
 		
-		if (addTrace("thread0 yields") != TRACE_OK)
+		if (addTraceProtected("thread0 yields") != TRACE_OK)
 		{
 			stop_cpu;
 		}	
     osThreadYield();  // suspend thread
 		
-		if (addTrace("thread0 back from yield") != TRACE_OK)
+		if (addTraceProtected("thread0 back from yield") != TRACE_OK)
 		{
 			stop_cpu;
 		}		
 		
-		if (addTrace("thread0 delete sem0") != TRACE_OK)
+		if (addTraceProtected("thread0 delete sem0") != TRACE_OK)
 		{
 			stop_cpu;
 		}				
@@ -173,9 +171,8 @@ void thread0 (void const *argument)
 */
 void task0(void)
 { 
-  if (osKernelSysTick() & 0x80) {LED_blink(LED0);} // Set   LED 0
-  else                      {LED_blink(LED0);} // Clear LED 0
-	if (addTrace("thread0 flips LED") != TRACE_OK)
+  LED_blink(LED0);
+	if (addTraceProtected("thread0 flips LED") != TRACE_OK)
 	{
 		stop_cpu;
 	}		

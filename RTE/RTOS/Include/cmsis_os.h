@@ -268,8 +268,8 @@ struct os_thread_cb
 	uint32_t th_q_p;       ///< Thread Queue Pointer / Index
 	uint32_t stack_p;      ///< Stack Pointer
 	uint32_t stack_size;   ///< Stack Size (bytes)
-	uint32_t semaphore_p;  ///< Semapore Pointer - where the thread is in semaphore queue (either waiting or active)
-	osSemaphoreId semaphore_id; ///< Semaphore ID for semaphore currently blocked on or holding
+	uint32_t semaphore_p;  ///< Semapore Pointer - where the thread is in semaphore blocked queue 
+	osSemaphoreId semaphore_id; ///< Semaphore ID for semaphore currently blocked on 
 	uint32_t time_count;   ///< Time until Timeout
 	uint32_t timed_q_p;    ///< Timed Queue Pointer
 	osStatus timed_ret;    ///< Exit Status from Sleep
