@@ -1,6 +1,6 @@
-/*! \file trace.c
-    \brief This file defines tracing interfaces and tables
-	  \details Provides tracing infrastructure for the RTOS
+/*! \file protectedTrace.c
+    \brief This file defines thread-safe tracing interfaces 
+	  \details Provides thread-safe tracing infrastructure for the RTOS based on regular tracing
 */
 
 #include "stdio.h"
@@ -15,7 +15,7 @@
 //  <e> Trace Configuration
 //          <i> Uncheck this box to skip the trace printing.
 //
-# define TRACE_FLAG 1
+# define TRACE_FLAG 1   ///< trace printing flag: 1 = print traces; 0 = do no print traces
 
 /*! 
     \brief Thread-safe add message to the trace table 

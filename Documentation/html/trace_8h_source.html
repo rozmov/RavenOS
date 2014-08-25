@@ -117,21 +117,26 @@ $(document).ready(function(){initNavTree('trace_8h_source.html','');});
 <div class="line"><a name="l00011"></a><span class="lineno"><a class="line" href="trace_8h.html#abe999116692a0cf8829e4a39e07f7c23">   11</a></span>&#160;<span class="preprocessor">#define TRACE_OK 0    </span></div>
 <div class="line"><a name="l00012"></a><span class="lineno"><a class="line" href="trace_8h.html#a7c12181b2e8dc912219651ff42d22e42">   12</a></span>&#160;<span class="preprocessor">#define TRACE_ERROR 1 </span></div>
 <div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="preprocessor"></span></div>
-<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;uint32_t <a class="code" href="trace_8h.html#a0c045565a7872689752c456352835196">addTrace</a>(<span class="keywordtype">char</span> * message);</div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="keywordtype">void</span> <a class="code" href="trace_8h.html#aa78bb2aec0867c8b709cd3a1da3e2e34">dumpTrace</a>(<span class="keywordtype">void</span>);</div>
-<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;uint32_t <a class="code" href="trace_8h.html#a71887a301d7504612011c655a127008d">getTraceCounter</a>(<span class="keywordtype">void</span>);</div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;</div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;<span class="preprocessor">#endif // _TRACE_H</span></div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;uint32_t <a class="code" href="trace_8h.html#aaea4efb50e8356974a86292cf27ff202">addTraceProtected</a>(<span class="keywordtype">char</span> * message);</div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="keywordtype">void</span> <a class="code" href="trace_8h.html#ae54c4f4a52896eeea181c2c4983cd1f3">dumpTraceProtected</a>(<span class="keywordtype">void</span>);</div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;</div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;uint32_t <a class="code" href="trace_8h.html#a0c045565a7872689752c456352835196">addTrace</a>(<span class="keywordtype">char</span> * message);</div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;<span class="keywordtype">void</span> <a class="code" href="trace_8h.html#aa78bb2aec0867c8b709cd3a1da3e2e34">dumpTrace</a>(<span class="keywordtype">void</span>);</div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;uint32_t <a class="code" href="trace_8h.html#a71887a301d7504612011c655a127008d">getTraceCounter</a>(<span class="keywordtype">void</span>);</div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;</div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;<span class="preprocessor">#endif // _TRACE_H</span></div>
 <div class="ttc" id="trace_8h_html_a71887a301d7504612011c655a127008d"><div class="ttname"><a href="trace_8h.html#a71887a301d7504612011c655a127008d">getTraceCounter</a></div><div class="ttdeci">uint32_t getTraceCounter(void)</div><div class="ttdoc">Getter function for the current trace counter. </div><div class="ttdef"><b>Definition:</b> trace.c:22</div></div>
+<div class="ttc" id="trace_8h_html_ae54c4f4a52896eeea181c2c4983cd1f3"><div class="ttname"><a href="trace_8h.html#ae54c4f4a52896eeea181c2c4983cd1f3">dumpTraceProtected</a></div><div class="ttdeci">void dumpTraceProtected(void)</div><div class="ttdoc">Dump messages from the trace table to output. </div><div class="ttdef"><b>Definition:</b> protectedTrace.c:64</div></div>
 <div class="ttc" id="trace_8h_html_aa78bb2aec0867c8b709cd3a1da3e2e34"><div class="ttname"><a href="trace_8h.html#aa78bb2aec0867c8b709cd3a1da3e2e34">dumpTrace</a></div><div class="ttdeci">void dumpTrace(void)</div><div class="ttdoc">Dump messages from the trace table to output. </div><div class="ttdef"><b>Definition:</b> trace.c:86</div></div>
 <div class="ttc" id="trace_8h_html_a0c045565a7872689752c456352835196"><div class="ttname"><a href="trace_8h.html#a0c045565a7872689752c456352835196">addTrace</a></div><div class="ttdeci">uint32_t addTrace(char *message)</div><div class="ttdoc">Add message to the trace table. </div><div class="ttdef"><b>Definition:</b> trace.c:64</div></div>
+<div class="ttc" id="trace_8h_html_aaea4efb50e8356974a86292cf27ff202"><div class="ttname"><a href="trace_8h.html#aaea4efb50e8356974a86292cf27ff202">addTraceProtected</a></div><div class="ttdeci">uint32_t addTraceProtected(char *message)</div><div class="ttdoc">Thread-safe add message to the trace table. </div><div class="ttdef"><b>Definition:</b> protectedTrace.c:25</div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="dir_2cfa845288836d0010190eddcc80c178.html">RTE</a></li><li class="navelem"><a class="el" href="dir_37d2205f15e85812ee2baf1e2f5dde11.html">RTOS</a></li><li class="navelem"><a class="el" href="dir_5557ce608830b301ac6edb6ef8f5543b.html">Include</a></li><li class="navelem"><a class="el" href="trace_8h.html">trace.h</a></li>
-    <li class="footer">Generated on Sun Aug 24 2014 16:49:04 for RavenOS by
+    <li class="footer">Generated on Sun Aug 24 2014 21:01:34 for RavenOS by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.7 </li>
   </ul>

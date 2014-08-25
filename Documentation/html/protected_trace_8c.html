@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.7"/>
-<title>RavenOS: os_mailQ_def Struct Reference</title>
+<title>RavenOS: D:/Laura/Code/RavenOS/RTE/RTOS/Source/protectedTrace.c File Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -48,8 +48,8 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
       <li><a href="pages.html"><span>Related&#160;Pages</span></a></li>
-      <li class="current"><a href="annotated.html"><span>Data&#160;Structures</span></a></li>
-      <li><a href="files.html"><span>Files</span></a></li>
+      <li><a href="annotated.html"><span>Data&#160;Structures</span></a></li>
+      <li class="current"><a href="files.html"><span>Files</span></a></li>
       <li>
         <div id="MSearchBox" class="MSearchBoxInactive">
         <span class="left">
@@ -70,9 +70,8 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   </div>
   <div id="navrow2" class="tabs2">
     <ul class="tablist">
-      <li><a href="annotated.html"><span>Data&#160;Structures</span></a></li>
-      <li><a href="classes.html"><span>Data&#160;Structure&#160;Index</span></a></li>
-      <li><a href="functions.html"><span>Data&#160;Fields</span></a></li>
+      <li><a href="files.html"><span>File&#160;List</span></a></li>
+      <li><a href="globals.html"><span>Globals</span></a></li>
     </ul>
   </div>
 </div><!-- top -->
@@ -87,7 +86,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   </div>
 </div>
 <script type="text/javascript">
-$(document).ready(function(){initNavTree('structos__mail_q__def.html','');});
+$(document).ready(function(){initNavTree('protected_trace_8c.html','');});
 </script>
 <div id="doc-content">
 <!-- window showing the filter options -->
@@ -106,41 +105,74 @@ $(document).ready(function(){initNavTree('structos__mail_q__def.html','');});
 
 <div class="header">
   <div class="summary">
-<a href="#pub-attribs">Data Fields</a>  </div>
+<a href="#define-members">Macros</a> &#124;
+<a href="#func-members">Functions</a>  </div>
   <div class="headertitle">
-<div class="title">os_mailQ_def Struct Reference</div>  </div>
+<div class="title">protectedTrace.c File Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
 
-<p><code>#include &lt;<a class="el" href="cmsis__os_8h_source.html">cmsis_os.h</a>&gt;</code></p>
-<table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
-Data Fields</h2></td></tr>
-<tr class="memitem:a8a83a3a8c0aa8057b13807d2a54077e0"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a8a83a3a8c0aa8057b13807d2a54077e0"></a>
-uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structos__mail_q__def.html#a8a83a3a8c0aa8057b13807d2a54077e0">queue_sz</a></td></tr>
-<tr class="memdesc:a8a83a3a8c0aa8057b13807d2a54077e0"><td class="mdescLeft">&#160;</td><td class="mdescRight">number of elements in the queue <br /></td></tr>
-<tr class="separator:a8a83a3a8c0aa8057b13807d2a54077e0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4c2a0c691de3365c00ecd22d8102811f"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a4c2a0c691de3365c00ecd22d8102811f"></a>
-uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structos__mail_q__def.html#a4c2a0c691de3365c00ecd22d8102811f">item_sz</a></td></tr>
-<tr class="memdesc:a4c2a0c691de3365c00ecd22d8102811f"><td class="mdescLeft">&#160;</td><td class="mdescRight">size of an item <br /></td></tr>
-<tr class="separator:a4c2a0c691de3365c00ecd22d8102811f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a269c3935f8bc66db70bccdd02cb05e3c"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a269c3935f8bc66db70bccdd02cb05e3c"></a>
-void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structos__mail_q__def.html#a269c3935f8bc66db70bccdd02cb05e3c">pool</a></td></tr>
-<tr class="memdesc:a269c3935f8bc66db70bccdd02cb05e3c"><td class="mdescLeft">&#160;</td><td class="mdescRight">memory array for mail <br /></td></tr>
-<tr class="separator:a269c3935f8bc66db70bccdd02cb05e3c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<p>This file defines thread-safe tracing interfaces.  
+<a href="#details">More...</a></p>
+<div class="textblock"><code>#include &quot;stdio.h&quot;</code><br />
+<code>#include &lt;string.h&gt;</code><br />
+<code>#include &lt;stdint.h&gt;</code><br />
+<code>#include &quot;<a class="el" href="trace_8h_source.html">trace.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="os_objects_8h_source.html">osObjects.h</a>&quot;</code><br />
+</div><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="define-members"></a>
+Macros</h2></td></tr>
+<tr class="memitem:ada3b1f9f345b10e9c243b35634325846"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ada3b1f9f345b10e9c243b35634325846"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="protected_trace_8c.html#ada3b1f9f345b10e9c243b35634325846">TRACE_FLAG</a>&#160;&#160;&#160;1</td></tr>
+<tr class="memdesc:ada3b1f9f345b10e9c243b35634325846"><td class="mdescLeft">&#160;</td><td class="mdescRight">trace printing flag: 1 = print traces; 0 = do no print traces <br /></td></tr>
+<tr class="separator:ada3b1f9f345b10e9c243b35634325846"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
+Functions</h2></td></tr>
+<tr class="memitem:aaea4efb50e8356974a86292cf27ff202"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="protected_trace_8c.html#aaea4efb50e8356974a86292cf27ff202">addTraceProtected</a> (char *message)</td></tr>
+<tr class="memdesc:aaea4efb50e8356974a86292cf27ff202"><td class="mdescLeft">&#160;</td><td class="mdescRight">Thread-safe add message to the trace table.  <a href="#aaea4efb50e8356974a86292cf27ff202">More...</a><br /></td></tr>
+<tr class="separator:aaea4efb50e8356974a86292cf27ff202"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae54c4f4a52896eeea181c2c4983cd1f3"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ae54c4f4a52896eeea181c2c4983cd1f3"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="protected_trace_8c.html#ae54c4f4a52896eeea181c2c4983cd1f3">dumpTraceProtected</a> (void)</td></tr>
+<tr class="memdesc:ae54c4f4a52896eeea181c2c4983cd1f3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Dump messages from the trace table to output. <br /></td></tr>
+<tr class="separator:ae54c4f4a52896eeea181c2c4983cd1f3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Definition structure for mail queue. </p><dl class="section note"><dt>Note</dt><dd>CAN BE CHANGED: <b><a class="el" href="structos__mail_q__def.html">os_mailQ_def</a></b> is implementation specific in every CMSIS-RTOS. </dd></dl>
-</div><hr/>The documentation for this struct was generated from the following file:<ul>
-<li>D:/Laura/Code/RavenOS/RTE/RTOS/Include/<a class="el" href="cmsis__os_8h_source.html">cmsis_os.h</a></li>
-</ul>
+<div class="textblock"><p>This file defines thread-safe tracing interfaces. </p>
+<p>Provides thread-safe tracing infrastructure for the RTOS based on regular tracing </p>
+</div><h2 class="groupheader">Function Documentation</h2>
+<a class="anchor" id="aaea4efb50e8356974a86292cf27ff202"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint32_t addTraceProtected </td>
+          <td>(</td>
+          <td class="paramtype">char *&#160;</td>
+          <td class="paramname"><em>message</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Thread-safe add message to the trace table. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">message</td><td>Message to be added to the trace table, up to <a class="el" href="trace_8c.html#a58ce36916c399104e18d32ff090f21c6">MAX_STR_LEN</a> characters </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Returns <a class="el" href="trace_8h.html#abe999116692a0cf8829e4a39e07f7c23">TRACE_OK</a> if successful and <a class="el" href="trace_8h.html#a7c12181b2e8dc912219651ff42d22e42">TRACE_ERROR</a> otherwise. </dd></dl>
+
+</div>
+</div>
 </div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a class="el" href="structos__mail_q__def.html">os_mailQ_def</a></li>
-    <li class="footer">Generated on Sun Aug 24 2014 21:01:35 for RavenOS by
+    <li class="navelem"><a class="el" href="dir_2cfa845288836d0010190eddcc80c178.html">RTE</a></li><li class="navelem"><a class="el" href="dir_37d2205f15e85812ee2baf1e2f5dde11.html">RTOS</a></li><li class="navelem"><a class="el" href="dir_e18e8ca17cc8761131819f6fa843b03a.html">Source</a></li><li class="navelem"><a class="el" href="protected_trace_8c.html">protectedTrace.c</a></li>
+    <li class="footer">Generated on Sun Aug 24 2014 21:01:34 for RavenOS by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.7 </li>
   </ul>

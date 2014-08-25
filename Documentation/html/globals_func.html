@@ -151,6 +151,10 @@ $(document).ready(function(){initNavTree('globals_func.html','');});
 : <a class="el" href="trace_8h.html#a0c045565a7872689752c456352835196">trace.h</a>
 , <a class="el" href="trace_8c.html#a0c045565a7872689752c456352835196">trace.c</a>
 </li>
+<li>addTraceProtected()
+: <a class="el" href="trace_8h.html#aaea4efb50e8356974a86292cf27ff202">trace.h</a>
+, <a class="el" href="protected_trace_8c.html#aaea4efb50e8356974a86292cf27ff202">protectedTrace.c</a>
+</li>
 </ul>
 
 
@@ -170,9 +174,17 @@ $(document).ready(function(){initNavTree('globals_func.html','');});
 : <a class="el" href="os_objects_8h.html#a4c18ac6ca287bcf72fef77ac2664c723">osObjects.h</a>
 , <a class="el" href="sem0_8c.html#a4c18ac6ca287bcf72fef77ac2664c723">sem0.c</a>
 </li>
+<li>Delete_Semaphore1()
+: <a class="el" href="os_objects_8h.html#a54be739d309f4a9c7855af4d6541d50b">osObjects.h</a>
+, <a class="el" href="sem1_8c.html#a54be739d309f4a9c7855af4d6541d50b">sem1.c</a>
+</li>
 <li>dumpTrace()
-: <a class="el" href="trace_8h.html#aa78bb2aec0867c8b709cd3a1da3e2e34">trace.h</a>
-, <a class="el" href="trace_8c.html#aa78bb2aec0867c8b709cd3a1da3e2e34">trace.c</a>
+: <a class="el" href="trace_8c.html#aa78bb2aec0867c8b709cd3a1da3e2e34">trace.c</a>
+, <a class="el" href="trace_8h.html#aa78bb2aec0867c8b709cd3a1da3e2e34">trace.h</a>
+</li>
+<li>dumpTraceProtected()
+: <a class="el" href="protected_trace_8c.html#ae54c4f4a52896eeea181c2c4983cd1f3">protectedTrace.c</a>
+, <a class="el" href="trace_8h.html#ae54c4f4a52896eeea181c2c4983cd1f3">trace.h</a>
 </li>
 </ul>
 
@@ -216,6 +228,10 @@ $(document).ready(function(){initNavTree('globals_func.html','');});
 : <a class="el" href="os_objects_8h.html#ad7d3b946e778b32a3ec7405f51ac6c4a">osObjects.h</a>
 , <a class="el" href="sem0_8c.html#ad7d3b946e778b32a3ec7405f51ac6c4a">sem0.c</a>
 </li>
+<li>Init_Semaphore1()
+: <a class="el" href="os_objects_8h.html#ac8c670714758ce70ef6c7d14fb41b016">osObjects.h</a>
+, <a class="el" href="sem1_8c.html#ac8c670714758ce70ef6c7d14fb41b016">sem1.c</a>
+</li>
 <li>Init_thread0()
 : <a class="el" href="os_objects_8h.html#a2a70e03dc85e518b7c1ad37b9f4ecb35">osObjects.h</a>
 , <a class="el" href="thread0_8c.html#a2a70e03dc85e518b7c1ad37b9f4ecb35">thread0.c</a>
@@ -233,8 +249,8 @@ $(document).ready(function(){initNavTree('globals_func.html','');});
 , <a class="el" href="os_objects_8h.html#a4ded95b8829e5de74a4b3760a62cc82a">osObjects.h</a>
 </li>
 <li>Init_threadIdle()
-: <a class="el" href="thread_idle_8c.html#a5e8a347d5d15ac589be66e14c120acf9">threadIdle.c</a>
-, <a class="el" href="thread_idle_8h.html#a5e8a347d5d15ac589be66e14c120acf9">threadIdle.h</a>
+: <a class="el" href="thread_idle_8h.html#a5e8a347d5d15ac589be66e14c120acf9">threadIdle.h</a>
+, <a class="el" href="thread_idle_8c.html#a5e8a347d5d15ac589be66e14c120acf9">threadIdle.c</a>
 </li>
 </ul>
 
@@ -279,12 +295,6 @@ $(document).ready(function(){initNavTree('globals_func.html','');});
 <li>os_ReevaluateThread()
 : <a class="el" href="scheduler_8c.html#a55fbac450d43684ac8f3bbf62988acba">scheduler.c</a>
 </li>
-<li>os_RemoveThreadFromOwnSemaphoreBlockedQ()
-: <a class="el" href="semaphores_8c.html#a2b6a805614532b189eee8d00f6f972ec">semaphores.c</a>
-</li>
-<li>os_RemoveThreadFromOwnSemaphoreOwnerQ()
-: <a class="el" href="semaphores_8c.html#a6316a4d8f2b7885b7a3691c3b46cf2f6">semaphores.c</a>
-</li>
 <li>os_RemoveThreadFromSemaphoreBlockedQ()
 : <a class="el" href="semaphores_8c.html#a734d95b68a29cf25b71adffba5a1f181">semaphores.c</a>
 </li>
@@ -304,8 +314,8 @@ $(document).ready(function(){initNavTree('globals_func.html','');});
 : <a class="el" href="semaphores_8c.html#acf078b9bd476f8f8e386787a8249520a">semaphores.c</a>
 </li>
 <li>os_SemaphoreRemoveThread()
-: <a class="el" href="cmsis__os_8h.html#af8d8c5423ede32da632de69a9ad4e804">cmsis_os.h</a>
-, <a class="el" href="semaphores_8c.html#af8d8c5423ede32da632de69a9ad4e804">semaphores.c</a>
+: <a class="el" href="semaphores_8c.html#af8d8c5423ede32da632de69a9ad4e804">semaphores.c</a>
+, <a class="el" href="cmsis__os_8h.html#af8d8c5423ede32da632de69a9ad4e804">cmsis_os.h</a>
 </li>
 <li>os_ThreadGetBestThread()
 : <a class="el" href="scheduler_8c.html#a1ff6e48580c53794a0f09a4e8cc8f6de">scheduler.c</a>
@@ -346,11 +356,12 @@ $(document).ready(function(){initNavTree('globals_func.html','');});
 : <a class="el" href="cmsis__os_8h.html#a5e1752b73f573ee015dbd9ef1edaba13">cmsis_os.h</a>
 </li>
 <li>osSemaphoreCreate()
-: <a class="el" href="cmsis__os_8h.html#a97381e8e55cd47cec390bf57c96d6edb">cmsis_os.h</a>
-, <a class="el" href="semaphores_8c.html#a97381e8e55cd47cec390bf57c96d6edb">semaphores.c</a>
+: <a class="el" href="semaphores_8c.html#a97381e8e55cd47cec390bf57c96d6edb">semaphores.c</a>
+, <a class="el" href="cmsis__os_8h.html#a97381e8e55cd47cec390bf57c96d6edb">cmsis_os.h</a>
 </li>
 <li>osSemaphoreDef()
 : <a class="el" href="sem0_8c.html#a893c2b1094aaa60fc327682b58961844">sem0.c</a>
+, <a class="el" href="sem1_8c.html#aceb6f9f211845fc0a212c56c9e942d5d">sem1.c</a>
 </li>
 <li>osSemaphoreDelete()
 : <a class="el" href="cmsis__os_8h.html#abae2801ac2c096f6e8c69a264908f595">cmsis_os.h</a>
@@ -361,8 +372,8 @@ $(document).ready(function(){initNavTree('globals_func.html','');});
 , <a class="el" href="semaphores_8c.html#ab108914997c49e14d8ff1ae0d1988ca0">semaphores.c</a>
 </li>
 <li>osSemaphoreWait()
-: <a class="el" href="cmsis__os_8h.html#acc15b0fc8ce1167fe43da33042e62098">cmsis_os.h</a>
-, <a class="el" href="semaphores_8c.html#acc15b0fc8ce1167fe43da33042e62098">semaphores.c</a>
+: <a class="el" href="semaphores_8c.html#acc15b0fc8ce1167fe43da33042e62098">semaphores.c</a>
+, <a class="el" href="cmsis__os_8h.html#acc15b0fc8ce1167fe43da33042e62098">cmsis_os.h</a>
 </li>
 <li>osSignalClear()
 : <a class="el" href="cmsis__os_8h.html#a87283a6ebc31ce9ed42baf3ea7e4eab6">cmsis_os.h</a>
@@ -374,35 +385,35 @@ $(document).ready(function(){initNavTree('globals_func.html','');});
 : <a class="el" href="cmsis__os_8h.html#a38860acda96df47da6923348d96fc4c9">cmsis_os.h</a>
 </li>
 <li>osThreadCreate()
-: <a class="el" href="cmsis__os_8h.html#ac59b5713cb083702dce759c73fd90dff">cmsis_os.h</a>
-, <a class="el" href="threads_8c.html#ac59b5713cb083702dce759c73fd90dff">threads.c</a>
+: <a class="el" href="threads_8c.html#ac59b5713cb083702dce759c73fd90dff">threads.c</a>
+, <a class="el" href="cmsis__os_8h.html#ac59b5713cb083702dce759c73fd90dff">cmsis_os.h</a>
 </li>
 <li>osThreadDef()
-: <a class="el" href="thread0_8c.html#aa7797ac3ccc3e397be301d7c634cde8e">thread0.c</a>
-, <a class="el" href="thread1_8c.html#abe78064de50dc096cff92681a490e362">thread1.c</a>
+: <a class="el" href="thread1_8c.html#abe78064de50dc096cff92681a490e362">thread1.c</a>
+, <a class="el" href="thread0_8c.html#aa7797ac3ccc3e397be301d7c634cde8e">thread0.c</a>
 , <a class="el" href="thread2_8c.html#a611f7c8411b19f85c123f1714710526f">thread2.c</a>
 , <a class="el" href="thread3_8c.html#a9a0bf6baf8c0fef0a6a51c6586e939d5">thread3.c</a>
 , <a class="el" href="thread_idle_8c.html#a4c722cb67ff9c0e29cb71d8eddfc15b8">threadIdle.c</a>
 </li>
 <li>osThreadGetId()
-: <a class="el" href="cmsis__os_8h.html#ab1df2a28925862ef8f9cf4e1c995c5a7">cmsis_os.h</a>
-, <a class="el" href="threads_8c.html#ab1df2a28925862ef8f9cf4e1c995c5a7">threads.c</a>
+: <a class="el" href="threads_8c.html#ab1df2a28925862ef8f9cf4e1c995c5a7">threads.c</a>
+, <a class="el" href="cmsis__os_8h.html#ab1df2a28925862ef8f9cf4e1c995c5a7">cmsis_os.h</a>
 </li>
 <li>osThreadGetPriority()
 : <a class="el" href="threads_8c.html#a4299d838978bc2aae5e4350754e6a4e9">threads.c</a>
 , <a class="el" href="cmsis__os_8h.html#a4299d838978bc2aae5e4350754e6a4e9">cmsis_os.h</a>
 </li>
 <li>osThreadSetPriority()
-: <a class="el" href="threads_8c.html#a0dfb90ccf1f6e4b54b9251b12d1cbc8b">threads.c</a>
-, <a class="el" href="cmsis__os_8h.html#a0dfb90ccf1f6e4b54b9251b12d1cbc8b">cmsis_os.h</a>
+: <a class="el" href="cmsis__os_8h.html#a0dfb90ccf1f6e4b54b9251b12d1cbc8b">cmsis_os.h</a>
+, <a class="el" href="threads_8c.html#a0dfb90ccf1f6e4b54b9251b12d1cbc8b">threads.c</a>
 </li>
 <li>osThreadTerminate()
 : <a class="el" href="threads_8c.html#aea135bb90eb853eff39e0800b91bbeab">threads.c</a>
 , <a class="el" href="cmsis__os_8h.html#aea135bb90eb853eff39e0800b91bbeab">cmsis_os.h</a>
 </li>
 <li>osThreadYield()
-: <a class="el" href="threads_8c.html#af13a667493c5d629a90c13e113b99233">threads.c</a>
-, <a class="el" href="cmsis__os_8h.html#af13a667493c5d629a90c13e113b99233">cmsis_os.h</a>
+: <a class="el" href="cmsis__os_8h.html#af13a667493c5d629a90c13e113b99233">cmsis_os.h</a>
+, <a class="el" href="threads_8c.html#af13a667493c5d629a90c13e113b99233">threads.c</a>
 </li>
 <li>osTimerCreate()
 : <a class="el" href="cmsis__os_8h.html#aedd312bfdca04e0b8162b666e09a1ae6">cmsis_os.h</a>
@@ -518,7 +529,7 @@ $(document).ready(function(){initNavTree('globals_func.html','');});
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="footer">Generated on Sun Aug 24 2014 16:49:06 for RavenOS by
+    <li class="footer">Generated on Sun Aug 24 2014 21:01:37 for RavenOS by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.7 </li>
   </ul>

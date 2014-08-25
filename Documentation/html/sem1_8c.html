@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.7"/>
-<title>RavenOS: os_mailQ_def Struct Reference</title>
+<title>RavenOS: D:/Laura/Code/RavenOS/RTE/RTOS/Source/sem1.c File Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -48,8 +48,8 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
       <li><a href="pages.html"><span>Related&#160;Pages</span></a></li>
-      <li class="current"><a href="annotated.html"><span>Data&#160;Structures</span></a></li>
-      <li><a href="files.html"><span>Files</span></a></li>
+      <li><a href="annotated.html"><span>Data&#160;Structures</span></a></li>
+      <li class="current"><a href="files.html"><span>Files</span></a></li>
       <li>
         <div id="MSearchBox" class="MSearchBoxInactive">
         <span class="left">
@@ -70,9 +70,8 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   </div>
   <div id="navrow2" class="tabs2">
     <ul class="tablist">
-      <li><a href="annotated.html"><span>Data&#160;Structures</span></a></li>
-      <li><a href="classes.html"><span>Data&#160;Structure&#160;Index</span></a></li>
-      <li><a href="functions.html"><span>Data&#160;Fields</span></a></li>
+      <li><a href="files.html"><span>File&#160;List</span></a></li>
+      <li><a href="globals.html"><span>Globals</span></a></li>
     </ul>
   </div>
 </div><!-- top -->
@@ -87,7 +86,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   </div>
 </div>
 <script type="text/javascript">
-$(document).ready(function(){initNavTree('structos__mail_q__def.html','');});
+$(document).ready(function(){initNavTree('sem1_8c.html','');});
 </script>
 <div id="doc-content">
 <!-- window showing the filter options -->
@@ -106,40 +105,86 @@ $(document).ready(function(){initNavTree('structos__mail_q__def.html','');});
 
 <div class="header">
   <div class="summary">
-<a href="#pub-attribs">Data Fields</a>  </div>
+<a href="#func-members">Functions</a> &#124;
+<a href="#var-members">Variables</a>  </div>
   <div class="headertitle">
-<div class="title">os_mailQ_def Struct Reference</div>  </div>
+<div class="title">sem1.c File Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
 
-<p><code>#include &lt;<a class="el" href="cmsis__os_8h_source.html">cmsis_os.h</a>&gt;</code></p>
-<table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
-Data Fields</h2></td></tr>
-<tr class="memitem:a8a83a3a8c0aa8057b13807d2a54077e0"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a8a83a3a8c0aa8057b13807d2a54077e0"></a>
-uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structos__mail_q__def.html#a8a83a3a8c0aa8057b13807d2a54077e0">queue_sz</a></td></tr>
-<tr class="memdesc:a8a83a3a8c0aa8057b13807d2a54077e0"><td class="mdescLeft">&#160;</td><td class="mdescRight">number of elements in the queue <br /></td></tr>
-<tr class="separator:a8a83a3a8c0aa8057b13807d2a54077e0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4c2a0c691de3365c00ecd22d8102811f"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a4c2a0c691de3365c00ecd22d8102811f"></a>
-uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structos__mail_q__def.html#a4c2a0c691de3365c00ecd22d8102811f">item_sz</a></td></tr>
-<tr class="memdesc:a4c2a0c691de3365c00ecd22d8102811f"><td class="mdescLeft">&#160;</td><td class="mdescRight">size of an item <br /></td></tr>
-<tr class="separator:a4c2a0c691de3365c00ecd22d8102811f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a269c3935f8bc66db70bccdd02cb05e3c"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a269c3935f8bc66db70bccdd02cb05e3c"></a>
-void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structos__mail_q__def.html#a269c3935f8bc66db70bccdd02cb05e3c">pool</a></td></tr>
-<tr class="memdesc:a269c3935f8bc66db70bccdd02cb05e3c"><td class="mdescLeft">&#160;</td><td class="mdescRight">memory array for mail <br /></td></tr>
-<tr class="separator:a269c3935f8bc66db70bccdd02cb05e3c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<p>UART Semaphore.  
+<a href="#details">More...</a></p>
+<div class="textblock"><code>#include &quot;<a class="el" href="trace_8h_source.html">trace.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="os_objects_8h_source.html">osObjects.h</a>&quot;</code><br />
+</div><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
+Functions</h2></td></tr>
+<tr class="memitem:aceb6f9f211845fc0a212c56c9e942d5d"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aceb6f9f211845fc0a212c56c9e942d5d"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="sem1_8c.html#aceb6f9f211845fc0a212c56c9e942d5d">osSemaphoreDef</a> (Semaphore1)</td></tr>
+<tr class="memdesc:aceb6f9f211845fc0a212c56c9e942d5d"><td class="mdescLeft">&#160;</td><td class="mdescRight">semaphore object <br /></td></tr>
+<tr class="separator:aceb6f9f211845fc0a212c56c9e942d5d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac8c670714758ce70ef6c7d14fb41b016"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="sem1_8c.html#ac8c670714758ce70ef6c7d14fb41b016">Init_Semaphore1</a> (void)</td></tr>
+<tr class="memdesc:ac8c670714758ce70ef6c7d14fb41b016"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initializing Semaphore.  <a href="#ac8c670714758ce70ef6c7d14fb41b016">More...</a><br /></td></tr>
+<tr class="separator:ac8c670714758ce70ef6c7d14fb41b016"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a54be739d309f4a9c7855af4d6541d50b"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="sem1_8c.html#a54be739d309f4a9c7855af4d6541d50b">Delete_Semaphore1</a> (void)</td></tr>
+<tr class="memdesc:a54be739d309f4a9c7855af4d6541d50b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Deleting Semaphore.  <a href="#a54be739d309f4a9c7855af4d6541d50b">More...</a><br /></td></tr>
+<tr class="separator:a54be739d309f4a9c7855af4d6541d50b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="var-members"></a>
+Variables</h2></td></tr>
+<tr class="memitem:a1683fd12ff81dd77de1110c90994bf99"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a1683fd12ff81dd77de1110c90994bf99"></a>
+<a class="el" href="cmsis__os_8h.html#aa8968896c84094aa973683c84fa06f84">osSemaphoreId</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="sem1_8c.html#a1683fd12ff81dd77de1110c90994bf99">sid_Semaphore1</a></td></tr>
+<tr class="memdesc:a1683fd12ff81dd77de1110c90994bf99"><td class="mdescLeft">&#160;</td><td class="mdescRight">semaphore id <br /></td></tr>
+<tr class="separator:a1683fd12ff81dd77de1110c90994bf99"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Definition structure for mail queue. </p><dl class="section note"><dt>Note</dt><dd>CAN BE CHANGED: <b><a class="el" href="structos__mail_q__def.html">os_mailQ_def</a></b> is implementation specific in every CMSIS-RTOS. </dd></dl>
-</div><hr/>The documentation for this struct was generated from the following file:<ul>
-<li>D:/Laura/Code/RavenOS/RTE/RTOS/Include/<a class="el" href="cmsis__os_8h_source.html">cmsis_os.h</a></li>
-</ul>
+<div class="textblock"><p>UART Semaphore. </p>
+<p>Contains semaphore 1 related API implementations. Defines the semaphore, and initializes it . </p>
+</div><h2 class="groupheader">Function Documentation</h2>
+<a class="anchor" id="a54be739d309f4a9c7855af4d6541d50b"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int Delete_Semaphore1 </td>
+          <td>(</td>
+          <td class="paramtype">void&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Deleting Semaphore. </p>
+<dl class="section return"><dt>Returns</dt><dd>0=successful; -1=failure </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="ac8c670714758ce70ef6c7d14fb41b016"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int Init_Semaphore1 </td>
+          <td>(</td>
+          <td class="paramtype">void&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Initializing Semaphore. </p>
+<dl class="section return"><dt>Returns</dt><dd>0=successful; -1=failure </dd></dl>
+
+</div>
+</div>
 </div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a class="el" href="structos__mail_q__def.html">os_mailQ_def</a></li>
+    <li class="navelem"><a class="el" href="dir_2cfa845288836d0010190eddcc80c178.html">RTE</a></li><li class="navelem"><a class="el" href="dir_37d2205f15e85812ee2baf1e2f5dde11.html">RTOS</a></li><li class="navelem"><a class="el" href="dir_e18e8ca17cc8761131819f6fa843b03a.html">Source</a></li><li class="navelem"><a class="el" href="sem1_8c.html">sem1.c</a></li>
     <li class="footer">Generated on Sun Aug 24 2014 21:01:35 for RavenOS by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.7 </li>
