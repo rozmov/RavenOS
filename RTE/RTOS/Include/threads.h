@@ -8,8 +8,39 @@
 
 #include <stdint.h>
 
-#define MAX_THREADS 10         ///< Maximum number of threads supported
-#define DEFAULT_STACK_SIZE 128 ///< Default Stack Size for a given Thread
+//-------- <<< Use Configuration Wizard in Context Menu >>> ------------------
+//--------------------- Threads Configuration ----------------------------------
+//
+//      <o> Number of Threads used at Any Given Time in the OS
+//              <1=> 0: (Idle Thread)
+//              <2=> 1
+//              <3=> 2
+//              <4=> 3
+//              <5=> 4
+//              <6=> 5
+//              <7=> 6
+//              <8=> 7
+//              <9=> 8
+//              <10=> 9
+//              <11=> 10
+//          <i> Specifies the maximum number of threads supported
+//
+#define MAX_THREADS 7         ///< Maximum number of threads supported
+//
+//      <o> Default Stack Size for a Given Thread (Bytes)
+//              <100=> 100 Bytes
+//              <200=> 200 Bytes
+//              <300=> 300 Bytes
+//              <400=> 400 Bytes
+//              <500=> 500 Bytes
+//              <600=> 600 Bytes
+//              <700=> 700 Bytes
+//              <800=> 800 Bytes
+//              <900=> 900 Bytes
+//              <1000=> 1000 Bytes
+//          <i> Specifies the Default Stack Size for a given Thread
+//
+#define DEFAULT_STACK_SIZE 200 ///< Default Stack Size for a given Thread
 
 typedef enum os_thread_status ///< Thread Status : Running, Blocked or Asleep.
 {

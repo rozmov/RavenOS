@@ -8,6 +8,22 @@
 
 #include <stdint.h> 
 
-#define MAX_THREADS_SEM 10 ///< The maximum number of threads that can be blocked on a semaphore.
+//-------- <<< Use Configuration Wizard in Context Menu >>> ------------------
+//--------------------- Semaphore Configuration ----------------------------------
+//
+//      <o> Number of Threads per Semaphore
+//              <1=> 1
+//              <2=> 2
+//              <3=> 3
+//              <4=> 4
+//              <5=> 5
+//              <6=> 6
+//              <7=> 7
+//              <8=> 8
+//              <9=> 9
+//              <10=> 10
+//          <i> Specifies the maximum number of threads that can be blocked on or own a semaphore.
+//
+#define MAX_THREADS_SEM 10 ///< The maximum number of threads that can be blocked or own on a semaphore.
 
 #endif

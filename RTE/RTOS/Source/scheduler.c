@@ -13,7 +13,6 @@
 extern uint32_t  curr_task;     ///< Current task
 extern uint32_t  next_task;     ///< Next task
 
-uint32_t os_ThreadGetNextThread(void);
 uint32_t os_ThreadGetBestThread(void);
 void os_ReevaluateBlockedThread(void);
 osStatus os_ReevaluateThread(osThreadId thread_id);
@@ -24,6 +23,11 @@ osStatus os_ReevaluateThread(osThreadId thread_id);
 void scheduler(void)
 {
 	uint32_t next;
+	
+	if (th_q_cnt == 0)
+	{
+		stop_cpu;
+	}	
 	
 	// re-evaluate blocked threads
 	os_ReevaluateBlockedThread();
@@ -46,43 +50,10 @@ void scheduler(void)
 		//need a context switch - let the kernel handle this	
 	}	
 	
-	if (th_q_cnt == 0)
-	{
-		next = 0;
-		while(1)
-		{		
-				// Should not be here
-		};
-	}
-	
 	next_task = next;
 	return;	
 }
 
-/// \brief Get thread with next highest priority.
-/// \return Thread ID of the next thread to run
-uint32_t os_ThreadGetNextThread(void)
-{
-	uint32_t i, temp = th_q_h;
-	osPriority priority = osPriorityIdle;
-	
-	// search for any thread that is ready to go except head
-	for ( i = 0; i < th_q_cnt ; i++ )
-	{
-		// This is not the currently running process
-		// The candidate process is in ready state
-		if ( i != th_q_h && th_q[i]->status  )
-		{
-			if ( th_q[i]->priority > priority )
-			{
-				priority = th_q[i]->priority;
-				temp = i;
-			}
-		}
-	}
-	// if something is found, it will be returned, otherwise, curent head is going back
-	return temp;
-}
 
 /// \brief Get ready/running thread with highest priority.
 /// \return Thread ID of the best thread to run

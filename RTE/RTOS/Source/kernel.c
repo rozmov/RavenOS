@@ -10,7 +10,6 @@
 #include "scheduler.h"
 #include "trace.h"
 
-
 /*! \def HW32_REG(ADDRESS) 
          Macros for word accesses. */
 #define HW32_REG(ADDRESS)  (*((volatile unsigned long  *)(ADDRESS)))
@@ -41,7 +40,8 @@ uint32_t kernel_busy = 0;            ///< flag whether the kernel is busy or not
 //  ==== Kernel Control Functions ====
 
 /// \brief Initialize the RTOS Kernel for creating objects.
-/// \return status code that indicates the execution status of the function.
+/// \details Enable double-word stack alignment and initialize the Idle thread.
+/// \return Status code that indicates the execution status of the function.
 /// \note MUST REMAIN UNCHANGED: \b osKernelInitialize shall be consistent in every CMSIS-RTOS.
 osStatus osKernelInitialize (void)
 {
@@ -232,7 +232,7 @@ __asm void PendSV_Handler(void)
   VSTMDBEQ R0!, {S16-S31} // Save floating point registers
   MOV      R2, LR
   MRS      R3, CONTROL
-  STMDB    R0!,{R2-R11}// Save LR,CONTROL and R4 to R11 in task stack (10 regs)
+  STMDB    R0!,{R2-R11}// Save LR,CONTROL and R4 to R11 on task stack (10 regs)
   LDR      R1,=__cpp(&curr_task)
   LDR      R2,[R1]     // Get current task ID
   LDR      R3,=__cpp(&PSP_array)
