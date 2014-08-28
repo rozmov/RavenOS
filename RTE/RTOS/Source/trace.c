@@ -12,29 +12,28 @@
 //--------------------- Trace Configuration ----------------------------------
 //
 //      <o> Maximum Supported String Length for the Trace Message
-//              <1=> 16
-//              <2=> 32
-//              <3=> 64
-//              <4=> 128
-//              <5=> 256
-//              <6=> 512
-//              <7=> 1024
+//              <16=> 16
+//              <32=> 32
+//              <64=> 64
+//              <128=> 128
+//              <256=> 256
+//              <512=> 512
 //          <i> Specifies the maximum length of the string that can be handled by the tracing mechanism.
 //
-#define MAX_STR_LEN       3  ///< Maximum length of a trace message
+#define MAX_STR_LEN       64  ///< Maximum length of a trace message
 
 #define MIN_TRACE_ARR_LEN  0  ///< Minimum size of the message buffer
 //
 //      <o> Maximum size of the buffer
-//              <1=> 20
-//              <2=> 30
-//              <3=> 40
-//              <4=> 50
-//              <5=> 75
-//              <6=> 100
+//              <20=> 20
+//              <30=> 30
+//              <40=> 40
+//              <50=> 50
+//              <75=> 75
+//              <100=> 100
 //          <i> Specifies the maximum number of messages to be traced until trace is dumped.
 //
-#define MAX_TRACE_ARR_LEN 4  ///< Maximum size of the message buffer
+#define MAX_TRACE_ARR_LEN 40  ///< Maximum size of the message buffer
 
 char trace_table[MAX_TRACE_ARR_LEN][MAX_STR_LEN]; ///< The message table.
 uint32_t trace_counter = MIN_TRACE_ARR_LEN;  ///< The message table counter.
