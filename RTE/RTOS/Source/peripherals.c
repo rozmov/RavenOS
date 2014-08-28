@@ -90,7 +90,7 @@ void count1Sec(void)
 // -------------------------------------------------------------------------
 /*!
     \brief Initializing UART for printing to serial console
-    \details Use the CMSIS Driver implementation of the USART to initialize UART0.
+    \details Use the CMSIS Driver implementation of the USART to initialize UART0. Configures the UART for 115,200, 8-N-1 operation.
 */
 void UART_initialize(void)
 {

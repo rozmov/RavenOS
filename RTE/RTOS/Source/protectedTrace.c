@@ -10,7 +10,7 @@
 #include "osObjects.h"
 
 //-------- <<< Use Configuration Wizard in Context Menu >>> ------------------
-//--------------------- Trace Configuration ----------------------------------
+//--------------------- Protected Trace Configuration ----------------------------------
 //
 //  <e> Trace Configuration
 //          <i> Uncheck this box to skip the trace printing.
