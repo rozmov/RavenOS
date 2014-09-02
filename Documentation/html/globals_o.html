@@ -91,6 +91,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
       <li><a href="globals_a.html#index_a"><span>a</span></a></li>
       <li><a href="globals_c.html#index_c"><span>c</span></a></li>
       <li><a href="globals_d.html#index_d"><span>d</span></a></li>
+      <li><a href="globals_e.html#index_e"><span>e</span></a></li>
       <li><a href="globals_f.html#index_f"><span>f</span></a></li>
       <li><a href="globals_g.html#index_g"><span>g</span></a></li>
       <li><a href="globals_h.html#index_h"><span>h</span></a></li>
@@ -103,6 +104,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
       <li><a href="globals_s.html#index_s"><span>s</span></a></li>
       <li><a href="globals_t.html#index_t"><span>t</span></a></li>
       <li><a href="globals_u.html#index_u"><span>u</span></a></li>
+      <li><a href="globals_w.html#index_w"><span>w</span></a></li>
       <li><a href="globals_x.html#index_x"><span>x</span></a></li>
     </ul>
   </div>
@@ -145,13 +147,19 @@ $(document).ready(function(){initNavTree('globals_o.html','');});
 <li>os_InsertThreadInSemaphoreOwnerQ()
 : <a class="el" href="semaphores_8c.html#a3387b88698b0cb050a17350b79c7789f">semaphores.c</a>
 </li>
+<li>os_KernelEnterCriticalSection()
+: <a class="el" href="kernel_8c.html#a24ff2a89b716dff165ac2e49d71ac810">kernel.c</a>
+</li>
+<li>os_KernelExitCriticalSection()
+: <a class="el" href="kernel_8c.html#a26ee22f4af849bb112cb728b63a9feb9">kernel.c</a>
+</li>
 <li>os_KernelInvokeScheduler()
-: <a class="el" href="kernel_8c.html#a405f8b5b73c549c942ea9915f57580ba">kernel.c</a>
-, <a class="el" href="kernel_8h.html#a405f8b5b73c549c942ea9915f57580ba">kernel.h</a>
+: <a class="el" href="kernel_8h.html#a405f8b5b73c549c942ea9915f57580ba">kernel.h</a>
+, <a class="el" href="kernel_8c.html#a405f8b5b73c549c942ea9915f57580ba">kernel.c</a>
 </li>
 <li>os_KernelStackAlloc()
-: <a class="el" href="kernel_8h.html#a2aad0b69b73fccfe5c4bfa13285b6e8e">kernel.h</a>
-, <a class="el" href="kernel_8c.html#a2aad0b69b73fccfe5c4bfa13285b6e8e">kernel.c</a>
+: <a class="el" href="kernel_8c.html#a2aad0b69b73fccfe5c4bfa13285b6e8e">kernel.c</a>
+, <a class="el" href="kernel_8h.html#a2aad0b69b73fccfe5c4bfa13285b6e8e">kernel.h</a>
 </li>
 <li>os_pthread
 : <a class="el" href="cmsis__os_8h.html#aee631e5ea1b700fc35695cc7bc574cf7">cmsis_os.h</a>
@@ -180,9 +188,6 @@ $(document).ready(function(){initNavTree('globals_o.html','');});
 <li>os_SearchThreadInSemaphoreOwnerQ()
 : <a class="el" href="semaphores_8c.html#aa46a19b54de67d23b7416fd37df16990">semaphores.c</a>
 </li>
-<li>os_SearchThreadSemaphoresExcept()
-: <a class="el" href="semaphores_8c.html#acf078b9bd476f8f8e386787a8249520a">semaphores.c</a>
-</li>
 <li>os_semaphore_cb
 : <a class="el" href="cmsis__os_8h.html#a3acf673308feeb33614e7e374a158afe">cmsis_os.h</a>
 </li>
@@ -207,9 +212,6 @@ $(document).ready(function(){initNavTree('globals_o.html','');});
 </li>
 <li>os_ThreadGetBestThread()
 : <a class="el" href="scheduler_8c.html#a1ff6e48580c53794a0f09a4e8cc8f6de">scheduler.c</a>
-</li>
-<li>os_ThreadGetNextThread()
-: <a class="el" href="scheduler_8c.html#aef04ef03a005f71eeff67c31624a251b">scheduler.c</a>
 </li>
 <li>os_ThreadRemoveThread()
 : <a class="el" href="threads_8c.html#a9db4b1e27dc5009b45d6e85ccc401960">threads.c</a>
@@ -512,7 +514,7 @@ $(document).ready(function(){initNavTree('globals_o.html','');});
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="footer">Generated on Sun Aug 24 2014 21:19:10 for RavenOS by
+    <li class="footer">Generated on Tue Sep 2 2014 02:56:52 for RavenOS by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.7 </li>
   </ul>

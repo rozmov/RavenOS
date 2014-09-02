@@ -112,11 +112,17 @@ $(document).ready(function(){initNavTree('thread_idle_8h_source.html','');});
 <div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="preprocessor">#ifndef _THREADIDLE_H</span></div>
 <div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="preprocessor">#define _THREADIDLE_H</span></div>
 <div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;</div>
-<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="keyword">extern</span> <span class="keywordtype">void</span> <a class="code" href="thread_idle_8h.html#a2d0620772fa9959681d65514b0fb19db">threadIdle</a> (<span class="keywordtype">void</span> <span class="keyword">const</span> *argument);</div>
-<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="keywordtype">int</span> <a class="code" href="thread_idle_8h.html#a5e8a347d5d15ac589be66e14c120acf9">Init_threadIdle</a> (<span class="keywordtype">void</span>) ;</div>
-<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;</div>
-<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="preprocessor">#endif</span></div>
-<div class="ttc" id="thread_idle_8h_html_a5e8a347d5d15ac589be66e14c120acf9"><div class="ttname"><a href="thread_idle_8h.html#a5e8a347d5d15ac589be66e14c120acf9">Init_threadIdle</a></div><div class="ttdeci">int Init_threadIdle(void)</div><div class="ttdoc">Initializing Idle thread. </div><div class="ttdef"><b>Definition:</b> threadIdle.c:16</div></div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="cmsis__os_8h.html">cmsis_os.h</a>&quot;</span></div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;</div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="keyword">extern</span> <span class="keywordtype">void</span> <a class="code" href="thread_idle_8h.html#a2d0620772fa9959681d65514b0fb19db">threadIdle</a> (<span class="keywordtype">void</span> <span class="keyword">const</span> *argument);</div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="keywordtype">int</span> <a class="code" href="thread_idle_8h.html#a5e8a347d5d15ac589be66e14c120acf9">Init_threadIdle</a> (<span class="keywordtype">void</span>) ;</div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="keyword">extern</span> <a class="code" href="structos__thread__cb.html">osThreadId</a> <a class="code" href="thread_idle_8h.html#a8989a8291643681626aa41ea82e21f48">tid_threadIdle</a>;</div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;</div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="ttc" id="cmsis__os_8h_html"><div class="ttname"><a href="cmsis__os_8h.html">cmsis_os.h</a></div><div class="ttdoc">This header file defines all kernel APIs. </div></div>
+<div class="ttc" id="thread_idle_8h_html_a8989a8291643681626aa41ea82e21f48"><div class="ttname"><a href="thread_idle_8h.html#a8989a8291643681626aa41ea82e21f48">tid_threadIdle</a></div><div class="ttdeci">osThreadId tid_threadIdle</div><div class="ttdoc">thread id </div><div class="ttdef"><b>Definition:</b> threadIdle.c:12</div></div>
+<div class="ttc" id="thread_idle_8h_html_a5e8a347d5d15ac589be66e14c120acf9"><div class="ttname"><a href="thread_idle_8h.html#a5e8a347d5d15ac589be66e14c120acf9">Init_threadIdle</a></div><div class="ttdeci">int Init_threadIdle(void)</div><div class="ttdoc">Initializing Idle thread. </div><div class="ttdef"><b>Definition:</b> threadIdle.c:19</div></div>
+<div class="ttc" id="structos__thread__cb_html"><div class="ttname"><a href="structos__thread__cb.html">os_thread_cb</a></div><div class="ttdoc">Thread Block Control. </div><div class="ttdef"><b>Definition:</b> cmsis_os.h:264</div></div>
 <div class="ttc" id="thread_idle_8h_html_a2d0620772fa9959681d65514b0fb19db"><div class="ttname"><a href="thread_idle_8h.html#a2d0620772fa9959681d65514b0fb19db">threadIdle</a></div><div class="ttdeci">void threadIdle(void const *argument)</div><div class="ttdoc">Thread definition for the idle thread. </div><div class="ttdef"><b>Definition:</b> threadIdle.c:36</div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
@@ -124,7 +130,7 @@ $(document).ready(function(){initNavTree('thread_idle_8h_source.html','');});
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="dir_2cfa845288836d0010190eddcc80c178.html">RTE</a></li><li class="navelem"><a class="el" href="dir_37d2205f15e85812ee2baf1e2f5dde11.html">RTOS</a></li><li class="navelem"><a class="el" href="dir_5557ce608830b301ac6edb6ef8f5543b.html">Include</a></li><li class="navelem"><a class="el" href="thread_idle_8h.html">threadIdle.h</a></li>
-    <li class="footer">Generated on Sun Aug 24 2014 21:19:08 for RavenOS by
+    <li class="footer">Generated on Tue Sep 2 2014 02:56:51 for RavenOS by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.7 </li>
   </ul>

@@ -26,6 +26,7 @@ var searchData=
   ['svc_5fhandler_5fc',['SVC_Handler_C',['../kernel_8c.html#a26c0ab883d9bde396a32f13b18951fec',1,'kernel.c']]],
   ['system_5ftm4c123_2ec',['system_TM4C123.c',['../system___t_m4_c123_8c.html',1,'']]],
   ['systemcoreclock',['SystemCoreClock',['../system___t_m4_c123_8c.html#aa3cd3e43291e81e795d642b79b6088e6',1,'system_TM4C123.c']]],
+  ['systemcoreclockupdate',['SystemCoreClockUpdate',['../system___t_m4_c123_8c.html#ae0c36a9591fe6e9c45ecb21a794f0f0f',1,'system_TM4C123.c']]],
   ['systeminit',['SystemInit',['../system___t_m4_c123_8c.html#a93f514700ccf00d08dbdcff7f1224eb2',1,'system_TM4C123.c']]],
   ['systick_5fhandler',['SysTick_Handler',['../kernel_8c.html#ab5e09814056d617c521549e542639b7e',1,'kernel.c']]]
 ];

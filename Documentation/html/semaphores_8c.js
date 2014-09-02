@@ -9,7 +9,6 @@ var semaphores_8c =
     [ "os_SearchThreadAllSemaphoresBlockedQ", "semaphores_8c.html#abbeb4c0c442b5f70874904914f90b92d", null ],
     [ "os_SearchThreadInSemaphoreBlockedQ", "semaphores_8c.html#a7badc8243de28cde5ce32e7514f66b89", null ],
     [ "os_SearchThreadInSemaphoreOwnerQ", "semaphores_8c.html#aa46a19b54de67d23b7416fd37df16990", null ],
-    [ "os_SearchThreadSemaphoresExcept", "semaphores_8c.html#acf078b9bd476f8f8e386787a8249520a", null ],
     [ "os_SemaphoreRemoveThread", "semaphores_8c.html#af8d8c5423ede32da632de69a9ad4e804", null ],
     [ "osSemaphoreCreate", "semaphores_8c.html#a97381e8e55cd47cec390bf57c96d6edb", null ],
     [ "osSemaphoreDelete", "semaphores_8c.html#abae2801ac2c096f6e8c69a264908f595", null ],

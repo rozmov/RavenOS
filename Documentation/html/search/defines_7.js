@@ -1,7 +1,6 @@
 var searchData=
 [
-  ['xtal30k',['XTAL30K',['../system___t_m4_c123_8c.html#aae873e6b41dc2b7665b1a312cb062b4a',1,'system_TM4C123.c']]],
-  ['xtal32k',['XTAL32K',['../system___t_m4_c123_8c.html#a7981be1ae1f32cdfc7b1681860d440be',1,'system_TM4C123.c']]],
-  ['xtali',['XTALI',['../system___t_m4_c123_8c.html#aed5b0da9b247340ab65170e44a0e079f',1,'system_TM4C123.c']]],
-  ['xtalm',['XTALM',['../system___t_m4_c123_8c.html#a2257a737607a717c24541af4e55abf03',1,'system_TM4C123.c']]]
+  ['trace_5ferror',['TRACE_ERROR',['../trace_8h.html#a7c12181b2e8dc912219651ff42d22e42',1,'trace.h']]],
+  ['trace_5fflag',['TRACE_FLAG',['../protected_trace_8c.html#ada3b1f9f345b10e9c243b35634325846',1,'protectedTrace.c']]],
+  ['trace_5fok',['TRACE_OK',['../trace_8h.html#abe999116692a0cf8829e4a39e07f7c23',1,'trace.h']]]
 ];

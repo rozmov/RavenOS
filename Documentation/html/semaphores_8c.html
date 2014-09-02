@@ -142,8 +142,6 @@ Functions</h2></td></tr>
 <tr class="separator:a7badc8243de28cde5ce32e7514f66b89"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:abbeb4c0c442b5f70874904914f90b92d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="cmsis__os_8h.html#ae2e091fefc4c767117727bd5aba4d99e">osStatus</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="semaphores_8c.html#abbeb4c0c442b5f70874904914f90b92d">os_SearchThreadAllSemaphoresBlockedQ</a> (<a class="el" href="cmsis__os_8h.html#adfeb153a84a81309e2d958268197617f">osThreadId</a> thread_id, <a class="el" href="cmsis__os_8h.html#aa8968896c84094aa973683c84fa06f84">osSemaphoreId</a> *semaphore_id_p, uint32_t *semaphore_p_p)</td></tr>
 <tr class="separator:abbeb4c0c442b5f70874904914f90b92d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:acf078b9bd476f8f8e386787a8249520a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="cmsis__os_8h.html#ae2e091fefc4c767117727bd5aba4d99e">osStatus</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="semaphores_8c.html#acf078b9bd476f8f8e386787a8249520a">os_SearchThreadSemaphoresExcept</a> (<a class="el" href="cmsis__os_8h.html#adfeb153a84a81309e2d958268197617f">osThreadId</a> thread_id, <a class="el" href="cmsis__os_8h.html#aa8968896c84094aa973683c84fa06f84">osSemaphoreId</a> semaphore_id, <a class="el" href="cmsis__os_8h.html#aa8968896c84094aa973683c84fa06f84">osSemaphoreId</a> *semaphore_id_p, uint32_t *semaphore_p_p)</td></tr>
-<tr class="separator:acf078b9bd476f8f8e386787a8249520a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a97381e8e55cd47cec390bf57c96d6edb"><td class="memItemLeft" align="right" valign="top"><a class="el" href="cmsis__os_8h.html#aa8968896c84094aa973683c84fa06f84">osSemaphoreId</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="semaphores_8c.html#a97381e8e55cd47cec390bf57c96d6edb">osSemaphoreCreate</a> (const <a class="el" href="cmsis__os_8h.html#ad2b7c126fea0df2aa5568da553437d21">osSemaphoreDef_t</a> *semaphore_def, int32_t count)</td></tr>
 <tr class="separator:a97381e8e55cd47cec390bf57c96d6edb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:acc15b0fc8ce1167fe43da33042e62098"><td class="memItemLeft" align="right" valign="top">int32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="semaphores_8c.html#acc15b0fc8ce1167fe43da33042e62098">osSemaphoreWait</a> (<a class="el" href="cmsis__os_8h.html#aa8968896c84094aa973683c84fa06f84">osSemaphoreId</a> semaphore_id, uint32_t millisec)</td></tr>
@@ -480,57 +478,6 @@ uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="
 
 </div>
 </div>
-<a class="anchor" id="acf078b9bd476f8f8e386787a8249520a"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="cmsis__os_8h.html#ae2e091fefc4c767117727bd5aba4d99e">osStatus</a> os_SearchThreadSemaphoresExcept </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="cmsis__os_8h.html#adfeb153a84a81309e2d958268197617f">osThreadId</a>&#160;</td>
-          <td class="paramname"><em>thread_id</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="cmsis__os_8h.html#aa8968896c84094aa973683c84fa06f84">osSemaphoreId</a>&#160;</td>
-          <td class="paramname"><em>semaphore_id</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="cmsis__os_8h.html#aa8968896c84094aa973683c84fa06f84">osSemaphoreId</a> *&#160;</td>
-          <td class="paramname"><em>semaphore_id_p</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">uint32_t *&#160;</td>
-          <td class="paramname"><em>semaphore_p_p</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>Search for the thread in all blocked semaphore queue. </p><dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">thread_id</td><td>thread object. </td></tr>
-    <tr><td class="paramname">semaphore_id</td><td>semaphore object to exclude in search </td></tr>
-    <tr><td class="paramname">semaphore_id_p</td><td>pointer to semaphore object for returning </td></tr>
-    <tr><td class="paramname">semaphore_p_p</td><td>pointer to pointer to semaphore object for returning </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>index withing one of the semaphores the thread is blocked;<ul>
-<li>MAX_THREADS_SEM if not found or error </li>
-</ul>
-</dd></dl>
-
-</div>
-</div>
 <a class="anchor" id="af8d8c5423ede32da632de69a9ad4e804"></a>
 <div class="memitem">
 <div class="memproto">
@@ -681,7 +628,7 @@ uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="dir_2cfa845288836d0010190eddcc80c178.html">RTE</a></li><li class="navelem"><a class="el" href="dir_37d2205f15e85812ee2baf1e2f5dde11.html">RTOS</a></li><li class="navelem"><a class="el" href="dir_e18e8ca17cc8761131819f6fa843b03a.html">Source</a></li><li class="navelem"><a class="el" href="semaphores_8c.html">semaphores.c</a></li>
-    <li class="footer">Generated on Sun Aug 24 2014 21:19:09 for RavenOS by
+    <li class="footer">Generated on Tue Sep 2 2014 02:56:51 for RavenOS by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.7 </li>
   </ul>

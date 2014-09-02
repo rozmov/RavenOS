@@ -115,12 +115,13 @@ $(document).ready(function(){initNavTree('kernel_8c.html','');});
 <p>Implements kernel level operations.  
 <a href="#details">More...</a></p>
 <div class="textblock"><code>#include &quot;<a class="el" href="thread_idle_8h_source.html">threadIdle.h</a>&quot;</code><br />
-<code>#include &quot;TM4C123.h&quot;</code><br />
+<code>#include &quot;CU_TM4C123.h&quot;</code><br />
 <code>#include &quot;stdio.h&quot;</code><br />
 <code>#include &quot;<a class="el" href="os_objects_8h_source.html">osObjects.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="kernel_8h_source.html">kernel.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="scheduler_8h_source.html">scheduler.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="trace_8h_source.html">trace.h</a>&quot;</code><br />
+<code>#include &quot;RTE_Components.h&quot;</code><br />
 </div><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="define-members"></a>
 Macros</h2></td></tr>
@@ -130,6 +131,10 @@ Macros</h2></td></tr>
 #define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="kernel_8c.html#ad686975d5aee8044812757d81af91621">os_sysTickTicks</a>&#160;&#160;&#160;16000</td></tr>
 <tr class="memdesc:ad686975d5aee8044812757d81af91621"><td class="mdescLeft">&#160;</td><td class="mdescRight">Number of ticks between two system timer interrupts. This would generate 1000 interruts/s on a 16MHz clock. <br /></td></tr>
 <tr class="separator:ad686975d5aee8044812757d81af91621"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3525542da255209b36f76fd411d68fe5"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a3525542da255209b36f76fd411d68fe5"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="kernel_8c.html#a3525542da255209b36f76fd411d68fe5">ENABLE_KERNEL_PRINTF</a>&#160;&#160;&#160;0</td></tr>
+<tr class="memdesc:a3525542da255209b36f76fd411d68fe5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enables printf traces from kernel. Printf from the kernel may not be protected so use at own risk. <br /></td></tr>
+<tr class="separator:a3525542da255209b36f76fd411d68fe5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
@@ -139,6 +144,12 @@ Functions</h2></td></tr>
 <tr class="memitem:a3b571de44cd3094c643247a7397f86b5"><td class="memItemLeft" align="right" valign="top">int32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="kernel_8c.html#a3b571de44cd3094c643247a7397f86b5">osKernelRunning</a> (void)</td></tr>
 <tr class="memdesc:a3b571de44cd3094c643247a7397f86b5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check if the RTOS kernel is already started.  <a href="#a3b571de44cd3094c643247a7397f86b5">More...</a><br /></td></tr>
 <tr class="separator:a3b571de44cd3094c643247a7397f86b5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a24ff2a89b716dff165ac2e49d71ac810"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="kernel_8c.html#a24ff2a89b716dff165ac2e49d71ac810">os_KernelEnterCriticalSection</a> (void)</td></tr>
+<tr class="memdesc:a24ff2a89b716dff165ac2e49d71ac810"><td class="mdescLeft">&#160;</td><td class="mdescRight">Mark the entrance to a critical section (for interrupt-handling)  <a href="#a24ff2a89b716dff165ac2e49d71ac810">More...</a><br /></td></tr>
+<tr class="separator:a24ff2a89b716dff165ac2e49d71ac810"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a26ee22f4af849bb112cb728b63a9feb9"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="kernel_8c.html#a26ee22f4af849bb112cb728b63a9feb9">os_KernelExitCriticalSection</a> (void)</td></tr>
+<tr class="memdesc:a26ee22f4af849bb112cb728b63a9feb9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Mark the exit from a critical section (for interrupt-handling)  <a href="#a26ee22f4af849bb112cb728b63a9feb9">More...</a><br /></td></tr>
+<tr class="separator:a26ee22f4af849bb112cb728b63a9feb9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a405f8b5b73c549c942ea9915f57580ba"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a405f8b5b73c549c942ea9915f57580ba"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="kernel_8c.html#a405f8b5b73c549c942ea9915f57580ba">os_KernelInvokeScheduler</a> (void)</td></tr>
 <tr class="memdesc:a405f8b5b73c549c942ea9915f57580ba"><td class="mdescLeft">&#160;</td><td class="mdescRight">Perform an SVC call to invoke scheduler. <br /></td></tr>
@@ -161,9 +172,8 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="kern
 <tr class="memitem:ac30fe917d3af62c1b47e2d4149b9a15f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="kernel_8c.html#ac30fe917d3af62c1b47e2d4149b9a15f">ScheduleContextSwitch</a> (void)</td></tr>
 <tr class="memdesc:ac30fe917d3af62c1b47e2d4149b9a15f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Schedules a context switch.  <a href="#ac30fe917d3af62c1b47e2d4149b9a15f">More...</a><br /></td></tr>
 <tr class="separator:ac30fe917d3af62c1b47e2d4149b9a15f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac665fd9d3df5b21cf4dee052d7cc6620"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ac665fd9d3df5b21cf4dee052d7cc6620"></a>
-__asm void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="kernel_8c.html#ac665fd9d3df5b21cf4dee052d7cc6620">HardFault_Handler</a> (void)</td></tr>
-<tr class="memdesc:ac665fd9d3df5b21cf4dee052d7cc6620"><td class="mdescLeft">&#160;</td><td class="mdescRight">Report HardFault when things goes wrong. <br /></td></tr>
+<tr class="memitem:ac665fd9d3df5b21cf4dee052d7cc6620"><td class="memItemLeft" align="right" valign="top">__asm void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="kernel_8c.html#ac665fd9d3df5b21cf4dee052d7cc6620">HardFault_Handler</a> (void)</td></tr>
+<tr class="memdesc:ac665fd9d3df5b21cf4dee052d7cc6620"><td class="mdescLeft">&#160;</td><td class="mdescRight">Report HardFault when things goes wrong.  <a href="#ac665fd9d3df5b21cf4dee052d7cc6620">More...</a><br /></td></tr>
 <tr class="separator:ac665fd9d3df5b21cf4dee052d7cc6620"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4dac502265d65c7133fe4c0332451c7d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="kernel_8c.html#a4dac502265d65c7133fe4c0332451c7d">HardFault_Handler_C</a> (unsigned int *svc_args)</td></tr>
 <tr class="memdesc:a4dac502265d65c7133fe4c0332451c7d"><td class="mdescLeft">&#160;</td><td class="mdescRight">C part of the handler.  <a href="#a4dac502265d65c7133fe4c0332451c7d">More...</a><br /></td></tr>
@@ -191,6 +201,25 @@ __asm void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href
 </div>
 </div>
 <h2 class="groupheader">Function Documentation</h2>
+<a class="anchor" id="ac665fd9d3df5b21cf4dee052d7cc6620"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">__asm void HardFault_Handler </td>
+          <td>(</td>
+          <td class="paramtype">void&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Report HardFault when things goes wrong. </p>
+<dl class="section note"><dt>Note</dt><dd>No need to disable interrupts since the fault handler is the second most important interrupt. </dd></dl>
+
+</div>
+</div>
 <a class="anchor" id="a4dac502265d65c7133fe4c0332451c7d"></a>
 <div class="memitem">
 <div class="memproto">
@@ -213,6 +242,44 @@ __asm void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href
   </table>
   </dd>
 </dl>
+
+</div>
+</div>
+<a class="anchor" id="a24ff2a89b716dff165ac2e49d71ac810"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void os_KernelEnterCriticalSection </td>
+          <td>(</td>
+          <td class="paramtype">void&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Mark the entrance to a critical section (for interrupt-handling) </p>
+<p>Kernel is marked as busy and interrupts (apart from NMI and fault handler) disabled. This could be defined as a macro to avoid function overhead </p>
+
+</div>
+</div>
+<a class="anchor" id="a26ee22f4af849bb112cb728b63a9feb9"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void os_KernelExitCriticalSection </td>
+          <td>(</td>
+          <td class="paramtype">void&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Mark the exit from a critical section (for interrupt-handling) </p>
+<p>Kernel is marked as normal and interrupts enabled. This could be defined as a macro to avoid function overhead </p>
 
 </div>
 </div>
@@ -387,7 +454,7 @@ __asm void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="dir_2cfa845288836d0010190eddcc80c178.html">RTE</a></li><li class="navelem"><a class="el" href="dir_37d2205f15e85812ee2baf1e2f5dde11.html">RTOS</a></li><li class="navelem"><a class="el" href="dir_e18e8ca17cc8761131819f6fa843b03a.html">Source</a></li><li class="navelem"><a class="el" href="kernel_8c.html">kernel.c</a></li>
-    <li class="footer">Generated on Sun Aug 24 2014 21:19:09 for RavenOS by
+    <li class="footer">Generated on Tue Sep 2 2014 02:56:51 for RavenOS by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.7 </li>
   </ul>

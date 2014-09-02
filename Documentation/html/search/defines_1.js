@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['hw32_5freg',['HW32_REG',['../kernel_8c.html#aaa11c7df18ba462bf4c3da360d28f16b',1,'kernel.c']]]
+  ['enable_5fkernel_5fprintf',['ENABLE_KERNEL_PRINTF',['../kernel_8c.html#a3525542da255209b36f76fd411d68fe5',1,'kernel.c']]]
 ];

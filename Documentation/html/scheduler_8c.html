@@ -118,12 +118,10 @@ $(document).ready(function(){initNavTree('scheduler_8c.html','');});
 <code>#include &lt;stdint.h&gt;</code><br />
 <code>#include &quot;stdio.h&quot;</code><br />
 <code>#include &quot;<a class="el" href="os_objects_8h_source.html">osObjects.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="thread_idle_8h_source.html">threadIdle.h</a>&quot;</code><br />
 </div><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:aef04ef03a005f71eeff67c31624a251b"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="scheduler_8c.html#aef04ef03a005f71eeff67c31624a251b">os_ThreadGetNextThread</a> (void)</td></tr>
-<tr class="memdesc:aef04ef03a005f71eeff67c31624a251b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get thread with next highest priority.  <a href="#aef04ef03a005f71eeff67c31624a251b">More...</a><br /></td></tr>
-<tr class="separator:aef04ef03a005f71eeff67c31624a251b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1ff6e48580c53794a0f09a4e8cc8f6de"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="scheduler_8c.html#a1ff6e48580c53794a0f09a4e8cc8f6de">os_ThreadGetBestThread</a> (void)</td></tr>
 <tr class="memdesc:a1ff6e48580c53794a0f09a4e8cc8f6de"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get ready/running thread with highest priority.  <a href="#a1ff6e48580c53794a0f09a4e8cc8f6de">More...</a><br /></td></tr>
 <tr class="separator:a1ff6e48580c53794a0f09a4e8cc8f6de"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -215,32 +213,13 @@ uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="
 
 </div>
 </div>
-<a class="anchor" id="aef04ef03a005f71eeff67c31624a251b"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">uint32_t os_ThreadGetNextThread </td>
-          <td>(</td>
-          <td class="paramtype">void&#160;</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Get thread with next highest priority. </p>
-<dl class="section return"><dt>Returns</dt><dd>Thread ID of the next thread to run </dd></dl>
-
-</div>
-</div>
 </div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="dir_2cfa845288836d0010190eddcc80c178.html">RTE</a></li><li class="navelem"><a class="el" href="dir_37d2205f15e85812ee2baf1e2f5dde11.html">RTOS</a></li><li class="navelem"><a class="el" href="dir_e18e8ca17cc8761131819f6fa843b03a.html">Source</a></li><li class="navelem"><a class="el" href="scheduler_8c.html">scheduler.c</a></li>
-    <li class="footer">Generated on Sun Aug 24 2014 21:19:09 for RavenOS by
+    <li class="footer">Generated on Tue Sep 2 2014 02:56:51 for RavenOS by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.7 </li>
   </ul>
