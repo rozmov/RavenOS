@@ -9,6 +9,7 @@
 #include <stdint.h>
 #include "stdio.h"
 #include "osObjects.h" 
+#include "threadIdle.h"
 
 extern uint32_t  curr_task;     ///< Current task
 extern uint32_t  next_task;     ///< Next task
@@ -75,7 +76,16 @@ uint32_t os_ThreadGetBestThread(void)
 		}
 	}
 	
-	// if something is found, it will be returned, otherwise, curent head is going back
+	// check that there is a runnable thread up, otherwise scheduling the Idle thread
+	if (priority == osPriorityIdle)
+	{
+		if (temp != tid_threadIdle->th_q_p )
+		{
+			temp = tid_threadIdle->th_q_p; 
+		}
+	}
+	
+	// if something is found, it will be returned, otherwise, curent thread is going back
 	return temp;
 }
 

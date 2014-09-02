@@ -7,6 +7,7 @@
 #include <string.h>
 #include <stdint.h>
 #include "trace.h"
+#include "CU_TM4C123.h"
 
 //-------- <<< Use Configuration Wizard in Context Menu >>> ------------------
 //--------------------- Trace Configuration ----------------------------------
@@ -33,7 +34,7 @@
 //              <100=> 100
 //          <i> Specifies the maximum number of messages to be traced until trace is dumped.
 //
-#define MAX_TRACE_ARR_LEN 40  ///< Maximum size of the message buffer
+#define MAX_TRACE_ARR_LEN 50  ///< Maximum size of the message buffer
 
 char trace_table[MAX_TRACE_ARR_LEN][MAX_STR_LEN]; ///< The message table.
 uint32_t trace_counter = MIN_TRACE_ARR_LEN;  ///< The message table counter.
@@ -86,8 +87,8 @@ uint32_t decrementTraceCounter(void)
 */
 uint32_t addTrace(char * message)
 {
-	/// The length of a message needs to be small enough to leave room for a null string termination 
-	if ( strlen(message) > (MAX_STR_LEN - 1) )
+	/// The length of a message needs to be small enough to leave room for a null string termination and LF/CR
+	if ( strlen(message) > (MAX_STR_LEN - 3) )
 	{
 		return TRACE_ERROR;
 	}

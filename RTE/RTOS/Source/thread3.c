@@ -69,7 +69,10 @@ void thread3 (void const *argument)
 		{
 			stop_cpu;
 		}
-		while (getTraceCounter() <= 4) // throttle mechanism in place to stop this thread from running if no other application thread present
+		osThreadYield(); 
+		
+		// throttle mechanism in place to stop this thread from running if no other traces added but its own
+		while (getTraceCounter() <= 4)
 		{
 			osThreadYield();             // suspend thread
 		}

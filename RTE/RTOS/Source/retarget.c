@@ -15,7 +15,7 @@
 #include <time.h>
 #include <rt_misc.h>
 #include <stdint.h>
-#include "TM4C123.h"
+#include "CU_TM4C123.h"
 #include "USART_TM4C123.h"
 #pragma import(__use_no_semihosting_swi)
 
@@ -24,13 +24,16 @@ struct __FILE { int handle; /*!< file handle */ };
 FILE __stdout; /*!< standard output */
 FILE __stdin;  /*!< standard input */
 
+static uint8_t c; ///< using a global to pass around between stdlib and UART driver
+
 /*! \fn void UART0_putc(char ch)
     \brief Output a character to UART
     \param ch The character to print
 */
 void UART0_putc(char ch)
 { 
-  Driver_USART0.Send((uint8_t *)&ch, 1);
+	c = (uint8_t) ch;
+  Driver_USART0.Send(&c, 1);
   return;
 }
 

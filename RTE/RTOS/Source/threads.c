@@ -37,7 +37,7 @@ void os_ThreadRemoveThread(osThreadId thread_id);
 /// \note MUST REMAIN UNCHANGED: \b osThreadCreate shall be consistent in every CMSIS-RTOS.
 osThreadId osThreadCreate (const osThreadDef_t *thread_def, void *argument)
 {
-	uint32_t th, instances;
+	uint32_t th, instances, dead = MAX_THREADS;
 	
 	// the definition does not exist, nothing to feed from, so exiting
 	if ( thread_def == NULL )
@@ -60,56 +60,73 @@ osThreadId osThreadCreate (const osThreadDef_t *thread_def, void *argument)
 			if (th_q[th]->start_p == thread_def->pthread)
 			{
 				instances++;
+			
+				// Check if this is a previously terminated thread
+				if (th_q[th]->status == TH_DEAD)
+				{
+					dead = th;
+					break;
+				}
 			}
 		}
 	}
-	if (instances >= thread_def->instances)
-	{
-		// thread function instance maximum already met, cannot create another one
-		return NULL;
-	}
 	
+	if (dead == MAX_THREADS)
+	{
+		if (instances >= thread_def->instances)
+		{
+			// thread function instance maximum already met, cannot create another one
+			return NULL;
+		}
+	}
 	// check that stack size requested can be supported
 	if ( thread_def->stacksize > DEFAULT_STACK_SIZE )
 	{
 		return NULL;
 	}	
 	
-  // check that the priority is whithin limits
+	// check that the priority is whithin limits
 	if ( (thread_def->tpriority < osPriorityIdle) || (thread_def->tpriority > osPriorityRealtime) )
 	{
 		return NULL;
 	}
 	
-  /// If there is still room in the thread queue, add the thread to the queue.
-	if ( 0 < (MAX_THREADS - th_q_cnt))
+	if (dead == MAX_THREADS)
 	{
-		// Instantiate only one thread, since we can only return one thread id...
-		// If the user would like to instantiate another thread with the same name, 
-		// the user would need to call create again with a decrement in the number of instances.
-		th = th_q_cnt;
-		
-		// check if the thread was already instantiated previously (should not happen)
-		if (th_q[th] != NULL)
+		// If there is still room in the thread queue, add the thread to the queue.
+		if ( 0 < (MAX_THREADS - th_q_cnt))
+		{
+			// Instantiate only one thread, since we can only return one thread id...
+			// If the user would like to instantiate another thread with the same name, 
+			// the user would need to call create again with a decrement in the number of instances.
+			th = th_q_cnt;
+			
+			// check if the thread was already instantiated previously (should not happen)
+			if (th_q[th] != NULL)
+			{
+				return NULL;
+			}
+			
+			th_q_cnt++;
+			// could also consider re-using dead threads in order to avoid burning out threads
+		}
+		else
 		{
 			return NULL;
 		}
 		
-		th_q_cnt++;
-		// could also consider re-using dead threads in order to avoid burning out threads
+		// allocate the TCB for this newly created thread
+		th_q[th] = (osThreadId) calloc(1, sizeof(os_thread_cb));
+		// no more heap memory available, so do not create thread
+		if (th_q[th] == NULL)
+		{
+			th_q_cnt--;
+			return NULL;
+		}
 	}
 	else
 	{
-		return NULL;
-	}
-	
-  // allocate the TCB for this newly created thread
-	th_q[th] = (osThreadId) calloc(1, sizeof(os_thread_cb));
-	// no more heap memory available, so do not create thread
-	if (th_q[th] == NULL)
-	{
-		th_q_cnt--;
-		return NULL;
+		th = dead;
 	}
 	
 	th_q[th]->th_q_p   = th;

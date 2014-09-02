@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+  <package schemaVersion="1.2" xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" xs:noNamespaceSchemaLocation="PACK.xsd">
+    <vendor>RavenOS</vendor>
+    <url>https://github.com/rozmov/RavenOS/</url>
+    <name>CMSIS_RTOS</name>
+    <description>Tiva C Series TM4C123 RTOS</description>
+	<supportContact>laura.mutu@carleton.ca</supportContact>
+	<license></license>
+  
+    <releases>
+      <release version="1.0.3">
+        Initial version of Tiva C Series TM4C123 RTOS.
+      </release>
+    </releases>
+
+    <keywords>
+      <!-- keywords for indexing -->
+      <keyword>Texas Instruments</keyword>
+      <keyword>RTOS Support</keyword>
+      <keyword>Tiva C Series</keyword>
+      <keyword>TM4C123GH6PM</keyword>
+      <keyword>TM4C123</keyword>
+	  <keyword>Device Support</keyword>
+	  <keyword>Device Family Package Texas Instruments</keyword>
+	  <keyword>Tiva C</keyword>	  
+    </keywords>
+
+  <devices>
+    <family Dfamily="Tiva C Series" Dvendor="Texas Instruments:16">
+      <processor Dcore="Cortex-M4" DcoreVersion="r0p1" Dfpu="1" Dmpu="1" Dendian="Little-endian"/>
+  
+      <!-- ************************  Subfamily 'TM4C123x Series'  **************************** -->
+      <subFamily DsubFamily="TM4C123x Series">
+        <processor Dclock="80000000"/>
+      
+      <!-- *************************  Device 'TM4C123GH6PM'  ***************************** -->
+      <device Dname="TM4C123GH6PM">
+             </device>
+      </subFamily>
+    </family>
+  </devices>	
+	
+	
+  <conditions>
+    <!-- conditions are dependecy rules that can apply to a component or an individual file -->
+
+    <condition id="TM4C_CMSIS_CU_UART">
+      <!-- conditions selecting Devices -->
+      <description>Texas Instruments Tiva C Series devices and CMSIS-CORE</description>
+      <require Cclass="CMSIS" Cgroup="CORE"/>
+      <require Dvendor="Texas Instruments:16" Dname="TM4C123*"/>
+	  <require Cclass="Device" Cgroup="Startup"/>
+	  <require Tcompiler="ARMCC"/>
+	  <require Cclass="CMSIS Driver" Cgroup="USART" />
+    </condition>
+  </conditions>	
+	
+  <examples>
+    <!-- Tiva C Series Development Board -->
+    <example name="CMSIS RTOS RavenOS" doc="README.md"  folder=".">
+      <description>CMSIS RTOS RavenOS - Carleton University Real Time Operating System</description>
+      <board name="EK-TM4C123" vendor="Texas Instruments" Dvendor="Texas Instruments:16" Dname="TM4C123GH6PM"/>
+      <project>
+        <environment name="uv" load="RavenOS.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="CMSIS" Cgroup="RTOS"/>
+      </attributes>
+    </example>
+
+  </examples>
+
+  <components>
+
+    <component Cclass="CMSIS" Cgroup="RTOS" Csub="RavenOS" Cversion="2.01" Cvendor="RavenOS" condition="TM4C_CMSIS_CU_UART">
+      <description>CMSIS RTOS for Tiva C Series</description>
+      <files>
+	    <file category="source" name="RTE\RTOS\Source\retarget.c"       attr="config" condition="TM4C_CMSIS_CU_UART" />
+		<file category="source" name="RTE\RTOS\Source\main.c"           attr="config" condition="TM4C_CMSIS_CU_UART" />
+		<file category="source" name="RTE\RTOS\Source\peripherals.c"    attr="config" condition="TM4C_CMSIS_CU_UART" />
+		<file category="source" name="RTE\RTOS\Source\trace.c"          attr="config" condition="TM4C_CMSIS_CU_UART" />
+		<file category="source" name="RTE\RTOS\Source\kernel.c"         attr="config" condition="TM4C_CMSIS_CU_UART" />
+		<file category="source" name="RTE\RTOS\Source\threads.c"        attr="config" condition="TM4C_CMSIS_CU_UART" />
+		<file category="source" name="RTE\RTOS\Source\scheduler.c"      attr="config" condition="TM4C_CMSIS_CU_UART" />
+		<file category="source" name="RTE\RTOS\Source\threadIdle.c"     attr="config" condition="TM4C_CMSIS_CU_UART" />
+		<file category="source" name="RTE\RTOS\Source\protectedTrace.c" attr="config" condition="TM4C_CMSIS_CU_UART" />
+		<file category="source" name="RTE\RTOS\Source\semaphores.c"     attr="config" condition="TM4C_CMSIS_CU_UART" />
+		<file category="header" name="RTE\RTOS\Include\osObjects.h"     attr="config" condition="TM4C_CMSIS_CU_UART" />
+	    <file category="header" name="RTE\RTOS\Include\cmsis_os.h"      attr="config" condition="TM4C_CMSIS_CU_UART" />
+        <file category="header" name="RTE\RTOS\Include\kernel.h"        attr="config" condition="TM4C_CMSIS_CU_UART" />
+        <file category="header" name="RTE\RTOS\Include\peripherals.h"   attr="config" condition="TM4C_CMSIS_CU_UART" />
+		<file category="header" name="RTE\RTOS\Include\scheduler.h"     attr="config" condition="TM4C_CMSIS_CU_UART" />
+	    <file category="header" name="RTE\RTOS\Include\semaphores.h"    attr="config" condition="TM4C_CMSIS_CU_UART" />
+        <file category="header" name="RTE\RTOS\Include\threadIdle.h"    attr="config" condition="TM4C_CMSIS_CU_UART" />
+        <file category="header" name="RTE\RTOS\Include\threads.h"       attr="config" condition="TM4C_CMSIS_CU_UART" />
+        <file category="header" name="RTE\RTOS\Include\trace.h"         attr="config" condition="TM4C_CMSIS_CU_UART" />
+      </files>
+    </component>
+  </components>
+</package>
+

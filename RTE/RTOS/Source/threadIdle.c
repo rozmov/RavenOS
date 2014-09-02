@@ -1,30 +1,30 @@
 /*! \file threadIdle.c
     \brief Idle thread.
     \details Initialize and implement idle thread. Which should be scheduled even if other threads are running.
+		         The Idle Thread does not support termination. It is created by the kernel at initialization and will run as long as the kernel does.
 */
 
-#include "cmsis_os.h"                              // CMSIS RTOS header file
+#include "osObjects.h"
 #include "trace.h"
 #include "threadIdle.h"
 
 osThreadDef (threadIdle, osPriorityIdle, 1, 100);  ///< thread definition
 osThreadId tid_threadIdle;                         ///< thread id
 
+void work(void);
+
 /*! \fn int Init_threadIdle (void)
     \brief Initializing Idle thread 
 */
 int Init_threadIdle (void) 
 {
-  tid_threadIdle = osThreadCreate (osThread(threadIdle), NULL);
-  if(!tid_threadIdle) return(-1);
-
 	if (addTrace("threadIdle init") != TRACE_OK)
 	{
-		while (1) 
-		{
-			
-		}
+		stop_cpu;
 	}	
+	
+  tid_threadIdle = osThreadCreate (osThread(threadIdle), NULL);
+  if(!tid_threadIdle) return(-1);
 	
   return(0);
 }
@@ -35,33 +35,45 @@ int Init_threadIdle (void)
 */
 void threadIdle (void const *argument) 
 {
-	if (addTrace("threadIdle start run") != TRACE_OK)
+	if (addTraceProtected("threadIdle start run") != TRACE_OK)
 	{
-		while (1) 
-		{
-			
-		}
+		stop_cpu;
 	}
 	
   while (1) 
 	{
+		work();
 		
-		if (addTrace("threadIdle yields") != TRACE_OK)
+		if (addTraceProtected("threadIdle yields") != TRACE_OK)
 		{
-			while (1) 
-			{
-				
-			}
+			stop_cpu;
 		}		
     osThreadYield();                                            // suspend thread
-		
-		if (addTrace("threadIdle back from yield") != TRACE_OK)
+
+		// throttle mechanism in place to stop this thread from running if no other traces added but its own
+		// if other work scheduled, this mechanism can be removed or adapted as necessary
+		while (getTraceCounter() <= 3)
 		{
-			while (1) 
-			{
-				
-			}
+			osThreadYield();             // suspend thread
+		}
+		
+		if (addTraceProtected("threadIdle back from yield") != TRACE_OK)
+		{
+			stop_cpu;
 		}
 		
   }
+}
+
+/*! 
+    \brief Perform any work scheduled for the background
+*/
+void work(void)
+{ 
+	/// Print trace information
+	dumpTraceProtected();
+	if (addTraceProtected("threadIdle dumped trace") != TRACE_OK)
+	{
+		stop_cpu;
+	}
 }

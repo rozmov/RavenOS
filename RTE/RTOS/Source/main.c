@@ -35,10 +35,12 @@ int main(void)
 	{
 		stop_cpu;
 	}	
-  if (Init_thread3() != 0)
-	{
-		stop_cpu;
-	}
+//  // thread3 is a low priority thread can be used as a more user obvious alternative to print tracing from UART, 
+//  // which currently resides in the Idle thread (operated by the RTOS)
+//  if (Init_thread3() != 0)
+//	{
+//		stop_cpu;
+//	}
 	
 	printf("Initializing semaphores\n\r");
   if (Init_Semaphore0() != 0)
@@ -51,9 +53,7 @@ int main(void)
 	}		
 	printf("Start kernel\n\r");
 	osKernelStart ();                         // start thread execution 
-  
-  while(1)
-	{		
-			// Should not be here
-  };
+	
+  // Should not be here
+  stop_cpu;
 }

@@ -102,7 +102,7 @@ int32_t osSemaphoreWait (osSemaphoreId semaphore_id, uint32_t millisec)
 	osThreadId curr_th = osThreadGetId();
 	osStatus rc;
 	
-	// semaphore sanity check
+	// semaphore does not exist
 	if ( semaphore_id == NULL )
 	{
 		return (-1);
@@ -203,7 +203,7 @@ osStatus osSemaphoreRelease (osSemaphoreId semaphore_id)
 	osSemaphoreId sem_id;
 	
 	if ( semaphore_id == NULL )
-	{ // semaphore has not been created yet
+	{ // semaphore does not exist
 		return osErrorParameter;
 	}
 	if (semaphore_id->threads_own_q_cnt == 0)

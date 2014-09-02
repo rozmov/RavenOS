@@ -24,6 +24,7 @@
 		#include "driverlib/sysctl.h"
 		#include "driverlib/uart.h"
 		#include "driverlib/rom_map.h"
+		#include "RTE_Device.h"
 		#define CMSIS_Drivers_USART0              /* Driver USART0 */
 
 #endif /* RTE_COMPONENTS_H */

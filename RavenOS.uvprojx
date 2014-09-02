@@ -362,7 +362,7 @@
             <useXO>0</useXO>
             <VariousControls>
               <MiscControls></MiscControls>
-              <Define>TARGET_IS_TM4C123_RB1 PART_TM4C123GH6PM</Define>
+              <Define>TARGET_IS_TM4C123_RB1 PART_TM4C123GH6PM TM4C123GH6PM</Define>
               <Undefine></Undefine>
               <IncludePath>.\RTE\RTOS\Include</IncludePath>
             </VariousControls>
@@ -498,7 +498,12 @@
             <File>
               <FileName>USART_TM4C123.c</FileName>
               <FileType>1</FileType>
-              <FilePath>D:\Keil_v5\ARM\PACK\RavenOS\TM4C123GH6PM_UART\1.0.0\RTE\CMSIS\Driver\USART_TM4C123.c</FilePath>
+              <FilePath>RTE\CMSIS_Driver\TM4C123GH6PM\USART_TM4C123.c</FilePath>
+            </File>
+            <File>
+              <FileName>USART_TM4C123.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>RTE\CMSIS_Driver\TM4C123GH6PM\USART_TM4C123.h</FilePath>
             </File>
           </Files>
         </Group>
@@ -511,9 +516,14 @@
               <FilePath>RTE\Device\TM4C123GH6PM\startup_TM4C123.s</FilePath>
             </File>
             <File>
-              <FileName>system_TM4C123.c</FileName>
+              <FileName>CU_system_TM4C123.c</FileName>
               <FileType>1</FileType>
-              <FilePath>RTE\Device\TM4C123GH6PM\system_TM4C123.c</FilePath>
+              <FilePath>RTE\Device\TM4C123GH6PM\CU_system_TM4C123.c</FilePath>
+            </File>
+            <File>
+              <FileName>CU_system_TM4C123.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>RTE\Device\TM4C123GH6PM\CU_system_TM4C123.h</FilePath>
             </File>
           </Files>
         </Group>
@@ -537,35 +547,143 @@
           <targetInfo name="Target 1"/>
         </targetInfos>
       </component>
-      <component Cclass="Device" Cgroup="Startup" Cvendor="Keil" Cversion="1.0.0" condition="TM4C CMSIS Device">
-        <package name="TM4C_DFP" schemaVersion="1.2" url="http://www.keil.com/pack/" vendor="Keil" version="1.0.0"/>
+      <component Cclass="Device" Cgroup="Startup" Cvendor="CU_SYSC4906" Cversion="1.0.0" condition="TM4C CMSIS Device">
+        <package name="LabF14_DFP" schemaVersion="1.2" url="http://www.sce.carleton.ca" vendor="CU_SYSC4906" version="1.0.7"/>
         <targetInfos>
           <targetInfo name="Target 1"/>
         </targetInfos>
       </component>
-      <component Capiversion="2.01" Cclass="CMSIS Driver" Cgroup="USART" Csub="TM4C123GH6PM" Cvendor="RavenOS" Cversion="2.01">
-        <package name="TM4C123GH6PM_UART" schemaVersion="1.2" supportContact="laura.mutu@carleton.ca" vendor="RavenOS" version="1.0.0"/>
+      <component Capiversion="2.01" Cclass="CMSIS Driver" Cgroup="USART" Csub="TM4C123GH6PM" Cvendor="RavenOS" Cversion="2.01" condition="TM4C CMSIS Device">
+        <package name="TM4C123GH6PM_UART" schemaVersion="1.2" supportContact="laura.mutu@carleton.ca" url="https://github.com/rozmov/RavenOS/tree/master/Packs" vendor="RavenOS" version="1.0.2"/>
         <targetInfos>
           <targetInfo name="Target 1"/>
         </targetInfos>
       </component>
     </components>
     <files>
+      <file attr="config" category="header" condition="TM4C123x" name="RTE\CMSIS\Driver\Config\RTE_Device.h">
+        <instance index="0" removed="1">RTE\CMSIS_Driver\TM4C123GH6PM\RTE_Device.h</instance>
+        <component Capiversion="2.01" Cclass="CMSIS Driver" Cgroup="USART" Csub="TM4C123GH6PM" Cvendor="RavenOS" Cversion="2.01" condition="TM4C CMSIS Device"/>
+        <package name="TM4C123GH6PM_UART" schemaVersion="1.2" supportContact="laura.mutu@carleton.ca" url="https://github.com/rozmov/RavenOS/tree/master/Packs" vendor="RavenOS" version="1.0.2"/>
+        <targetInfos/>
+      </file>
+      <file attr="config" category="source" condition="TM4C123x" name="RTE\CMSIS\Driver\USART_TM4C123.c">
+        <instance index="0">RTE\CMSIS_Driver\TM4C123GH6PM\USART_TM4C123.c</instance>
+        <component Capiversion="2.01" Cclass="CMSIS Driver" Cgroup="USART" Csub="TM4C123GH6PM" Cvendor="RavenOS" Cversion="2.01" condition="TM4C CMSIS Device"/>
+        <package name="TM4C123GH6PM_UART" schemaVersion="1.2" supportContact="laura.mutu@carleton.ca" url="https://github.com/rozmov/RavenOS/tree/master/Packs" vendor="RavenOS" version="1.0.2"/>
+        <targetInfos>
+          <targetInfo name="Target 1"/>
+        </targetInfos>
+      </file>
+      <file attr="config" category="header" condition="TM4C123x" name="RTE\CMSIS\Driver\USART_TM4C123.h">
+        <instance index="0">RTE\CMSIS_Driver\TM4C123GH6PM\USART_TM4C123.h</instance>
+        <component Capiversion="2.01" Cclass="CMSIS Driver" Cgroup="USART" Csub="TM4C123GH6PM" Cvendor="RavenOS" Cversion="2.01" condition="TM4C CMSIS Device"/>
+        <package name="TM4C123GH6PM_UART" schemaVersion="1.2" supportContact="laura.mutu@carleton.ca" url="https://github.com/rozmov/RavenOS/tree/master/Packs" vendor="RavenOS" version="1.0.2"/>
+        <targetInfos>
+          <targetInfo name="Target 1"/>
+        </targetInfos>
+      </file>
+      <file attr="config" category="header" condition="TM4C123x" name="RTE\CMSIS\Driver\Config\driverlib\debug.h">
+        <instance index="0" removed="1">RTE\CMSIS_Driver\TM4C123GH6PM\debug.h</instance>
+        <component Capiversion="2.01" Cclass="CMSIS Driver" Cgroup="USART" Csub="TM4C123GH6PM" Cvendor="RavenOS" Cversion="2.01" condition="TM4C CMSIS Device"/>
+        <package name="TM4C123GH6PM_UART" schemaVersion="1.2" supportContact="laura.mutu@carleton.ca" url="https://github.com/rozmov/RavenOS/tree/master/Packs" vendor="RavenOS" version="1.0.2"/>
+        <targetInfos/>
+      </file>
+      <file attr="config" category="header" condition="TM4C123x" name="RTE\CMSIS\Driver\Config\driverlib\fpu.h">
+        <instance index="0" removed="1">RTE\CMSIS_Driver\TM4C123GH6PM\fpu.h</instance>
+        <component Capiversion="2.01" Cclass="CMSIS Driver" Cgroup="USART" Csub="TM4C123GH6PM" Cvendor="RavenOS" Cversion="2.01" condition="TM4C CMSIS Device"/>
+        <package name="TM4C123GH6PM_UART" schemaVersion="1.2" supportContact="laura.mutu@carleton.ca" url="https://github.com/rozmov/RavenOS/tree/master/Packs" vendor="RavenOS" version="1.0.2"/>
+        <targetInfos/>
+      </file>
+      <file attr="config" category="header" condition="TM4C123x" name="RTE\CMSIS\Driver\Config\driverlib\gpio.h">
+        <instance index="0" removed="1">RTE\CMSIS_Driver\TM4C123GH6PM\gpio.h</instance>
+        <component Capiversion="2.01" Cclass="CMSIS Driver" Cgroup="USART" Csub="TM4C123GH6PM" Cvendor="RavenOS" Cversion="2.01" condition="TM4C CMSIS Device"/>
+        <package name="TM4C123GH6PM_UART" schemaVersion="1.2" supportContact="laura.mutu@carleton.ca" url="https://github.com/rozmov/RavenOS/tree/master/Packs" vendor="RavenOS" version="1.0.2"/>
+        <targetInfos/>
+      </file>
+      <file attr="config" category="header" condition="TM4C123x" name="RTE\CMSIS\Driver\Config\inc\hw_gpio.h">
+        <instance index="0" removed="1">RTE\CMSIS_Driver\TM4C123GH6PM\hw_gpio.h</instance>
+        <component Capiversion="2.01" Cclass="CMSIS Driver" Cgroup="USART" Csub="TM4C123GH6PM" Cvendor="RavenOS" Cversion="2.01" condition="TM4C CMSIS Device"/>
+        <package name="TM4C123GH6PM_UART" schemaVersion="1.2" supportContact="laura.mutu@carleton.ca" url="https://github.com/rozmov/RavenOS/tree/master/Packs" vendor="RavenOS" version="1.0.2"/>
+        <targetInfos/>
+      </file>
+      <file attr="config" category="header" condition="TM4C123x" name="RTE\CMSIS\Driver\Config\inc\hw_ints.h">
+        <instance index="0" removed="1">RTE\CMSIS_Driver\TM4C123GH6PM\hw_ints.h</instance>
+        <component Capiversion="2.01" Cclass="CMSIS Driver" Cgroup="USART" Csub="TM4C123GH6PM" Cvendor="RavenOS" Cversion="2.01" condition="TM4C CMSIS Device"/>
+        <package name="TM4C123GH6PM_UART" schemaVersion="1.2" supportContact="laura.mutu@carleton.ca" url="https://github.com/rozmov/RavenOS/tree/master/Packs" vendor="RavenOS" version="1.0.2"/>
+        <targetInfos/>
+      </file>
+      <file attr="config" category="header" condition="TM4C123x" name="RTE\CMSIS\Driver\Config\inc\hw_types.h">
+        <instance index="0" removed="1">RTE\CMSIS_Driver\TM4C123GH6PM\hw_types.h</instance>
+        <component Capiversion="2.01" Cclass="CMSIS Driver" Cgroup="USART" Csub="TM4C123GH6PM" Cvendor="RavenOS" Cversion="2.01" condition="TM4C CMSIS Device"/>
+        <package name="TM4C123GH6PM_UART" schemaVersion="1.2" supportContact="laura.mutu@carleton.ca" url="https://github.com/rozmov/RavenOS/tree/master/Packs" vendor="RavenOS" version="1.0.2"/>
+        <targetInfos/>
+      </file>
+      <file attr="config" category="header" condition="TM4C123x" name="RTE\CMSIS\Driver\Config\driverlib\interrupt.h">
+        <instance index="0" removed="1">RTE\CMSIS_Driver\TM4C123GH6PM\interrupt.h</instance>
+        <component Capiversion="2.01" Cclass="CMSIS Driver" Cgroup="USART" Csub="TM4C123GH6PM" Cvendor="RavenOS" Cversion="2.01" condition="TM4C CMSIS Device"/>
+        <package name="TM4C123GH6PM_UART" schemaVersion="1.2" supportContact="laura.mutu@carleton.ca" url="https://github.com/rozmov/RavenOS/tree/master/Packs" vendor="RavenOS" version="1.0.2"/>
+        <targetInfos/>
+      </file>
+      <file attr="config" category="header" condition="TM4C123x" name="RTE\CMSIS\Driver\Config\driverlib\pin_map.h">
+        <instance index="0" removed="1">RTE\CMSIS_Driver\TM4C123GH6PM\pin_map.h</instance>
+        <component Capiversion="2.01" Cclass="CMSIS Driver" Cgroup="USART" Csub="TM4C123GH6PM" Cvendor="RavenOS" Cversion="2.01" condition="TM4C CMSIS Device"/>
+        <package name="TM4C123GH6PM_UART" schemaVersion="1.2" supportContact="laura.mutu@carleton.ca" url="https://github.com/rozmov/RavenOS/tree/master/Packs" vendor="RavenOS" version="1.0.2"/>
+        <targetInfos/>
+      </file>
+      <file attr="config" category="header" condition="TM4C123x" name="RTE\CMSIS\Driver\Config\driverlib\rom.h">
+        <instance index="0" removed="1">RTE\CMSIS_Driver\TM4C123GH6PM\rom.h</instance>
+        <component Capiversion="2.01" Cclass="CMSIS Driver" Cgroup="USART" Csub="TM4C123GH6PM" Cvendor="RavenOS" Cversion="2.01" condition="TM4C CMSIS Device"/>
+        <package name="TM4C123GH6PM_UART" schemaVersion="1.2" supportContact="laura.mutu@carleton.ca" url="https://github.com/rozmov/RavenOS/tree/master/Packs" vendor="RavenOS" version="1.0.2"/>
+        <targetInfos/>
+      </file>
+      <file attr="config" category="header" condition="TM4C123x" name="RTE\CMSIS\Driver\Config\driverlib\rom_map.h">
+        <instance index="0" removed="1">RTE\CMSIS_Driver\TM4C123GH6PM\rom_map.h</instance>
+        <component Capiversion="2.01" Cclass="CMSIS Driver" Cgroup="USART" Csub="TM4C123GH6PM" Cvendor="RavenOS" Cversion="2.01" condition="TM4C CMSIS Device"/>
+        <package name="TM4C123GH6PM_UART" schemaVersion="1.2" supportContact="laura.mutu@carleton.ca" url="https://github.com/rozmov/RavenOS/tree/master/Packs" vendor="RavenOS" version="1.0.2"/>
+        <targetInfos/>
+      </file>
+      <file attr="config" category="header" condition="TM4C123x" name="RTE\CMSIS\Driver\Config\driverlib\sysctl.h">
+        <instance index="0" removed="1">RTE\CMSIS_Driver\TM4C123GH6PM\sysctl.h</instance>
+        <component Capiversion="2.01" Cclass="CMSIS Driver" Cgroup="USART" Csub="TM4C123GH6PM" Cvendor="RavenOS" Cversion="2.01" condition="TM4C CMSIS Device"/>
+        <package name="TM4C123GH6PM_UART" schemaVersion="1.2" supportContact="laura.mutu@carleton.ca" url="https://github.com/rozmov/RavenOS/tree/master/Packs" vendor="RavenOS" version="1.0.2"/>
+        <targetInfos/>
+      </file>
+      <file attr="config" category="header" condition="TM4C123x" name="RTE\CMSIS\Driver\Config\driverlib\uart.h">
+        <instance index="0" removed="1">RTE\CMSIS_Driver\TM4C123GH6PM\uart.h</instance>
+        <component Capiversion="2.01" Cclass="CMSIS Driver" Cgroup="USART" Csub="TM4C123GH6PM" Cvendor="RavenOS" Cversion="2.01" condition="TM4C CMSIS Device"/>
+        <package name="TM4C123GH6PM_UART" schemaVersion="1.2" supportContact="laura.mutu@carleton.ca" url="https://github.com/rozmov/RavenOS/tree/master/Packs" vendor="RavenOS" version="1.0.2"/>
+        <targetInfos/>
+      </file>
+      <file attr="config" category="source" condition="TM4C123x" name="Device\CU\Source\TM4C123\CU_system_TM4C123.c">
+        <instance index="0">RTE\Device\TM4C123GH6PM\CU_system_TM4C123.c</instance>
+        <component Cclass="Device" Cgroup="Startup" Cvendor="CU_SYSC4906" Cversion="1.0.0" condition="TM4C CMSIS Device"/>
+        <package name="LabF14_DFP" schemaVersion="1.2" url="http://www.sce.carleton.ca" vendor="CU_SYSC4906" version="1.0.7"/>
+        <targetInfos>
+          <targetInfo name="Target 1"/>
+        </targetInfos>
+      </file>
+      <file attr="config" category="header" condition="TM4C123x" name="Device\CU\Include\TM4C123\CU_system_TM4C123.h">
+        <instance index="0">RTE\Device\TM4C123GH6PM\CU_system_TM4C123.h</instance>
+        <component Cclass="Device" Cgroup="Startup" Cvendor="CU_SYSC4906" Cversion="1.0.0" condition="TM4C CMSIS Device"/>
+        <package name="LabF14_DFP" schemaVersion="1.2" url="http://www.sce.carleton.ca" vendor="CU_SYSC4906" version="1.0.7"/>
+        <targetInfos>
+          <targetInfo name="Target 1"/>
+        </targetInfos>
+      </file>
       <file attr="config" category="source" condition="TM4C123x" name="Device\Source\ARM\startup_TM4C123.s">
         <instance index="0">RTE\Device\TM4C123GH6PM\startup_TM4C123.s</instance>
-        <component Cclass="Device" Cgroup="Startup" Cvendor="Keil" Cversion="1.0.0" condition="TM4C CMSIS Device"/>
-        <package name="TM4C_DFP" schemaVersion="1.2" url="http://www.keil.com/pack/" vendor="Keil" version="1.0.0"/>
+        <component Cclass="Device" Cgroup="Startup" Cvendor="CU_SYSC4906" Cversion="1.0.0" condition="TM4C CMSIS Device"/>
+        <package name="LabF14_DFP" schemaVersion="1.2" url="http://www.sce.carleton.ca" vendor="CU_SYSC4906" version="1.0.7"/>
         <targetInfos>
           <targetInfo name="Target 1"/>
         </targetInfos>
       </file>
       <file attr="config" category="source" condition="TM4C123x" name="Device\Source\system_TM4C123.c">
-        <instance index="0">RTE\Device\TM4C123GH6PM\system_TM4C123.c</instance>
+        <instance index="0" removed="1">RTE\Device\TM4C123GH6PM\system_TM4C123.c</instance>
         <component Cclass="Device" Cgroup="Startup" Cvendor="Keil" Cversion="1.0.0" condition="TM4C CMSIS Device"/>
         <package name="TM4C_DFP" schemaVersion="1.2" url="http://www.keil.com/pack/" vendor="Keil" version="1.0.0"/>
-        <targetInfos>
-          <targetInfo name="Target 1"/>
-        </targetInfos>
+        <targetInfos/>
       </file>
     </files>
   </RTE>
