@@ -33,7 +33,7 @@ void scheduler(void)
 	// re-evaluate blocked threads
 	os_ReevaluateBlockedThread();
 	
-	// re-evaluate sleeping threads	
+	// \todo re-evaluate sleeping threads	
 	
 	// search for next thread to run
 	next = os_ThreadGetBestThread();
