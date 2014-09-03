@@ -1,7 +1,7 @@
 RavenOS
 =======
 
-Carleton University Real Time Operating System
+*Carleton University Real Time Operating System*
 
 
 RavenOS is a priority-based real-time operating system developed for Texas Instruments' widely known Launchpad microcontroller, Tiva C Series TM4C123GH6PM. 
