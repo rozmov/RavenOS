@@ -12,5 +12,7 @@ The RavenOS RTOS is the outcome of the 2014 Summer Directed Studies course for M
 The main parts of the project are:
 
 UARTLM_pack.pack - UART pack for printing to serial COM
+
 RavenOS.uvprojx  - RavenOS Keil project
+
 RTE              - Project files
