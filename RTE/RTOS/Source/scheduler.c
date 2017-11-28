@@ -55,7 +55,6 @@ void scheduler(void)
 	return;	
 }
 
-
 /// \brief Get ready/running thread with highest priority.
 /// \return Thread ID of the best thread to run
 uint32_t os_ThreadGetBestThread(void)

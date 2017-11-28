@@ -24,6 +24,6 @@
 //              <10=> 10
 //          <i> Specifies the maximum number of threads that can be blocked on or own a semaphore.
 //
-#define MAX_THREADS_SEM 10 ///< The maximum number of threads that can be blocked or own on a semaphore.
+#define MAX_THREADS_SEM (10) ///< The maximum number of threads that can be blocked or own on a semaphore.
 
 #endif

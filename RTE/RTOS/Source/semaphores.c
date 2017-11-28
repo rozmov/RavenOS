@@ -22,18 +22,16 @@ const osSemaphoreDef_t os_semaphore_def_##name = { 0 }
 #define osSemaphore(name)  \
 &os_semaphore_def_##name
 
-
 osSemaphoreId semaphores[MAX_SEMAPHORES]; ///< Semaphore Queue
 uint32_t sem_counter = 0;                 ///< Semaphore Queue counter
 
-
 // Prototypes
 osStatus os_RemoveThreadFromSemaphoreBlockedQ (osThreadId thread_id, osSemaphoreId semaphore_id);
-osStatus os_RemoveThreadFromSemaphoreOwnerQ (osThreadId thread_id, osSemaphoreId semaphore_id);
-osStatus os_InsertThreadInSemaphoreOwnerQ (osThreadId thread_id, osSemaphoreId semaphore_id);
-osStatus os_InsertThreadInSemaphoreBlockedQ (osThreadId thread_id, osSemaphoreId semaphore_id, uint32_t expiryTime, uint32_t ticks);
-uint32_t os_SearchThreadInSemaphoreOwnerQ (osThreadId thread_id, osSemaphoreId semaphore_id);
-uint32_t os_SearchThreadInSemaphoreBlockedQ (osThreadId thread_id, osSemaphoreId semaphore_id);
+osStatus os_RemoveThreadFromSemaphoreOwnerQ   (osThreadId thread_id, osSemaphoreId semaphore_id);
+osStatus os_InsertThreadInSemaphoreOwnerQ     (osThreadId thread_id, osSemaphoreId semaphore_id);
+osStatus os_InsertThreadInSemaphoreBlockedQ   (osThreadId thread_id, osSemaphoreId semaphore_id, uint32_t expiryTime, uint32_t ticks);
+uint32_t os_SearchThreadInSemaphoreOwnerQ     (osThreadId thread_id, osSemaphoreId semaphore_id);
+uint32_t os_SearchThreadInSemaphoreBlockedQ   (osThreadId thread_id, osSemaphoreId semaphore_id);
 osStatus os_SearchThreadAllSemaphoresBlockedQ (osThreadId thread_id, osSemaphoreId* semaphore_id_p, uint32_t* semaphore_p_p );
 
 /// Create and Initialize a Semaphore object used for managing resources.
@@ -89,7 +87,6 @@ osSemaphoreId osSemaphoreCreate (const osSemaphoreDef_t *semaphore_def, int32_t 
 	return semaphores[sem];
 }
 
-
 /// Wait until a Semaphore token becomes available.
 /// \param[in]     semaphore_id  semaphore object referenced with \ref osSemaphoreCreate.
 /// \param[in]     millisec      timeout value or 0 in case of no time-out.
@@ -119,8 +116,7 @@ int32_t osSemaphoreWait (osSemaphoreId semaphore_id, uint32_t millisec)
 	{
 		return (-1);
 	}
-	
-	
+		
   if ( millisec == 0 )
 	{
 		// all tokens taken for this semaphore, but can't wait, so return unsuccessful
@@ -185,10 +181,8 @@ int32_t osSemaphoreWait (osSemaphoreId semaphore_id, uint32_t millisec)
 		return (semaphore_id->ownCount - semaphore_id->threads_own_q_cnt);
 	}	
 	
-	return (-1);
-				
+	return (-1);			
 }
-
 
 /// Release a Semaphore token.
 /// \param[in]     semaphore_id  semaphore object referenced with \ref osSemaphoreCreate.
@@ -329,8 +323,7 @@ osStatus osSemaphoreDelete (osSemaphoreId semaphore_id)
 		}		
 		semaphores[sem_counter-1] = NULL;
 	}			
-	
-	
+		
 	sem_counter--;
 	
 	free(semaphore_id);
@@ -674,4 +667,3 @@ osStatus os_SearchThreadAllSemaphoresBlockedQ (osThreadId thread_id, osSemaphore
 	
 	return osOK;
 }
-

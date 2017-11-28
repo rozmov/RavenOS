@@ -3,6 +3,7 @@
 		\details Initialize and implement thread
 */
 
+#include <string.h>
 #include "peripherals.h" 
 #include "osObjects.h"
 #include "trace.h"
@@ -17,7 +18,9 @@ void task1(void);
 */
 int Init_thread1 (void) 
 {
-	if (addTrace("thread1 init") != TRACE_OK)
+	const char init[] = "thread1 init";
+	
+	if (addTrace(init, strlen(init)) != TRACE_OK)
 	{
 		stop_cpu;
 	}	
@@ -33,16 +36,21 @@ int Init_thread1 (void)
 */
 int Terminate_thread1 (void) 
 {	
-	if (addTraceProtected("thread1 terminate attempt") != TRACE_OK)
+	const char terminate_attempt[] = "thread1 terminate attempt";
+	const char terminate_attempt_fail[] = "could not terminate thread1";
+	
+	if (addTraceProtected(terminate_attempt, strlen(terminate_attempt)) != TRACE_OK)
 	{
 		stop_cpu;
-	}		
+	}	
+	
 	if (osThreadTerminate(tid_thread1) != osOK)
 	{
-		if (addTraceProtected("could not terminate thread1") != TRACE_OK)
+		if (addTraceProtected(terminate_attempt_fail, strlen(terminate_attempt_fail)) != TRACE_OK)
 		{
 			stop_cpu;
 		}			
+		
 		return(-1);
 	}
 		
@@ -55,35 +63,34 @@ int Terminate_thread1 (void)
 */
 void thread1 (void const *argument) 
 {	
-	if (addTraceProtected("thread1 start run") != TRACE_OK)
-	{
-		stop_cpu;
-	}
+	osStatus  os_rc;
+	char      message[MAX_STR_LEN];
+	char     *message_ptr;
+	
+	ADD_TRACE_PROTECTED("thread1 start run");
 	
   while (1) 
 	{	
-		if (addTraceProtected("thread1 take sem0 attempt") != TRACE_OK)
-		{
-			stop_cpu;
-		}			
+		ADD_TRACE_PROTECTED("thread1 take sem0 attempt");
+		
     if ( osSemaphoreWait (sid_Semaphore0, 1100) != -1 ) // wait mSec
 		{					
-			if (addTraceProtected("thread1 take sem0 success") != TRACE_OK)
-			{
-				stop_cpu;
-			}	
+			ADD_TRACE_PROTECTED("thread1 take sem0 success");
 			
-			task1(); // thread code 
+			task1();     // thread code 
   		count1Sec();			
 			task1();
 			
-			if (addTraceProtected("thread1 release sem0 attempt") != TRACE_OK)
+			ADD_TRACE_PROTECTED("thread1 release sem0 attempt");
+			
+			os_rc = osSemaphoreRelease (sid_Semaphore0);
+			
+			if (os_rc != osOK)
 			{
-				stop_cpu;
-			}				
-			if (osSemaphoreRelease (sid_Semaphore0) != osOK)
-			{
-				if (addTraceProtected("thread1 release sem0 fail") != TRACE_OK)
+				memset(message, 0, sizeof(message));			
+				snprintf(message, sizeof(message), "thread1 release sem0 fail rc=%d", os_rc);							
+											
+				if (addTraceProtected(message, strlen(message)) != TRACE_OK)
 				{
 					stop_cpu;
 				}						
@@ -91,25 +98,27 @@ void thread1 (void const *argument)
 		}
 		else
 		{
-			if (addTraceProtected("thread1 take sem0 fail") != TRACE_OK)
-			{
-				stop_cpu;
-			}				
+			ADD_TRACE_PROTECTED("thread1 release sem0 fail");			
 		}	
+
+		ADD_TRACE_PROTECTED("thread1 set thread0 priority to osPriorityNormal");	
 		
-		if (addTraceProtected("thread1 set thread0 priority to osPriorityNormal") != TRACE_OK)
-		{
-			stop_cpu;
-		}			
-		osThreadSetPriority(tid_thread0, osPriorityNormal);
+		os_rc = osThreadSetPriority(tid_thread0, osPriorityNormal);
 				
-		if (addTraceProtected("thread1 yields") != TRACE_OK)
+		memset(message, 0, sizeof(message));			
+		snprintf(message, sizeof(message), "thread1 yields", os_rc);			
+		
+		if (addTraceProtected(message, strlen(message)) != TRACE_OK)
 		{
 			stop_cpu;
 		}
-    osThreadYield();                                            // suspend thread
 		
-		if (addTraceProtected("thread1 back from yield") != TRACE_OK)
+    os_rc = osThreadYield();  // suspend thread
+
+		memset(message, 0, sizeof(message));			
+		snprintf(message, sizeof(message), "thread1 back from yield", os_rc);			
+		
+		if (addTraceProtected(message, strlen(message)) != TRACE_OK)
 		{
 			stop_cpu;
 		}
@@ -131,8 +140,10 @@ void thread1 (void const *argument)
 */
 void task1(void)
 {
+	const char task_work[] = "thread1 flips LED";
+	
   LED_blink(LED1);
-	if (addTraceProtected("thread1 flips LED") != TRACE_OK)
+	if (addTraceProtected(task_work, strlen(task_work)) != TRACE_OK)
 	{
 		stop_cpu;
 	}	

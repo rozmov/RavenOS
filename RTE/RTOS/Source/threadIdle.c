@@ -4,6 +4,7 @@
 		         The Idle Thread does not support termination. It is created by the kernel at initialization and will run as long as the kernel does.
 */
 
+#include <string.h>
 #include "osObjects.h"
 #include "trace.h"
 #include "threadIdle.h"

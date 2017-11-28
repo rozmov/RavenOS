@@ -106,4 +106,3 @@ void UART_initialize(void)
 	
   return;	
 }
-

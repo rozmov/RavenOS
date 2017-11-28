@@ -79,6 +79,7 @@ osThreadId osThreadCreate (const osThreadDef_t *thread_def, void *argument)
 			return NULL;
 		}
 	}
+	
 	// check that stack size requested can be supported
 	if ( thread_def->stacksize > DEFAULT_STACK_SIZE )
 	{
@@ -177,6 +178,7 @@ osStatus osThreadTerminate (osThreadId thread_id)
 	{		
 		return osErrorValue;
   }	
+	
 	// if terminating current task, invoke the scheduler to setup another thread
 	if (th_q[th_q_h] == thread_id)
 	{
@@ -208,7 +210,6 @@ osStatus osThreadYield (void)
 	return osOK;
 }
 
-
 /// Change priority of an active thread.
 /// \param[in]     thread_id     thread ID obtained by \ref osThreadCreate or \ref osThreadGetId.
 /// \param[in]     priority      new priority value for the thread function.
@@ -224,7 +225,6 @@ osStatus osThreadSetPriority (osThreadId thread_id, osPriority priority)
 	return osOK;
 }
 
-
 /// Get current priority of an active thread.
 /// \param[in]     thread_id     thread ID obtained by \ref osThreadCreate or \ref osThreadGetId.
 /// \return current priority value of the thread function.
@@ -238,7 +238,6 @@ osPriority osThreadGetPriority (osThreadId thread_id)
   
 	return thread_id->priority;
 }
-
 
 /// Remove thread from all the lists.
 /// \param thread_id  Thread ID of the thread to remove
@@ -276,4 +275,3 @@ void os_ThreadRemoveThread(osThreadId thread_id)
 	// this particular thread cannot be 'revived', it will be dead until the end of the program/forever
 	return;
 }
-

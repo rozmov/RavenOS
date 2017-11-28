@@ -156,7 +156,6 @@ used throughout the whole project.
 
 #define MAX_SEMAPHORES osFeature_Semaphore  ///< Maximum number of semaphores supported
 
-
 #include <stdint.h>
 #include <stddef.h>
 
@@ -164,7 +163,6 @@ used throughout the whole project.
 extern "C"
 {
 #endif
-
 
 // ==== Enumeration, structures, defines ====
 
@@ -301,7 +299,6 @@ struct os_semaphore_cb
 	uint32_t                   ownCount;                       ///< number of tokens for this semaphore
 } ;
 
-
 /// Thread Definition structure contains startup information of a thread.
 /// \note CAN BE CHANGED: \b os_thread_def is implementation specific in every CMSIS-RTOS.
 typedef struct os_thread_def  {
@@ -370,7 +367,6 @@ typedef struct  {
     osMessageQId       message_id;     ///< message id obtained by \ref osMessageCreate
   } def;                               ///< event definition
 } osEvent;
-
 
 //  ==== Kernel Control Functions ====
 
@@ -468,7 +464,6 @@ osStatus osThreadSetPriority (osThreadId thread_id, osPriority priority);
 /// \note MUST REMAIN UNCHANGED: \b osThreadGetPriority shall be consistent in every CMSIS-RTOS.
 osPriority osThreadGetPriority (osThreadId thread_id);
 
-
 //  ==== Generic Wait Functions ====
 
 /// Wait for Timeout (Time Delay).
@@ -485,7 +480,6 @@ osStatus osDelay (uint32_t millisec);
 osEvent osWait (uint32_t millisec);
 
 #endif  // Generic Wait available
-
 
 //  ==== Timer Management Functions ====
 /// Define a Timer object.
@@ -536,7 +530,6 @@ osStatus osTimerStop (osTimerId timer_id);
 /// \note MUST REMAIN UNCHANGED: \b osTimerDelete shall be consistent in every CMSIS-RTOS.
 osStatus osTimerDelete (osTimerId timer_id);
 
-
 //  ==== Signal Management ====
 
 /// Set the specified Signal Flags of an active thread.
@@ -559,7 +552,6 @@ int32_t osSignalClear (osThreadId thread_id, int32_t signals);
 /// \return event flag information or error code.
 /// \note MUST REMAIN UNCHANGED: \b osSignalWait shall be consistent in every CMSIS-RTOS.
 osEvent osSignalWait (int32_t signals, uint32_t millisec);
-
 
 //  ==== Mutex Management ====
 
@@ -606,7 +598,6 @@ osStatus osMutexRelease (osMutexId mutex_id);
 /// \return status code that indicates the execution status of the function.
 /// \note MUST REMAIN UNCHANGED: \b osMutexDelete shall be consistent in every CMSIS-RTOS.
 osStatus osMutexDelete (osMutexId mutex_id);
-
 
 //  ==== Semaphore Management Functions ====
 
@@ -664,7 +655,6 @@ osStatus os_SemaphoreRemoveThread (osThreadId thread_id);
 
 #endif     // Semaphore available
 
-
 //  ==== Memory Pool Management Functions ====
 
 #if (defined (osFeature_Pool)  &&  (osFeature_Pool != 0))  // Memory Pool Management available
@@ -718,7 +708,6 @@ osStatus osPoolFree (osPoolId pool_id, void *block);
 
 #endif   // Memory Pool Management available
 
-
 //  ==== Message Queue Management Functions ====
 
 #if (defined (osFeature_MessageQ)  &&  (osFeature_MessageQ != 0))     // Message Queues available
@@ -768,7 +757,6 @@ osStatus osMessagePut (osMessageQId queue_id, uint32_t info, uint32_t millisec);
 osEvent osMessageGet (osMessageQId queue_id, uint32_t millisec);
 
 #endif     // Message Queues available
-
 
 //  ==== Mail Queue Management Functions ====
 
@@ -839,7 +827,6 @@ osEvent osMailGet (osMailQId queue_id, uint32_t millisec);
 osStatus osMailFree (osMailQId queue_id, void *mail);
 
 #endif  // Mail Queues available
-
 
 #ifdef  __cplusplus
 }

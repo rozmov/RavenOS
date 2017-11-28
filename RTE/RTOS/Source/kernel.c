@@ -2,11 +2,12 @@
     \brief Implements kernel level operations.
 	  \details Maps operations to CMSIS interface. Performs scheduling and context switching.
 */
+
 #include "threadIdle.h"
 #include "CU_TM4C123.h"
-//#include "TM4C123.h" // Include this file if using the CMSIS Device standard definitions
+//#include "TM4C123.h"   // Include this file if using the CMSIS Device standard definitions
 #include "stdio.h"
-#include "osObjects.h"                      // RTOS object definitions
+#include "osObjects.h"  // RTOS object definitions
 #include "kernel.h"
 #include "scheduler.h"
 #include "trace.h"
@@ -16,8 +17,8 @@
          Macros for word accesses. */
 #define HW32_REG(ADDRESS)  (*((volatile unsigned long  *)(ADDRESS)))
 	
-#define os_sysTickTicks 16000  ///< Number of ticks between two system timer interrupts. This would generate 1000 interruts/s on a 16MHz clock.
-#define ENABLE_KERNEL_PRINTF 0 ///< Enables printf traces from kernel. Printf from the kernel may not be protected so use at own risk.
+#define os_sysTickTicks      (16000)  ///< Number of ticks between two system timer interrupts. This would generate 1000 interruts/s on a 16MHz clock.
+#define ENABLE_KERNEL_PRINTF (0)      ///< Enables printf traces from kernel. Printf from the kernel may not be protected so use at own risk.
 
 void __svc(0x00) os_start(void);              // OS start scheduler
 void __svc(0x01) thread_yield(void);          // Thread needs to schedule a switch of context
@@ -29,14 +30,14 @@ void os_KernelEnterCriticalSection (void);
 void os_KernelExitCriticalSection (void);
 
 /// \var systick_count Event to tasks
-volatile uint32_t systick_count=0;
+volatile uint32_t systick_count = 0;
 
 /// Stack for each task ( \ref DEFAULT_STACK_SIZE bytes)
 uint8_t task_stack[MAX_THREADS][DEFAULT_STACK_SIZE];
 
 /// Data used by OS
-uint32_t curr_task=0;               ///< Current task
-uint32_t next_task=1;               ///< Next task
+uint32_t curr_task = 0;             ///< Current task
+uint32_t next_task = 1;             ///< Next task
 uint32_t PSP_array[MAX_THREADS];    ///< Process Stack Pointer for each task
 uint32_t svc_exc_return;            ///< EXC_RETURN use by SVC
 uint32_t kernel_running = 0;        ///< flag whether the kernel is running or not
@@ -176,17 +177,23 @@ __asm void SVC_Handler(void)
 void SVC_Handler_C(unsigned int * svc_args)
 {
   uint8_t svc_number, i;	
+
   svc_number = ((char *) svc_args[6])[-2]; // Memory[(Stacked PC)-2]
+
 	// marking kernel as busy
 	kernel_busy = 1;
+
   switch(svc_number) {
     case (0): // OS start		  
- 	    // Starting the task scheduler
+ 	  {
+			// Starting the task scheduler
 			// Update thread to be run based on priority
 	    scheduler();
+
       curr_task = next_task; // Switch to head ready-to-run task (Current task)		
 			th_q_h = curr_task;
 			th_q[curr_task]->status = TH_RUNNING;
+
 		  if (PSP_array[curr_task] == NULL)
 			{
 				// Stack not allocated for current task, allocating
@@ -213,7 +220,10 @@ void SVC_Handler_C(unsigned int * svc_args)
       __set_CONTROL(0x3);                  // Switch to use Process Stack, unprivileged state
       __ISB();       // Execute ISB after changing CONTROL (architectural recommendation)			
 		  break;
+		}
+		
     case (1): // Thread Yield
+		{
 			// Run scheduler to determine if a context switch is needed
 			scheduler();		  
 			if (curr_task != next_task)
@@ -223,8 +233,11 @@ void SVC_Handler_C(unsigned int * svc_args)
 		  }		
       __ISB();       					
 			break;
+		}
+		
     case (2): // Stack Allocation
-      // Create stack frame for thread
+    {
+			// Create stack frame for thread
 		  i = svc_args[0];  
 
 			th_q[i]->stack_p = (uint32_t) task_stack[i];
@@ -237,6 +250,8 @@ void SVC_Handler_C(unsigned int * svc_args)
 			th_q[i]->stack_p = PSP_array[i];
       __ISB();       			
 			break;			
+    }
+		
     default:
 #if ((ENABLE_KERNEL_PRINTF) && (ENABLE_KERNEL_PRINTF == 1))
       printf("ERROR: Unknown SVC service number\n\r");
@@ -362,5 +377,3 @@ void HardFault_Handler_C(unsigned int * svc_args)
   stop_cpu2;	
 }
 // -------------------------------------------------------------------------
-
-

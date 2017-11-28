@@ -51,6 +51,7 @@ int main(void)
 	{
 		stop_cpu;
 	}		
+	
 	printf("Start kernel\n\r");
 	osKernelStart ();                         // start thread execution 
 	

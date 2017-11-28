@@ -10,20 +10,8 @@
 #include "CU_TM4C123.h"
 
 //-------- <<< Use Configuration Wizard in Context Menu >>> ------------------
-//--------------------- Trace Configuration ----------------------------------
-//
-//      <o> Maximum Supported String Length for the Trace Message
-//              <16=> 16
-//              <32=> 32
-//              <64=> 64
-//              <128=> 128
-//              <256=> 256
-//              <512=> 512
-//          <i> Specifies the maximum length of the string that can be handled by the tracing mechanism.
-//
-#define MAX_STR_LEN       64  ///< Maximum length of a trace message
 
-#define MIN_TRACE_ARR_LEN  0  ///< Minimum size of the message buffer
+#define MIN_TRACE_ARR_LEN (0)  ///< Minimum size of the message buffer
 //
 //      <o> Maximum size of the buffer
 //              <20=> 20
@@ -34,9 +22,13 @@
 //              <100=> 100
 //          <i> Specifies the maximum number of messages to be traced until trace is dumped.
 //
-#define MAX_TRACE_ARR_LEN 50  ///< Maximum size of the message buffer
+#define MAX_TRACE_ARR_LEN (50)  ///< Maximum size of the message buffer
 
-char trace_table[MAX_TRACE_ARR_LEN][MAX_STR_LEN]; ///< The message table.
+typedef struct {
+	char trace[MAX_STR_LEN];
+} trace_t;
+
+trace_t trace_table[MAX_TRACE_ARR_LEN]; ///< The message table.
 uint32_t trace_counter = MIN_TRACE_ARR_LEN;  ///< The message table counter.
 
 /*! 
@@ -47,7 +39,6 @@ uint32_t getTraceCounter(void)
 {
 	return trace_counter;
 }
-
 
 /*! 
     \brief Increment trace counter if trace table not full
@@ -79,21 +70,27 @@ uint32_t decrementTraceCounter(void)
 	return TRACE_OK;
 }
 
-
 /*! 
     \brief Add message to the trace table 
 		\param message Message to be added to the trace table, up to \ref MAX_STR_LEN characters
 		\return Returns \ref TRACE_OK if successful and \ref TRACE_ERROR otherwise.
 */
-uint32_t addTrace(char * message)
+uint32_t addTrace(const char * message, uint32_t length)
 {
-	/// The length of a message needs to be small enough to leave room for a null string termination and LF/CR
-	if ( strlen(message) > (MAX_STR_LEN - 3) )
+	if (strlen(message) > length)
 	{
 		return TRACE_ERROR;
 	}
 	
-	strcpy(trace_table[trace_counter], message);
+	/// The length of a message needs to be small enough to leave room for 
+	/// a null string termination and LF/CR
+	if ( length > (MAX_STR_LEN - 3) )
+	{
+		return TRACE_ERROR;
+	}
+	
+	memset(trace_table[trace_counter].trace, 0, sizeof(trace_table[trace_counter].trace));
+	strcpy(trace_table[trace_counter].trace, message);
 	
 	if (incrementTraceCounter() != TRACE_OK)
 	{
@@ -103,19 +100,17 @@ uint32_t addTrace(char * message)
 	return TRACE_OK;
 }
 
-
 /*!
     \brief Dump messages from the trace table to output 
 */
 void dumpTrace(void)
 {
 	uint32_t idx = 0;
+	
 	while (decrementTraceCounter() == TRACE_OK)
 	{
-		printf("%s\n\r",trace_table[idx]);
-		memset(trace_table[idx],0,sizeof(trace_table[idx]));
+		printf("%s\n\r",trace_table[idx].trace);
+		memset(trace_table[idx].trace, 0, sizeof(trace_table[idx]));
     idx++;		
 	}	
 }
-
-

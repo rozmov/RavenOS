@@ -25,7 +25,7 @@
 //              <11=> 10
 //          <i> Specifies the maximum number of threads supported
 //
-#define MAX_THREADS 7         ///< Maximum number of threads supported
+#define MAX_THREADS (7)         ///< Maximum number of threads supported
 //
 //      <o> Default Stack Size for a Given Thread (Bytes)
 //              <100=> 100 Bytes
@@ -40,7 +40,7 @@
 //              <1000=> 1000 Bytes
 //          <i> Specifies the Default Stack Size for a given Thread
 //
-#define DEFAULT_STACK_SIZE 200 ///< Default Stack Size for a given Thread
+#define DEFAULT_STACK_SIZE (200) ///< Default Stack Size for a given Thread
 
 typedef enum os_thread_status ///< Thread Status : Running, Blocked or Asleep.
 {
@@ -52,4 +52,3 @@ typedef enum os_thread_status ///< Thread Status : Running, Blocked or Asleep.
 } osThreadStatus;
 
 #endif // _THREADS_H
-

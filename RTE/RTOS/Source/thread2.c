@@ -3,6 +3,7 @@
 		\details Initialize and implement thread
 */
 
+#include <string.h>
 #include "peripherals.h" 
 #include "osObjects.h"
 #include "trace.h"
