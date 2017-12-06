@@ -4,6 +4,7 @@
 */
 
 #include <string.h>
+#include "stdio.h"
 #include "trace.h"
 #include "osObjects.h"
 
@@ -18,10 +19,7 @@ void task3(void);
 */
 int Init_thread3 (void) 
 {
-	if (addTrace("thread3 init") != TRACE_OK)
-	{
-		stop_cpu;
-	}	
+	ADD_TRACE("thread3 init");
 	
   tid_thread3 = osThreadCreate (osThread(thread3), NULL);
   if(!tid_thread3) return(-1);
@@ -50,39 +48,37 @@ int Terminate_thread3 (void)
 */
 void thread3 (void const *argument) 
 {
-	if (addTraceProtected("thread3 start run") != TRACE_OK)
-	{
-		stop_cpu;
-	}
+	osStatus  os_rc;
+
+	ADD_TRACE_PROTECTED("thread3 start run");
 	
   while (1) 
 	{
     task3(); // thread code 
 		
 		// give a chance to the other tasks to run now
-		if (addTraceProtected("thread3 set priority to osPriorityLow") != TRACE_OK)
-		{
-			stop_cpu;
-		}		
-		osThreadSetPriority(osThreadGetId(), osPriorityLow);
+		ADD_TRACE_PROTECTED("thread3 set priority to osPriorityLow");
 		
-		if (addTraceProtected("thread3 yields") != TRACE_OK)
-		{
-			stop_cpu;
-		}
-		osThreadYield(); 
+		os_rc = osThreadSetPriority(osThreadGetId(), osPriorityLow);
 		
-		// throttle mechanism in place to stop this thread from running if no other traces added but its own
-		while (getTraceCounter() <= 4)
-		{
-			osThreadYield();             // suspend thread
-		}
+		ADD_TRACE_PROTECTED2("thread3 back from set priority to osPriorityLow (rc=%d)", os_rc);	
 		
-		if (addTraceProtected("thread3 back") != TRACE_OK)
+		ADD_TRACE_PROTECTED("thread3 yields");
+		
+		os_rc = osThreadYield(); 
+		
+		ADD_TRACE_PROTECTED2("thread3 back from yield (rc=%d)", os_rc);	
+		
+		while (getTraceCounter() <= TRACE_TROTTLE)
 		{
-			stop_cpu;
+			ADD_TRACE_PROTECTED("thread3 yields");
+			
+			os_rc = osThreadYield();             // suspend thread
+			
+			ADD_TRACE_PROTECTED2("thread3 back from yield (rc=%d)", os_rc);	
 		}
 		
+		ADD_TRACE_PROTECTED("thread3 back");
   }
 }
 
@@ -94,8 +90,5 @@ void task3(void)
 { 
 	/// Print trace information
 	dumpTraceProtected();
-	if (addTraceProtected("thread3 dumped trace") != TRACE_OK)
-	{
-		stop_cpu;
-	}
+	ADD_TRACE_PROTECTED("thread3 dumped trace");
 }

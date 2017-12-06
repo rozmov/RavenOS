@@ -4,6 +4,7 @@
 */
 
 #include <string.h>
+#include "stdio.h"
 #include "peripherals.h" 
 #include "osObjects.h"
 #include "trace.h"
@@ -18,12 +19,7 @@ void task1(void);
 */
 int Init_thread1 (void) 
 {
-	const char init[] = "thread1 init";
-	
-	if (addTrace(init, strlen(init)) != TRACE_OK)
-	{
-		stop_cpu;
-	}	
+	ADD_TRACE("thread1 init");
 	
   tid_thread1 = osThreadCreate (osThread(thread1), NULL);
   if(!tid_thread1) return(-1);
@@ -36,20 +32,11 @@ int Init_thread1 (void)
 */
 int Terminate_thread1 (void) 
 {	
-	const char terminate_attempt[] = "thread1 terminate attempt";
-	const char terminate_attempt_fail[] = "could not terminate thread1";
-	
-	if (addTraceProtected(terminate_attempt, strlen(terminate_attempt)) != TRACE_OK)
-	{
-		stop_cpu;
-	}	
+	ADD_TRACE_PROTECTED("thread1 terminate attempt") ;
 	
 	if (osThreadTerminate(tid_thread1) != osOK)
 	{
-		if (addTraceProtected(terminate_attempt_fail, strlen(terminate_attempt_fail)) != TRACE_OK)
-		{
-			stop_cpu;
-		}			
+		ADD_TRACE_PROTECTED("could not terminate thread1");
 		
 		return(-1);
 	}
@@ -64,9 +51,7 @@ int Terminate_thread1 (void)
 void thread1 (void const *argument) 
 {	
 	osStatus  os_rc;
-	char      message[MAX_STR_LEN];
-	char     *message_ptr;
-	
+
 	ADD_TRACE_PROTECTED("thread1 start run");
 	
   while (1) 
@@ -87,13 +72,7 @@ void thread1 (void const *argument)
 			
 			if (os_rc != osOK)
 			{
-				memset(message, 0, sizeof(message));			
-				snprintf(message, sizeof(message), "thread1 release sem0 fail rc=%d", os_rc);							
-											
-				if (addTraceProtected(message, strlen(message)) != TRACE_OK)
-				{
-					stop_cpu;
-				}						
+				ADD_TRACE_PROTECTED2("thread1 release sem0 fail rc=%d", os_rc);
 			}
 		}
 		else
@@ -105,27 +84,21 @@ void thread1 (void const *argument)
 		
 		os_rc = osThreadSetPriority(tid_thread0, osPriorityNormal);
 				
-		memset(message, 0, sizeof(message));			
-		snprintf(message, sizeof(message), "thread1 yields", os_rc);			
+		ADD_TRACE_PROTECTED2("thread1 back from set thread0 priority to osPriorityNormal (rc=%d)", os_rc);
 		
-		if (addTraceProtected(message, strlen(message)) != TRACE_OK)
-		{
-			stop_cpu;
-		}
+		ADD_TRACE_PROTECTED("thread1 yields");
 		
     os_rc = osThreadYield();  // suspend thread
 
-		memset(message, 0, sizeof(message));			
-		snprintf(message, sizeof(message), "thread1 back from yield", os_rc);			
+		ADD_TRACE_PROTECTED2("thread1 back from yield (rc=%d)", os_rc);			
 		
-		if (addTraceProtected(message, strlen(message)) != TRACE_OK)
-		{
-			stop_cpu;
-		}
+		ADD_TRACE_PROTECTED("thread1 finish");
 		
 		// This should terminate the current thread1 thread		
 		if (Terminate_thread1() != 0)
 		{
+			ADD_TRACE_PROTECTED("thread1 finish fail");
+			
 			while(1)
 			{		
 					// Should not be here
@@ -140,11 +113,7 @@ void thread1 (void const *argument)
 */
 void task1(void)
 {
-	const char task_work[] = "thread1 flips LED";
-	
   LED_blink(LED1);
-	if (addTraceProtected(task_work, strlen(task_work)) != TRACE_OK)
-	{
-		stop_cpu;
-	}	
+	
+	ADD_TRACE_PROTECTED("thread1 flips LED");
 }

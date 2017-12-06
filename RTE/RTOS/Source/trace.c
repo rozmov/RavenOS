@@ -77,20 +77,20 @@ uint32_t decrementTraceCounter(void)
 */
 uint32_t addTrace(const char * message, uint32_t length)
 {
-	if (strlen(message) > length)
+	if (strlen(message) < length)
 	{
-		return TRACE_ERROR;
+		length = strlen(message);
 	}
 	
 	/// The length of a message needs to be small enough to leave room for 
-	/// a null string termination and LF/CR
-	if ( length > (MAX_STR_LEN - 3) )
+	/// a null string termination (truncating if needed)
+	if ( length > (sizeof(trace_table[trace_counter].trace - 1)) )
 	{
-		return TRACE_ERROR;
+		length = (sizeof(trace_table[trace_counter].trace - 1));
 	}
 	
 	memset(trace_table[trace_counter].trace, 0, sizeof(trace_table[trace_counter].trace));
-	strcpy(trace_table[trace_counter].trace, message);
+	strncpy(trace_table[trace_counter].trace, message, length);
 	
 	if (incrementTraceCounter() != TRACE_OK)
 	{
@@ -109,7 +109,7 @@ void dumpTrace(void)
 	
 	while (decrementTraceCounter() == TRACE_OK)
 	{
-		printf("%s\n\r",trace_table[idx].trace);
+		printf("%s\n\r", trace_table[idx].trace);
 		memset(trace_table[idx].trace, 0, sizeof(trace_table[idx]));
     idx++;		
 	}	

@@ -25,7 +25,14 @@
 #define TRACE_OK    (0) ///< Trace return code - success
 #define TRACE_ERROR (1) ///< Trace return code - fail
 
+#define TRACE_TROTTLE (4) ///< throttle mechanism in place to stop thread from running 
+                          /// if no other traces added but its own
+
 #define ADD_TRACE_PROTECTED(content) \
+{ \
+	char      message[MAX_STR_LEN]; \
+	char     *message_ptr; \
+	\
 	memset(message, 0, sizeof(message)); \
 	message_ptr = strncpy(message, content, sizeof(message)); \
 	\
@@ -37,6 +44,39 @@
 	{ \
 		stop_cpu; \
 	} \
+}
+
+#define ADD_TRACE_PROTECTED2(content, ...) \
+{ \
+	char      message[MAX_STR_LEN]; \
+	int       print_rc; \
+	\
+	memset(message, 0, sizeof(message));			\
+	print_rc = snprintf(message, sizeof(message), content, ##__VA_ARGS__); \
+							\
+	if (print_rc > 0) \
+	{				\
+		if (print_rc < sizeof(message)) \
+		{ \
+			message[MAX_STR_LEN - 1] = '\0'; \
+		} \
+		\
+		if (addTraceProtected(message, strlen(message)) != TRACE_OK) \
+		{ \
+			stop_cpu; \
+		}		\
+	}	\
+}
+
+#define ADD_TRACE(content) \
+{ \
+	const char init[] = content; \
+	\
+	if (addTrace(init, strlen(init)) != TRACE_OK) \
+	{ \
+		stop_cpu; \
+	}	\
+}
 
 uint32_t addTraceProtected(const char * message, uint32_t length);
 void dumpTraceProtected(void);
