@@ -15,7 +15,8 @@
 */
 int main(void)
 {
-	osKernelInitialize ();                    // initialize CMSIS-RTOS
+	// initialize CMSIS-RTOS
+	osKernelInitialize ();                    
 	
 	// initialize peripherals
 	UART_initialize();
@@ -23,18 +24,22 @@ int main(void)
   LED_initialize(); 
 	
 	printf("Initializing threads\n\r");
-  if (Init_thread0() != 0)
+  
+	if (Init_thread0() != 0)
 	{
 		stop_cpu;
 	}
+	
   if (Init_thread1() != 0)
 	{
 		stop_cpu;
 	}
+	
   if (Init_thread2() != 0)
 	{
 		stop_cpu;
 	}	
+	
 //  // thread3 is a low priority thread can be used as a more user obvious alternative to print tracing from UART, 
 //  // which currently resides in the Idle thread (operated by the RTOS)
 //  if (Init_thread3() != 0)
@@ -43,18 +48,22 @@ int main(void)
 //	}
 	
 	printf("Initializing semaphores\n\r");
-  if (Init_Semaphore0() != 0)
+  
+	if (Init_Semaphore0() != 0)
 	{
 		stop_cpu;
 	}	
+	
   if (Init_Semaphore1() != 0)
 	{
 		stop_cpu;
 	}		
 	
+	// start thread execution
 	printf("Start kernel\n\r");
-	osKernelStart ();                         // start thread execution 
+	osKernelStart ();                          
 	
+	printf("Kernel done");
   // Should not be here
   stop_cpu;
 }

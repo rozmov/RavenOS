@@ -48,8 +48,6 @@ int Terminate_thread3 (void)
 */
 void thread3 (void const *argument) 
 {
-	osStatus  os_rc;
-
 	ADD_TRACE_PROTECTED("thread3 start run");
 	
   while (1) 
@@ -59,26 +57,39 @@ void thread3 (void const *argument)
 		// give a chance to the other tasks to run now
 		ADD_TRACE_PROTECTED("thread3 set priority to osPriorityLow");
 		
-		os_rc = osThreadSetPriority(osThreadGetId(), osPriorityLow);
-		
-		ADD_TRACE_PROTECTED2("thread3 back from set priority to osPriorityLow (rc=%d)", os_rc);	
+		if (osThreadSetPriority(osThreadGetId(), osPriorityLow) != osOK)
+		{
+			ADD_TRACE_PROTECTED("thread3 set priority to osPriorityLow fail");
+		}
+		else
+		{
+			ADD_TRACE_PROTECTED("thread3 back from set priority to osPriorityLow");	
+		}
 		
 		ADD_TRACE_PROTECTED("thread3 yields");
 		
-		os_rc = osThreadYield(); 
-		
-		ADD_TRACE_PROTECTED2("thread3 back from yield (rc=%d)", os_rc);	
-		
+		if ( osThreadYield() != osOK)
+		{
+			ADD_TRACE_PROTECTED("thread3 yields fail");
+		}
+		else
+		{
+			ADD_TRACE_PROTECTED("thread3 back from yield");		
+		}
+				
 		while (getTraceCounter() <= TRACE_TROTTLE)
 		{
 			ADD_TRACE_PROTECTED("thread3 yields");
 			
-			os_rc = osThreadYield();             // suspend thread
-			
-			ADD_TRACE_PROTECTED2("thread3 back from yield (rc=%d)", os_rc);	
+			if ( osThreadYield() != osOK)
+			{
+				ADD_TRACE_PROTECTED("thread3 yields fail");
+			}
+			else
+			{
+				ADD_TRACE_PROTECTED("thread3 back from yield");		
+			}
 		}
-		
-		ADD_TRACE_PROTECTED("thread3 back");
   }
 }
 

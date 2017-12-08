@@ -72,7 +72,7 @@ void thread1 (void const *argument)
 			
 			if (os_rc != osOK)
 			{
-				ADD_TRACE_PROTECTED2("thread1 release sem0 fail rc=%d", os_rc);
+				ADD_TRACE_PROTECTED("thread1 release sem0 fail");
 			}
 		}
 		else
@@ -84,13 +84,13 @@ void thread1 (void const *argument)
 		
 		os_rc = osThreadSetPriority(tid_thread0, osPriorityNormal);
 				
-		ADD_TRACE_PROTECTED2("thread1 back from set thread0 priority to osPriorityNormal (rc=%d)", os_rc);
+		ADD_TRACE_PROTECTED("thread1 back from set thread0 priority to osPriorityNormal");
 		
 		ADD_TRACE_PROTECTED("thread1 yields");
 		
     os_rc = osThreadYield();  // suspend thread
 
-		ADD_TRACE_PROTECTED2("thread1 back from yield (rc=%d)", os_rc);			
+		ADD_TRACE_PROTECTED("thread1 back from yield");			
 		
 		ADD_TRACE_PROTECTED("thread1 finish");
 		

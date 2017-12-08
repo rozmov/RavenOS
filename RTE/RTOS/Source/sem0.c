@@ -2,6 +2,7 @@
     \brief  LED Semaphore
 		\details Contains semaphore 0 related API implementations. Defines the semaphore, and initializes it .
 */
+#include <string.h>
 #include "trace.h"
 #include "osObjects.h"
 
@@ -16,10 +17,7 @@ int Init_Semaphore0 (void)
 {
   sid_Semaphore0 = osSemaphoreCreate(osSemaphore(Semaphore0), 1);
   if (!sid_Semaphore0)  {
-    if (addTrace("sem0 could not create") != TRACE_OK)
-		{
-			stop_cpu;
-		}
+    ADD_TRACE("sem0 could not create") ;
 		return (-1);
   } 
   return(0);
@@ -33,10 +31,7 @@ int Delete_Semaphore0 (void)
 {
   if ( osSemaphoreDelete(sid_Semaphore0) != osOK)
 	{
-    if (addTrace("sem0 - could not delete") != TRACE_OK)
-		{
-			stop_cpu;
-		}
+    ADD_TRACE("sem0 - could not delete") ;
 		return (-1);
   } 
   return(0);

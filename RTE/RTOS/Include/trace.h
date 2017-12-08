@@ -46,27 +46,27 @@
 	} \
 }
 
-#define ADD_TRACE_PROTECTED2(content, ...) \
-{ \
-	char      message[MAX_STR_LEN]; \
-	int       print_rc; \
-	\
-	memset(message, 0, sizeof(message));			\
-	print_rc = snprintf(message, sizeof(message), content, ##__VA_ARGS__); \
-							\
-	if (print_rc > 0) \
-	{				\
-		if (print_rc < sizeof(message)) \
-		{ \
-			message[MAX_STR_LEN - 1] = '\0'; \
-		} \
-		\
-		if (addTraceProtected(message, strlen(message)) != TRACE_OK) \
-		{ \
-			stop_cpu; \
-		}		\
-	}	\
-}
+//#define ADD_TRACE_PROTECTED2(content, ...) \
+//{ \
+//	char      message[MAX_STR_LEN]; \
+//	int       print_rc; \
+//	\
+//	memset(message, 0, sizeof(message));			\
+//	print_rc = snprintf(message, sizeof(message), content, __VA_ARGS__); \
+//							\
+//	if (print_rc > 0) \
+//	{				\
+//		if (print_rc < sizeof(message)) \
+//		{ \
+//			message[MAX_STR_LEN - 1] = '\0'; \
+//		} \
+//		\
+//		if (addTraceProtected(message, strlen(message)) != TRACE_OK) \
+//		{ \
+//			stop_cpu; \
+//		}		\
+//	}	\
+//}
 
 #define ADD_TRACE(content) \
 { \

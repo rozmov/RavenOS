@@ -19,10 +19,7 @@ void work(void);
 */
 int Init_threadIdle (void) 
 {
-	if (addTrace("threadIdle init") != TRACE_OK)
-	{
-		stop_cpu;
-	}	
+	ADD_TRACE("threadIdle init") ;
 	
   tid_threadIdle = osThreadCreate (osThread(threadIdle), NULL);
   if(!tid_threadIdle) return(-1);
@@ -36,33 +33,30 @@ int Init_threadIdle (void)
 */
 void threadIdle (void const *argument) 
 {
-	if (addTraceProtected("threadIdle start run") != TRACE_OK)
-	{
-		stop_cpu;
-	}
+	ADD_TRACE_PROTECTED("threadIdle start run") ;
 	
   while (1) 
 	{
 		work();
 		
-		if (addTraceProtected("threadIdle yields") != TRACE_OK)
+		// suspend thread
+		ADD_TRACE_PROTECTED("threadIdle yields");
+    if (osThreadYield() != osOK)
 		{
-			stop_cpu;
-		}		
-    osThreadYield();                                            // suspend thread
+			ADD_TRACE_PROTECTED("threadIdle yield fail") ;
+		}
 
 		// throttle mechanism in place to stop this thread from running if no other traces added but its own
 		// if other work scheduled, this mechanism can be removed or adapted as necessary
 		while (getTraceCounter() <= 3)
 		{
-			osThreadYield();             // suspend thread
+			if (osThreadYield()!= osOK)
+			{
+				ADD_TRACE_PROTECTED("threadIdle yield while fail") ;
+			}
 		}
 		
-		if (addTraceProtected("threadIdle back from yield") != TRACE_OK)
-		{
-			stop_cpu;
-		}
-		
+		ADD_TRACE_PROTECTED("threadIdle back from yield") ;		
   }
 }
 
@@ -73,8 +67,5 @@ void work(void)
 { 
 	/// Print trace information
 	dumpTraceProtected();
-	if (addTraceProtected("threadIdle dumped trace") != TRACE_OK)
-	{
-		stop_cpu;
-	}
+	ADD_TRACE_PROTECTED("threadIdle dumped trace") ;
 }

@@ -2,6 +2,7 @@
     \brief UART Semaphore
 		\details Contains semaphore 1 related API implementations. Defines the semaphore, and initializes it .
 */
+#include <string.h>
 #include "trace.h"
 #include "osObjects.h"
 
@@ -16,10 +17,7 @@ int Init_Semaphore1 (void)
 {
   sid_Semaphore1 = osSemaphoreCreate(osSemaphore(Semaphore1), 1);
   if (!sid_Semaphore1)  {
-    if (addTrace("sem1 could not create") != TRACE_OK)
-		{
-			stop_cpu;
-		}
+    ADD_TRACE("sem1 could not create") ;
 		return (-1);
   } 
   return(0);
@@ -33,10 +31,7 @@ int Delete_Semaphore1 (void)
 {
   if ( osSemaphoreDelete(sid_Semaphore1) != osOK)
 	{
-    if (addTrace("sem1 - could not delete") != TRACE_OK)
-		{
-			stop_cpu;
-		}
+    ADD_TRACE("sem1 - could not delete") ;
 		return (-1);
   } 
   return(0);

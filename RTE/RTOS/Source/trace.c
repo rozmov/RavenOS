@@ -84,9 +84,9 @@ uint32_t addTrace(const char * message, uint32_t length)
 	
 	/// The length of a message needs to be small enough to leave room for 
 	/// a null string termination (truncating if needed)
-	if ( length > (sizeof(trace_table[trace_counter].trace - 1)) )
+	if ( length > (sizeof(trace_table[trace_counter].trace) -1) )
 	{
-		length = (sizeof(trace_table[trace_counter].trace - 1));
+		length = (sizeof(trace_table[trace_counter].trace) -1);
 	}
 	
 	memset(trace_table[trace_counter].trace, 0, sizeof(trace_table[trace_counter].trace));

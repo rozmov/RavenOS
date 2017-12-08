@@ -25,10 +25,7 @@ int Init_thread0 (void)
 		return(-1);
   }
 	
-	if (addTrace("thread0 init") != TRACE_OK)
-	{
-		stop_cpu;
-	}
+	ADD_TRACE("thread0 init");
 	
   return(0);
 }
@@ -39,17 +36,11 @@ int Init_thread0 (void)
 */
 int Terminate_thread0 (void) 
 {	
-	if (addTraceProtected("thread0 terminate attempt") != TRACE_OK)
-	{
-		stop_cpu;
-	}		
+	ADD_TRACE_PROTECTED("thread0 terminate attempt") ;
 	
 	if (osThreadTerminate(tid_thread0) != osOK)
 	{
-		if (addTraceProtected("could not terminate thread0") != TRACE_OK)
-		{
-			stop_cpu;
-		}			
+		ADD_TRACE_PROTECTED("could not terminate thread0") ;
 		return(-1);
 	}
 
@@ -62,93 +53,63 @@ int Terminate_thread0 (void)
 */
 void thread0 (void const *argument) 
 {
-	
-	if (addTraceProtected("thread0 start run") != TRACE_OK)
-	{
-		stop_cpu;
-	}
+	ADD_TRACE_PROTECTED("thread0 start run") ;
 	
   while (1) 
 	{	
-		
-		if (addTraceProtected("thread0 take sem0 attempt") != TRACE_OK)
-		{
-			stop_cpu;
-		}			
+		ADD_TRACE_PROTECTED("thread0 take sem0 attempt") ;
     if ( osSemaphoreWait (sid_Semaphore0, 0) != -1 ) // no wait
 		{      
-			if (addTraceProtected("thread0 take sem0 success") != TRACE_OK)
-			{
-				stop_cpu;
-			}	
+			ADD_TRACE_PROTECTED("thread0 take sem0 success") ;
 			
 			task0(); // thread code 
 			count1Sec();
 			task0();
 			
-			if (addTraceProtected("thread0 set priority to osPriorityLow") != TRACE_OK)
+			ADD_TRACE_PROTECTED("thread0 set priority to osPriorityLow") ;
+			if (osThreadSetPriority(osThreadGetId(), osPriorityLow) != osOK)
 			{
-				stop_cpu;
-			}			
-			osThreadSetPriority(osThreadGetId(), osPriorityLow);
+				ADD_TRACE_PROTECTED("thread0 could not set priority") ;
+			}
 							
-			
-			if (addTraceProtected("thread0 yields") != TRACE_OK)
+			// suspend thread
+			ADD_TRACE_PROTECTED("thread0 yields") ;
+			if (osThreadYield() != osOK)
 			{
-				stop_cpu;
-			}	
-			osThreadYield();  // suspend thread			
+				ADD_TRACE_PROTECTED("thread0 could not yield") ;
+			}
 				
-			if (addTraceProtected("thread0 release sem0 attempt") != TRACE_OK)
-			{
-				stop_cpu;
-			}				
+			ADD_TRACE_PROTECTED("thread0 release sem0 attempt") ;
 			if (osSemaphoreRelease (sid_Semaphore0) != osOK)
 			{
-				if (addTraceProtected("thread0 release sem0 fail") != TRACE_OK)
-				{
-					stop_cpu;
-				}						
+				ADD_TRACE_PROTECTED("thread0 release sem0 fail") ;
 			}
 			else
 			{
-				if (addTraceProtected("thread0 release sem0 success") != TRACE_OK)
-				{
-					stop_cpu;
-				}					
-			}
-			
+				ADD_TRACE_PROTECTED("thread0 release sem0 success") ;
+			}			
 		}
 		else
 		{
-			if (addTraceProtected("thread0 take sem0 fail") != TRACE_OK)
-			{
-				stop_cpu;
-			}				
+			ADD_TRACE_PROTECTED("thread0 take sem0 fail") ;
 		}
 		
-		if (addTraceProtected("thread0 set priority to osPriorityLow") != TRACE_OK)
+		ADD_TRACE_PROTECTED("thread0 set priority to osPriorityLow") ;
+		if (osThreadSetPriority(osThreadGetId(), osPriorityLow) != osOK)
 		{
-			stop_cpu;
-		}			
-		osThreadSetPriority(osThreadGetId(), osPriorityLow);
-		    
+			ADD_TRACE_PROTECTED("thread0 could not set priority") ;
+		}
 		
-		if (addTraceProtected("thread0 yields") != TRACE_OK)
+		// suspend thread
+		ADD_TRACE_PROTECTED("thread0 yields") ;
+    if (osThreadYield() != osOK)
 		{
-			stop_cpu;
-		}	
-    osThreadYield();  // suspend thread
+			ADD_TRACE_PROTECTED("thread0 could not yield") ;
+		}
 		
-		if (addTraceProtected("thread0 back from yield") != TRACE_OK)
-		{
-			stop_cpu;
-		}		
+		ADD_TRACE_PROTECTED("thread0 back from yield") ;
 		
-		if (addTraceProtected("thread0 delete sem0") != TRACE_OK)
-		{
-			stop_cpu;
-		}				
+		ADD_TRACE_PROTECTED("thread0 delete sem0") ;
 		if (Delete_Semaphore0() != 0)
 		{
 			stop_cpu;
@@ -158,8 +119,7 @@ void thread0 (void const *argument)
 		if (Terminate_thread0() != 0)
 		{
 			stop_cpu;		
-		}
-		
+		}		
   }
 }
 
@@ -170,8 +130,5 @@ void thread0 (void const *argument)
 void task0(void)
 { 
   LED_blink(LED0);
-	if (addTraceProtected("thread0 flips LED") != TRACE_OK)
-	{
-		stop_cpu;
-	}		
+	ADD_TRACE_PROTECTED("thread0 flips LED") ;
 }
