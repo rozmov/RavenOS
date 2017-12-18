@@ -1,6 +1,6 @@
 /*! \file main.c
     \brief A program that demonstrates threads
-		\details Initialize threads and start the OS
+    \details Initialize threads and start the OS
 **/
 
 #define osObjectExternal                    // define objects in main module
@@ -11,59 +11,59 @@
 // -------------------------------------------------------------------------
 /*! \fn int main(void)
     \brief Start of main program
-		\details Initializes the peripherals and starts the OS
+    \details Initializes the peripherals and starts the OS
 */
 int main(void)
 {
-	// initialize CMSIS-RTOS
-	osKernelInitialize ();                    
-	
-	// initialize peripherals
-	UART_initialize();
+  // initialize CMSIS-RTOS
+  osKernelInitialize ();
+
+  // initialize peripherals
+  UART_initialize();
   printf("\n\rRavenOS demo\n\r");
-  LED_initialize(); 
-	
-	printf("Initializing threads\n\r");
-  
-	if (Init_thread0() != 0)
-	{
-		stop_cpu;
-	}
-	
+  LED_initialize();
+
+  printf("Initializing threads\n\r");
+
+  if (Init_thread0() != 0)
+  {
+    stop_cpu;
+  }
+
   if (Init_thread1() != 0)
-	{
-		stop_cpu;
-	}
-	
+  {
+    stop_cpu;
+  }
+
   if (Init_thread2() != 0)
-	{
-		stop_cpu;
-	}	
-	
-//  // thread3 is a low priority thread can be used as a more user obvious alternative to print tracing from UART, 
-//  // which currently resides in the Idle thread (operated by the RTOS)
-//  if (Init_thread3() != 0)
-//	{
-//		stop_cpu;
-//	}
-	
-	printf("Initializing semaphores\n\r");
-  
-	if (Init_Semaphore0() != 0)
-	{
-		stop_cpu;
-	}	
-	
+  {
+    stop_cpu;
+  }
+
+  // thread3 is a low priority thread can be used as a more user obvious alternative to print tracing from UART,
+  // which currently resides in the Idle thread (operated by the RTOS)
+  if (Init_thread3() != 0)
+  {
+    stop_cpu;
+  }
+
+  printf("Initializing semaphores\n\r");
+
+  if (Init_Semaphore0() != 0)
+  {
+    stop_cpu;
+  }
+
   if (Init_Semaphore1() != 0)
-	{
-		stop_cpu;
-	}		
-	
-	// start thread execution
-	printf("Start kernel\n\r");
-	osKernelStart ();                          
-	
-	printf("Kernel done");
+  {
+    stop_cpu;
+  }
+
+  // start thread execution
+  printf("Start kernel\n\r");
+  osKernelStart ();
+
+  printf("Kernel done");
   // Should not be here
   stop_cpu;
 }

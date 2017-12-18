@@ -1,12 +1,12 @@
 /*! \file semaphores.h
     \brief This header file defines all semaphore related data
-		\details Defines the maximum number of threads a semaphore can support and the maximum numner of semaphores supported.
+    \details Defines the maximum number of threads a semaphore can support and the maximum numner of semaphores supported.
 */
 
 #ifndef _SEMAPHORES_H
 #define _SEMAPHORES_H
 
-#include <stdint.h> 
+#include <stdint.h>
 
 //-------- <<< Use Configuration Wizard in Context Menu >>> ------------------
 //--------------------- Semaphore Configuration ----------------------------------
@@ -25,5 +25,6 @@
 //          <i> Specifies the maximum number of threads that can be blocked on or own a semaphore.
 //
 #define MAX_THREADS_SEM (10) ///< The maximum number of threads that can be blocked or own on a semaphore.
+// <<< end of configuration section >>>
 
 #endif

@@ -1,6 +1,6 @@
 /*! \file cmsis_os.h
     \brief This header file defines all kernel APIs
-		\details For a description see \ref cmsis_os_h
+    \details For a description see \ref cmsis_os_h
 */
 
 /* ----------------------------------------------------------------------
@@ -26,7 +26,7 @@
  * Version 1.02
  *    Control functions for short timeouts in microsecond resolution:
  *    Added: osKernelSysTick, osKernelSysTickFrequency, osKernelSysTickMicroSec
- *    Removed: osSignalGet 
+ *    Removed: osSignalGet
  *----------------------------------------------------------------------------
  *
  * Copyright (c) 2013 ARM LIMITED
@@ -139,10 +139,10 @@ used throughout the whole project.
 #define osCMSIS           0x10002      ///< API version (main [31:16] .sub [15:0])
 
 /// \note CAN BE CHANGED: \b osCMSIS_KERNEL identifies the underlying RTOS kernel and version number.
-#define osCMSIS_KERNEL    0x10000	   ///< RTOS identification and version (main [31:16] .sub [15:0])
+#define osCMSIS_KERNEL    0x10000     ///< RTOS identification and version (main [31:16] .sub [15:0])
 
 /// \note MUST REMAIN UNCHANGED: \b osKernelSystemId shall be consistent in every CMSIS-RTOS.
-#define osKernelSystemId "KERNEL V1.00"   ///< RTOS identification string
+#define osKernelSystemId "KERNEL V2.00"   ///< RTOS identification string
 
 /// \note MUST REMAIN UNCHANGED: \b osFeature_xxx shall be consistent in every CMSIS-RTOS.
 #define osFeature_MainThread   1       ///< main thread      1=main can be thread, 0=not available
@@ -203,7 +203,6 @@ typedef enum  {
   os_status_reserved      =  0x7FFFFFFF  ///< prevent from enum down-size compiler optimization.
 } osStatus;
 
-
 /// Timer type value for the timer definition.
 /// \note MUST REMAIN UNCHANGED: \b os_timer_type shall be consistent in every CMSIS-RTOS.
 typedef enum  {
@@ -224,10 +223,9 @@ typedef void (*os_ptimer) (void const *argument);
 #include "threads.h"
 #include "semaphores.h"
 
-typedef struct os_thread_cb os_thread_cb;       ///< Thread Control Block 
-typedef struct os_semaphore_cb os_semaphore_cb; ///< Semaphore Control Block 
-typedef struct os_thread_timed os_thread_timed; ///< Sleeping Thread  
-
+typedef struct os_thread_cb os_thread_cb;       ///< Thread Control Block
+typedef struct os_semaphore_cb os_semaphore_cb; ///< Semaphore Control Block
+typedef struct os_thread_timed os_thread_timed; ///< Sleeping Thread
 
 /// Thread ID identifies the thread (pointer to a thread control block).
 /// \note CAN BE CHANGED: \b os_thread_cb is implementation specific in every CMSIS-RTOS.
@@ -245,7 +243,6 @@ typedef struct os_mutex_cb *osMutexId;
 /// \note CAN BE CHANGED: \b os_semaphore_cb is implementation specific in every CMSIS-RTOS.
 typedef struct os_semaphore_cb *osSemaphoreId;
 
-
 /// Pool ID identifies the memory pool (pointer to a memory pool control block).
 /// \note CAN BE CHANGED: \b os_pool_cb is implementation specific in every CMSIS-RTOS.
 typedef struct os_pool_cb *osPoolId;
@@ -261,17 +258,17 @@ typedef struct os_mailQ_cb *osMailQId;
 /// Thread Block Control
 struct os_thread_cb
 {
-	osPriority priority;   ///< Thread Priority
-	osThreadStatus status; ///< Thread Status
-	uint32_t th_q_p;       ///< Thread Queue Pointer / Index
-	uint32_t stack_p;      ///< Stack Pointer
-	uint32_t stack_size;   ///< Stack Size (bytes)
-	uint32_t semaphore_p;  ///< Semapore Pointer - where the thread is in semaphore blocked queue 
-	osSemaphoreId semaphore_id; ///< Semaphore ID for semaphore currently blocked on 
-	uint32_t time_count;   ///< Time until Timeout
-	uint32_t timed_q_p;    ///< Timed Queue Pointer
-	osStatus timed_ret;    ///< Exit Status from Sleep
-	os_pthread start_p;    ///< Start address of thread function
+  osPriority priority;   ///< Thread Priority
+  osThreadStatus status; ///< Thread Status
+  uint32_t th_q_p;       ///< Thread Queue Pointer / Index
+  uint32_t stack_p;      ///< Stack Pointer
+  uint32_t stack_size;   ///< Stack Size (bytes)
+  uint32_t semaphore_p;  ///< Semapore Pointer - where the thread is in semaphore blocked queue
+  osSemaphoreId semaphore_id; ///< Semaphore ID for semaphore currently blocked on
+  uint32_t time_count;   ///< Time until Timeout
+  uint32_t timed_q_p;    ///< Timed Queue Pointer
+  osStatus timed_ret;    ///< Exit Status from Sleep
+  os_pthread start_p;    ///< Start address of thread function
 };
 
 // Thread related information for initialization and scheduling
@@ -284,19 +281,19 @@ extern uint32_t th_q_cnt;
 */
 struct os_thread_timed
 {
-	osThreadId threadId;   ///< Thread timed
-	uint32_t   expiryTime; ///< Expiry time
-	uint32_t   ticks; 		 ///< Ticks	
+  osThreadId threadId;   ///< Thread timed
+  uint32_t   expiryTime; ///< Expiry time
+  uint32_t   ticks;      ///< Ticks
 };
 
 /// Semaphore Block Control
 struct os_semaphore_cb
 {
-	os_thread_timed            threads_q[MAX_THREADS_SEM];     ///< queue of threads blocked on a semaphore.
+  os_thread_timed            threads_q[MAX_THREADS_SEM];     ///< queue of threads blocked on a semaphore.
   uint32_t                   threads_q_cnt;                  ///< indicated how many threads are blocked on this semaphore
-	osThreadId                 threads_own_q[MAX_THREADS_SEM]; ///< queue of threads using a semaphore.
-  uint32_t                   threads_own_q_cnt;              ///< indicated how many threads are using on this semaphore	
-	uint32_t                   ownCount;                       ///< number of tokens for this semaphore
+  osThreadId                 threads_own_q[MAX_THREADS_SEM]; ///< queue of threads using a semaphore.
+  uint32_t                   threads_own_q_cnt;              ///< indicated how many threads are using on this semaphore
+  uint32_t                   ownCount;                       ///< number of tokens for this semaphore
 } ;
 
 /// Thread Definition structure contains startup information of a thread.
@@ -306,8 +303,8 @@ typedef struct os_thread_def  {
   osPriority             tpriority;    ///< initial thread priority
   uint32_t               instances;    ///< maximum number of instances of that thread function
   uint32_t               stacksize;    ///< stack size requirements in bytes; 0 is default stack size
-// 	uint32_t               period;       ///< thread period
-// 	uint32_t               rel_time;     ///< thread release time	(initial)
+//   uint32_t               period;       ///< thread period
+//   uint32_t               rel_time;     ///< thread release time  (initial)
 } osThreadDef_t;
 
 /// Timer Definition structure contains timer parameters.
@@ -325,7 +322,7 @@ typedef struct os_mutex_def  {
 /// Semaphore Definition structure contains setup information for a semaphore.
 /// \note CAN BE CHANGED: \b os_semaphore_def is implementation specific in every CMSIS-RTOS.
 typedef struct os_semaphore_def  {
-  uint32_t                   dummy;    ///< dummy value.	
+  uint32_t                   dummy;    ///< dummy value.
 } osSemaphoreDef_t;
 
 /// Definition structure for memory block allocation.
@@ -387,9 +384,9 @@ int32_t osKernelRunning(void);
 
 #if (defined (osFeature_SysTick)  &&  (osFeature_SysTick != 0))     // System Timer available
 
-/// Get the RTOS kernel system timer counter 
+/// Get the RTOS kernel system timer counter
 /// \note MUST REMAIN UNCHANGED: \b osKernelSysTick shall be consistent in every CMSIS-RTOS.
-/// \return RTOS kernel system timer as 32-bit value 
+/// \return RTOS kernel system timer as 32-bit value
 uint32_t osKernelSysTick (void);
 
 /// The RTOS kernel system timer frequency in Hz

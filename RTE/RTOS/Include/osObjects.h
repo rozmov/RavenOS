@@ -6,7 +6,7 @@
 #ifndef _OSOBJECTS_H
 #define _OSOBJECTS_H
 
-#include "cmsis_os.h"                                   // CMSIS RTOS header file
+#include "cmsis_os.h"  // CMSIS RTOS header file
 
 /*! \def stop_cpu2
      Use Breakpoint to stop when error is detected (KEIL MDK specific intrinsic) */
